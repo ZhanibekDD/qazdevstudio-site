@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Квиз: что автоматизировать в бизнесе? — QazDev Studio</title>
+<meta name="description" content="Ответьте на 6 вопросов и получите персональную рекомендацию: сайт, Telegram-бот, CRM или автоматизация документов — что именно нужно вашему бизнесу.">
+<link rel="canonical" href="https://qazdevstudio.kz/automation-quiz.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+<nav class="p-nav">
+  <a href="/" class="p-nav-logo">
+    <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#080D1C"/><circle cx="19" cy="19" r="11" stroke="#00D4FF" stroke-width="2" fill="none"/><path d="M27 27L36 36" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/><path d="M13 16L11 19L13 22M25 16L27 19L25 22M21 23L18 15" stroke="#00D4FF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/></svg>
+    <span class="p-nav-logo-text">QazDev <span>Studio</span></span>
+  </a>
+  <div class="p-nav-actions">
+    <a href="/" class="p-nav-link">Главная</a>
+    <a href="https://wa.me/77000300024" class="p-nav-cta">WhatsApp</a>
+  </div>
+</nav>
+
+<main>
+<div class="p-container" style="padding-top:48px;padding-bottom:80px;max-width:680px;">
+
+  <div class="p-breadcrumb">
+    <a href="/">Главная</a><span>/</span><span>Квиз автоматизации</span>
+  </div>
+
+  <div class="p-tag">// Диагностика</div>
+  <h1 style="font-size:clamp(26px,5vw,40px);font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px;">Что автоматизировать в вашем бизнесе?</h1>
+  <p style="font-size:15px;color:#94A3B8;margin-bottom:40px;">6 вопросов — персональная рекомендация. Без регистрации.</p>
+
+  <!-- Progress -->
+  <div class="p-quiz-progress">
+    <div class="p-quiz-bar" id="quizBar" style="width:0%"></div>
+  </div>
+
+  <!-- Steps -->
+  <div id="quiz">
+
+    <div class="p-quiz-step active" data-step="1">
+      <div class="p-quiz-q">Где сейчас приходят заявки от клиентов?</div>
+      <div class="p-quiz-opts">
+        <button class="p-quiz-opt" data-tags="site">В мессенджеры вручную (WhatsApp, Telegram)</button>
+        <button class="p-quiz-opt" data-tags="site,bot">Через сайт или форму</button>
+        <button class="p-quiz-opt" data-tags="bot">Устно, по звонку — записываю сам</button>
+        <button class="p-quiz-opt" data-tags="crm,bot">Нигде не фиксируется — теряются</button>
+      </div>
+    </div>
+
+    <div class="p-quiz-step" data-step="2">
+      <div class="p-quiz-q">Где храните информацию о клиентах?</div>
+      <div class="p-quiz-opts">
+        <button class="p-quiz-opt" data-tags="crm">В Excel или Google Таблицах</button>
+        <button class="p-quiz-opt" data-tags="crm">В телефоне, блокноте, памяти</button>
+        <button class="p-quiz-opt" data-tags="">В CRM-системе (Bitrix, AmoCRM...)</button>
+        <button class="p-quiz-opt" data-tags="crm,bot">Никак не храним</button>
+      </div>
+    </div>
+
+    <div class="p-quiz-step" data-step="3">
+      <div class="p-quiz-q">Делаете ли документы вручную (договоры, счета, акты)?</div>
+      <div class="p-quiz-opts">
+        <button class="p-quiz-opt" data-tags="docs">Да, вручную каждый раз — долго</button>
+        <button class="p-quiz-opt" data-tags="docs">Да, копирую старый и правлю</button>
+        <button class="p-quiz-opt" data-tags="">Нет, уже есть автоматизация</button>
+        <button class="p-quiz-opt" data-tags="">Документов нет или не нужны</button>
+      </div>
+    </div>
+
+    <div class="p-quiz-step" data-step="4">
+      <div class="p-quiz-q">Есть ли у вас повторяющиеся рутинные действия каждый день?</div>
+      <div class="p-quiz-opts">
+        <button class="p-quiz-opt" data-tags="bot,integration">Да — рассылки, напоминания, уведомления</button>
+        <button class="p-quiz-opt" data-tags="docs,integration">Да — перенос данных между таблицами и системами</button>
+        <button class="p-quiz-opt" data-tags="bot">Да — отвечаю на одни и те же вопросы клиентам</button>
+        <button class="p-quiz-opt" data-tags="">Нет, каждый день разные задачи</button>
+      </div>
+    </div>
+
+    <div class="p-quiz-step" data-step="5">
+      <div class="p-quiz-q">Нужно ли уведомлять сотрудников о новых заявках или событиях?</div>
+      <div class="p-quiz-opts">
+        <button class="p-quiz-opt" data-tags="bot,integration">Да — пишу каждому вручную</button>
+        <button class="p-quiz-opt" data-tags="crm,bot">Да — хочу автоматически в Telegram</button>
+        <button class="p-quiz-opt" data-tags="">Работаю один, не нужно</button>
+        <button class="p-quiz-opt" data-tags="integration">Есть система, но работает плохо</button>
+      </div>
+    </div>
+
+    <div class="p-quiz-step" data-step="6">
+      <div class="p-quiz-q">Нужна ли база с оплатами, статусами или историей клиентов?</div>
+      <div class="p-quiz-opts">
+        <button class="p-quiz-opt" data-tags="crm">Да, очень — сейчас хаос</button>
+        <button class="p-quiz-opt" data-tags="crm,integration">Да — и хочу видеть аналитику</button>
+        <button class="p-quiz-opt" data-tags="">Нет, достаточно переписки</button>
+        <button class="p-quiz-opt" data-tags="bot">Нужна только история заявок</button>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div class="p-quiz-step" data-step="result">
+      <div id="quizResult" style="display:none;">
+        <div style="font-size:13px;font-family:'JetBrains Mono',monospace;color:#00D4FF;margin-bottom:8px;">// Персональная рекомендация</div>
+        <h2 style="font-size:clamp(22px,4vw,32px);font-weight:800;color:#fff;margin-bottom:16px;" id="resTitle"></h2>
+        <p style="font-size:15px;color:#94A3B8;margin-bottom:28px;" id="resDesc"></p>
+
+        <div class="p-grid p-grid--2" id="resCards" style="margin-bottom:32px;"></div>
+
+        <div class="p-box p-box--blue" style="margin-bottom:28px;" id="resProblem"></div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="#" class="p-btn p-btn--wa" id="resWaBtn" onclick="trackEvent('whatsapp_click','Квиз → результат')">Получить схему автоматизации</a>
+          <a href="/calculator.html" class="p-btn p-btn--ghost">Рассчитать стоимость</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="p-quiz-nav" id="quizNav">
+    <button class="p-btn p-btn--ghost p-btn--sm" id="prevBtn" onclick="goStep(-1)" style="display:none;">← Назад</button>
+    <div style="font-size:13px;color:#64748B;font-family:'JetBrains Mono',monospace;" id="stepCounter">Шаг 1 из 6</div>
+    <div></div>
+  </div>
+
+</div>
+</main>
+
+<footer class="p-footer">
+  <div class="p-footer-inner">
+    <span class="p-footer-copy">© 2026 QazDev Studio. Казахстан.</span>
+    <div class="p-footer-links">
+      <a href="/">Главная</a>
+      <a href="/calculator.html">Калькулятор</a>
+      <a href="/checklist-saita.html">Чек-лист</a>
+      <a href="/privacy.html">Политика</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/track.js"></script>
+<script>
+const SOLUTIONS = {
+  site: { icon:'🌐', title:'Сайт / лендинг', desc:'Для привлечения клиентов и первого касания', link:'/razrabotka-saitov-kazakhstan.html' },
+  bot:  { icon:'🤖', title:'Telegram-бот', desc:'Для автоматического приёма заявок 24/7', link:'/telegram-bot-kazakhstan.html' },
+  crm:  { icon:'📊', title:'CRM-система', desc:'Для хранения и работы с базой клиентов', link:'/crm-dlya-biznesa-kazakhstan.html' },
+  docs: { icon:'📄', title:'Автоматизация документов', desc:'Для быстрой генерации договоров и счетов', link:'/avtomatizaciya-dokumentov.html' },
+  integration: { icon:'🔗', title:'Интеграция сервисов', desc:'Для связи существующих инструментов', link:'/avtomatizaciya-biznesa-kazakhstan.html' },
+};
+
+const RESULTS = {
+  site: { title:'Вам нужен профессиональный сайт', desc:'Ваши клиенты ищут вас в интернете, но не могут найти или не доверяют тому, что видят. Сайт — первый шаг к системному потоку заявок.', problem:'<div class="p-box-title">⚠️ Главная проблема</div><p>Без сайта клиент видит вас только в мессенджере — это закрытый канал. Сайт даёт поисковый трафик, доверие и возможность выбрать вас среди конкурентов.</p>' },
+  bot:  { title:'Вам нужен Telegram-бот для заявок', desc:'Много рутинных ответов на одни вопросы, ручной приём заявок, потеря клиентов в нерабочее время — бот решит это автоматически.', problem:'<div class="p-box-title">⚠️ Главная проблема</div><p>Без бота вы тратите время на повторяющиеся действия и теряете клиентов, которые пишут ночью или в выходные. Бот принимает заявки 24/7.</p>' },
+  crm:  { title:'Вам нужна CRM-система', desc:'База клиентов ведётся хаотично, статусы теряются, история переписки разбросана по разным местам. CRM наведёт порядок.', problem:'<div class="p-box-title">⚠️ Главная проблема</div><p>Без CRM вы не видите, сколько клиентов в работе, кому нужно перезвонить и сколько денег в воронке. Это прямые потери дохода.</p>' },
+  docs: { title:'Вам нужна автоматизация документов', desc:'Генерация договоров, счетов и актов занимает много времени. Автоматизация сократит это до нескольких секунд.', problem:'<div class="p-box-title">⚠️ Главная проблема</div><p>Ручное заполнение документов — это ошибки, время и стресс. При росте объёма это становится узким местом всего бизнеса.</p>' },
+  integration: { title:'Вам нужна интеграция систем', desc:'Данные между сервисами переносятся вручную, системы не «разговаривают» друг с другом. Интеграция исправит это.', problem:'<div class="p-box-title">⚠️ Главная проблема</div><p>Без интеграции каждый инструмент — это отдельный остров. Данные теряются при переносе, возникают ошибки и дублирование работы.</p>' },
+};
+
+let step = 1;
+const totalSteps = 6;
+const tags = {};
+
+function getStep(n) { return document.querySelector('[data-step="' + n + '"]'); }
+
+function updateUI() {
+  document.getElementById('quizBar').style.width = ((step-1)/totalSteps*100) + '%';
+  document.getElementById('stepCounter').textContent = step <= totalSteps ? `Шаг ${step} из ${totalSteps}` : '';
+  document.getElementById('prevBtn').style.display = step > 1 ? 'block' : 'none';
+}
+
+function goStep(dir) {
+  const cur = getStep(step);
+  if (dir === -1 && step > 1) {
+    cur.classList.remove('active');
+    step--;
+    getStep(step).classList.add('active');
+    updateUI();
+  }
+}
+
+function selectOpt(btn) {
+  const stepEl = btn.closest('.p-quiz-step');
+  stepEl.querySelectorAll('.p-quiz-opt').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const t = btn.dataset.tags;
+  tags[step] = t ? t.split(',') : [];
+
+  setTimeout(() => {
+    stepEl.classList.remove('active');
+    if (step < totalSteps) {
+      step++;
+      getStep(step).classList.add('active');
+      updateUI();
+    } else {
+      // Show result
+      step = 'result';
+      document.getElementById('quizNav').style.display = 'none';
+      document.getElementById('quizBar').style.width = '100%';
+      getStep('result').classList.add('active');
+      showResult();
+    }
+  }, 300);
+}
+
+function showResult() {
+  // Count tag frequencies
+  const counts = {};
+  Object.values(tags).flat().forEach(t => { if(t) counts[t] = (counts[t]||0)+1; });
+  const top = Object.entries(counts).sort((a,b)=>b[1]-a[1]).map(e=>e[0]);
+
+  // Primary recommendation
+  const primary = top[0] || 'bot';
+  const secondary = top.filter(t=>t!==primary).slice(0,2);
+  const res = RESULTS[primary] || RESULTS.bot;
+
+  document.getElementById('resTitle').textContent = res.title;
+  document.getElementById('resDesc').textContent = res.desc;
+  document.getElementById('resProblem').innerHTML = res.problem;
+
+  // Cards
+  const allRec = [primary, ...secondary].slice(0,4);
+  document.getElementById('resCards').innerHTML = allRec.map(t => {
+    const s = SOLUTIONS[t];
+    return `<a href="${s.link}" class="p-card" style="text-decoration:none;">
+      <div class="p-card-icon">${s.icon}</div>
+      <div class="p-card-title">${s.title}</div>
+      <div class="p-card-desc">${s.desc}</div>
+    </a>`;
+  }).join('');
+
+  // WA button
+  const text = `Здравствуйте! Прошёл квиз на сайте. Рекомендация: ${res.title}. Хочу получить схему автоматизации.`;
+  document.getElementById('resWaBtn').href = 'https://wa.me/77000300024?text=' + encodeURIComponent(text);
+
+  document.getElementById('quizResult').style.display = 'block';
+  trackEvent('quiz_completed', primary, { tags: JSON.stringify(counts) });
+}
+
+// Attach listeners
+document.querySelectorAll('.p-quiz-opt').forEach(btn => {
+  btn.addEventListener('click', () => selectOpt(btn));
+});
+</script>
+</body>
+</html>
