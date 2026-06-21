@@ -1,6 +1,6 @@
 /* QazDev Studio — main.js */
 
-const WA_NUMBER = '77001234567'; // замените на реальный номер WhatsApp
+const WA_NUMBER = '77000300024';
 
 /* === HEADER SCROLL === */
 const header = document.getElementById('header');
@@ -117,6 +117,10 @@ document.querySelectorAll('.faq-question').forEach(btn => {
 
     btn.setAttribute('aria-expanded', String(!isOpen));
     answer.classList.toggle('open', !isOpen);
+
+    if (!isOpen) {
+      trackEvent('faq_open', btn.querySelector('span')?.textContent?.trim()?.substring(0, 80) || '');
+    }
   });
 });
 
@@ -126,13 +130,26 @@ document.getElementById('projectForm').addEventListener('submit', e => {
   const form = e.target;
 
   const service = form.querySelector('input[name="service"]:checked')?.value || 'Не выбрано';
-  const city = form.querySelector('#city').value.trim() || 'Не указан';
-  const phone = form.querySelector('#phone').value.trim();
+  const city    = form.querySelector('#city').value.trim()    || 'Не указан';
+  const phone   = form.querySelector('#phone').value.trim();
   const comment = form.querySelector('#comment').value.trim() || 'Без комментария';
 
-  const text = `Здравствуйте! Хочу обсудить проект для QazDev Studio.\n\nНужно: ${service}\nГород: ${city}${phone ? '\nТелефон: ' + phone : ''}\nКомментарий: ${comment}`;
-  const encoded = encodeURIComponent(text);
-  window.open(`https://wa.me/${WA_NUMBER}?text=${encoded}`, '_blank', 'noopener,noreferrer');
+  // Track lead before opening WhatsApp
+  trackEvent('form_submit', 'Отправка заявки', { service, city, phone, comment });
+
+  // UX feedback
+  const btn = form.querySelector('[type="submit"]');
+  if (btn) {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ Заявка подготовлена. Открываю WhatsApp...';
+    btn.disabled = true;
+    setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 4000);
+  }
+
+  setTimeout(() => {
+    const text = `Здравствуйте! Хочу обсудить проект для QazDev Studio.\n\nНужно: ${service}\nГород: ${city}${phone ? '\nТелефон: ' + phone : ''}\nКомментарий: ${comment}`;
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+  }, 600);
 });
 
 /* === MAGNETIC BUTTONS === */
@@ -239,3 +256,100 @@ if (window.matchMedia('(pointer: fine)').matches) {
     }, { passive: true });
   }
 }
+
+/* ================================================
+   ANALYTICS TRACKING
+   BOT_TOKEN never touches this file — all events
+   go to /api/track.php (backend only).
+   ================================================ */
+
+const TRACK_URL = '/api/track.php';
+
+function _qdVid() {
+  let id = localStorage.getItem('qd_vid');
+  if (!id) {
+    id = 'v' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+    localStorage.setItem('qd_vid', id);
+  }
+  return id;
+}
+
+function _qdSid() {
+  let id = sessionStorage.getItem('qd_sid');
+  if (!id) {
+    id = 's' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+    sessionStorage.setItem('qd_sid', id);
+  }
+  return id;
+}
+
+function trackEvent(eventType, eventLabel = '', extra = {}) {
+  try {
+    const sp = new URLSearchParams(location.search);
+    const payload = JSON.stringify({
+      visitor_id:   _qdVid(),
+      session_id:   _qdSid(),
+      event_type:   eventType,
+      event_label:  String(eventLabel).substring(0, 200),
+      page_url:     location.pathname + location.search,
+      page_title:   document.title,
+      referrer:     document.referrer,
+      utm_source:   sp.get('utm_source')   || '',
+      utm_medium:   sp.get('utm_medium')   || '',
+      utm_campaign: sp.get('utm_campaign') || '',
+      extra,
+    });
+
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(TRACK_URL, new Blob([payload], { type: 'application/json' }));
+    } else {
+      fetch(TRACK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true }).catch(() => {});
+    }
+  } catch (_) {}
+}
+
+// Page view on load
+trackEvent('page_view');
+
+// Scroll depth
+(function () {
+  const sent = { 50: false, 90: false };
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    if (!sent[50] && pct >= 50) { sent[50] = true; trackEvent('scroll_50', '50%'); }
+    if (!sent[90] && pct >= 90) { sent[90] = true; trackEvent('scroll_90', '90%'); }
+  }, { passive: true });
+})();
+
+// Service selection in form
+document.querySelectorAll('input[name="service"]').forEach(r => {
+  r.addEventListener('change', () => trackEvent('service_select', r.value));
+});
+
+// Global click delegation — links and CTA buttons
+document.addEventListener('click', e => {
+  try {
+    // Links
+    const link = e.target.closest('a[href]');
+    if (link) {
+      const href = link.getAttribute('href') || '';
+      const txt  = link.textContent.trim().substring(0, 100);
+      if (href.includes('wa.me'))               { trackEvent('whatsapp_click', txt); trackEvent('contact_intent', 'WhatsApp'); }
+      else if (href.includes('t.me'))           { trackEvent('telegram_click',  txt); trackEvent('contact_intent', 'Telegram'); }
+      else if (href.startsWith('mailto:'))      { trackEvent('email_click',     txt); trackEvent('contact_intent', 'Email'); }
+      else if (href.startsWith('tel:'))         { trackEvent('phone_click',     txt); trackEvent('contact_intent', 'Phone'); }
+    }
+
+    // Buttons outside the form (CTA, pricing)
+    const btn = e.target.closest('button:not([type="submit"]), .btn:not(.btn-whatsapp)');
+    if (btn && !btn.closest('form')) {
+      const txt = btn.textContent.trim().substring(0, 100);
+      if (btn.classList.contains('pricing-btn')) {
+        const label = btn.closest('.pricing-card')?.querySelector('.pricing-label')?.textContent?.trim() || txt;
+        trackEvent('price_click', label);
+      } else if (!btn.classList.contains('nav-toggle') && !btn.classList.contains('faq-question')) {
+        trackEvent('button_click', txt);
+      }
+    }
+  } catch (_) {}
+}, true);

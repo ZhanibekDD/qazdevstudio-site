@@ -8,6 +8,10 @@ desktop.ini
 .idea/
 *.sublime-workspace
 
+# Database
+*.sqlite
+*.db
+
 # Logs
 *.log
 
