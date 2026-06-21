@@ -8,6 +8,9 @@ desktop.ini
 .idea/
 *.sublime-workspace
 
+# Secrets — never commit to git
+api/config.php
+
 # Database
 *.sqlite
 *.db
