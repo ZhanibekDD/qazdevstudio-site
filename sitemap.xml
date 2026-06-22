@@ -156,6 +156,14 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Инструменты-утилиты -->
+  <url>
+    <loc>https://qazdevstudio.kz/ip.html</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- Служебные -->
   <url>
     <loc>https://qazdevstudio.kz/privacy.html</loc>
