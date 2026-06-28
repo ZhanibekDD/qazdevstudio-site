@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Блог QazDev Studio — IT для бизнеса в Казахстане</title>
+<meta name="description" content="Практические статьи об автоматизации бизнеса, Telegram-ботах, CRM, разработке сайтов. Без воды — только рабочие решения для предпринимателей Казахстана.">
+<link rel="canonical" href="https://qazdevstudio.kz/blog/">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/pages.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Blog","name":"Блог QazDev Studio","description":"Практические статьи об IT для бизнеса в Казахстане","url":"https://qazdevstudio.kz/blog/","publisher":{"@type":"Organization","name":"QazDev Studio","url":"https://qazdevstudio.kz"}}
+</script>
+</head>
+<body>
+
+<nav class="p-nav">
+  <div class="p-nav-inner">
+    <a href="/" class="p-nav-logo">
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#080D1C"/><circle cx="19" cy="19" r="11" stroke="#00D4FF" stroke-width="2" fill="none"/><path d="M27 27L36 36" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/><path d="M13 16L11 19L13 22M25 16L27 19L25 22M21 23L18 15" stroke="#00D4FF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/></svg>
+      <span class="p-nav-logo-text">QazDev <span>Studio</span></span>
+    </a>
+    <div class="p-nav-links">
+      <a href="/" class="p-nav-link">Главная</a>
+      <a href="/solutions/" class="p-nav-link">Решения</a>
+      <a href="/blog/" class="p-nav-link" style="color:var(--blue)">Блог</a>
+      <a href="/calculator.html" class="p-nav-link">Калькулятор</a>
+    </div>
+    <a href="https://wa.me/77000300024?text=Здравствуйте!%20Читал%20блог%2C%20хочу%20обсудить%20задачу." class="p-nav-cta" target="_blank" rel="noopener">Написать</a>
+  </div>
+</nav>
+
+<main>
+<div class="p-container" style="padding-top:48px;padding-bottom:80px">
+
+  <nav class="p-breadcrumb">
+    <a href="/">Главная</a>
+    <span>→</span>
+    <span>Блог</span>
+  </nav>
+
+  <div class="p-tag">// Знания</div>
+  <h1 style="font-size:clamp(28px,5vw,44px);font-weight:800;color:var(--text-1);line-height:1.15;margin-bottom:12px">Блог об IT для бизнеса</h1>
+  <p style="font-size:16px;color:var(--text-3);margin-bottom:40px;max-width:600px;line-height:1.7">Практические статьи о Telegram-ботах, CRM, автоматизации и сайтах. Без воды — только то, что реально работает для малого и среднего бизнеса в Казахстане.</p>
+
+  <!-- Фильтры -->
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px" id="filters">
+    <button class="filter-btn active" data-cat="all">Все статьи</button>
+    <button class="filter-btn" data-cat="bot">Телеграм-боты</button>
+    <button class="filter-btn" data-cat="crm">CRM и заявки</button>
+    <button class="filter-btn" data-cat="site">Сайты</button>
+    <button class="filter-btn" data-cat="auto">Автоматизация</button>
+    <button class="filter-btn" data-cat="compare">Сравнения</button>
+  </div>
+
+  <style>
+    .filter-btn{font-family:'Manrope',sans-serif;font-size:13px;font-weight:600;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-3);cursor:pointer;transition:all .2s}
+    .filter-btn:hover,.filter-btn.active{background:var(--blue);color:#000;border-color:var(--blue)}
+    .blog-card{display:flex;flex-direction:column;gap:10px;padding:24px;background:rgba(13,20,38,.7);border:1px solid var(--border);border-radius:16px;text-decoration:none;transition:border-color .2s,transform .2s}
+    .blog-card:hover{border-color:rgba(0,212,255,.35);transform:translateY(-2px)}
+    .blog-card-cat{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-4)}
+    .blog-card-cat.bot{color:#00D4FF}
+    .blog-card-cat.crm{color:#10B981}
+    .blog-card-cat.site{color:#7C3AED}
+    .blog-card-cat.auto{color:#F5C542}
+    .blog-card-cat.compare{color:#F87171}
+    .blog-card-title{font-size:16px;font-weight:700;color:var(--text-1);line-height:1.4}
+    .blog-card-desc{font-size:13px;color:var(--text-3);line-height:1.6;flex:1}
+    .blog-card-read{font-size:12px;color:var(--text-4);margin-top:4px}
+    .blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+    .blog-card[data-cat].hidden{display:none}
+  </style>
+
+  <div class="blog-grid" id="grid">
+
+    <!-- Телеграм-боты -->
+    <a href="/blog/kak-sdelat-telegram-bot.html" class="blog-card" data-cat="bot">
+      <div class="blog-card-cat bot">Телеграм-боты</div>
+      <div class="blog-card-title">Как сделать Telegram-бот для бизнеса</div>
+      <div class="blog-card-desc">Что нужно знать до заказа, какие задачи решает бот и сколько это стоит в Казахстане.</div>
+      <div class="blog-card-read">7 мин читать</div>
+    </a>
+
+    <a href="/blog/telegram-bot-dlya-zapisi-klientov.html" class="blog-card" data-cat="bot">
+      <div class="blog-card-cat bot">Телеграм-боты</div>
+      <div class="blog-card-title">Telegram-бот для записи клиентов</div>
+      <div class="blog-card-desc">Как бот заменяет администратора: приём записей, напоминания, подтверждения — 24/7 без участия человека.</div>
+      <div class="blog-card-read">6 мин читать</div>
+    </a>
+
+    <a href="/blog/telegram-bot-dlya-salona-krasoty.html" class="blog-card" data-cat="bot">
+      <div class="blog-card-cat bot">Телеграм-боты</div>
+      <div class="blog-card-title">Telegram-бот для салона красоты</div>
+      <div class="blog-card-desc">Запись, напоминания, акции и возврат клиентов через бота. Реальные примеры и схемы работы.</div>
+      <div class="blog-card-read">5 мин читать</div>
+    </a>
+
+    <a href="/blog/telegram-bot-dlya-dostavki.html" class="blog-card" data-cat="bot">
+      <div class="blog-card-cat bot">Телеграм-боты</div>
+      <div class="blog-card-title">Telegram-бот для доставки еды и товаров</div>
+      <div class="blog-card-desc">Как автоматизировать приём заказов, статусы и уведомления через Telegram без сложных интеграций.</div>
+      <div class="blog-card-read">6 мин читать</div>
+    </a>
+
+    <a href="/blog/chto-umeet-telegram-bot.html" class="blog-card" data-cat="bot">
+      <div class="blog-card-cat bot">Телеграм-боты</div>
+      <div class="blog-card-title">Что умеет Telegram-бот для бизнеса</div>
+      <div class="blog-card-desc">Полный разбор возможностей: что бот делает хорошо, а что нет. Без маркетинга, только факты.</div>
+      <div class="blog-card-read">8 мин читать</div>
+    </a>
+
+    <a href="/blog/telegram-bot-vs-whatsapp.html" class="blog-card" data-cat="bot">
+      <div class="blog-card-cat bot">Телеграм-боты</div>
+      <div class="blog-card-title">Telegram-бот или WhatsApp — что выбрать</div>
+      <div class="blog-card-desc">Сравниваем два канала для бизнеса: автоматизация, охват, стоимость и ограничения каждого.</div>
+      <div class="blog-card-read">5 мин читать</div>
+    </a>
+
+    <!-- CRM и заявки -->
+    <a href="/blog/chto-takoe-crm.html" class="blog-card" data-cat="crm">
+      <div class="blog-card-cat crm">CRM и заявки</div>
+      <div class="blog-card-title">Что такое CRM простыми словами</div>
+      <div class="blog-card-desc">Объясняем на пальцах что такое CRM, зачем она нужна малому бизнесу и когда без неё можно обойтись.</div>
+      <div class="blog-card-read">6 мин читать</div>
+    </a>
+
+    <a href="/blog/crm-ili-google-tablicy.html" class="blog-card" data-cat="crm">
+      <div class="blog-card-cat crm">CRM и заявки</div>
+      <div class="blog-card-title">CRM или Google Таблицы — что выбрать</div>
+      <div class="blog-card-desc">Честное сравнение: когда таблицы справятся, а когда без CRM уже не обойтись. С примерами.</div>
+      <div class="blog-card-read">7 мин читать</div>
+    </a>
+
+    <a href="/blog/kak-ne-teryat-zayavki.html" class="blog-card" data-cat="crm">
+      <div class="blog-card-cat crm">CRM и заявки</div>
+      <div class="blog-card-title">Как не терять заявки от клиентов</div>
+      <div class="blog-card-desc">4 главные причины потери заявок и конкретные решения: от Excel до Telegram-бота с CRM.</div>
+      <div class="blog-card-read">6 мин читать</div>
+    </a>
+
+    <a href="/blog/kak-vesti-klientskuyu-bazu.html" class="blog-card" data-cat="crm">
+      <div class="blog-card-cat crm">CRM и заявки</div>
+      <div class="blog-card-title">Как вести клиентскую базу</div>
+      <div class="blog-card-desc">От блокнота до CRM: выбираем инструмент под размер бизнеса. Что важно фиксировать о каждом клиенте.</div>
+      <div class="blog-card-read">5 мин читать</div>
+    </a>
+
+    <!-- Сайты -->
+    <a href="/blog/skolko-stoit-sait-v-kazakhstane.html" class="blog-card" data-cat="site">
+      <div class="blog-card-cat site">Сайты</div>
+      <div class="blog-card-title">Сколько стоит сайт в Казахстане</div>
+      <div class="blog-card-desc">Реальные цены на разработку сайта в 2026 году. Что входит в стоимость и где можно сэкономить без потери качества.</div>
+      <div class="blog-card-read">7 мин читать</div>
+    </a>
+
+    <a href="/blog/landing-ili-multistranichnyj.html" class="blog-card" data-cat="site">
+      <div class="blog-card-cat site">Сайты</div>
+      <div class="blog-card-title">Лендинг или многостраничный сайт</div>
+      <div class="blog-card-desc">Когда достаточно одной страницы, а когда нужен полноценный сайт. Разбор с примерами под разные ниши.</div>
+      <div class="blog-card-read">6 мин читать</div>
+    </a>
+
+    <a href="/blog/chto-dolzhno-byt-na-sajte-yurista.html" class="blog-card" data-cat="site">
+      <div class="blog-card-cat site">Сайты</div>
+      <div class="blog-card-title">Что должно быть на сайте юриста</div>
+      <div class="blog-card-desc">Структура сайта юридической компании, которая реально приводит клиентов. Чек-лист и разбор ошибок.</div>
+      <div class="blog-card-read">6 мин читать</div>
+    </a>
+
+    <a href="/blog/kak-sdelat-sajt-dlya-kliniki.html" class="blog-card" data-cat="site">
+      <div class="blog-card-cat site">Сайты</div>
+      <div class="blog-card-title">Как сделать сайт для клиники или стоматологии</div>
+      <div class="blog-card-desc">Какие функции обязательны для медицинского сайта, как настроить запись онлайн и что нужно по закону РК.</div>
+      <div class="blog-card-read">7 мин читать</div>
+    </a>
+
+    <!-- Автоматизация -->
+    <a href="/blog/integratsiya-1s-s-saytom.html" class="blog-card" data-cat="auto">
+      <div class="blog-card-cat auto">Автоматизация</div>
+      <div class="blog-card-title">Интеграция 1С с сайтом: как это работает</div>
+      <div class="blog-card-desc">Разбираем схему синхронизации 1С и сайта, какие данные передаются и во сколько это обходится.</div>
+      <div class="blog-card-read">8 мин читать</div>
+    </a>
+
+    <a href="/blog/kak-avtomatizirovat-dokumenty.html" class="blog-card" data-cat="auto">
+      <div class="blog-card-cat auto">Автоматизация</div>
+      <div class="blog-card-title">Как автоматизировать создание договоров</div>
+      <div class="blog-card-desc">Генератор договоров за 5 секунд вместо 30 минут. Разбираем инструменты и схемы для малого бизнеса.</div>
+      <div class="blog-card-read">6 мин читать</div>
+    </a>
+
+    <a href="/blog/google-tablicy-dlya-biznesa.html" class="blog-card" data-cat="auto">
+      <div class="blog-card-cat auto">Автоматизация</div>
+      <div class="blog-card-title">Google Таблицы для бизнеса: автоматизация</div>
+      <div class="blog-card-desc">Что реально можно сделать в Таблицах бесплатно: формулы, скрипты, интеграции с Telegram и формами.</div>
+      <div class="blog-card-read">7 мин читать</div>
+    </a>
+
+    <a href="/blog/avtomatizatsiya-malogo-biznesa.html" class="blog-card" data-cat="auto">
+      <div class="blog-card-cat auto">Автоматизация</div>
+      <div class="blog-card-title">Автоматизация малого бизнеса: с чего начать</div>
+      <div class="blog-card-desc">Пошаговый план для тех, кто хочет автоматизировать бизнес, но не знает с чего начать и сколько это стоит.</div>
+      <div class="blog-card-read">8 мин читать</div>
+    </a>
+
+    <!-- Сравнения -->
+    <a href="/blog/konstruktor-ili-razrabotka.html" class="blog-card" data-cat="compare">
+      <div class="blog-card-cat compare">Сравнения</div>
+      <div class="blog-card-title">Конструктор сайтов или разработка — что выбрать</div>
+      <div class="blog-card-desc">Tilda, Wix и WordPress против заказной разработки. Когда конструктор подойдёт, а когда нет.</div>
+      <div class="blog-card-read">7 мин читать</div>
+    </a>
+
+    <a href="/blog/kak-vybrat-crm-dlya-malogo-biznesa.html" class="blog-card" data-cat="compare">
+      <div class="blog-card-cat compare">Сравнения</div>
+      <div class="blog-card-title">Как выбрать CRM для малого бизнеса</div>
+      <div class="blog-card-desc">Сравниваем Bitrix24, AmoCRM, Notion и Google Таблицы. Какая CRM подойдёт под ваш бюджет и задачи.</div>
+      <div class="blog-card-read">8 мин читать</div>
+    </a>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="p-cta" style="margin-top:56px">
+    <h2>Нужна консультация по IT для бизнеса?</h2>
+    <p>Расскажите задачу — подберём решение и объясним что подойдёт именно вам.</p>
+    <div class="p-cta-btns">
+      <a href="https://wa.me/77000300024?text=Здравствуйте!%20Читал%20блог%2C%20хочу%20проконсультироваться." class="p-btn p-btn--wa" target="_blank" rel="noopener">Написать в WhatsApp</a>
+      <a href="/calculator.html" class="p-btn p-btn--ghost">Рассчитать стоимость</a>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer class="p-footer">
+  <div class="p-footer-inner">
+    <div class="p-footer-copy">© 2026 QazDev Studio. Казахстан.</div>
+    <div class="p-footer-links">
+      <a href="/">Главная</a>
+      <a href="/solutions/">Решения</a>
+      <a href="/blog/">Блог</a>
+      <a href="/privacy.html">Политика</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('filters').addEventListener('click', function(e){
+  var btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var cat = btn.dataset.cat;
+  document.querySelectorAll('#grid .blog-card').forEach(function(card){
+    card.classList.toggle('hidden', cat !== 'all' && card.dataset.cat !== cat);
+  });
+});
+</script>
+<script src="../js/track.js"></script>
+</body>
+</html>
