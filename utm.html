@@ -4,84 +4,139 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UTM-генератор ссылок онлайн бесплатно</title>
-<meta name="description" content="Генератор UTM-меток онлайн. Создайте UTM-ссылку для Google Analytics, Яндекс Метрики за 10 секунд. Бесплатно, без регистрации.">
+<meta name="description" content="Генератор UTM-меток онлайн. Создайте UTM-ссылку за 10 секунд для Google Analytics, Яндекс Метрики. Поддержка Google, Instagram, Telegram, WhatsApp и других каналов.">
 <link rel="canonical" href="https://qazdevstudio.kz/utm.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"UTM-генератор","description":"Бесплатный генератор UTM-ссылок онлайн","url":"https://qazdevstudio.kz/utm.html","applicationCategory":"UtilityApplication","offers":{"@type":"Offer","price":"0"},"provider":{"@type":"Organization","name":"QazDev Studio","url":"https://qazdevstudio.kz"}}
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#050814;--bg1:#080D1C;--bg2:#0D1426;--blue:#00D4FF;--emerald:#10B981;--gold:#F5C542;--t1:#fff;--t2:#E5E7EB;--t3:#94A3B8;--t4:#64748B;--border:rgba(0,212,255,.12);--radius:12px}
-html,body{min-height:100vh;background:var(--bg);color:var(--t2);font-family:'Manrope',sans-serif;-webkit-font-smoothing:antialiased}
-.nav{padding:14px 24px;border-bottom:1px solid var(--border);background:rgba(8,13,28,.92);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between}
+:root{
+  --bg:#050814;--bg1:#080D1C;--bg2:#0D1426;
+  --blue:#00D4FF;--emerald:#10B981;--gold:#F5C542;--t1:#fff;--t2:#E5E7EB;--t3:#94A3B8;--t4:#64748B;
+  --border:rgba(0,212,255,.12);
+}
+html,body{min-height:100vh;background:var(--bg);color:var(--t2);font-family:'Manrope',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+
+/* Nav */
+.nav{padding:14px 24px;border-bottom:1px solid var(--border);background:rgba(5,8,20,.95);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .logo-t{font-size:14px;font-weight:800;color:var(--t1)}.logo-t span{color:var(--blue)}
-.nav-back{font-size:13px;font-weight:600;color:var(--t3);text-decoration:none;transition:color .2s}.nav-back:hover{color:var(--blue)}
-.wrap{max-width:760px;margin:0 auto;padding:40px 20px 80px}
+.nav-r{display:flex;align-items:center;gap:20px}
+.nav-link{font-size:13px;font-weight:600;color:var(--t3);text-decoration:none;transition:color .2s}.nav-link:hover{color:var(--blue)}
+@media(max-width:560px){.nav-link{display:none}}
+
+.wrap{max-width:760px;margin:0 auto;padding:44px 20px 80px;position:relative;z-index:1}
+
+/* Hero */
 .tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
-h1{font-size:clamp(22px,4vw,36px);font-weight:800;color:var(--t1);line-height:1.15;margin-bottom:10px}
+h1{font-size:clamp(22px,4vw,34px);font-weight:800;color:var(--t1);line-height:1.15;margin-bottom:8px}
 .sub{font-size:15px;color:var(--t3);margin-bottom:36px;line-height:1.7}
 
-/* Form */
-.form-card{background:rgba(13,20,38,.8);border:1px solid var(--border);border-radius:18px;padding:28px;margin-bottom:20px}
-.form-section{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;margin:20px 0 12px;border-top:1px solid rgba(255,255,255,.05);padding-top:16px}
-.form-section:first-child{margin-top:0;border-top:none;padding-top:0}
-.field{margin-bottom:14px}
-.label{display:block;font-size:12px;font-weight:700;color:var(--t3);margin-bottom:6px}
-.label .req{color:var(--blue)}
-.input{width:100%;background:rgba(5,8,20,.8);border:1px solid rgba(0,212,255,.15);border-radius:8px;padding:10px 14px;font-size:14px;font-family:'JetBrains Mono',monospace;color:var(--t1);outline:none;transition:border-color .2s}
-.input:focus{border-color:rgba(0,212,255,.4)}
-.input::placeholder{color:var(--t4)}
+/* Channel tiles */
+.channels-label{font-size:12px;font-weight:700;color:var(--t4);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+.channels{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-bottom:28px}
+.ch{display:flex;flex-direction:column;align-items:center;gap:7px;padding:14px 10px;border-radius:14px;border:2px solid transparent;cursor:pointer;transition:all .2s;background:rgba(13,20,38,.7);user-select:none}
+.ch:hover{transform:translateY(-2px)}
+.ch.active{transform:translateY(-2px)}
+.ch-icon{font-size:22px;line-height:1}
+.ch-name{font-size:11px;font-weight:700;text-align:center;line-height:1.3}
 
-/* Quick-pick chips */
-.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
-.chip{font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--t3);cursor:pointer;font-family:'Manrope',sans-serif;transition:all .18s;white-space:nowrap}
-.chip:hover,.chip.active{background:var(--blue);color:#000;border-color:var(--blue)}
+/* Channel colors */
+.ch[data-ch="google"]   {--c:#4285F4;--bg:rgba(66,133,244,.08)}
+.ch[data-ch="yandex"]   {--c:#FC3F1D;--bg:rgba(252,63,29,.08)}
+.ch[data-ch="instagram"]{--c:#E1306C;--bg:rgba(225,48,108,.08)}
+.ch[data-ch="facebook"] {--c:#1877F2;--bg:rgba(24,119,242,.08)}
+.ch[data-ch="tiktok"]   {--c:#EE1D52;--bg:rgba(238,29,82,.08)}
+.ch[data-ch="telegram"] {--c:#2AABEE;--bg:rgba(42,171,238,.08)}
+.ch[data-ch="whatsapp"] {--c:#25D366;--bg:rgba(37,211,102,.08)}
+.ch[data-ch="vk"]       {--c:#0077FF;--bg:rgba(0,119,255,.08)}
+.ch[data-ch="email"]    {--c:#F5C542;--bg:rgba(245,197,66,.08)}
+.ch[data-ch="2gis"]     {--c:#19A651;--bg:rgba(25,166,81,.08)}
 
-/* Preview */
-.preview{background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.18);border-radius:14px;padding:20px 22px;margin-bottom:20px}
-.preview-label{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
-.preview-url{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--t2);word-break:break-all;line-height:1.6;min-height:40px}
-.preview-url .base{color:var(--t3)}
-.preview-url .param{color:var(--blue)}
-.preview-url .val{color:var(--emerald)}
-.preview-url .sep{color:var(--t4)}
-.copy-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:7px;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;border:none;border-radius:9px;cursor:pointer;text-decoration:none;padding:10px 20px;transition:all .2s}
-.btn-blue{background:var(--blue);color:#000}.btn-blue:hover{background:#00bde6}
-.btn-ghost{background:transparent;color:var(--t2);border:1px solid var(--border)}.btn-ghost:hover{border-color:rgba(0,212,255,.4);color:var(--blue)}
-.btn-short{background:rgba(124,58,237,.2);color:#a78bfa;border:1px solid rgba(124,58,237,.3)}.btn-short:hover{background:rgba(124,58,237,.3)}
-.btn.copied{background:var(--emerald);color:#fff}
+.ch{color:var(--c,var(--t4))}
+.ch:hover,.ch.active{border-color:var(--c,var(--blue));background:var(--bg,rgba(0,212,255,.05))}
+.ch-name{color:var(--c,var(--t4))}
 
-/* Reference table */
-.ref{background:rgba(13,20,38,.6);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:32px}
-.ref-title{padding:14px 20px;font-size:13px;font-weight:700;color:var(--t1);border-bottom:1px solid var(--border)}
-.ref-row{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:10px 20px;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px}
+/* URL input */
+.url-wrap{margin-bottom:24px}
+.url-label{font-size:12px;font-weight:700;color:var(--t3);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.url-label .req{color:var(--blue)}
+.url-field{display:flex;align-items:stretch;background:rgba(5,8,20,.9);border:1px solid rgba(0,212,255,.2);border-radius:10px;overflow:hidden;transition:border-color .2s}
+.url-field:focus-within{border-color:rgba(0,212,255,.5)}
+.url-protocol{padding:0 12px;display:flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--t4);background:rgba(0,212,255,.04);border-right:1px solid rgba(0,212,255,.1);flex-shrink:0}
+.url-input{flex:1;background:transparent;border:none;outline:none;padding:12px 14px;font-size:14px;font-family:'JetBrains Mono',monospace;color:var(--t1)}
+.url-input::placeholder{color:var(--t4)}
+
+/* Params grid */
+.params-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+@media(max-width:480px){.params-grid{grid-template-columns:1fr}}
+.field-label{font-size:11px;font-weight:700;color:var(--t4);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+.field-label .key{font-family:'JetBrains Mono',monospace;color:var(--blue)}
+.field-label .opt{font-weight:400;color:var(--t4)}
+.f-input{width:100%;background:rgba(5,8,20,.8);border:1px solid rgba(0,212,255,.12);border-radius:8px;padding:10px 12px;font-size:13px;font-family:'JetBrains Mono',monospace;color:var(--t1);outline:none;transition:border-color .2s}
+.f-input:focus{border-color:rgba(0,212,255,.4)}
+.f-input::placeholder{color:var(--t4)}
+
+/* Browser preview */
+.preview-wrap{margin-bottom:24px}
+.browser-bar{background:rgba(8,13,28,.95);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.browser-chrome{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.browser-dots{display:flex;gap:5px}
+.browser-dot{width:10px;height:10px;border-radius:50%}
+.bd-r{background:#FF5F57}.bd-y{background:#FFBD2E}.bd-g{background:#28C840}
+.browser-addr{flex:1;background:rgba(0,212,255,.05);border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;min-height:26px}
+.browser-addr .base{color:var(--t3)}
+.browser-addr .qs{color:var(--t4)}
+.browser-addr .key{color:var(--blue)}
+.browser-addr .val{color:var(--emerald)}
+.browser-addr .amp{color:var(--t4)}
+.browser-body{padding:14px 18px}
+.preview-label{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.params-pills{display:flex;flex-wrap:wrap;gap:6px;min-height:28px}
+.pill{display:inline-flex;align-items:center;gap:4px;font-family:'JetBrains Mono',monospace;font-size:11px;border-radius:6px;padding:3px 8px;border:1px solid}
+.pill-src{color:#00D4FF;border-color:rgba(0,212,255,.25);background:rgba(0,212,255,.07)}
+.pill-med{color:#10B981;border-color:rgba(16,185,129,.25);background:rgba(16,185,129,.07)}
+.pill-cam{color:#7C3AED;border-color:rgba(124,58,237,.25);background:rgba(124,58,237,.07)}
+.pill-trm{color:#F5C542;border-color:rgba(245,197,66,.25);background:rgba(245,197,66,.07)}
+.pill-cnt{color:#F87171;border-color:rgba(248,113,113,.2);background:rgba(248,113,113,.06)}
+.pill-empty{color:var(--t4);border-color:transparent;background:transparent;font-size:12px}
+
+/* Actions */
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:7px;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;border:none;border-radius:10px;cursor:pointer;text-decoration:none;padding:11px 20px;transition:all .2s}
+.btn-primary{background:var(--blue);color:#000}.btn-primary:hover{background:#00bde6;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--t2);border:1px solid var(--border)}.btn-ghost:hover{border-color:rgba(0,212,255,.35);color:var(--blue)}
+.btn-wa{background:#25D366;color:#fff}.btn-wa:hover{background:#1fba5a;transform:translateY(-1px)}
+.btn.ok{background:var(--emerald)!important;color:#fff!important}
+
+/* Reference */
+.ref{margin:32px 0;background:rgba(8,13,28,.7);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.ref-title{padding:12px 18px;font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--t4);text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid var(--border)}
+.ref-row{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px}
 .ref-row:last-child{border-bottom:none}
-.ref-key{font-family:'JetBrains Mono',monospace;color:var(--blue);font-size:12px}
-.ref-val{color:var(--t3);line-height:1.5}
+.ref-k{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--blue)}
+.ref-v{color:var(--t3);line-height:1.5}
 
 /* History */
 .hist{margin-bottom:32px}
-.hist-title{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:12px}
-.hist-list{display:flex;flex-direction:column;gap:8px}
-.hist-item{background:rgba(13,20,38,.6);border:1px solid var(--border);border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.hist-url{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
-.hist-copy{font-size:11px;font-weight:700;color:var(--blue);cursor:pointer;flex-shrink:0;background:none;border:none;font-family:'Manrope',sans-serif}
-.hist-empty{font-size:13px;color:var(--t4);text-align:center;padding:20px}
+.hist-title{font-size:13px;font-weight:700;color:var(--t3);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.hist-clear{font-size:11px;font-weight:600;color:var(--t4);cursor:pointer;background:none;border:none;font-family:'Manrope',sans-serif;transition:color .2s}.hist-clear:hover{color:var(--blue)}
+.hist-item{background:rgba(8,13,28,.8);border:1px solid var(--border);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:6px;transition:border-color .2s}
+.hist-item:hover{border-color:rgba(0,212,255,.2)}
+.hist-url{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t4);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.hist-btn{font-size:11px;font-weight:700;color:var(--blue);cursor:pointer;background:none;border:none;font-family:'Manrope',sans-serif;flex-shrink:0}
 
 /* CTA */
-.cta{background:rgba(13,20,38,.7);border:1px solid var(--border);border-radius:18px;padding:28px;text-align:center}
-.cta h2{font-size:18px;font-weight:800;color:var(--t1);margin-bottom:8px}
-.cta p{font-size:14px;color:var(--t3);margin-bottom:18px}
-.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.btn-wa{background:#25D366;color:#fff}.btn-wa:hover{background:#1fba5a}
+.cta{background:rgba(8,13,28,.9);border:1px solid var(--border);border-radius:18px;padding:32px;text-align:center;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:240px;height:240px;background:radial-gradient(circle,rgba(0,212,255,.05),transparent 70%);pointer-events:none}
+.cta h2{font-size:18px;font-weight:800;color:var(--t1);margin-bottom:8px;position:relative}
+.cta p{font-size:14px;color:var(--t3);margin-bottom:18px;position:relative}
+.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:relative}
 
-.footer{border-top:1px solid var(--border);padding:20px;text-align:center;font-size:12px;color:var(--t4);font-family:'JetBrains Mono',monospace}
+.footer{border-top:1px solid var(--border);padding:20px;text-align:center;font-size:12px;color:var(--t4);font-family:'JetBrains Mono',monospace;position:relative;z-index:1}
 .footer a{color:var(--t4);text-decoration:none}.footer a:hover{color:var(--blue)}
 </style>
 </head>
@@ -92,95 +147,146 @@ h1{font-size:clamp(22px,4vw,36px);font-weight:800;color:var(--t1);line-height:1.
     <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#080D1C"/><circle cx="19" cy="19" r="11" stroke="#00D4FF" stroke-width="2" fill="none"/><path d="M27 27L36 36" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/><path d="M13 16L11 19L13 22M25 16L27 19L25 22M21 23L18 15" stroke="#00D4FF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/></svg>
     <span class="logo-t">QazDev <span>Studio</span></span>
   </a>
-  <a href="/" class="nav-back">← Главная</a>
+  <div class="nav-r">
+    <a href="/moy-ip.html" class="nav-link">Мой IP</a>
+    <a href="/blog/" class="nav-link">Блог</a>
+    <a href="/" class="nav-link">Главная</a>
+  </div>
 </nav>
 
 <main>
 <div class="wrap">
 
-  <div class="tag">// Инструмент</div>
+  <div class="tag">// Инструмент маркетолога</div>
   <h1>UTM-генератор ссылок</h1>
-  <p class="sub">Создайте UTM-ссылку для отслеживания рекламы в Google Analytics и Яндекс Метрике. Бесплатно, мгновенно.</p>
+  <p class="sub">Выберите канал — и поля utm_source / utm_medium заполнятся автоматически. Ссылка обновляется в реальном времени.</p>
 
-  <div class="form-card">
-
-    <div class="form-section" style="margin-top:0;border-top:none;padding-top:0">Целевая страница</div>
-    <div class="field">
-      <label class="label" for="f-url">URL страницы <span class="req">*</span></label>
-      <input class="input" id="f-url" type="url" placeholder="https://example.com/page" oninput="update()">
+  <!-- Step 1: Channel -->
+  <div class="channels-label">Шаг 1 — Выберите канал</div>
+  <div class="channels">
+    <div class="ch" data-ch="google" data-src="google" data-med="cpc" onclick="pickCh(this)">
+      <div class="ch-icon">🔍</div>
+      <div class="ch-name">Google Ads</div>
     </div>
-
-    <div class="form-section">Источник трафика</div>
-    <div class="label" style="margin-bottom:8px">Быстрый выбор</div>
-    <div class="chips" id="src-chips">
-      <button class="chip" data-src="google" data-med="cpc" onclick="pickSource(this)">Google Ads</button>
-      <button class="chip" data-src="yandex" data-med="cpc" onclick="pickSource(this)">Яндекс Директ</button>
-      <button class="chip" data-src="instagram" data-med="social" onclick="pickSource(this)">Instagram</button>
-      <button class="chip" data-src="facebook" data-med="social" onclick="pickSource(this)">Facebook</button>
-      <button class="chip" data-src="tiktok" data-med="social" onclick="pickSource(this)">TikTok</button>
-      <button class="chip" data-src="telegram" data-med="social" onclick="pickSource(this)">Telegram</button>
-      <button class="chip" data-src="whatsapp" data-med="messenger" onclick="pickSource(this)">WhatsApp</button>
-      <button class="chip" data-src="vkontakte" data-med="social" onclick="pickSource(this)">ВКонтакте</button>
-      <button class="chip" data-src="email" data-med="email" onclick="pickSource(this)">Email-рассылка</button>
-      <button class="chip" data-src="2gis" data-med="maps" onclick="pickSource(this)">2ГИС</button>
+    <div class="ch" data-ch="yandex" data-src="yandex" data-med="cpc" onclick="pickCh(this)">
+      <div class="ch-icon">🟡</div>
+      <div class="ch-name">Яндекс Директ</div>
     </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-      <div class="field">
-        <label class="label" for="f-src">utm_source <span class="req">*</span></label>
-        <input class="input" id="f-src" placeholder="google" oninput="update()">
-      </div>
-      <div class="field">
-        <label class="label" for="f-med">utm_medium <span class="req">*</span></label>
-        <input class="input" id="f-med" placeholder="cpc" oninput="update()">
-      </div>
+    <div class="ch" data-ch="instagram" data-src="instagram" data-med="social" onclick="pickCh(this)">
+      <div class="ch-icon">📸</div>
+      <div class="ch-name">Instagram</div>
     </div>
-    <div class="field">
-      <label class="label" for="f-cam">utm_campaign <span class="req">*</span></label>
-      <input class="input" id="f-cam" placeholder="название_кампании" oninput="update()">
+    <div class="ch" data-ch="facebook" data-src="facebook" data-med="social" onclick="pickCh(this)">
+      <div class="ch-icon">🔵</div>
+      <div class="ch-name">Facebook</div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-      <div class="field">
-        <label class="label" for="f-trm">utm_term <span style="color:var(--t4);font-weight:400">(необяз.)</span></label>
-        <input class="input" id="f-trm" placeholder="ключевое слово" oninput="update()">
-      </div>
-      <div class="field">
-        <label class="label" for="f-cnt">utm_content <span style="color:var(--t4);font-weight:400">(необяз.)</span></label>
-        <input class="input" id="f-cnt" placeholder="баннер_синий" oninput="update()">
-      </div>
+    <div class="ch" data-ch="tiktok" data-src="tiktok" data-med="social" onclick="pickCh(this)">
+      <div class="ch-icon">🎵</div>
+      <div class="ch-name">TikTok</div>
     </div>
-
+    <div class="ch" data-ch="telegram" data-src="telegram" data-med="social" onclick="pickCh(this)">
+      <div class="ch-icon">✈️</div>
+      <div class="ch-name">Telegram</div>
+    </div>
+    <div class="ch" data-ch="whatsapp" data-src="whatsapp" data-med="messenger" onclick="pickCh(this)">
+      <div class="ch-icon">💬</div>
+      <div class="ch-name">WhatsApp</div>
+    </div>
+    <div class="ch" data-ch="vk" data-src="vkontakte" data-med="social" onclick="pickCh(this)">
+      <div class="ch-icon">💎</div>
+      <div class="ch-name">ВКонтакте</div>
+    </div>
+    <div class="ch" data-ch="email" data-src="email" data-med="email" onclick="pickCh(this)">
+      <div class="ch-icon">📧</div>
+      <div class="ch-name">Email</div>
+    </div>
+    <div class="ch" data-ch="2gis" data-src="2gis" data-med="maps" onclick="pickCh(this)">
+      <div class="ch-icon">🗺</div>
+      <div class="ch-name">2ГИС</div>
+    </div>
   </div>
 
-  <!-- Preview -->
-  <div class="preview">
-    <div class="preview-label">Готовая ссылка</div>
-    <div class="preview-url" id="preview-url" style="color:var(--t4)">Заполните URL и utm_source для генерации ссылки</div>
-    <div class="copy-row">
-      <button class="btn btn-blue" id="copy-btn" onclick="copyLink()" style="display:none">Скопировать ссылку</button>
-      <button class="btn btn-ghost" id="clear-btn" onclick="clearAll()" style="display:none">Очистить</button>
+  <!-- Step 2: URL -->
+  <div class="channels-label" style="margin-bottom:12px">Шаг 2 — Заполните параметры</div>
+
+  <div class="url-wrap">
+    <div class="url-label">Целевая страница <span class="req">*</span></div>
+    <div class="url-field">
+      <div class="url-protocol">https://</div>
+      <input class="url-input" id="f-url" type="text" placeholder="example.com/page" oninput="update()">
     </div>
+  </div>
+
+  <div class="params-grid">
+    <div>
+      <div class="field-label"><span>Источник</span><span class="key">utm_source <span class="req" style="color:var(--blue)">*</span></span></div>
+      <input class="f-input" id="f-src" placeholder="google" oninput="update()">
+    </div>
+    <div>
+      <div class="field-label"><span>Тип трафика</span><span class="key">utm_medium</span></div>
+      <input class="f-input" id="f-med" placeholder="cpc" oninput="update()">
+    </div>
+    <div>
+      <div class="field-label"><span>Кампания</span><span class="key">utm_campaign <span class="req" style="color:var(--blue)">*</span></span></div>
+      <input class="f-input" id="f-cam" placeholder="nazvaniye_kampanii" oninput="update()">
+    </div>
+    <div>
+      <div class="field-label"><span>Ключевое слово</span><span class="key">utm_term <span class="opt">(необяз.)</span></span></div>
+      <input class="f-input" id="f-trm" placeholder="ключевое слово" oninput="update()">
+    </div>
+    <div style="grid-column:1/-1">
+      <div class="field-label"><span>Вариант объявления</span><span class="key">utm_content <span class="opt">(необяз.)</span></span></div>
+      <input class="f-input" id="f-cnt" placeholder="banner_top" oninput="update()">
+    </div>
+  </div>
+
+  <!-- Browser preview -->
+  <div class="preview-wrap">
+    <div class="browser-bar">
+      <div class="browser-chrome">
+        <div class="browser-dots">
+          <div class="browser-dot bd-r"></div>
+          <div class="browser-dot bd-y"></div>
+          <div class="browser-dot bd-g"></div>
+        </div>
+        <div class="browser-addr" id="addr-bar">Введите URL и utm_source...</div>
+      </div>
+      <div class="browser-body">
+        <div class="preview-label">UTM-параметры</div>
+        <div class="params-pills" id="pills"><span class="pill pill-empty">Заполните поля выше</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions" id="actions" style="margin-bottom:32px">
+    <button class="btn btn-primary" id="copy-btn" onclick="copyLink()" disabled style="opacity:.4;cursor:not-allowed">Скопировать ссылку</button>
+    <button class="btn btn-ghost" onclick="clearAll()">Очистить</button>
   </div>
 
   <!-- Params reference -->
   <div class="ref">
-    <div class="ref-title">Что означает каждый параметр</div>
-    <div class="ref-row"><div class="ref-key">utm_source</div><div class="ref-val">Источник трафика: google, yandex, instagram, email</div></div>
-    <div class="ref-row"><div class="ref-key">utm_medium</div><div class="ref-val">Тип трафика: cpc (платный клик), social, email, organic</div></div>
-    <div class="ref-row"><div class="ref-key">utm_campaign</div><div class="ref-val">Название кампании: akcia-iyun, rasprodazha, brand</div></div>
-    <div class="ref-row"><div class="ref-key">utm_term</div><div class="ref-val">Ключевое слово (для контекстной рекламы)</div></div>
-    <div class="ref-row"><div class="ref-key">utm_content</div><div class="ref-val">Вариант объявления: banner1, video, text (для A/B тестов)</div></div>
+    <div class="ref-title">// Справка по параметрам</div>
+    <div class="ref-row"><div class="ref-k">utm_source</div><div class="ref-v">Источник трафика: google, yandex, instagram, telegram, email</div></div>
+    <div class="ref-row"><div class="ref-k">utm_medium</div><div class="ref-v">Тип трафика: cpc (платный клик), social, email, organic, messenger</div></div>
+    <div class="ref-row"><div class="ref-k">utm_campaign</div><div class="ref-v">Название кампании: akcia-iyun, rasprodazha, brand, retarget</div></div>
+    <div class="ref-row"><div class="ref-k">utm_term</div><div class="ref-v">Ключевое слово (для контекстной рекламы: {keyword} или конкретное слово)</div></div>
+    <div class="ref-row"><div class="ref-k">utm_content</div><div class="ref-v">Вариант объявления для A/B: banner_top, text_v2, video_15s</div></div>
   </div>
 
   <!-- History -->
   <div class="hist" id="hist-block" style="display:none">
-    <div class="hist-title">История (последние 5)</div>
-    <div class="hist-list" id="hist-list"></div>
+    <div class="hist-title">
+      <span>Последние ссылки</span>
+      <button class="hist-clear" onclick="clearHistory()">Очистить историю</button>
+    </div>
+    <div id="hist-list"></div>
   </div>
 
+  <!-- CTA -->
   <div class="cta">
-    <h2>Нужна сквозная аналитика для бизнеса?</h2>
-    <p>Подключим UTM-отслеживание, настроим цели в Метрике/Analytics и покажем какой канал приносит реальных клиентов.</p>
+    <h2>Нужна сквозная аналитика?</h2>
+    <p>Настроим UTM-отслеживание, цели в Метрике и Analytics — увидите какой канал приносит реальных клиентов.</p>
     <div class="cta-btns">
       <a href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20настроить%20аналитику%20и%20UTM-отслеживание." class="btn btn-wa" target="_blank" rel="noopener">Написать в WhatsApp</a>
       <a href="/blog/" class="btn btn-ghost">Читать блог</a>
@@ -191,110 +297,135 @@ h1{font-size:clamp(22px,4vw,36px);font-weight:800;color:var(--t1);line-height:1.
 </main>
 
 <footer class="footer">
-  © 2026 <a href="/">QazDev Studio</a> · <a href="/blog/">Блог</a> · <a href="/moy-ip.html">Мой IP</a>
+  © 2026 <a href="/">QazDev Studio</a> · <a href="/moy-ip.html">Мой IP</a> · <a href="/blog/">Блог</a>
 </footer>
 
 <script>
-var _history = JSON.parse(localStorage.getItem('utm_hist') || '[]');
-renderHistory();
+(function(){
+'use strict';
 
-function encode(v){ return encodeURIComponent(v.trim().replace(/\s+/g,'_')); }
+var _hist = JSON.parse(localStorage.getItem('utm_hist')||'[]');
+renderHist();
+
+function enc(v){ return encodeURIComponent(v.trim().replace(/\s+/g,'_')); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function getURL(){
+  var raw = document.getElementById('f-url').value.trim();
+  if(!raw) return '';
+  if(!/^https?:\/\//i.test(raw)) raw = 'https://' + raw;
+  return raw;
+}
 
 function update(){
-  var url = document.getElementById('f-url').value.trim();
+  var url = getURL();
   var src = document.getElementById('f-src').value.trim();
   var med = document.getElementById('f-med').value.trim();
   var cam = document.getElementById('f-cam').value.trim();
   var trm = document.getElementById('f-trm').value.trim();
   var cnt = document.getElementById('f-cnt').value.trim();
-  var preEl = document.getElementById('preview-url');
-  var copyBtn = document.getElementById('copy-btn');
-  var clearBtn = document.getElementById('clear-btn');
 
-  if (!url || !src) {
-    preEl.innerHTML = '<span style="color:var(--t4)">Заполните URL и utm_source для генерации ссылки</span>';
-    copyBtn.style.display = 'none';
-    clearBtn.style.display = 'none';
+  var addr = document.getElementById('addr-bar');
+  var pillsEl = document.getElementById('pills');
+  var copyBtn = document.getElementById('copy-btn');
+
+  if(!url || !src){
+    addr.innerHTML = '<span style="color:var(--t4)">Введите URL и utm_source...</span>';
+    pillsEl.innerHTML = '<span class="pill pill-empty">Заполните поля выше</span>';
+    copyBtn.disabled = true; copyBtn.style.opacity='.4'; copyBtn.style.cursor='not-allowed';
+    copyBtn._url = '';
     return;
   }
 
-  var sep = url.includes('?') ? '&' : '?';
-  var params = '';
-  function ap(k,v){ if(v){ params += (params?'&':'') + k+'='+encode(v); } }
-  ap('utm_source', src);
-  ap('utm_medium', med);
-  ap('utm_campaign', cam);
-  ap('utm_term', trm);
-  ap('utm_content', cnt);
+  // Build params
+  var params = [];
+  if(src) params.push(['utm_source',src]);
+  if(med) params.push(['utm_medium',med]);
+  if(cam) params.push(['utm_campaign',cam]);
+  if(trm) params.push(['utm_term',trm]);
+  if(cnt) params.push(['utm_content',cnt]);
 
-  var full = url + sep + params;
+  var sep = url.includes('?')?'&':'?';
+  var qs = params.map(function(p){return enc(p[0])+'='+enc(p[1]);}).join('&');
+  var full = url + sep + qs;
 
-  // Highlight params
-  var html = '<span class="base">'+escHtml(url + sep)+'</span>';
-  var parts = params.split('&');
-  parts.forEach(function(p,i){
-    var kv = p.split('=');
-    html += '<span class="param">'+escHtml(kv[0])+'</span>';
-    html += '<span class="sep">=</span>';
-    html += '<span class="val">'+escHtml(kv[1]||'')+'</span>';
-    if(i<parts.length-1) html += '<span class="sep">&</span>';
+  // Address bar
+  var addrHtml = '<span class="base">'+esc(url)+esc(sep)+'</span>';
+  params.forEach(function(p,i){
+    addrHtml += '<span class="key">'+esc(p[0])+'</span>'
+              + '<span class="qs">=</span>'
+              + '<span class="val">'+esc(p[1])+'</span>';
+    if(i<params.length-1) addrHtml += '<span class="amp">&amp;</span>';
   });
-  preEl.innerHTML = html;
+  addr.innerHTML = addrHtml;
 
-  copyBtn.style.display = '';
-  clearBtn.style.display = '';
+  // Pills
+  var pillClasses = {utm_source:'src',utm_medium:'med',utm_campaign:'cam',utm_term:'trm',utm_content:'cnt'};
+  var pillLabels  = {utm_source:'source',utm_medium:'medium',utm_campaign:'campaign',utm_term:'term',utm_content:'content'};
+  var pillsHtml = '';
+  params.forEach(function(p){
+    var cls = pillClasses[p[0]]||'src';
+    pillsHtml += '<span class="pill pill-'+cls+'">'+pillLabels[p[0]]+': '+esc(p[1])+'</span>';
+  });
+  pillsEl.innerHTML = pillsHtml || '<span class="pill pill-empty">—</span>';
+
+  copyBtn.disabled = false; copyBtn.style.opacity='1'; copyBtn.style.cursor='pointer';
   copyBtn._url = full;
 }
 
-function escHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+window.pickCh = function(el){
+  document.querySelectorAll('.ch').forEach(function(c){c.classList.remove('active')});
+  el.classList.add('active');
+  document.getElementById('f-src').value = el.dataset.src;
+  document.getElementById('f-med').value = el.dataset.med;
+  update();
+  // Focus campaign field
+  var cam = document.getElementById('f-cam');
+  if(!cam.value) setTimeout(function(){cam.focus();},100);
+};
 
-function copyLink(){
+window.copyLink = function(){
   var btn = document.getElementById('copy-btn');
   var url = btn._url;
   if(!url) return;
   navigator.clipboard.writeText(url).then(function(){
     btn.textContent = '✓ Скопировано!';
-    btn.classList.add('copied');
-    setTimeout(function(){ btn.textContent='Скопировать ссылку'; btn.classList.remove('copied'); }, 2000);
-    // Save to history
-    _history = _history.filter(function(u){ return u !== url; });
-    _history.unshift(url);
-    if(_history.length > 5) _history.pop();
-    localStorage.setItem('utm_hist', JSON.stringify(_history));
-    renderHistory();
+    btn.classList.add('ok');
+    setTimeout(function(){btn.textContent='Скопировать ссылку';btn.classList.remove('ok');},2000);
+    // History
+    _hist = _hist.filter(function(u){return u!==url});
+    _hist.unshift(url);
+    if(_hist.length>5) _hist.pop();
+    localStorage.setItem('utm_hist',JSON.stringify(_hist));
+    renderHist();
   });
-}
+};
 
-function clearAll(){
-  ['f-url','f-src','f-med','f-cam','f-trm','f-cnt'].forEach(function(id){ document.getElementById(id).value=''; });
-  document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
+window.clearAll = function(){
+  ['f-url','f-src','f-med','f-cam','f-trm','f-cnt'].forEach(function(id){document.getElementById(id).value='';});
+  document.querySelectorAll('.ch').forEach(function(c){c.classList.remove('active')});
   update();
-}
+};
 
-function pickSource(el){
-  document.querySelectorAll('#src-chips .chip').forEach(function(c){ c.classList.remove('active'); });
-  el.classList.add('active');
-  document.getElementById('f-src').value = el.dataset.src;
-  document.getElementById('f-med').value = el.dataset.med;
-  update();
-}
-
-function renderHistory(){
+function renderHist(){
   var block = document.getElementById('hist-block');
   var list  = document.getElementById('hist-list');
-  if(!_history.length){ block.style.display='none'; return; }
+  if(!_hist.length){block.style.display='none';return;}
   block.style.display='';
-  list.innerHTML = _history.map(function(u,i){
+  list.innerHTML = _hist.map(function(u,i){
     return '<div class="hist-item">'
-      +'<div class="hist-url">'+escHtml(u)+'</div>'
-      +'<button class="hist-copy" onclick="copyHistItem('+i+')">Скопировать</button>'
+      +'<div class="hist-url">'+esc(u)+'</div>'
+      +'<button class="hist-btn" onclick="copyHist('+i+')">Копировать</button>'
       +'</div>';
   }).join('');
 }
 
-window.copyHistItem = function(i){
-  navigator.clipboard.writeText(_history[i]);
+window.copyHist = function(i){ navigator.clipboard.writeText(_hist[i]); };
+window.clearHistory = function(){
+  _hist=[];localStorage.removeItem('utm_hist');renderHist();
 };
+
+})();
 </script>
 <script src="js/track.js"></script>
 </body>
