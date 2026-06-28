@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Какой мой IP адрес — определить онлайн бесплатно</title>
+<meta name="description" content="Узнайте свой IP адрес, местоположение, провайдера, браузер, операционную систему и разрешение экрана онлайн бесплатно. Инструмент QazDev Studio.">
+<link rel="canonical" href="https://qazdevstudio.kz/moy-ip.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Определить IP адрес онлайн","description":"Бесплатный онлайн инструмент для определения IP адреса, геолокации, провайдера, браузера и устройства","url":"https://qazdevstudio.kz/moy-ip.html","applicationCategory":"UtilityApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"KZT"},"provider":{"@type":"Organization","name":"QazDev Studio","url":"https://qazdevstudio.kz"}}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050814;--bg1:#080D1C;--bg2:#0D1426;
+  --blue:#00D4FF;--emerald:#10B981;--gold:#F5C542;--red:#F87171;--purple:#7C3AED;
+  --t1:#fff;--t2:#E5E7EB;--t3:#94A3B8;--t4:#64748B;
+  --border:rgba(0,212,255,.12);--radius:14px;
+}
+html,body{min-height:100vh;background:var(--bg);color:var(--t2);font-family:'Manrope',sans-serif;-webkit-font-smoothing:antialiased}
+.mono{font-family:'JetBrains Mono',monospace}
+
+/* Nav */
+.nav{padding:14px 24px;border-bottom:1px solid var(--border);background:rgba(8,13,28,.92);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-text{font-size:14px;font-weight:800;color:var(--t1)}
+.logo-text span{color:var(--blue)}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-size:13px;font-weight:600;color:var(--t3);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--t1)}
+@media(max-width:600px){.nav-links{display:none}}
+
+/* Layout */
+.wrap{max-width:860px;margin:0 auto;padding:40px 20px 80px}
+
+/* Hero */
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.hero-h1{font-size:clamp(24px,5vw,40px);font-weight:800;color:var(--t1);line-height:1.15;margin-bottom:10px}
+.hero-sub{font-size:15px;color:var(--t3);margin-bottom:36px;line-height:1.7}
+
+/* IP big display */
+.ip-hero{background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.2);border-radius:20px;padding:28px 32px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.ip-label{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--t4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.ip-val{font-size:clamp(22px,4vw,36px);font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--blue);letter-spacing:.04em}
+.ip-copy{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.2);border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--blue);cursor:pointer;font-family:'Manrope',sans-serif;transition:all .2s}
+.ip-copy:hover{background:rgba(0,212,255,.2)}
+.ip-copy.copied{color:var(--emerald);border-color:var(--emerald);background:rgba(16,185,129,.1)}
+
+/* Loader pulse */
+.pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--blue);animation:blink 1s ease-in-out infinite;margin-right:6px}
+@keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* Grid of cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:32px}
+.card{background:rgba(13,20,38,.8);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px}
+.card-head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.card-icon{font-size:18px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(0,212,255,.07);border-radius:8px}
+.card-title{font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--t4);text-transform:uppercase;letter-spacing:.08em}
+.row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);gap:12px}
+.row:last-child{border-bottom:none;padding-bottom:0}
+.row-k{font-size:12px;color:var(--t4);flex-shrink:0}
+.row-v{font-size:13px;color:var(--t1);font-weight:600;text-align:right;word-break:break-all}
+.row-v.mono{font-family:'JetBrains Mono',monospace;font-size:12px}
+.row-v.ok{color:var(--emerald)}
+.row-v.warn{color:var(--red)}
+.row-v.load{color:var(--t4);font-weight:400}
+
+/* Status badges */
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace}
+.badge-live{background:rgba(16,185,129,.12);color:var(--emerald);border:1px solid rgba(16,185,129,.25)}
+.badge-vpn{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2)}
+
+/* Map btn */
+.map-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--blue);text-decoration:none;border:1px solid rgba(0,212,255,.2);border-radius:7px;padding:4px 10px;margin-top:8px;transition:border-color .2s}
+.map-btn:hover{border-color:var(--blue)}
+
+/* Divider */
+.divider{height:1px;background:var(--border);margin:32px 0}
+
+/* CTA */
+.cta{background:rgba(13,20,38,.7);border:1px solid var(--border);border-radius:20px;padding:32px;text-align:center}
+.cta h2{font-size:20px;font-weight:800;color:var(--t1);margin-bottom:8px}
+.cta p{font-size:14px;color:var(--t3);margin-bottom:20px}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;border:none;border-radius:10px;cursor:pointer;text-decoration:none;padding:12px 22px;transition:all .2s}
+.btn-wa{background:#25D366;color:#fff}
+.btn-wa:hover{background:#1fba5a}
+.btn-ghost{background:transparent;color:var(--t2);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:rgba(0,212,255,.4);color:var(--blue)}
+
+/* Footer */
+.footer{border-top:1px solid var(--border);padding:20px;text-align:center;font-size:12px;color:var(--t4);font-family:'JetBrains Mono',monospace}
+.footer a{color:var(--t4);text-decoration:none}
+.footer a:hover{color:var(--blue)}
+
+/* FAQ */
+.faq{margin-top:40px}
+.faq-title{font-size:20px;font-weight:800;color:var(--t1);margin-bottom:20px}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.faq-q{padding:16px 20px;font-size:14px;font-weight:700;color:var(--t1);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;user-select:none}
+.faq-q::after{content:'＋';font-size:16px;color:var(--blue);flex-shrink:0;transition:transform .2s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:14px;color:var(--t3);line-height:1.7}
+.faq-a-inner{padding:0 20px 16px}
+.faq-item.open .faq-a{max-height:300px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#080D1C"/><circle cx="19" cy="19" r="11" stroke="#00D4FF" stroke-width="2" fill="none"/><path d="M27 27L36 36" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/><path d="M13 16L11 19L13 22M25 16L27 19L25 22M21 23L18 15" stroke="#00D4FF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/></svg>
+    <span class="logo-text">QazDev <span>Studio</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="/">Главная</a>
+    <a href="/blog/">Блог</a>
+    <a href="/calculator.html">Калькулятор</a>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+  <div class="hero-tag">// Онлайн инструмент</div>
+  <h1 class="hero-h1">Какой мой IP адрес</h1>
+  <p class="hero-sub">Ваш IP, геолокация, провайдер, браузер и устройство — всё в одном месте. Бесплатно, без регистрации.</p>
+
+  <!-- IP hero block -->
+  <div class="ip-hero">
+    <div>
+      <div class="ip-label">Ваш IP-адрес</div>
+      <div class="ip-val" id="ip-display"><span class="pulse"></span><span style="color:var(--t4);font-size:18px">Определяем...</span></div>
+      <div id="ip-status" style="margin-top:10px"></div>
+    </div>
+    <button class="ip-copy" id="copy-btn" onclick="copyIP()" style="display:none">Скопировать</button>
+  </div>
+
+  <!-- Cards grid -->
+  <div class="cards">
+
+    <!-- Геолокация -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon">🌍</div>
+        <div class="card-title">Геолокация</div>
+      </div>
+      <div class="row"><span class="row-k">Страна</span><span class="row-v load" id="g-country">—</span></div>
+      <div class="row"><span class="row-k">Город</span><span class="row-v load" id="g-city">—</span></div>
+      <div class="row"><span class="row-k">Регион</span><span class="row-v load" id="g-region">—</span></div>
+      <div class="row"><span class="row-k">Часовой пояс</span><span class="row-v mono load" id="g-tz">—</span></div>
+      <div id="map-wrap"></div>
+    </div>
+
+    <!-- Провайдер -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon">🏢</div>
+        <div class="card-title">Провайдер</div>
+      </div>
+      <div class="row"><span class="row-k">ISP</span><span class="row-v load" id="g-isp">—</span></div>
+      <div class="row"><span class="row-k">ASN</span><span class="row-v mono load" id="g-asn">—</span></div>
+      <div class="row"><span class="row-k">Тип</span><span class="row-v load" id="g-type">—</span></div>
+      <div class="row"><span class="row-k">Прокси/VPN</span><span class="row-v load" id="g-proxy">—</span></div>
+    </div>
+
+    <!-- Браузер -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon">🌐</div>
+        <div class="card-title">Браузер</div>
+      </div>
+      <div class="row"><span class="row-k">Браузер</span><span class="row-v" id="b-name">—</span></div>
+      <div class="row"><span class="row-k">Версия</span><span class="row-v mono" id="b-ver">—</span></div>
+      <div class="row"><span class="row-k">Движок</span><span class="row-v" id="b-engine">—</span></div>
+      <div class="row"><span class="row-k">Язык</span><span class="row-v mono" id="b-lang">—</span></div>
+      <div class="row"><span class="row-k">Cookies</span><span class="row-v" id="b-cookies">—</span></div>
+    </div>
+
+    <!-- Устройство -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon">💻</div>
+        <div class="card-title">Устройство и ОС</div>
+      </div>
+      <div class="row"><span class="row-k">Тип</span><span class="row-v" id="d-type">—</span></div>
+      <div class="row"><span class="row-k">ОС</span><span class="row-v" id="d-os">—</span></div>
+      <div class="row"><span class="row-k">Экран</span><span class="row-v mono" id="d-screen">—</span></div>
+      <div class="row"><span class="row-k">Пиксельная плотность</span><span class="row-v mono" id="d-dpr">—</span></div>
+      <div class="row"><span class="row-k">Тач</span><span class="row-v" id="d-touch">—</span></div>
+    </div>
+
+    <!-- Сеть -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon">📡</div>
+        <div class="card-title">Сетевое соединение</div>
+      </div>
+      <div class="row"><span class="row-k">Тип связи</span><span class="row-v" id="n-type">—</span></div>
+      <div class="row"><span class="row-k">Скорость</span><span class="row-v mono" id="n-speed">—</span></div>
+      <div class="row"><span class="row-k">Задержка (RTT)</span><span class="row-v mono" id="n-rtt">—</span></div>
+      <div class="row"><span class="row-k">Экономия трафика</span><span class="row-v" id="n-save">—</span></div>
+      <div class="row"><span class="row-k">Онлайн</span><span class="row-v ok">✓ Да</span></div>
+    </div>
+
+    <!-- Конфиденциальность -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon">🔒</div>
+        <div class="card-title">Конфиденциальность</div>
+      </div>
+      <div class="row"><span class="row-k">Do Not Track</span><span class="row-v" id="p-dnt">—</span></div>
+      <div class="row"><span class="row-k">JavaScript</span><span class="row-v ok">✓ Включён</span></div>
+      <div class="row"><span class="row-k">localStorage</span><span class="row-v" id="p-ls">—</span></div>
+      <div class="row"><span class="row-k">Часовой пояс (JS)</span><span class="row-v mono" id="p-tz">—</span></div>
+      <div class="row"><span class="row-k">Адаптер</span><span class="row-v load" id="p-vpn">—</span></div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <div class="faq">
+    <div class="faq-title">Частые вопросы</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Что такое IP-адрес?</div>
+      <div class="faq-a"><div class="faq-a-inner">IP-адрес (Internet Protocol address) — уникальный числовой идентификатор вашего устройства в интернете. Он присваивается провайдером и может быть статическим (постоянным) или динамическим (меняется при каждом подключении). По IP можно определить страну, город и интернет-провайдера, но не точный адрес человека.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Почему мой город определяется неточно?</div>
+      <div class="faq-a"><div class="faq-a-inner">Геолокация по IP — приблизительная. Провайдер может зарегистрировать IP-блок в одном городе, а обслуживать другой. При использовании мобильного интернета (4G/5G) точность ниже, так как трафик проходит через городские узлы сети. Погрешность обычно составляет от 10 до 100 км.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">VPN скрывает мой реальный IP?</div>
+      <div class="faq-a"><div class="faq-a-inner">Да, VPN заменяет ваш IP на IP-адрес сервера VPN. Сайты видят адрес VPN, а не вашего провайдера. Однако некоторые браузеры могут выдать реальный IP через технологию WebRTC даже при включённом VPN — это называется утечкой WebRTC. Строку "Адаптер" выше: если там "⚠️ Хостинг/VPN" — ваш VPN виден.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Как сменить IP-адрес?</div>
+      <div class="faq-a"><div class="faq-a-inner">При динамическом IP от провайдера: перезагрузите роутер (иногда IP меняется). Более надёжные способы: подключить VPN, использовать Tor Browser, или запросить у провайдера другой IP. Статический IP меняется только по заявке провайдеру.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Может ли сайт узнать мой точный адрес по IP?</div>
+      <div class="faq-a"><div class="faq-a-inner">Нет. По IP можно определить только примерный город и провайдера. Точное местоположение (адрес, квартира) по IP узнать невозможно — это доступно только провайдеру по запросу правоохранительных органов. Сайты не имеют доступа к такой информации.</div></div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Нужен сайт, бот или автоматизация?</h2>
+    <p>Разрабатываем IT-системы для бизнеса в Казахстане. Обсудим вашу задачу.</p>
+    <div class="btns">
+      <a href="https://wa.me/77000300024?text=Здравствуйте!%20Нашёл%20ваш%20IP-инструмент%2C%20хочу%20обсудить%20проект." class="btn btn-wa" target="_blank" rel="noopener">Написать в WhatsApp</a>
+      <a href="/blog/" class="btn btn-ghost">Читать блог</a>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer class="footer">
+  © 2026 <a href="/">QazDev Studio</a> · <a href="/blog/">Блог</a> · <a href="/privacy.html">Политика</a>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+var _ip = '';
+
+// ── Browser detection ────────────────────────────────────────────
+function detectBrowser(ua){
+  if(/Edg\//i.test(ua))          return {name:'Microsoft Edge',  ver:ua.match(/Edg\/([\d.]+)/)?.[1]||'',  engine:'Blink'};
+  if(/OPR\/|Opera/i.test(ua))    return {name:'Opera',           ver:ua.match(/OPR\/([\d.]+)/)?.[1]||'',  engine:'Blink'};
+  if(/YaBrowser/i.test(ua))      return {name:'Яндекс Браузер',  ver:ua.match(/YaBrowser\/([\d.]+)/)?.[1]||'', engine:'Blink'};
+  if(/SamsungBrowser/i.test(ua)) return {name:'Samsung Internet',ver:ua.match(/SamsungBrowser\/([\d.]+)/)?.[1]||'',engine:'Blink'};
+  if(/Chrome/i.test(ua))         return {name:'Google Chrome',   ver:ua.match(/Chrome\/([\d.]+)/)?.[1]||'',  engine:'Blink'};
+  if(/Firefox/i.test(ua))        return {name:'Mozilla Firefox', ver:ua.match(/Firefox\/([\d.]+)/)?.[1]||'', engine:'Gecko'};
+  if(/Safari/i.test(ua))         return {name:'Apple Safari',    ver:ua.match(/Version\/([\d.]+)/)?.[1]||'',engine:'WebKit'};
+  return {name:'Другой',ver:'',engine:'—'};
+}
+
+function detectOS(ua){
+  if(/Windows NT 10/i.test(ua))  return 'Windows 10/11';
+  if(/Windows NT 6.3/i.test(ua)) return 'Windows 8.1';
+  if(/Windows NT 6.1/i.test(ua)) return 'Windows 7';
+  if(/Windows/i.test(ua))        return 'Windows';
+  if(/iPhone/i.test(ua))         return 'iOS (iPhone)';
+  if(/iPad/i.test(ua))           return 'iOS (iPad)';
+  if(/Android/i.test(ua)){
+    var v=ua.match(/Android ([\d.]+)/);
+    return 'Android'+(v?' '+v[1]:'');
+  }
+  if(/Mac OS X/i.test(ua)){
+    var v=ua.match(/Mac OS X ([\d_]+)/);
+    return 'macOS'+(v?' '+v[1].replace(/_/g,'.'):'');
+  }
+  if(/Linux/i.test(ua))          return 'Linux';
+  return 'Неизвестно';
+}
+
+function detectDevice(ua){
+  if(/iPhone/i.test(ua))         return '📱 Смартфон (iPhone)';
+  if(/iPad/i.test(ua))           return '📱 Планшет (iPad)';
+  if(/Android.*Mobile/i.test(ua))return '📱 Смартфон (Android)';
+  if(/Android/i.test(ua))        return '📱 Планшет (Android)';
+  return '💻 ПК / Ноутбук';
+}
+
+function setText(id,val,cls){
+  var el=document.getElementById(id);
+  if(!el)return;
+  el.textContent=val||'—';
+  if(cls){el.className='row-v '+(cls||'')}
+}
+
+// ── Fill browser/device info immediately ─────────────────────────
+var ua=navigator.userAgent;
+var br=detectBrowser(ua);
+setText('b-name', br.name);
+setText('b-ver',  br.ver||'—', 'row-v mono');
+setText('b-engine', br.engine);
+setText('b-lang', navigator.language||'—', 'row-v mono');
+setText('b-cookies', navigator.cookieEnabled ? '✓ Включены' : '✗ Выключены', navigator.cookieEnabled?'row-v ok':'row-v warn');
+
+setText('d-type', detectDevice(ua));
+setText('d-os',   detectOS(ua));
+setText('d-screen', screen.width+'×'+screen.height+(screen.colorDepth?' / '+screen.colorDepth+'bit':''), 'row-v mono');
+setText('d-dpr',  (window.devicePixelRatio||1).toFixed(1)+'x', 'row-v mono');
+var hasTouch='ontouchstart' in window || navigator.maxTouchPoints>0;
+setText('d-touch', hasTouch ? '✓ Есть' : '— Нет', hasTouch?'row-v ok':'row-v');
+
+// DNT
+var dnt=navigator.doNotTrack||window.doNotTrack;
+setText('p-dnt', dnt==='1'?'✓ Включён (1)':dnt==='0'?'Выключен (0)':'Не задан', dnt==='1'?'row-v ok':'row-v');
+
+// localStorage
+var lsOk=false;
+try{localStorage.setItem('_t','1');localStorage.removeItem('_t');lsOk=true;}catch(e){}
+setText('p-ls', lsOk?'✓ Доступен':'✗ Заблокирован', lsOk?'row-v ok':'row-v warn');
+
+// JS timezone
+var jstz=Intl.DateTimeFormat().resolvedOptions().timeZone||'—';
+setText('p-tz', jstz, 'row-v mono');
+
+// Network API
+var conn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+if(conn){
+  var typeMap={wifi:'Wi-Fi',cellular:'Мобильный интернет',ethernet:'Ethernet',bluetooth:'Bluetooth',none:'Нет связи',other:'Другое',unknown:'Неизвестно'};
+  setText('n-type', typeMap[conn.type||conn.effectiveType]||conn.effectiveType||'—');
+  setText('n-speed', conn.downlink!=null ? conn.downlink+' Мбит/с' : '—', 'row-v mono');
+  setText('n-rtt',   conn.rtt!=null     ? conn.rtt+' мс'       : '—', 'row-v mono');
+  setText('n-save',  conn.saveData      ? '✓ Включена'         : 'Выключена', conn.saveData?'row-v ok':'row-v');
+}else{
+  ['n-type','n-speed','n-rtt','n-save'].forEach(function(id){setText(id,'API недоступно')});
+}
+
+// ── Geo from server ──────────────────────────────────────────────
+fetch('/api/geo-track.php',{
+  method:'POST',
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({page_url:location.href,referrer:document.referrer||''})
+})
+.then(function(r){return r.json()})
+.then(function(d){
+  if(!d.ok)throw new Error('no data');
+
+  _ip=d.ip||'';
+
+  // IP display
+  var ipEl=document.getElementById('ip-display');
+  ipEl.textContent=_ip;
+  ipEl.style.color='var(--blue)';
+  document.getElementById('copy-btn').style.display='';
+
+  // Status badge
+  var statusEl=document.getElementById('ip-status');
+  if(d.hosting){
+    statusEl.innerHTML='<span class="badge badge-vpn">⚠️ Хостинг / VPN</span>';
+    setText('p-vpn','⚠️ Хостинг/VPN обнаружен','row-v warn');
+    setText('g-proxy','⚠️ Обнаружен','row-v warn');
+  }else{
+    statusEl.innerHTML='<span class="badge badge-live">✅ Живой пользователь</span>';
+    setText('p-vpn','✓ Не обнаружен','row-v ok');
+    setText('g-proxy','✓ Нет','row-v ok');
+  }
+
+  // Geo
+  var flag=d.flag||'🌍';
+  var loc=flag+' '+(d.country||'—');
+  setText('g-country', loc);
+  setText('g-city',    d.city||'—');
+  setText('g-region',  d.region||'—');
+  setText('g-tz',      d.tz||'—', 'row-v mono');
+
+  // Map link
+  if(d.lat&&d.lon){
+    var wrap=document.getElementById('map-wrap');
+    wrap.innerHTML='<a href="https://maps.google.com/?q='+d.lat+','+d.lon+'" target="_blank" rel="noopener" class="map-btn">🗺 Открыть на карте</a>';
+  }
+
+  // ISP
+  setText('g-isp', d.isp||'—');
+  setText('g-asn', d.asn||'—', 'row-v mono');
+  setText('g-type', d.hosting?'Дата-центр':'Интернет-провайдер');
+})
+.catch(function(){
+  document.getElementById('ip-display').innerHTML='<span style="color:var(--red);font-size:16px">Не удалось получить данные</span>';
+  ['g-country','g-city','g-region','g-tz','g-isp','g-asn','g-type','g-proxy','p-vpn'].forEach(function(id){
+    setText(id,'Ошибка загрузки');
+  });
+});
+
+// ── Copy IP ──────────────────────────────────────────────────────
+window.copyIP=function(){
+  if(!_ip)return;
+  navigator.clipboard.writeText(_ip).then(function(){
+    var btn=document.getElementById('copy-btn');
+    btn.textContent='Скопировано!';
+    btn.classList.add('copied');
+    setTimeout(function(){btn.textContent='Скопировать';btn.classList.remove('copied')},2000);
+  });
+};
+
+// ── FAQ ──────────────────────────────────────────────────────────
+window.toggleFaq=function(el){
+  var item=el.parentElement;
+  item.classList.toggle('open');
+};
+
+})();
+</script>
+</body>
+</html>
