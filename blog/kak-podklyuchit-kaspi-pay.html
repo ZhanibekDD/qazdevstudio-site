@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как подключить Kaspi Pay к сайту в Казахстане — QazDev Studio</title>
+<meta name="description" content="Пошаговая инструкция подключения Kaspi Pay к сайту. Kaspi QR, интеграция через API, что нужно из документов для ИП и ТОО в Казахстане.">
+<link rel="canonical" href="https://qazdevstudio.kz/blog/kak-podklyuchit-kaspi-pay.html">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/pages.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Как подключить Kaspi Pay к сайту в Казахстане","description":"Пошаговая инструкция подключения Kaspi Pay к сайту. Kaspi QR, интеграция через API, что нужно из документов для ИП и ТОО в Казахстане.","author":{"@type":"Organization","name":"QazDev Studio"},"publisher":{"@type":"Organization","name":"QazDev Studio","url":"https://qazdevstudio.kz"},"url":"https://qazdevstudio.kz/blog/kak-podklyuchit-kaspi-pay.html","datePublished":"2026-06-28","inLanguage":"ru"}
+</script>
+</head>
+<body>
+
+<nav class="p-nav">
+  <div class="p-nav-inner">
+    <a href="/" class="p-nav-logo">
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#080D1C"/><circle cx="19" cy="19" r="11" stroke="#00D4FF" stroke-width="2" fill="none"/><path d="M27 27L36 36" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/><path d="M13 16L11 19L13 22M25 16L27 19L25 22M21 23L18 15" stroke="#00D4FF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/></svg>
+      <span class="p-nav-logo-text">QazDev <span>Studio</span></span>
+    </a>
+    <div class="p-nav-links">
+      <a href="/" class="p-nav-link">Главная</a>
+      <a href="/solutions/" class="p-nav-link">Решения</a>
+      <a href="/blog/" class="p-nav-link">Блог</a>
+      <a href="/calculator.html" class="p-nav-link">Калькулятор</a>
+    </div>
+    <a href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20подключить%20Kaspi%20Pay%20к%20сайту." class="p-nav-cta" target="_blank" rel="noopener">Написать</a>
+  </div>
+</nav>
+
+<main>
+<div class="p-container p-article" style="padding-top:40px;padding-bottom:80px">
+
+  <nav class="p-breadcrumb">
+    <a href="/">Главная</a><span>→</span>
+    <a href="/blog/">Блог</a><span>→</span>
+    <span>Автоматизация</span>
+  </nav>
+
+  <div class="p-tag">// Онлайн-оплата</div>
+  <h1>Как подключить Kaspi Pay к сайту в Казахстане</h1>
+  <p style="font-size:15px;color:var(--text-3);margin-bottom:32px">Kaspi Pay — главная платёжная система Казахстана. Каждый второй покупатель в РК хочет платить через Kaspi. Разбираем все способы подключения: от простого QR-кода до полноценной API-интеграции.</p>
+
+  <p>Если вы продаёте онлайн в Казахстане и у вас нет Kaspi Pay — вы теряете клиентов. По данным самой платформы, приложением Kaspi пользуется большинство экономически активного населения страны. Отсутствие этой оплаты на сайте — барьер, который часть покупателей просто не станет преодолевать.</p>
+
+  <p>В этой статье разбираем три варианта подключения: от самого простого (10 минут) до полноценной интеграции с автоматической обработкой платежей.</p>
+
+  <h2>Какие варианты подключения Kaspi Pay к сайту существуют</h2>
+
+  <p>Есть три основных способа, и они отличаются не только сложностью, но и функциональностью:</p>
+
+  <ul>
+    <li><strong>Kaspi QR</strong> — статический QR-код, который клиент сканирует и платит через приложение Kaspi. Самый простой вариант, но оплату нужно проверять вручную.</li>
+    <li><strong>Kaspi Pay кнопка / виджет</strong> — официальный инструмент через личный кабинет Kaspi Business. Клиент нажимает кнопку, переходит в приложение Kaspi, платит. Вы получаете уведомление об успешном платеже автоматически.</li>
+    <li><strong>API-интеграция</strong> — полная автоматизация: создание счёта, ожидание оплаты, обновление статуса заказа — всё без участия человека. Требует разработчика, но даёт максимум возможностей.</li>
+  </ul>
+
+  <h2>Kaspi QR — самый быстрый способ (за 10 минут)</h2>
+
+  <p>Если нужно принимать оплату уже сегодня — это ваш вариант. Никакой разработки не требуется.</p>
+
+  <p><strong>Как сделать:</strong></p>
+  <ol>
+    <li>Зарегистрируйтесь в Kaspi Business на сайте <strong>business.kaspi.kz</strong> — нужен ИИН и номер телефона.</li>
+    <li>В разделе «Оплата» создайте QR-код: либо на конкретную сумму (для фиксированных товаров), либо с произвольной суммой (клиент вводит сам).</li>
+    <li>Скачайте изображение QR-кода и разместите его на странице оплаты вашего сайта.</li>
+    <li>Укажите рядом инструкцию: «Откройте Kaspi — Переводы — QR-оплата — отсканируйте код».</li>
+  </ol>
+
+  <div class="p-grid p-grid--2">
+    <div class="p-box p-box--blue">
+      <div class="p-box-title">Плюсы Kaspi QR</div>
+      <p>Бесплатно — нет комиссии за настройку</p>
+      <p>Не нужна разработка или технические знания</p>
+      <p>Работает сразу после регистрации</p>
+      <p>Подходит для ИП без расчётного счёта</p>
+    </div>
+    <div class="p-box p-box--gold">
+      <div class="p-box-title">Минусы Kaspi QR</div>
+      <p>Оплату нужно проверять вручную в приложении</p>
+      <p>Нет автоматического статуса заказа</p>
+      <p>Не подходит для высокой нагрузки (10+ заказов в день)</p>
+      <p>Статический QR — нельзя привязать к конкретному заказу</p>
+    </div>
+  </div>
+
+  <p>Kaspi QR — отличный старт для небольших объёмов. Когда заказов станет больше 15–20 в день, ручная проверка начнёт занимать слишком много времени — тогда переходите на интеграцию.</p>
+
+  <h2>Что нужно для подключения официального Kaspi Pay</h2>
+
+  <p>Для кнопки и API-интеграции нужно пройти верификацию в Kaspi Business. Требования зависят от формы бизнеса.</p>
+
+  <p><strong>Для ИП:</strong></p>
+  <ul>
+    <li>ИИН предпринимателя</li>
+    <li>БИН (если есть — ИП с наёмными работниками)</li>
+    <li>Расчётный счёт в любом казахстанском банке (Kaspi Bank, Halyk, Forte и др.)</li>
+    <li>Свидетельство о регистрации ИП</li>
+  </ul>
+
+  <p><strong>Для ТОО:</strong></p>
+  <ul>
+    <li>Устав компании</li>
+    <li>БИН организации</li>
+    <li>Решение о назначении директора</li>
+    <li>Доверенность (если заявку подаёт не директор)</li>
+    <li>Расчётный счёт юридического лица</li>
+  </ul>
+
+  <p>Сроки рассмотрения заявки: обычно 3–7 рабочих дней. После одобрения вы получаете доступ к инструментам оплаты и при необходимости — к API-документации.</p>
+
+  <h2>Комиссия Kaspi Pay</h2>
+
+  <p>Это вопрос, который волнует всех. Стандартная комиссия Kaspi Pay составляет около 1,5–2% от суммы каждой транзакции. Для сравнения: другие платёжные агрегаторы в Казахстане берут 2,5–3,5%.</p>
+
+  <div class="p-box p-box--gold" style="margin:24px 0">
+    <div class="p-box-title">Важно об актуальных ставках</div>
+    <p>Kaspi периодически пересматривает тарифы и условия для разных категорий бизнеса. Всегда уточняйте актуальную комиссию непосредственно на <strong>business.kaspi.kz</strong> перед принятием решения — ставки в статьях устаревают быстро.</p>
+  </div>
+
+  <p>Также учитывайте: комиссия может отличаться в зависимости от категории вашего бизнеса, оборота и типа транзакции. Крупные продавцы с большим оборотом могут договариваться об индивидуальных условиях.</p>
+
+  <h2>Альтернативы Kaspi Pay в Казахстане</h2>
+
+  <p>Kaspi Pay удобен для розничных покупателей, но не все платят через Kaspi. B2B-клиенты, иностранцы, люди с картами других банков — им нужны альтернативы. Вот основные варианты:</p>
+
+  <ul>
+    <li><strong>Freedom Pay (freepay.kz)</strong> — агрегатор, поддерживает Visa, Mastercard, карты любых казахстанских банков. Хорошо подходит как основной эквайринг.</li>
+    <li><strong>PayBox</strong> — агрегатор с широким набором методов оплаты: карты, Kaspi, мобильные переводы. Интеграция через единый API.</li>
+    <li><strong>Halyk Ecommerce</strong> — решение от Народного Банка, подходит если ваш расчётный счёт там.</li>
+    <li><strong>CloudPayments</strong> — международный сервис, работает в Казахстане. Хорошая документация, есть готовые модули для популярных CMS.</li>
+  </ul>
+
+  <div class="p-grid p-grid--2">
+    <div class="p-box p-box--blue">
+      <div class="p-box-title">Kaspi Pay</div>
+      <p><strong>Охват:</strong> большинство покупателей РК</p>
+      <p><strong>Комиссия:</strong> ~1,5–2%</p>
+      <p><strong>Подключение:</strong> 3–7 дней</p>
+      <p><strong>Подходит:</strong> B2C, розница, услуги</p>
+      <p><strong>Минус:</strong> не принимает иностранные карты</p>
+    </div>
+    <div class="p-box p-box--emerald">
+      <div class="p-box-title">Freedom Pay / PayBox</div>
+      <p><strong>Охват:</strong> Visa/MC + Kaspi + другие</p>
+      <p><strong>Комиссия:</strong> 2,5–3,5%</p>
+      <p><strong>Подключение:</strong> 5–14 дней</p>
+      <p><strong>Подходит:</strong> любой бизнес, B2B</p>
+      <p><strong>Плюс:</strong> один агрегатор — все методы</p>
+    </div>
+  </div>
+
+  <p>Оптимальная стратегия для большинства казахстанских сайтов: подключить Kaspi Pay как основной метод и добавить один агрегатор (Freedom Pay или PayBox) для карт.</p>
+
+  <h2>Как технически интегрировать Kaspi Pay через API</h2>
+
+  <p>API-интеграция нужна, если вы хотите полностью автоматизировать процесс: клиент оплатил — заказ автоматически перешёл в статус «оплачен», уведомление ушло, товар зарезервирован.</p>
+
+  <p><strong>Общая схема работы:</strong></p>
+  <ol>
+    <li>Получите API-ключи в личном кабинете Kaspi Business (раздел «Интеграция» или «Разработчикам»).</li>
+    <li>Выберите метод интеграции:
+      <ul>
+        <li><strong>Redirect</strong> — при оплате клиент переходит на страницу Kaspi, платит, возвращается обратно. Проще в реализации.</li>
+        <li><strong>Embedded</strong> — форма оплаты встраивается прямо на ваш сайт. Клиент не покидает страницу.</li>
+      </ul>
+    </li>
+    <li>Настройте <strong>callback-обработчик</strong> на вашем сервере — это URL, на который Kaspi отправит уведомление после успешной оплаты. Ваш сервер получает POST-запрос с данными транзакции и обновляет статус заказа в базе.</li>
+    <li>Обязательно реализуйте <strong>проверку подписи</strong> — чтобы принимать уведомления только от Kaspi, а не от мошенников, имитирующих оплату.</li>
+  </ol>
+
+  <p><strong>Если нет разработчика</strong> — ищите готовые модули. Для WordPress (WooCommerce) и OpenCart существуют бесплатные и платные плагины с Kaspi Pay. Для Bitrix24 есть интеграции в маркетплейсе. Для других платформ — уточняйте в Kaspi Business или обращайтесь к разработчикам.</p>
+
+  <h2>Сколько стоит интеграция Kaspi Pay в сайт</h2>
+
+  <ul>
+    <li><strong>Kaspi QR самостоятельно</strong> — 0 тенге. Просто скачали картинку и разместили на сайте.</li>
+    <li><strong>Готовый модуль для CMS (WordPress, OpenCart)</strong> — 20 000–50 000 тенге. Это стоимость установки и настройки специалистом, либо цена платного плагина.</li>
+    <li><strong>Кастомная разработка интеграции через API</strong> — 80 000–200 000 тенге. Зависит от сложности вашего сайта, нужных сценариев оплаты и квалификации разработчика.</li>
+  </ul>
+
+  <p>Если у вас сайт на конструкторе (Tilda, Wix) — уточните в документации платформы, поддерживается ли Kaspi Pay. Tilda, например, поддерживает интеграцию через отдельные формы.</p>
+
+  <div class="p-box p-box--emerald" style="margin-top:40px">
+    <div class="p-box-title">Главное</div>
+    <p>Kaspi QR — самый быстрый старт, подходит для небольших объёмов. Официальное подключение через Kaspi Business займёт 3–7 дней и откроет доступ к кнопке и API. Для полной автоматизации нужен разработчик или готовый модуль для вашей CMS. Комиссия Kaspi Pay ниже, чем у большинства альтернатив, — уточняйте актуальные ставки на business.kaspi.kz. Для полного охвода аудитории добавьте ещё один агрегатор для карт Visa/Mastercard.</p>
+  </div>
+
+  <div class="p-cta" style="margin-top:48px">
+    <h2>Нужна интеграция Kaspi Pay?</h2>
+    <p>Подключим Kaspi Pay и другие платёжные системы к вашему сайту. Работаем с ИП и ТОО по всему Казахстану.</p>
+    <div class="p-cta-btns">
+      <a href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20подключить%20Kaspi%20Pay%20к%20сайту." class="p-btn p-btn--wa" target="_blank" rel="noopener">Написать в WhatsApp</a>
+      <a href="/blog/" class="p-btn p-btn--ghost">Другие статьи</a>
+    </div>
+  </div>
+
+  <div style="margin-top:48px;padding-top:32px;border-top:1px solid var(--border)">
+    <div style="font-size:13px;color:var(--text-4);margin-bottom:16px;font-family:'JetBrains Mono',monospace">// Читайте также</div>
+    <div class="p-grid p-grid--2">
+      <a href="/blog/skolko-stoit-sait-v-kazakhstane.html" class="p-card">
+        <div class="p-card-icon">💰</div>
+        <div class="p-card-title">Сколько стоит сайт в Казахстане</div>
+        <div class="p-card-desc">Реальные цены на лендинги, корпоративные сайты и интернет-магазины</div>
+      </a>
+      <a href="/blog/integratsiya-1s-s-saytom.html" class="p-card">
+        <div class="p-card-icon">🔗</div>
+        <div class="p-card-title">Интеграция 1С с сайтом</div>
+        <div class="p-card-desc">Как синхронизировать товары, цены и заказы между 1С и сайтом</div>
+      </a>
+      <a href="/blog/kak-sdelat-telegram-bot.html" class="p-card">
+        <div class="p-card-icon">🤖</div>
+        <div class="p-card-title">Как сделать Telegram-бот</div>
+        <div class="p-card-desc">Разбираем варианты: конструктор, готовое решение или разработка с нуля</div>
+      </a>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer class="p-footer">
+  <div class="p-footer-inner">
+    <div class="p-footer-copy">© 2026 QazDev Studio. Казахстан.</div>
+    <div class="p-footer-links">
+      <a href="/">Главная</a>
+      <a href="/solutions/">Решения</a>
+      <a href="/blog/">Блог</a>
+      <a href="/privacy.html">Политика</a>
+    </div>
+  </div>
+</footer>
+<script src="../js/track.js"></script>
+</body>
+</html>
