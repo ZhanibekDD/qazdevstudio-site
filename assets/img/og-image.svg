@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" aria-label="QazDev Studio — сайты, боты, CRM для бизнеса в Казахстане">
+  <defs>
+    <linearGradient id="ogBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050814"/>
+      <stop offset="100%" stop-color="#080D1C"/>
+    </linearGradient>
+    <linearGradient id="ogAccent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00D4FF"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#ogBg)"/>
+
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(0,212,255,0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Glow -->
+  <ellipse cx="600" cy="315" rx="500" ry="280" fill="rgba(0,212,255,0.04)"/>
+  <ellipse cx="300" cy="200" rx="200" ry="150" fill="rgba(124,58,237,0.06)"/>
+
+  <!-- Logo icon -->
+  <circle cx="110" cy="100" r="40" fill="rgba(0,212,255,0.08)" stroke="rgba(0,212,255,0.3)" stroke-width="2"/>
+  <circle cx="104" cy="94" r="18" stroke="#00D4FF" stroke-width="2.5" fill="none"/>
+  <path d="M118 108L132 122" stroke="#00D4FF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M96 88L92 94L96 100" stroke="#00D4FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M112 88L116 94L112 100" stroke="#00D4FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M107 101L104 91" stroke="#00D4FF" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Logo text -->
+  <text x="165" y="95" fill="#FFFFFF" font-size="36" font-weight="800" font-family="'Manrope',sans-serif">QazDev</text>
+  <text x="165" y="122" fill="#64748B" font-size="22" font-weight="600" font-family="'Manrope',sans-serif">Studio</text>
+
+  <!-- Accent line -->
+  <rect x="90" y="150" width="600" height="3" rx="2" fill="url(#ogAccent)" opacity="0.6"/>
+
+  <!-- Main headline -->
+  <text x="90" y="240" fill="#FFFFFF" font-size="62" font-weight="800" font-family="'Manrope',sans-serif">Сайты, Telegram-боты</text>
+  <text x="90" y="316" fill="#00D4FF" font-size="62" font-weight="800" font-family="'Manrope',sans-serif">и CRM</text>
+  <text x="340" y="316" fill="#FFFFFF" font-size="62" font-weight="800" font-family="'Manrope',sans-serif"> для бизнеса</text>
+  <text x="90" y="390" fill="#94A3B8" font-size="32" font-weight="600" font-family="'Manrope',sans-serif">в Казахстане</text>
+
+  <!-- Feature pills -->
+  <rect x="90" y="430" width="170" height="38" rx="8" fill="rgba(0,212,255,0.1)" stroke="rgba(0,212,255,0.3)" stroke-width="1.5"/>
+  <text x="175" y="454" fill="#00D4FF" font-size="16" font-weight="700" text-anchor="middle" font-family="'Manrope',sans-serif">Запуск от 7 дней</text>
+
+  <rect x="276" y="430" width="170" height="38" rx="8" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.3)" stroke-width="1.5"/>
+  <text x="361" y="454" fill="#10B981" font-size="16" font-weight="700" text-anchor="middle" font-family="'Manrope',sans-serif">От 80 000 ₸</text>
+
+  <rect x="462" y="430" width="230" height="38" rx="8" fill="rgba(124,58,237,0.1)" stroke="rgba(124,58,237,0.3)" stroke-width="1.5"/>
+  <text x="577" y="454" fill="#7C3AED" font-size="16" font-weight="700" text-anchor="middle" font-family="'Manrope',sans-serif">WhatsApp / Telegram</text>
+
+  <!-- URL -->
+  <text x="90" y="540" fill="#64748B" font-size="22" font-family="monospace">qazdevstudio.kz</text>
+
+  <!-- Right side decorative panel -->
+  <rect x="820" y="80" width="320" height="480" rx="16" fill="rgba(13,20,38,0.7)" stroke="rgba(0,212,255,0.12)" stroke-width="1.5"/>
+  <rect x="820" y="80" width="320" height="44" rx="16" fill="rgba(5,8,20,0.9)"/>
+  <rect x="820" y="104" width="320" height="20" fill="rgba(5,8,20,0.9)"/>
+  <circle cx="844" cy="102" r="6" fill="#FF5F57"/>
+  <circle cx="862" cy="102" r="6" fill="#FFBD2E"/>
+  <circle cx="880" cy="102" r="6" fill="#28CA41"/>
+  <text x="980" y="107" fill="#64748B" font-size="11" font-family="monospace" text-anchor="middle">Operations Panel</text>
+
+  <!-- Panel cards -->
+  <rect x="840" y="140" width="280" height="68" rx="8" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.15)" stroke-width="1"/>
+  <text x="856" y="162" fill="#64748B" font-size="10" font-family="monospace">// Новая заявка</text>
+  <text x="856" y="182" fill="#E5E7EB" font-size="12" font-family="'Manrope',sans-serif">Клиент: Бизнес из Алматы</text>
+  <text x="856" y="200" fill="#00D4FF" font-size="12" font-family="'Manrope',sans-serif">Услуга: CRM-система</text>
+
+  <rect x="840" y="220" width="134" height="68" rx="8" fill="rgba(124,58,237,0.08)" stroke="rgba(124,58,237,0.2)" stroke-width="1"/>
+  <text x="856" y="242" fill="#64748B" font-size="10" font-family="monospace">// Бот</text>
+  <text x="907" y="265" fill="#7C3AED" font-size="20" text-anchor="middle">🤖</text>
+  <text x="856" y="282" fill="#10B981" font-size="10" font-family="monospace">Заявки: отправлены</text>
+
+  <rect x="986" y="220" width="134" height="68" rx="8" fill="rgba(37,99,235,0.08)" stroke="rgba(37,99,235,0.2)" stroke-width="1"/>
+  <text x="1002" y="242" fill="#64748B" font-size="10" font-family="monospace">// PDF</text>
+  <text x="1053" y="265" fill="#2563EB" font-size="20" text-anchor="middle">📄</text>
+  <text x="1002" y="282" fill="#10B981" font-size="10" font-family="monospace">✓ Сформирован</text>
+
+  <!-- CRM pipeline -->
+  <rect x="840" y="300" width="280" height="68" rx="8" fill="rgba(5,8,20,0.6)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="856" y="320" fill="#64748B" font-size="10" font-family="monospace">// CRM Pipeline</text>
+  <rect x="852" y="332" width="52" height="24" rx="4" fill="rgba(0,212,255,0.15)" stroke="rgba(0,212,255,0.3)" stroke-width="1"/>
+  <text x="878" y="348" fill="#00D4FF" font-size="9" text-anchor="middle" font-family="monospace">Заявка</text>
+  <text x="916" y="348" fill="#64748B" font-size="10">→</text>
+  <rect x="926" y="332" width="52" height="24" rx="4" fill="rgba(0,212,255,0.1)" stroke="rgba(0,212,255,0.2)" stroke-width="1"/>
+  <text x="952" y="348" fill="#E5E7EB" font-size="9" text-anchor="middle" font-family="monospace">Работа</text>
+  <text x="990" y="348" fill="#64748B" font-size="10">→</text>
+  <rect x="1000" y="332" width="52" height="24" rx="4" fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.3)" stroke-width="1.5"/>
+  <text x="1026" y="348" fill="#10B981" font-size="9" text-anchor="middle" font-family="monospace">Оплата</text>
+
+  <!-- Metrics -->
+  <rect x="840" y="380" width="280" height="80" rx="8" fill="rgba(5,8,20,0.6)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="856" y="400" fill="#64748B" font-size="10" font-family="monospace">// Метрики</text>
+  <rect x="852" y="410" width="180" height="10" rx="3" fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.05)"/>
+  <rect x="852" y="410" width="80" height="10" rx="3" fill="rgba(16,185,129,0.5)"/>
+  <text x="856" y="435" fill="#E5E7EB" font-size="10" font-family="'Manrope',sans-serif">Ручной труд</text>
+  <text x="1110" y="435" fill="#10B981" font-size="10" font-weight="bold" text-anchor="end" font-family="monospace">-40%</text>
+  <rect x="852" y="444" width="180" height="10" rx="3" fill="rgba(0,212,255,0.12)"/>
+  <rect x="852" y="444" width="130" height="10" rx="3" fill="rgba(0,212,255,0.4)"/>
+  <text x="856" y="468" fill="#E5E7EB" font-size="10" font-family="'Manrope',sans-serif">Скорость обработки</text>
+  <text x="1110" y="468" fill="#00D4FF" font-size="10" font-weight="bold" text-anchor="end" font-family="monospace">+65%</text>
+
+  <!-- Live status -->
+  <circle cx="1110" cy="102" r="6" fill="#10B981"/>
+  <circle cx="1110" cy="102" r="6" fill="#10B981" opacity="0.4">
+    <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="1122" y="107" fill="#10B981" font-size="11" font-family="monospace">LIVE</text>
+</svg>
