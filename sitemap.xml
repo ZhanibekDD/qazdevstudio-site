@@ -3,7 +3,7 @@
   <!-- Главная -->
   <url>
     <loc>https://qazdevstudio.kz/</loc>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -45,7 +45,7 @@
   <!-- SEO-страницы услуг -->
   <url>
     <loc>https://qazdevstudio.kz/razrabotka-saitov-kazakhstan.html</loc>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -101,9 +101,9 @@
   </url>
   <url>
     <loc>https://qazdevstudio.kz/razrabotka-saitov-taldykorgan.html</loc>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
   <!-- База решений -->
