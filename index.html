@@ -49,6 +49,20 @@
     "serviceType": ["Разработка сайтов", "Telegram-боты", "CRM-системы", "Автоматизация бизнеса"]
   }
   </script>
+  <style>
+  .nav-dropdown{position:relative}
+  .nav-drop-btn{display:flex;align-items:center;gap:5px;background:none;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-size:15px;font-weight:600;color:#94A3B8;padding:0;transition:color .2s;line-height:1}
+  .nav-drop-btn:hover{color:#00D4FF}
+  .nav-drop-chev{transition:transform .22s;flex-shrink:0;color:currentColor}
+  .nav-dropdown.open .nav-drop-chev{transform:rotate(180deg)}
+  .nav-drop-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);background:rgba(6,10,22,.97);backdrop-filter:blur(24px);border:1px solid rgba(0,212,255,.15);border-radius:14px;padding:6px;min-width:226px;list-style:none;opacity:0;visibility:hidden;transition:opacity .18s,transform .18s;z-index:400;box-shadow:0 20px 50px rgba(0,0,0,.55)}
+  .nav-dropdown.open .nav-drop-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+  .nav-drop-menu li{list-style:none}
+  .nav-drop-menu a{display:flex;align-items:center;gap:9px;padding:9px 12px;font-size:13px;font-weight:600;color:#94A3B8;text-decoration:none;border-radius:8px;transition:all .14s;font-family:'Manrope',sans-serif;white-space:nowrap}
+  .nav-drop-menu a:hover{background:rgba(0,212,255,.08);color:#E5E7EB}
+  .nav-drop-menu .di{font-size:15px;width:20px;text-align:center;flex-shrink:0}
+  .nav-drop-sep{height:1px;background:rgba(0,212,255,.08);margin:4px 8px}
+  </style>
 </head>
 <body>
 
@@ -79,7 +93,22 @@
         <ul class="nav-menu" id="navMenu" role="menubar">
           <li role="none"><a href="#solutions" class="nav-link" role="menuitem">Решения</a></li>
           <li role="none"><a href="#pricing" class="nav-link" role="menuitem">Цены</a></li>
-          <li role="none"><a href="#tools" class="nav-link" role="menuitem">Инструменты</a></li>
+          <li role="none" class="nav-dropdown">
+            <button class="nav-drop-btn" aria-haspopup="true" aria-expanded="false" onclick="toggleNavDrop(this)">
+              Инструменты
+              <svg class="nav-drop-chev" viewBox="0 0 16 16" fill="none" width="13" height="13"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <ul class="nav-drop-menu" role="menu">
+              <li><a href="/moy-ip.html" role="menuitem"><span class="di">🌐</span>Мой IP-адрес</a></li>
+              <li><a href="/utm.html" role="menuitem"><span class="di">🔗</span>UTM-генератор</a></li>
+              <li><a href="/templates/" role="menuitem"><span class="di">📄</span>Шаблоны документов</a></li>
+              <li class="nav-drop-sep"></li>
+              <li><a href="/calculator.html" role="menuitem"><span class="di">🧮</span>Калькулятор стоимости</a></li>
+              <li><a href="/checklist-saita.html" role="menuitem"><span class="di">✅</span>Чек-лист сайта</a></li>
+              <li><a href="/automation-quiz.html" role="menuitem"><span class="di">🎯</span>Квиз автоматизации</a></li>
+              <li><a href="/tz-generator.html" role="menuitem"><span class="di">📋</span>Генератор ТЗ</a></li>
+            </ul>
+          </li>
           <li role="none"><a href="/ready-solutions.html" class="nav-link" role="menuitem">Пакеты</a></li>
           <li role="none"><a href="/blog/" class="nav-link" role="menuitem">Блог</a></li>
           <li role="none"><a href="#contact" class="nav-link" role="menuitem">Контакты</a></li>
@@ -1731,5 +1760,20 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+  function toggleNavDrop(btn){
+    var dd=btn.closest('.nav-dropdown');
+    var open=dd.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open);
+  }
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.nav-dropdown')){
+      document.querySelectorAll('.nav-dropdown.open').forEach(function(d){
+        d.classList.remove('open');
+        d.querySelector('.nav-drop-btn').setAttribute('aria-expanded','false');
+      });
+    }
+  });
+  </script>
 </body>
 </html>
