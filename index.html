@@ -1099,52 +1099,265 @@
 
     <!-- ========== TOOLS ========== -->
     <section class="section-tools" id="tools" style="padding:80px 0;background:rgba(8,13,28,0.6);border-top:1px solid rgba(0,212,255,0.08);">
+      <style>
+        .ta-acc{max-width:680px;margin:0 auto}
+        .ta-item{border-bottom:1px solid rgba(0,212,255,.08)}
+        .ta-item:first-child{border-top:1px solid rgba(0,212,255,.08)}
+        .ta-head{display:flex;align-items:center;gap:12px;width:100%;background:none;border:none;padding:17px 0;cursor:pointer;text-align:left;transition:background .15s;border-radius:0}
+        .ta-head:hover .ta-name{color:#00D4FF}
+        .ta-ico{font-size:20px;flex-shrink:0;width:28px;text-align:center}
+        .ta-meta{flex:1;min-width:0}
+        .ta-name{display:block;font-size:15px;font-weight:700;color:#E5E7EB;transition:color .2s;font-family:'Manrope',sans-serif}
+        .ta-hint{display:block;font-size:11px;color:#64748B;margin-top:2px;font-family:'JetBrains Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .ta-arr{flex-shrink:0;transition:transform .25s;color:#64748B}
+        .ta-item.open .ta-arr{transform:rotate(180deg)}
+        .ta-body{overflow:hidden;max-height:0;transition:max-height .35s ease,padding .25s}
+        .ta-item.open .ta-body{max-height:700px;padding-bottom:20px}
+        /* IP */
+        .ta-ip-box{font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;color:#E5E7EB;background:rgba(5,8,20,.8);border:1px solid rgba(0,212,255,.12);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+        .ta-ip-addr{font-size:22px;font-weight:600;color:#00D4FF;letter-spacing:.04em;display:block;margin-bottom:4px}
+        /* UTM */
+        .ta-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+        .ta-chip{font-size:12px;font-weight:700;padding:5px 13px;border-radius:8px;border:1px solid rgba(0,212,255,.18);background:transparent;color:#64748B;cursor:pointer;transition:all .15s;font-family:'Manrope',sans-serif}
+        .ta-chip:hover,.ta-chip.on{border-color:#00D4FF;color:#00D4FF;background:rgba(0,212,255,.08)}
+        .ta-row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+        @media(max-width:500px){.ta-row2{grid-template-columns:1fr}}
+        .ta-inp{width:100%;background:rgba(5,8,20,.85);border:1px solid rgba(0,212,255,.15);border-radius:8px;padding:9px 12px;font-size:13px;font-family:'JetBrains Mono',monospace;color:#fff;outline:none;transition:border-color .2s}
+        .ta-inp:focus{border-color:rgba(0,212,255,.4)}
+        .ta-inp::placeholder{color:#4B5563}
+        .ta-prev{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(5,8,20,.85);border:1px solid rgba(0,212,255,.07);border-radius:8px;padding:10px 12px;min-height:38px;word-break:break-all;line-height:1.7;color:#4B5563;margin-bottom:10px}
+        .ta-prev .p-base{color:#64748B}.ta-prev .p-key{color:#00D4FF}.ta-prev .p-val{color:#10B981}
+        .ta-copy-btn{font-size:12px;font-weight:700;padding:7px 16px;border-radius:8px;background:#00D4FF;color:#000;border:none;cursor:pointer;font-family:'Manrope',sans-serif;transition:background .2s}
+        .ta-copy-btn:hover{background:#00bde6}
+        .ta-copy-btn.ok{background:#10B981;color:#fff}
+        /* Generic */
+        .ta-open-btn{display:inline-block;font-size:13px;font-weight:700;color:#00D4FF;text-decoration:none;border:1px solid rgba(0,212,255,.3);border-radius:8px;padding:8px 16px;transition:all .2s;font-family:'Manrope',sans-serif}
+        .ta-open-btn:hover{background:rgba(0,212,255,.08);border-color:rgba(0,212,255,.5)}
+        .ta-lnk{font-size:12px;color:#64748B;text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color .2s}
+        .ta-lnk:hover{color:#00D4FF}
+        .ta-desc{font-size:14px;color:#94A3B8;margin-bottom:14px;line-height:1.6}
+        /* Doc links */
+        .ta-doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
+        @media(max-width:440px){.ta-doc-grid{grid-template-columns:1fr}}
+        .ta-doc-lnk{display:block;font-size:12px;color:#94A3B8;text-decoration:none;padding:8px 12px;background:rgba(13,20,38,.7);border:1px solid rgba(0,212,255,.08);border-radius:8px;transition:all .2s;line-height:1.4}
+        .ta-doc-lnk:hover{border-color:rgba(0,212,255,.28);color:#E5E7EB}
+      </style>
       <div class="container">
         <div class="section-tag mono">// Инструменты</div>
         <h2 class="section-title">Бесплатные инструменты для <span class="gradient-text">вашего бизнеса</span></h2>
-        <p class="section-subtitle" style="max-width:580px;margin-bottom:40px;">Рассчитайте стоимость, составьте ТЗ, проверьте сайт или узнайте что автоматизировать — прямо сейчас, без звонков.</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:40px;">
-          <a href="/calculator.html" style="display:block;background:rgba(13,20,38,.7);border:1px solid rgba(0,212,255,.12);border-radius:16px;padding:24px;text-decoration:none;transition:border-color .25s,transform .25s;" onmouseover="this.style.borderColor='rgba(0,212,255,.35)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,212,255,.12)';this.style.transform='none'">
-            <div style="font-size:28px;margin-bottom:12px;">🧮</div>
-            <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">Калькулятор стоимости</div>
-            <div style="font-size:13px;color:#94A3B8;line-height:1.5;">Выберите тип проекта и функции — получите примерный бюджет и формат</div>
-          </a>
-          <a href="/checklist-saita.html" style="display:block;background:rgba(13,20,38,.7);border:1px solid rgba(0,212,255,.12);border-radius:16px;padding:24px;text-decoration:none;transition:border-color .25s,transform .25s;" onmouseover="this.style.borderColor='rgba(0,212,255,.35)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,212,255,.12)';this.style.transform='none'">
-            <div style="font-size:28px;margin-bottom:12px;">✅</div>
-            <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">Чек-лист сайта</div>
-            <div style="font-size:13px;color:#94A3B8;line-height:1.5;">15 пунктов — узнайте, теряет ли ваш сайт заявки прямо сейчас</div>
-          </a>
-          <a href="/automation-quiz.html" style="display:block;background:rgba(13,20,38,.7);border:1px solid rgba(0,212,255,.12);border-radius:16px;padding:24px;text-decoration:none;transition:border-color .25s,transform .25s;" onmouseover="this.style.borderColor='rgba(0,212,255,.35)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,212,255,.12)';this.style.transform='none'">
-            <div style="font-size:28px;margin-bottom:12px;">🎯</div>
-            <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">Квиз: что автоматизировать?</div>
-            <div style="font-size:13px;color:#94A3B8;line-height:1.5;">6 вопросов — персональная рекомендация: сайт, бот или CRM</div>
-          </a>
-          <a href="/tz-generator.html" style="display:block;background:rgba(13,20,38,.7);border:1px solid rgba(0,212,255,.12);border-radius:16px;padding:24px;text-decoration:none;transition:border-color .25s,transform .25s;" onmouseover="this.style.borderColor='rgba(0,212,255,.35)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,212,255,.12)';this.style.transform='none'">
-            <div style="font-size:28px;margin-bottom:12px;">📋</div>
-            <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">Генератор ТЗ</div>
-            <div style="font-size:13px;color:#94A3B8;line-height:1.5;">Составьте техническое задание за 5 минут — скачайте или отправьте в WA</div>
-          </a>
-          <a href="/moy-ip.html" style="display:block;background:rgba(13,20,38,.7);border:1px solid rgba(0,212,255,.12);border-radius:16px;padding:24px;text-decoration:none;transition:border-color .25s,transform .25s;" onmouseover="this.style.borderColor='rgba(0,212,255,.35)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,212,255,.12)';this.style.transform='none'">
-            <div style="font-size:28px;margin-bottom:12px;">🌐</div>
-            <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">Мой IP-адрес</div>
-            <div style="font-size:13px;color:#94A3B8;line-height:1.5;">Узнайте свой IP, геолокацию, провайдера, браузер и оценку приватности</div>
-          </a>
-          <a href="/utm.html" style="display:block;background:rgba(13,20,38,.7);border:1px solid rgba(0,212,255,.12);border-radius:16px;padding:24px;text-decoration:none;transition:border-color .25s,transform .25s;" onmouseover="this.style.borderColor='rgba(0,212,255,.35)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,212,255,.12)';this.style.transform='none'">
-            <div style="font-size:28px;margin-bottom:12px;">🔗</div>
-            <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">UTM-генератор ссылок</div>
-            <div style="font-size:13px;color:#94A3B8;line-height:1.5;">Создайте UTM-метки для Google, Instagram, Telegram и других каналов</div>
-          </a>
-          <a href="/templates/" style="display:block;background:rgba(13,20,38,.7);border:1px solid rgba(0,212,255,.12);border-radius:16px;padding:24px;text-decoration:none;transition:border-color .25s,transform .25s;" onmouseover="this.style.borderColor='rgba(0,212,255,.35)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,212,255,.12)';this.style.transform='none'">
-            <div style="font-size:28px;margin-bottom:12px;">📄</div>
-            <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">Шаблоны документов</div>
-            <div style="font-size:13px;color:#94A3B8;line-height:1.5;">Договор, ТЗ на сайт, ТЗ на бот, КП — скопируйте и используйте бесплатно</div>
-          </a>
-        </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+        <p class="section-subtitle" style="max-width:580px;margin-bottom:36px;">Раскройте нужный — используйте прямо здесь, без лишних переходов.</p>
+
+        <div class="ta-acc">
+
+          <!-- IP -->
+          <div class="ta-item" data-tool="ip">
+            <button class="ta-head" onclick="toggleTA(this)">
+              <span class="ta-ico">🌐</span>
+              <div class="ta-meta">
+                <span class="ta-name">Мой IP-адрес</span>
+                <span class="ta-hint">геолокация · провайдер · приватность</span>
+              </div>
+              <svg class="ta-arr" viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="ta-body">
+              <div class="ta-ip-box" id="ta-ip-box"><span style="color:#4B5563">Определяем...</span></div>
+              <a href="/moy-ip.html" class="ta-lnk">Полный отчёт с Privacy Score →</a>
+            </div>
+          </div>
+
+          <!-- UTM -->
+          <div class="ta-item" data-tool="utm">
+            <button class="ta-head" onclick="toggleTA(this)">
+              <span class="ta-ico">🔗</span>
+              <div class="ta-meta">
+                <span class="ta-name">UTM-генератор ссылок</span>
+                <span class="ta-hint">Google · Instagram · Telegram · WhatsApp · TikTok</span>
+              </div>
+              <svg class="ta-arr" viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="ta-body">
+              <div class="ta-chips">
+                <button class="ta-chip" data-src="google" data-med="cpc" onclick="pickTAChip(this)">Google</button>
+                <button class="ta-chip" data-src="instagram" data-med="social" onclick="pickTAChip(this)">Instagram</button>
+                <button class="ta-chip" data-src="telegram" data-med="social" onclick="pickTAChip(this)">Telegram</button>
+                <button class="ta-chip" data-src="whatsapp" data-med="messenger" onclick="pickTAChip(this)">WhatsApp</button>
+                <button class="ta-chip" data-src="yandex" data-med="cpc" onclick="pickTAChip(this)">Яндекс</button>
+                <button class="ta-chip" data-src="tiktok" data-med="social" onclick="pickTAChip(this)">TikTok</button>
+              </div>
+              <div class="ta-row2">
+                <input id="ta-url" class="ta-inp" placeholder="ваш-сайт.kz" oninput="buildTA()">
+                <input id="ta-cam" class="ta-inp" placeholder="название кампании" oninput="buildTA()">
+              </div>
+              <div class="ta-prev" id="ta-prev">Выберите канал и введите URL</div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <button class="ta-copy-btn" id="ta-copy" onclick="copyTA()">Скопировать</button>
+                <a href="/utm.html" class="ta-lnk">Полная версия →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Шаблоны -->
+          <div class="ta-item">
+            <button class="ta-head" onclick="toggleTA(this)">
+              <span class="ta-ico">📄</span>
+              <div class="ta-meta">
+                <span class="ta-name">Шаблоны документов</span>
+                <span class="ta-hint">договор · ТЗ на сайт · ТЗ на бот · КП</span>
+              </div>
+              <svg class="ta-arr" viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="ta-body">
+              <div class="ta-doc-grid">
+                <a href="/templates/dogovor-razrabotka-saita.html" class="ta-doc-lnk">📝 Договор на разработку сайта</a>
+                <a href="/templates/tz-na-sait.html" class="ta-doc-lnk">📋 ТЗ на сайт</a>
+                <a href="/templates/tz-na-telegram-bot.html" class="ta-doc-lnk">🤖 ТЗ на Telegram-бот</a>
+                <a href="/templates/kommercheskoe-predlozhenie.html" class="ta-doc-lnk">💼 Коммерческое предложение</a>
+              </div>
+              <a href="/templates/" class="ta-lnk">Все шаблоны →</a>
+            </div>
+          </div>
+
+          <!-- Калькулятор -->
+          <div class="ta-item">
+            <button class="ta-head" onclick="toggleTA(this)">
+              <span class="ta-ico">🧮</span>
+              <div class="ta-meta">
+                <span class="ta-name">Калькулятор стоимости</span>
+                <span class="ta-hint">выберите тип проекта — получите бюджет</span>
+              </div>
+              <svg class="ta-arr" viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="ta-body">
+              <p class="ta-desc">Выберите тип проекта и нужные функции — получите примерный бюджет и формат работы. Помогает сформулировать задачу перед обсуждением.</p>
+              <a href="/calculator.html" class="ta-open-btn">Открыть калькулятор →</a>
+            </div>
+          </div>
+
+          <!-- Чек-лист -->
+          <div class="ta-item">
+            <button class="ta-head" onclick="toggleTA(this)">
+              <span class="ta-ico">✅</span>
+              <div class="ta-meta">
+                <span class="ta-name">Чек-лист сайта</span>
+                <span class="ta-hint">15 пунктов — теряет ли сайт заявки?</span>
+              </div>
+              <svg class="ta-arr" viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="ta-body">
+              <p class="ta-desc">Форма, мобильная версия, скорость, WhatsApp-кнопка, SEO и ещё 10 параметров. Проверьте свой сайт по списку — сразу понятно, где теряются клиенты.</p>
+              <a href="/checklist-saita.html" class="ta-open-btn">Пройти чек-лист →</a>
+            </div>
+          </div>
+
+          <!-- Квиз -->
+          <div class="ta-item">
+            <button class="ta-head" onclick="toggleTA(this)">
+              <span class="ta-ico">🎯</span>
+              <div class="ta-meta">
+                <span class="ta-name">Квиз: что автоматизировать?</span>
+                <span class="ta-hint">6 вопросов — сайт, бот или CRM?</span>
+              </div>
+              <svg class="ta-arr" viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="ta-body">
+              <p class="ta-desc">Ответьте на 6 вопросов о своём бизнесе — квиз подскажет, что именно поможет принимать больше заявок: сайт, Telegram-бот или CRM.</p>
+              <a href="/automation-quiz.html" class="ta-open-btn">Пройти квиз →</a>
+            </div>
+          </div>
+
+          <!-- Генератор ТЗ -->
+          <div class="ta-item">
+            <button class="ta-head" onclick="toggleTA(this)">
+              <span class="ta-ico">📋</span>
+              <div class="ta-meta">
+                <span class="ta-name">Генератор ТЗ</span>
+                <span class="ta-hint">составьте техзадание за 5 минут</span>
+              </div>
+              <svg class="ta-arr" viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="ta-body">
+              <p class="ta-desc">Заполните форму — получите готовое техническое задание. Можно отправить разработчику напрямую или скачать. Не нужно знать, как писать ТЗ.</p>
+              <a href="/tz-generator.html" class="ta-open-btn">Составить ТЗ →</a>
+            </div>
+          </div>
+
+        </div><!-- /ta-acc -->
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:28px;max-width:680px;margin-left:auto;margin-right:auto;">
           <a href="/ready-solutions.html" class="btn btn-ghost" style="font-size:14px;">Готовые пакеты →</a>
           <a href="/solutions/" class="btn btn-ghost" style="font-size:14px;">База решений →</a>
         </div>
       </div>
+
+      <script>
+      (function(){
+        function toggleTA(btn){
+          var item=btn.closest('.ta-item');
+          var wasOpen=item.classList.contains('open');
+          document.querySelectorAll('.ta-item.open').forEach(function(i){i.classList.remove('open')});
+          if(!wasOpen){
+            item.classList.add('open');
+            if(item.dataset.tool==='ip'&&!item._loaded){item._loaded=true;loadIP();}
+          }
+        }
+        window.toggleTA=toggleTA;
+
+        function loadIP(){
+          fetch('https://ip-api.com/json/?fields=status,country,city,isp,query,regionName,timezone&lang=ru')
+            .then(function(r){return r.json()})
+            .then(function(d){
+              if(d.status!=='success')throw 0;
+              document.getElementById('ta-ip-box').innerHTML=
+                '<span class="ta-ip-addr">'+d.query+'</span>'+
+                '<span>📍 '+d.city+', '+d.regionName+', '+d.country+'</span><br>'+
+                '<span>🌐 '+d.isp+'</span><br>'+
+                '<span>🕐 '+d.timezone+'</span>';
+            })
+            .catch(function(){document.getElementById('ta-ip-box').innerHTML='<span style="color:#64748B">Не удалось определить</span>';});
+        }
+
+        var _src='',_med='';
+        function pickTAChip(btn){
+          document.querySelectorAll('.ta-chip').forEach(function(c){c.classList.remove('on')});
+          btn.classList.add('on');
+          _src=btn.dataset.src;_med=btn.dataset.med;
+          buildTA();
+        }
+        window.pickTAChip=pickTAChip;
+
+        function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+        function buildTA(){
+          var url=document.getElementById('ta-url').value.trim();
+          var cam=document.getElementById('ta-cam').value.trim();
+          var prev=document.getElementById('ta-prev');
+          var btn=document.getElementById('ta-copy');
+          if(!url||!_src){prev.textContent='Выберите канал и введите URL';btn._url='';return;}
+          var base=/^https?:\/\//i.test(url)?url:'https://'+url;
+          var sep=base.includes('?')?'&':'?';
+          var pairs=['utm_source='+encodeURIComponent(_src)];
+          if(_med)pairs.push('utm_medium='+encodeURIComponent(_med));
+          if(cam)pairs.push('utm_campaign='+encodeURIComponent(cam.replace(/\s+/g,'_')));
+          var full=base+sep+pairs.join('&');
+          btn._url=full;
+          prev.innerHTML='<span class="p-base">'+esc(base+sep)+'</span>'+
+            '<span class="p-key">utm_source</span>=<span class="p-val">'+esc(_src)+'</span>'+
+            (_med?'&<span class="p-key">utm_medium</span>=<span class="p-val">'+esc(_med)+'</span>':'')+
+            (cam?'&<span class="p-key">utm_campaign</span>=<span class="p-val">'+esc(cam.replace(/\s+/g,'_'))+'</span>':'');
+        }
+        window.buildTA=buildTA;
+
+        function copyTA(){
+          var btn=document.getElementById('ta-copy');
+          if(!btn._url)return;
+          navigator.clipboard.writeText(btn._url).then(function(){
+            btn.textContent='✓ Скопировано!';btn.classList.add('ok');
+            setTimeout(function(){btn.textContent='Скопировать';btn.classList.remove('ok');},2000);
+          });
+        }
+        window.copyTA=copyTA;
+      })();
+      </script>
     </section>
 
     <!-- ========== BLOG ========== -->
