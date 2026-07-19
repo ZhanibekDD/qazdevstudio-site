@@ -23,15 +23,6 @@ on:
         options: ['700', '3000', '5000', '10000']
   schedule:
     - cron: '17 1 * * 1'
-  push:
-    branches:
-      - agent/software-mass-crawler
-    paths:
-      - '.github/workflows/crawl-software.yml'
-      - 'scripts/crawl-*.mjs'
-      - 'scripts/lib/catalog-crawler.mjs'
-      - 'scripts/crawl-config.json'
-      - 'tests/crawler.test.mjs'
   pull_request:
     branches:
       - main
@@ -82,10 +73,6 @@ jobs:
       - name: Collect candidates
         shell: bash
         run: |
-          if [[ "$EVENT_NAME" == "push" ]]; then
-            INPUT_PAGES=1
-            INPUT_MAX_REPOSITORIES=700
-          fi
           node scripts/crawl-github-releases.mjs \
             --all \
             --resume \
