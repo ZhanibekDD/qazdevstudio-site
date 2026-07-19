@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "defaults": {
+    "pages": 3,
+    "perPage": 100,
+    "minStars": 300,
+    "maxRepositories": 3000,
+    "concurrency": 6
+  },
+  "categories": [
+    {
+      "id": "screenshots",
+      "label": "Скриншоты и запись",
+      "queries": ["topic:screenshot", "topic:screen-recorder", "screen capture desktop"]
+    },
+    {
+      "id": "productivity",
+      "label": "Работа и текст",
+      "queries": ["topic:productivity desktop", "topic:markdown-editor", "topic:note-taking"]
+    },
+    {
+      "id": "multimedia",
+      "label": "Видео и аудио",
+      "queries": ["topic:video-editor", "topic:audio-editor", "topic:media-player"]
+    },
+    {
+      "id": "system",
+      "label": "Система",
+      "queries": ["topic:system-utility", "topic:file-manager", "topic:application-launcher"]
+    },
+    {
+      "id": "security",
+      "label": "Безопасность",
+      "queries": ["topic:password-manager", "topic:encryption desktop", "topic:privacy desktop"]
+    },
+    {
+      "id": "files-network",
+      "label": "Файлы и сеть",
+      "queries": ["topic:file-transfer", "topic:remote-desktop", "topic:backup desktop"]
+    },
+    {
+      "id": "developer",
+      "label": "Разработка",
+      "queries": ["topic:database-client", "topic:api-client", "topic:terminal-emulator", "topic:git-client"]
+    },
+    {
+      "id": "ai",
+      "label": "ИИ локально",
+      "queries": ["topic:local-ai", "topic:llm desktop", "topic:stable-diffusion desktop"]
+    }
+  ]
+}
