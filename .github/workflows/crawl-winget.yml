@@ -1,0 +1,75 @@
+name: Crawl WinGet candidates
+
+on:
+  workflow_dispatch:
+    inputs:
+      max_packages:
+        description: Changed WinGet packages to process in this run
+        required: true
+        default: '3000'
+        type: choice
+        options: ['1000', '3000', '5000', '15000']
+  schedule:
+    - cron: '37 1 * * 2'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/crawl-winget.yml'
+      - 'scripts/crawl-winget.mjs'
+      - 'scripts/review-winget-candidates.mjs'
+      - 'scripts/lib/winget-parser.mjs'
+      - 'tests/winget-parser.test.mjs'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: winget-crawler-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  crawl-winget:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      NODE_NO_WARNINGS: '1'
+      # A PR validates the complete source. Scheduled/manual runs remain configurable.
+      INPUT_MAX_PACKAGES: ${{ github.event_name == 'pull_request' && '15000' || inputs.max_packages || '3000' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Restore WinGet checkpoint
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/winget-crawl.drafts.json
+            data/winget-crawl.state.json
+          key: software-winget-${{ github.run_id }}
+          restore-keys: |
+            software-winget-
+
+      - name: Test WinGet parser
+        run: node --test tests/winget-parser.test.mjs
+
+      - name: Collect official WinGet manifests
+        run: node scripts/crawl-winget.mjs --resume --max-packages="$INPUT_MAX_PACKAGES" --concurrency=16
+
+      - name: Build WinGet moderation queue
+        run: node scripts/review-winget-candidates.mjs --threshold=80 --limit=15000
+
+      - name: Upload unpublished WinGet candidates
+        uses: actions/upload-artifact@v4
+        with:
+          name: winget-candidates-${{ github.run_id }}
+          if-no-files-found: error
+          retention-days: 30
+          path: |
+            data/winget-crawl.drafts.json
+            data/winget-summary.json
+            data/winget-review-queue.json
+            data/winget-review-queue.csv

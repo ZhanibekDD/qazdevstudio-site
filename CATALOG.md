@@ -47,6 +47,17 @@ node scripts/verify-downloads.mjs --input=data/software.batch.json
 
 Promotion refuses duplicates, scores below 80, missing machine-readable licences and ambiguous asset patterns. It chooses one reviewed x64 desktop asset per available operating system. `--apply` is intentionally required before the public catalog changes.
 
+## WinGet source
+
+```bash
+node scripts/crawl-winget.mjs --resume --max-packages=3000
+node scripts/review-winget-candidates.mjs --threshold=80
+```
+
+The WinGet crawler downloads Microsoft's signed default source package from `https://cdn.winget.microsoft.com/cache/source.msix`. Its SQLite index currently describes more than 13,000 packages. Each referenced merged manifest is fetched from the same Microsoft CDN and accepted only when its SHA-256 matches the index. Installer URLs also require HTTPS, a supported Windows installer extension and the 64-character `InstallerSha256` included in the manifest.
+
+The resumable workflow processes 3,000 changed package manifests per run. Raw WinGet records remain unpublished and are exported as a separate JSON/CSV moderation artifact. Promotion still requires publisher, licence and installer-domain review; QazDev never mirrors the installer.
+
 GitHub Actions runs a 700-repository collection when the crawler branch changes. After the workflow is on the default branch, it can collect up to 10,000 repositories manually and resume every Monday. The result is an artifact; it never changes the public catalog by itself.
 
 Verify all public direct-download patterns before a release:
