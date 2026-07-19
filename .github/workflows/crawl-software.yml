@@ -70,6 +70,12 @@ jobs:
       - name: Test crawler rules
         run: node --test tests/crawler.test.mjs
 
+      - name: Build public catalog
+        run: node scripts/build-software-catalog.mjs
+
+      - name: Verify every public download button
+        run: node scripts/verify-downloads.mjs
+
       - name: Collect candidates
         shell: bash
         run: |
