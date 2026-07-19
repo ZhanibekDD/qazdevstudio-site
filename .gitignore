@@ -26,3 +26,10 @@ api/config.php
 # SEO tools exports
 Screaming Frog SEO Spider/
 *.xlsx
+
+# Software crawler working files
+data/*.drafts.json
+data/*.state.json
+data/review-queue.json
+data/review-queue.csv
+data/crawl-summary.json
