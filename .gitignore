@@ -22,4 +22,7 @@ api/config.php
 *.tmp
 *.bak
 ~*
-1
+
+# SEO tools exports
+Screaming Frog SEO Spider/
+*.xlsx
