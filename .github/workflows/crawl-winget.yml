@@ -34,7 +34,8 @@ jobs:
     timeout-minutes: 180
     env:
       NODE_NO_WARNINGS: '1'
-      INPUT_MAX_PACKAGES: ${{ inputs.max_packages || '3000' }}
+      # A PR validates the complete source. Scheduled/manual runs remain configurable.
+      INPUT_MAX_PACKAGES: ${{ github.event_name == 'pull_request' && '15000' || inputs.max_packages || '3000' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -59,7 +60,7 @@ jobs:
         run: node scripts/crawl-winget.mjs --resume --max-packages="$INPUT_MAX_PACKAGES" --concurrency=16
 
       - name: Build WinGet moderation queue
-        run: node scripts/review-winget-candidates.mjs --threshold=80 --limit=3000
+        run: node scripts/review-winget-candidates.mjs --threshold=80 --limit=15000
 
       - name: Upload unpublished WinGet candidates
         uses: actions/upload-artifact@v4
@@ -72,4 +73,3 @@ jobs:
             data/winget-summary.json
             data/winget-review-queue.json
             data/winget-review-queue.csv
-
