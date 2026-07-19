@@ -1,0 +1,505 @@
+[
+  {
+    "packageIdentifier": "7zip.7zip",
+    "slug": "7-zip",
+    "name": "7-Zip",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Быстрый архиватор с высокой степенью сжатия и поддержкой популярных форматов.",
+    "fullDescription": "7-Zip создаёт и распаковывает архивы 7z, ZIP, TAR и многие другие форматы. Встраивается в Проводник Windows, умеет шифровать архивы и не показывает рекламу.",
+    "features": ["Архивы 7z и ZIP", "Шифрование AES-256", "Интеграция с Windows", "Без рекламы"]
+  },
+  {
+    "packageIdentifier": "Mozilla.Firefox.ru",
+    "slug": "firefox",
+    "name": "Mozilla Firefox",
+    "category": "internet",
+    "categoryLabel": "Интернет",
+    "shortDescription": "Браузер с защитой от отслеживания, расширениями и русским интерфейсом.",
+    "fullDescription": "Firefox открывает сайты на движке Mozilla и блокирует многие трекеры по умолчанию. Поддерживает синхронизацию, контейнеры, расширения и гибкую настройку приватности.",
+    "features": ["Защита от трекеров", "Расширения", "Синхронизация", "Русский интерфейс"]
+  },
+  {
+    "packageIdentifier": "Mozilla.Thunderbird.ru",
+    "slug": "thunderbird",
+    "name": "Mozilla Thunderbird",
+    "category": "communication",
+    "categoryLabel": "Общение",
+    "shortDescription": "Почтовый клиент с календарём, несколькими аккаунтами и русским интерфейсом.",
+    "fullDescription": "Thunderbird объединяет электронную почту, календарь и адресную книгу в одном приложении. Работает с популярными почтовыми сервисами, фильтрами, шифрованием и расширениями.",
+    "features": ["Несколько аккаунтов", "Календарь", "Фильтры писем", "Расширения"]
+  },
+  {
+    "packageIdentifier": "VideoLAN.VLC",
+    "slug": "vlc-media-player",
+    "name": "VLC media player",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Универсальный проигрыватель видео, музыки, дисков и сетевых потоков.",
+    "fullDescription": "VLC воспроизводит большинство медиаформатов без установки дополнительных кодеков. Поддерживает субтитры, плейлисты, сетевые трансляции, запись потока и изменение скорости.",
+    "features": ["Видео и музыка", "Встроенные кодеки", "Субтитры", "Сетевые потоки"]
+  },
+  {
+    "packageIdentifier": "TheDocumentFoundation.LibreOffice",
+    "slug": "libreoffice",
+    "name": "LibreOffice",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Бесплатный офисный пакет для документов, таблиц, презентаций и формул.",
+    "fullDescription": "LibreOffice включает редактор документов Writer, таблицы Calc и презентации Impress. Открывает форматы Microsoft Office, экспортирует PDF и работает без подписки.",
+    "features": ["Документы", "Таблицы", "Презентации", "Экспорт в PDF"]
+  },
+  {
+    "packageIdentifier": "GIMP.GIMP",
+    "slug": "gimp",
+    "name": "GIMP",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Редактор изображений с слоями, масками, кистями и расширениями.",
+    "fullDescription": "GIMP подходит для обработки фотографий, ретуши, иллюстраций и подготовки веб-графики. Поддерживает слои, маски, цветокоррекцию, плагины и множество форматов.",
+    "features": ["Слои и маски", "Ретушь", "Кисти", "Плагины"]
+  },
+  {
+    "packageIdentifier": "BlenderFoundation.Blender.LTS.4.5",
+    "slug": "blender",
+    "name": "Blender LTS",
+    "website": "https://www.blender.org/",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Полный набор инструментов для 3D-моделирования, анимации и рендеринга.",
+    "fullDescription": "Blender объединяет моделирование, скульптинг, анимацию, монтаж и визуальные эффекты. LTS-ветка получает длительные исправления и подходит для стабильной рабочей среды.",
+    "features": ["3D-моделирование", "Анимация", "Рендеринг", "Видеомонтаж"]
+  },
+  {
+    "packageIdentifier": "Inkscape.Inkscape",
+    "slug": "inkscape",
+    "name": "Inkscape",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Векторный редактор для логотипов, схем, иллюстраций и SVG-файлов.",
+    "fullDescription": "Inkscape создаёт масштабируемую векторную графику и работает с форматом SVG. Есть кривые Безье, текст, слои, трассировка изображений и экспорт для печати и веба.",
+    "features": ["Векторная графика", "SVG", "Кривые Безье", "Трассировка"]
+  },
+  {
+    "packageIdentifier": "KDE.Krita",
+    "slug": "krita",
+    "name": "Krita",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Программа для цифрового рисования, комиксов, текстур и покадровой анимации.",
+    "fullDescription": "Krita рассчитана на художников и иллюстраторов: предлагает настраиваемые кисти, стабилизаторы, слои и цветовые модели. Поддерживает графические планшеты и простую 2D-анимацию.",
+    "features": ["Цифровая живопись", "Кисти", "Графические планшеты", "2D-анимация"]
+  },
+  {
+    "packageIdentifier": "KDE.Kdenlive",
+    "slug": "kdenlive",
+    "name": "Kdenlive",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Нелинейный видеоредактор с многодорожечным монтажом, эффектами и прокси.",
+    "fullDescription": "Kdenlive позволяет монтировать видео на нескольких дорожках, работать со звуком, титрами и эффектами. Прокси-файлы ускоряют редактирование тяжёлого материала на обычном компьютере.",
+    "features": ["Многодорожечный монтаж", "Эффекты", "Титры", "Прокси-файлы"]
+  },
+  {
+    "packageIdentifier": "OpenShot.OpenShot",
+    "slug": "openshot",
+    "name": "OpenShot Video Editor",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Понятный видеоредактор для нарезки, переходов, титров и простых роликов.",
+    "fullDescription": "OpenShot предлагает удобную временную шкалу, переходы, анимированные титры и базовые эффекты. Подходит новичкам для домашних видео, учебных роликов и публикаций в соцсетях.",
+    "features": ["Монтаж видео", "Переходы", "Анимированные титры", "Простой интерфейс"]
+  },
+  {
+    "packageIdentifier": "MoritzBunkus.MKVToolNix",
+    "slug": "mkvtoolnix",
+    "name": "MKVToolNix",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Набор инструментов для создания и редактирования контейнеров MKV без перекодирования.",
+    "fullDescription": "MKVToolNix объединяет видео, аудиодорожки, субтитры и главы в файлах Matroska. Можно менять метаданные, порядок дорожек и разбивать файлы без потери качества.",
+    "features": ["Контейнер MKV", "Дорожки и субтитры", "Главы", "Без перекодирования"]
+  },
+  {
+    "packageIdentifier": "Musescore.Musescore",
+    "slug": "musescore",
+    "name": "MuseScore Studio",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Редактор нот с воспроизведением, партиями инструментов и экспортом партитур.",
+    "fullDescription": "MuseScore Studio помогает набирать нотный текст, создавать партитуры и слушать результат. Поддерживает MIDI, MusicXML, отдельные партии и экспорт в PDF или аудио.",
+    "features": ["Нотный редактор", "MIDI", "Партитуры", "Экспорт PDF"]
+  },
+  {
+    "packageIdentifier": "calibre.calibre",
+    "slug": "calibre",
+    "name": "calibre",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Менеджер электронной библиотеки с конвертацией книг и отправкой на устройства.",
+    "fullDescription": "calibre сортирует электронные книги по авторам, сериям и тегам, редактирует метаданные и обложки. Конвертирует EPUB, MOBI и другие форматы, а также подключается к ридерам.",
+    "features": ["Электронная библиотека", "Конвертация книг", "Метаданные", "Подключение ридеров"]
+  },
+  {
+    "packageIdentifier": "SumatraPDF.SumatraPDF",
+    "slug": "sumatrapdf",
+    "name": "SumatraPDF",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Лёгкая программа для быстрого просмотра PDF, EPUB, комиксов и документов.",
+    "fullDescription": "SumatraPDF быстро запускается и не перегружает систему. Открывает PDF, электронные книги, комиксы и некоторые офисные форматы, поддерживает вкладки и горячие клавиши.",
+    "features": ["Просмотр PDF", "Электронные книги", "Вкладки", "Быстрый запуск"]
+  },
+  {
+    "packageIdentifier": "Bitwarden.Bitwarden",
+    "slug": "bitwarden",
+    "name": "Bitwarden",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Менеджер паролей с шифрованием, генератором и синхронизацией устройств.",
+    "fullDescription": "Bitwarden хранит логины, защищённые заметки и ключи в зашифрованном хранилище. Приложение синхронизируется с браузерами и телефонами, поддерживает генератор паролей и ключи доступа.",
+    "features": ["Пароли", "Сквозное шифрование", "Синхронизация", "Ключи доступа"]
+  },
+  {
+    "packageIdentifier": "OpenWhisperSystems.Signal",
+    "slug": "signal",
+    "name": "Signal",
+    "category": "communication",
+    "categoryLabel": "Общение",
+    "shortDescription": "Приватный мессенджер со сквозным шифрованием сообщений и звонков.",
+    "fullDescription": "Signal шифрует личные и групповые переписки, голосовые и видеозвонки. Настольное приложение синхронизируется с телефоном и не содержит рекламы или встроенных трекеров.",
+    "features": ["Зашифрованные чаты", "Звонки", "Группы", "Без рекламы"]
+  },
+  {
+    "packageIdentifier": "Telegram.TelegramDesktop",
+    "slug": "telegram-desktop",
+    "name": "Telegram Desktop",
+    "category": "communication",
+    "categoryLabel": "Общение",
+    "shortDescription": "Настольный клиент Telegram для чатов, каналов, звонков и больших файлов.",
+    "fullDescription": "Telegram Desktop даёт быстрый доступ к перепискам, каналам, ботам и облачным файлам с компьютера. Поддерживает голосовые и видеозвонки, темы и несколько аккаунтов.",
+    "features": ["Чаты и каналы", "Звонки", "Большие файлы", "Несколько аккаунтов"]
+  },
+  {
+    "packageIdentifier": "TorProject.TorBrowser",
+    "slug": "tor-browser",
+    "name": "Tor Browser",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Браузер для доступа к сети Tor и снижения отслеживания в интернете.",
+    "fullDescription": "Tor Browser направляет трафик через несколько узлов сети Tor и уменьшает цифровой отпечаток. Основан на Firefox и включает усиленные настройки приватности.",
+    "features": ["Сеть Tor", "Защита приватности", "Антифингерпринтинг", "Изоляция сайтов"]
+  },
+  {
+    "packageIdentifier": "MullvadVPN.MullvadVPN",
+    "slug": "mullvad-vpn",
+    "name": "Mullvad VPN",
+    "priceLabel": "Клиент бесплатный · VPN платный",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Открытый VPN-клиент с WireGuard, блокировкой утечек и минимумом данных аккаунта.",
+    "fullDescription": "Mullvad VPN защищает сетевой трафик и предлагает строгие настройки приватности. Клиент поддерживает WireGuard, аварийное отключение сети и выбор серверов по странам.",
+    "features": ["WireGuard", "Kill switch", "Защита от утечек", "Выбор серверов"]
+  },
+  {
+    "packageIdentifier": "Tailscale.Tailscale",
+    "slug": "tailscale",
+    "name": "Tailscale",
+    "category": "network",
+    "categoryLabel": "Удалённый доступ",
+    "shortDescription": "Защищённая mesh-сеть для доступа к своим компьютерам и сервисам из любой точки.",
+    "fullDescription": "Tailscale соединяет устройства через WireGuard без ручной настройки маршрутизаторов. Подходит для удалённого рабочего стола, домашних серверов и безопасного обмена внутри команды.",
+    "features": ["Mesh VPN", "WireGuard", "Удалённый доступ", "Простая настройка"]
+  },
+  {
+    "packageIdentifier": "WireGuard.WireGuard",
+    "slug": "wireguard",
+    "name": "WireGuard",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Быстрый VPN-клиент для подключения к сетям по современному протоколу WireGuard.",
+    "fullDescription": "WireGuard создаёт защищённые туннели с небольшим количеством настроек и высокой скоростью. Приложение импортирует конфигурации, управляет несколькими туннелями и работает в фоне.",
+    "features": ["VPN-туннели", "Высокая скорость", "Импорт конфигураций", "Фоновая работа"]
+  },
+  {
+    "packageIdentifier": "OpenVPNTechnologies.OpenVPN",
+    "slug": "openvpn-community",
+    "name": "OpenVPN Community",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Открытый VPN-клиент для подключения по конфигурациям OpenVPN.",
+    "fullDescription": "OpenVPN Community устанавливает клиент и сетевой драйвер для защищённых подключений. Поддерживает сертификаты, профили OVPN и разные методы аутентификации.",
+    "features": ["OpenVPN", "Профили OVPN", "Сертификаты", "Защищённый туннель"]
+  },
+  {
+    "packageIdentifier": "IDRIX.VeraCrypt",
+    "slug": "veracrypt",
+    "name": "VeraCrypt",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Шифрование дисков, флешек и защищённых контейнеров с данными.",
+    "fullDescription": "VeraCrypt создаёт зашифрованные виртуальные диски и защищает разделы целиком. Поддерживает скрытые тома, сильные алгоритмы и автоматическое подключение контейнеров.",
+    "features": ["Шифрование диска", "Контейнеры", "Скрытые тома", "Защита флешек"]
+  },
+  {
+    "packageIdentifier": "WiresharkFoundation.Wireshark",
+    "slug": "wireshark",
+    "name": "Wireshark",
+    "category": "network",
+    "categoryLabel": "Удалённый доступ",
+    "shortDescription": "Анализатор сетевого трафика с фильтрами и разбором сотен протоколов.",
+    "fullDescription": "Wireshark захватывает пакеты и показывает содержимое сетевых соединений по уровням. Полезен для диагностики, обучения, поиска ошибок и проверки безопасности сети.",
+    "features": ["Захват пакетов", "Фильтры", "Сетевые протоколы", "Диагностика"]
+  },
+  {
+    "packageIdentifier": "PuTTY.PuTTY",
+    "slug": "putty",
+    "name": "PuTTY",
+    "category": "network",
+    "categoryLabel": "Удалённый доступ",
+    "shortDescription": "Компактный SSH- и Telnet-клиент для подключения к серверам и сетевым устройствам.",
+    "fullDescription": "PuTTY открывает терминальные подключения по SSH, Telnet и последовательному порту. В комплект входят инструменты для ключей, защищённого копирования файлов и автоматизации.",
+    "features": ["SSH", "Telnet", "Серийный порт", "Ключи доступа"]
+  },
+  {
+    "packageIdentifier": "VSCodium.VSCodium",
+    "slug": "vscodium",
+    "name": "VSCodium",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Сборка редактора VS Code без фирменной телеметрии Microsoft.",
+    "fullDescription": "VSCodium предоставляет знакомый редактор кода с вкладками, терминалом, Git и расширениями. Сборка создаётся из открытого исходного кода VS Code и отключает фирменную телеметрию.",
+    "features": ["Редактор кода", "Расширения", "Встроенный терминал", "Без телеметрии Microsoft"]
+  },
+  {
+    "packageIdentifier": "Git.Git",
+    "slug": "git-for-windows",
+    "name": "Git for Windows",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Система контроля версий Git с командной строкой и интеграцией для Windows.",
+    "fullDescription": "Git for Windows устанавливает Git Bash, основные консольные инструменты и поддержку репозиториев. Подходит для работы с GitHub, GitLab и локальной историей проектов.",
+    "features": ["Git", "Git Bash", "Контроль версий", "GitHub и GitLab"]
+  },
+  {
+    "packageIdentifier": "Oracle.VirtualBox",
+    "slug": "virtualbox",
+    "name": "Oracle VirtualBox",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Виртуальные машины для запуска других операционных систем внутри Windows.",
+    "fullDescription": "VirtualBox создаёт изолированные виртуальные компьютеры для Windows, Linux и других систем. Поддерживает снимки состояния, общие папки, сети и импорт готовых образов.",
+    "features": ["Виртуальные машины", "Снимки", "Общие папки", "Виртуальные сети"]
+  },
+  {
+    "packageIdentifier": "CrystalDewWorld.CrystalDiskInfo",
+    "slug": "crystaldiskinfo",
+    "name": "CrystalDiskInfo",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Контроль здоровья SSD и жёстких дисков по показателям S.M.A.R.T.",
+    "fullDescription": "CrystalDiskInfo показывает температуру, ресурс, время работы и ошибки накопителей. Предупреждает о проблемных значениях S.M.A.R.T. и помогает вовремя сделать резервную копию.",
+    "features": ["S.M.A.R.T.", "Температура диска", "Состояние SSD", "Предупреждения"]
+  },
+  {
+    "packageIdentifier": "CrystalDewWorld.CrystalDiskMark",
+    "slug": "crystaldiskmark",
+    "name": "CrystalDiskMark",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Тест скорости SSD, жёстких дисков, флешек и сетевых накопителей.",
+    "fullDescription": "CrystalDiskMark измеряет последовательное и случайное чтение и запись. Можно менять размер теста, число прогонов и сравнивать реальную производительность накопителей.",
+    "features": ["Скорость чтения", "Скорость записи", "Тест SSD", "Настройка нагрузки"]
+  },
+  {
+    "packageIdentifier": "voidtools.Everything",
+    "slug": "everything-search",
+    "name": "Everything",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Мгновенный поиск файлов и папок на дисках Windows по имени.",
+    "fullDescription": "Everything быстро индексирует имена файлов и показывает результаты ещё во время ввода. Поддерживает фильтры, регулярные выражения, закладки и поиск по сетевым ресурсам.",
+    "features": ["Мгновенный поиск", "Фильтры", "Регулярные выражения", "Минимальная нагрузка"]
+  },
+  {
+    "packageIdentifier": "Cryptomator.Cryptomator",
+    "slug": "cryptomator",
+    "name": "Cryptomator",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Шифрование файлов перед загрузкой в облачные папки и синхронизацию.",
+    "fullDescription": "Cryptomator создаёт зашифрованное хранилище внутри обычной папки Dropbox, OneDrive или другого облака. Файлы расшифровываются на устройстве и открываются как виртуальный диск.",
+    "features": ["Шифрование файлов", "Облачные папки", "Виртуальный диск", "Локальные ключи"]
+  },
+  {
+    "packageIdentifier": "WinMerge.WinMerge",
+    "slug": "winmerge",
+    "name": "WinMerge",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Сравнение и объединение файлов, папок и фрагментов текста.",
+    "fullDescription": "WinMerge наглядно подсвечивает различия между версиями файлов и каталогов. Поддерживает синхронизацию папок, фильтры, плагины и трёхстороннее сравнение.",
+    "features": ["Сравнение файлов", "Сравнение папок", "Объединение изменений", "Фильтры"]
+  },
+  {
+    "packageIdentifier": "FreeCAD.FreeCAD",
+    "slug": "freecad",
+    "name": "FreeCAD",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Параметрическая 3D-CAD-система для деталей, моделей и технических проектов.",
+    "fullDescription": "FreeCAD строит точные трёхмерные модели на основе размеров и ограничений. Подходит для механики, 3D-печати, архитектурных эскизов и обмена инженерными форматами.",
+    "features": ["Параметрическое моделирование", "3D-печать", "Чертежи", "Инженерные форматы"]
+  },
+  {
+    "packageIdentifier": "KiCad.KiCad",
+    "slug": "kicad",
+    "name": "KiCad",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Проектирование электронных схем и печатных плат с 3D-просмотром.",
+    "fullDescription": "KiCad объединяет редактор схем, трассировку печатных плат и управление библиотеками компонентов. Проверяет правила проекта и показывает готовую плату в 3D.",
+    "features": ["Электрические схемы", "Печатные платы", "3D-просмотр", "Библиотеки компонентов"]
+  },
+  {
+    "packageIdentifier": "ArduinoSA.IDE.stable",
+    "slug": "arduino-ide",
+    "name": "Arduino IDE",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Среда разработки и загрузки программ на платы Arduino и совместимые контроллеры.",
+    "fullDescription": "Arduino IDE содержит редактор скетчей, менеджер плат и библиотек, монитор порта и отладку. Помогает собирать прошивки и загружать их на микроконтроллеры через USB.",
+    "features": ["Скетчи Arduino", "Менеджер плат", "Библиотеки", "Монитор порта"]
+  },
+  {
+    "packageIdentifier": "ONLYOFFICE.DesktopEditors",
+    "slug": "onlyoffice-desktop-editors",
+    "name": "ONLYOFFICE Desktop Editors",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Офисные редакторы документов, таблиц, презентаций и PDF с вкладками.",
+    "fullDescription": "ONLYOFFICE Desktop Editors открывает современные форматы DOCX, XLSX и PPTX без браузера. Поддерживает плагины, формы, PDF и подключение к совместимым облачным хранилищам.",
+    "features": ["DOCX и XLSX", "Презентации", "PDF", "Плагины"]
+  },
+  {
+    "packageIdentifier": "DigitalScholar.Zotero",
+    "slug": "zotero",
+    "name": "Zotero",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Менеджер источников, PDF и библиографии для учёбы и исследований.",
+    "fullDescription": "Zotero собирает публикации из браузера, хранит PDF и создаёт библиографию в нужном стиле. Есть заметки, теги, поиск, синхронизация и плагины для текстовых редакторов.",
+    "features": ["Библиография", "PDF-библиотека", "Цитирование", "Синхронизация"]
+  },
+  {
+    "packageIdentifier": "Aegisub.Aegisub",
+    "slug": "aegisub",
+    "name": "Aegisub",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Редактор субтитров с таймингом, стилями и визуальной синхронизацией с видео.",
+    "fullDescription": "Aegisub помогает создавать и синхронизировать субтитры по звуковой волне и кадрам. Поддерживает стили ASS, автоматизацию, проверку текста и экспорт в распространённые форматы.",
+    "features": ["Субтитры", "Тайминг", "Стили ASS", "Звуковая волна"]
+  },
+  {
+    "packageIdentifier": "MusicBrainz.Picard",
+    "slug": "musicbrainz-picard",
+    "name": "MusicBrainz Picard",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Автоматическое исправление тегов и названий музыкальных файлов по базе MusicBrainz.",
+    "fullDescription": "Picard распознаёт альбомы и заполняет исполнителя, год, жанр, номер трека и обложку. Поддерживает акустические отпечатки, пакетную обработку и правила переименования файлов.",
+    "features": ["Музыкальные теги", "Обложки", "MusicBrainz", "Пакетная обработка"]
+  },
+  {
+    "packageIdentifier": "XBMCFoundation.Kodi",
+    "slug": "kodi",
+    "name": "Kodi",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Медиацентр для фильмов, сериалов, музыки, фотографий и домашнего экрана.",
+    "fullDescription": "Kodi организует локальную медиатеку с постерами, описаниями и удобным управлением с дивана. Поддерживает сетевые папки, дополнения, пульты и полноэкранные темы.",
+    "features": ["Домашний медиацентр", "Медиатека", "Дополнения", "Сетевые папки"]
+  },
+  {
+    "packageIdentifier": "Jellyfin.JellyfinMediaPlayer",
+    "slug": "jellyfin-media-player",
+    "name": "Jellyfin Media Player",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Настольный плеер для просмотра личной медиатеки с сервера Jellyfin.",
+    "fullDescription": "Jellyfin Media Player подключается к собственному медиасерверу и воспроизводит фильмы, сериалы и музыку. Поддерживает прямое воспроизведение, субтитры и управление библиотекой.",
+    "features": ["Jellyfin", "Фильмы и сериалы", "Субтитры", "Личная медиатека"]
+  },
+  {
+    "packageIdentifier": "Transmission.Transmission",
+    "slug": "transmission",
+    "name": "Transmission",
+    "category": "network",
+    "categoryLabel": "Удалённый доступ",
+    "shortDescription": "Лёгкий BitTorrent-клиент с очередью, ограничениями скорости и magnet-ссылками.",
+    "fullDescription": "Transmission загружает торренты без рекламы и лишних панелей. Поддерживает magnet-ссылки, расписание скорости, шифрование соединений и удалённое управление.",
+    "features": ["BitTorrent", "Magnet-ссылки", "Лимиты скорости", "Без рекламы"]
+  },
+  {
+    "packageIdentifier": "Duplicati.Duplicati",
+    "slug": "duplicati",
+    "name": "Duplicati",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Зашифрованные резервные копии на облако, сервер или внешний диск по расписанию.",
+    "fullDescription": "Duplicati делает инкрементальные резервные копии и шифрует их до отправки. Работает с популярными облаками, SFTP, WebDAV и локальными накопителями.",
+    "features": ["Резервные копии", "Шифрование", "Облачные хранилища", "Расписание"]
+  },
+  {
+    "packageIdentifier": "AutoHotkey.AutoHotkey",
+    "slug": "autohotkey",
+    "name": "AutoHotkey",
+    "website": "https://www.autohotkey.com/",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Автоматизация действий в Windows с горячими клавишами, макросами и скриптами.",
+    "fullDescription": "AutoHotkey позволяет переназначать клавиши, вставлять шаблоны текста и автоматизировать повторяющиеся действия. Небольшие скрипты могут управлять окнами, файлами и приложениями.",
+    "features": ["Горячие клавиши", "Макросы", "Автоматизация Windows", "Скрипты"]
+  },
+  {
+    "packageIdentifier": "AivarAnnamaa.Thonny",
+    "slug": "thonny",
+    "name": "Thonny",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Простая среда Python для обучения, первых программ и работы с микроконтроллерами.",
+    "fullDescription": "Thonny показывает выполнение Python-кода по шагам и помогает понять переменные и ошибки. Включает простой отладчик, управление пакетами и поддержку MicroPython.",
+    "features": ["Python", "Пошаговая отладка", "Обучение", "MicroPython"]
+  },
+  {
+    "packageIdentifier": "KDE.Okular",
+    "slug": "okular",
+    "name": "Okular",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Просмотр PDF и документов с аннотациями, закладками и формами.",
+    "fullDescription": "Okular открывает PDF, комиксы, изображения и электронные документы. Позволяет выделять текст, оставлять заметки, заполнять формы и работать с оглавлением.",
+    "features": ["Просмотр PDF", "Аннотации", "Закладки", "Формы"]
+  },
+  {
+    "packageIdentifier": "KDE.Kate",
+    "slug": "kate-editor",
+    "name": "Kate",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Быстрый текстовый редактор с проектами, терминалом и подсветкой кода.",
+    "fullDescription": "Kate подходит для редактирования кода, конфигураций и больших текстовых файлов. Поддерживает проекты, несколько курсоров, разделение окна, плагины и встроенный терминал.",
+    "features": ["Редактор кода", "Проекты", "Несколько курсоров", "Терминал"]
+  },
+  {
+    "packageIdentifier": "CGSecurity.TestDisk",
+    "slug": "testdisk",
+    "name": "TestDisk",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Восстановление потерянных разделов, загрузочных записей и удалённых файлов.",
+    "fullDescription": "TestDisk помогает вернуть разделы после ошибок разметки и исправить загрузочные структуры диска. В комплект входит PhotoRec для восстановления файлов по сигнатурам.",
+    "features": ["Восстановление разделов", "PhotoRec", "Загрузочные записи", "Диагностика диска"]
+  }
+]

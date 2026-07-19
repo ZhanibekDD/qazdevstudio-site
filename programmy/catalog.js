@@ -55,7 +55,9 @@
 
   document.addEventListener('click',function(event){
     var button=event.target.closest('.download-btn');
-    if(button)download(button);
+    if(!button)return;
+    if(button.dataset.repo){event.preventDefault();download(button);return}
+    if(button.dataset.direct)toast('Загрузка оригинального файла '+(button.dataset.file||''));
   });
 
   var search=document.getElementById('catalogSearch');

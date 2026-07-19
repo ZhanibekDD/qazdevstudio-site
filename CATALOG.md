@@ -58,6 +58,19 @@ The WinGet crawler downloads Microsoft's signed default source package from `htt
 
 The resumable workflow processes 3,000 changed package manifests per run. Raw WinGet records remain unpublished and are exported as a separate JSON/CSV moderation artifact. Promotion still requires publisher, licence and installer-domain review; QazDev never mirrors the installer.
 
+Reviewed WinGet packages are promoted through an explicit allowlist with original Russian copy:
+
+```bash
+node scripts/promote-winget-candidates.mjs \
+  --input=data/winget-crawl.drafts.json \
+  --selection=data/winget-publication-selection.json \
+  --apply
+node scripts/build-software-catalog.mjs
+node scripts/verify-downloads.mjs
+```
+
+Direct records keep the exact upstream HTTPS installer URL, version and SHA-256 from the verified WinGet manifest. The catalog button starts the original download immediately; QazDev does not host or repackage the file. Re-running promotion updates the existing allowlisted records instead of creating duplicates.
+
 GitHub Actions runs a 700-repository collection when the crawler branch changes. After the workflow is on the default branch, it can collect up to 10,000 repositories manually and resume every Monday. The result is an artifact; it never changes the public catalog by itself.
 
 Verify all public direct-download patterns before a release:

@@ -34,6 +34,7 @@ data/review-queue.json
 data/review-queue.csv
 data/crawl-summary.json
 data/software.batch.json
+data/software-winget.batch.json
 data/winget-summary.json
 data/winget-review-queue.json
 data/winget-review-queue.csv
