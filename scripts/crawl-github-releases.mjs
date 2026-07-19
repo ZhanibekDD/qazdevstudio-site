@@ -49,6 +49,7 @@ const perPage = int(args.perPage, config.defaults.perPage, 1, 100);
 const minStars = int(args.minStars, config.defaults.minStars, 0);
 const maxRepositories = int(args.maxRepos, config.defaults.maxRepositories, 1, 100000);
 const concurrency = int(args.concurrency, config.defaults.concurrency, 1, 16);
+const maxRateWaitMs = int(args.maxRateWait, 120, 0, 900) * 1000;
 const outputFile = path.resolve(root, String(args.output || 'data/github-crawl.drafts.json'));
 const stateFile = path.resolve(root, String(args.state || 'data/github-crawl.state.json'));
 const summaryFile = path.resolve(root, String(args.summary || 'data/crawl-summary.json'));
@@ -78,6 +79,7 @@ class RateLimitError extends Error {
 
 async function github(pathname, attempts = 4) {
   let lastError;
+  let rateWaits = 0;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     let response;
     try {
@@ -94,6 +96,14 @@ async function github(pathname, attempts = 4) {
     const remaining = Number(response.headers.get('x-ratelimit-remaining'));
     const reset = Number(response.headers.get('x-ratelimit-reset')) * 1000;
     if (response.status === 429 || (response.status === 403 && remaining === 0)) {
+      const waitMs = Number.isFinite(reset) ? Math.max(0, reset - Date.now() + 1500) : Infinity;
+      if (waitMs <= maxRateWaitMs && rateWaits < 8) {
+        rateWaits += 1;
+        attempt -= 1;
+        console.log(`GitHub rate limit: waiting ${Math.ceil(waitMs / 1000)}s, then continuing.`);
+        await sleep(waitMs);
+        continue;
+      }
       throw new RateLimitError('GitHub API rate limit reached; checkpoint was saved.', Number.isFinite(reset) ? new Date(reset).toISOString() : null);
     }
 
