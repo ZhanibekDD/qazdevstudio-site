@@ -3911,5 +3911,1655 @@
     "license": "GPL-2.0-or-later",
     "sourceManifestSha256": "a8115f3fee550607ff3ab33719769b979c40581f5d25660d35df3cd478949c02",
     "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "bottles",
+    "name": "Bottles",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Запуск Windows-программ и игр в отдельных настраиваемых окружениях Linux.",
+    "fullDescription": "Bottles упрощает работу с Wine: создаёт изолированные окружения, устанавливает компоненты и предлагает готовые настройки для программ и игр. Каждую «бутылку» можно резервировать и настраивать отдельно.",
+    "website": "https://usebottles.com",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Окружения Wine",
+      "Установщики программ",
+      "Отдельные настройки",
+      "Резервные копии"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/com.usebottles.bottles.flatpakref",
+        "version": "64.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "com.usebottles.bottles",
+    "developer": "The Bottles Contributors",
+    "license": "GPL-3.0-only",
+    "icon": "https://dl.flathub.org/media/com/usebottles/bottles/579991bf3cb8384fa390ab9c2df8b0bb/icons/128x128/com.usebottles.bottles.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "flatseal",
+    "name": "Flatseal",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Управление разрешениями Flatpak-приложений через понятный графический интерфейс.",
+    "fullDescription": "Flatseal показывает доступ приложений к файлам, устройствам, сети и системным службам. Разрешения можно включать, ограничивать и возвращать к исходным значениям без командной строки.",
+    "website": "https://github.com/tchx84/flatseal",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Права Flatpak",
+      "Доступ к файлам",
+      "Сброс настроек",
+      "Без терминала"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/com.github.tchx84.Flatseal.flatpakref",
+        "version": "2.4.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "com.github.tchx84.Flatseal",
+    "developer": "Martin Abente Lahaye",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/com/github/tchx84.Flatseal/462bde383c024a52b3132ae3df79704a/icons/128x128/com.github.tchx84.Flatseal.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "mission-center",
+    "name": "Mission Center",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Современный монитор загрузки процессора, памяти, дисков, сети и видеокарты.",
+    "fullDescription": "Mission Center наглядно показывает нагрузку и характеристики компьютера в реальном времени. Помогает найти тяжёлые процессы, следить за памятью, накопителями, сетью и графическим ускорителем.",
+    "website": "https://missioncenter.io",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Процессы",
+      "CPU и память",
+      "Диски и сеть",
+      "Мониторинг GPU"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/io.missioncenter.MissionCenter.flatpakref",
+        "version": "1.1.0"
+      }
+    ],
+    "source": "flathub",
+    "appId": "io.missioncenter.MissionCenter",
+    "developer": "Mission Center Developers",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/io/missioncenter/MissionCenter/859f0a40abb2053f905c69a6b77ac1ce/icons/128x128/io.missioncenter.MissionCenter.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "resources-monitor",
+    "name": "Resources",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Лёгкий диспетчер процессов и ресурсов для рабочего стола Linux.",
+    "fullDescription": "Resources показывает приложения и процессы вместе с потреблением процессора, памяти, сети, дисков и графики. Ненужный процесс можно быстро завершить из аккуратного интерфейса.",
+    "website": "https://apps.gnome.org/app/net.nokyan.Resources/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Диспетчер процессов",
+      "Нагрузка системы",
+      "Сеть и диски",
+      "Завершение задач"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/net.nokyan.Resources.flatpakref",
+        "version": "1.10.2"
+      }
+    ],
+    "source": "flathub",
+    "appId": "net.nokyan.Resources",
+    "developer": "nokyan",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/net/nokyan/Resources/26207441617772360b43556d7ac89840/icons/128x128/net.nokyan.Resources.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "disk-usage-analyzer",
+    "name": "Disk Usage Analyzer",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Поиск папок и файлов, которые занимают больше всего места на диске.",
+    "fullDescription": "Disk Usage Analyzer сканирует выбранные папки или весь накопитель и строит наглядную диаграмму занятого пространства. Удобен для поиска больших архивов, кэшей и забытых файлов.",
+    "website": "https://apps.gnome.org/Baobab/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Анализ диска",
+      "Диаграмма папок",
+      "Поиск крупных файлов",
+      "Локальные и удалённые папки"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/org.gnome.baobab.flatpakref",
+        "version": "50.0"
+      }
+    ],
+    "source": "flathub",
+    "appId": "org.gnome.baobab",
+    "developer": "The GNOME Project",
+    "license": "GPL-2.0+",
+    "icon": "https://dl.flathub.org/media/org/gnome/baobab/dd1f4020a8309f35facb5ffb316648bc/icons/128x128/org.gnome.baobab.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "extension-manager",
+    "name": "Extension Manager",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Поиск, установка и настройка расширений рабочего стола GNOME.",
+    "fullDescription": "Extension Manager объединяет каталог расширений GNOME и управление уже установленными дополнениями. Можно искать расширения, проверять совместимость, включать их и менять параметры.",
+    "website": "https://mattjakeman.com/apps/extension-manager",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Расширения GNOME",
+      "Поиск и установка",
+      "Обновления",
+      "Настройки"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/com.mattjakeman.ExtensionManager.flatpakref",
+        "version": "0.6.5"
+      }
+    ],
+    "source": "flathub",
+    "appId": "com.mattjakeman.ExtensionManager",
+    "developer": "Matthew Jakeman",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/com/mattjakeman/ExtensionManager/325202b426bf0272893528da55c472e4/icons/128x128/com.mattjakeman.ExtensionManager.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "gear-lever",
+    "name": "Gear Lever",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Установка, запуск и обновление AppImage-приложений в Linux.",
+    "fullDescription": "Gear Lever добавляет AppImage в меню приложений, хранит их в одном месте и помогает управлять версиями. Поддерживает интеграцию с рабочим столом и обновления совместимых пакетов.",
+    "website": "https://gearlever.mijorus.it",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Управление AppImage",
+      "Интеграция в меню",
+      "Обновления",
+      "Единая библиотека"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/it.mijorus.gearlever.flatpakref",
+        "version": "4.6.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "it.mijorus.gearlever",
+    "developer": "Lorenzo Paderi",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/it/mijorus/gearlever/b5c0a4fdd27a03bc07f49c62b4e6c531/icons/128x128/it.mijorus.gearlever.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "deja-dup-backups",
+    "name": "Déjà Dup Backups",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Простые автоматические резервные копии важных папок и восстановление файлов.",
+    "fullDescription": "Déjà Dup создаёт зашифрованные резервные копии по расписанию и хранит их на диске, сетевом ресурсе или в совместимом облаке. Восстановить можно весь архив либо отдельные файлы.",
+    "website": "https://dejadup.org/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Копии по расписанию",
+      "Шифрование",
+      "Облако и сеть",
+      "Восстановление файлов"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/org.gnome.DejaDup.flatpakref",
+        "version": "50.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "org.gnome.DejaDup",
+    "developer": "Michael Terry",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/org/gnome/DejaDup/12272f753efb821f670c2317fa336c9f/icons/128x128/org.gnome.DejaDup.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "pika-backup",
+    "name": "Pika Backup",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Быстрое резервное копирование личных данных на основе BorgBackup.",
+    "fullDescription": "Pika Backup создаёт экономные инкрементальные копии, исключает ненужные папки и показывает содержимое архивов. Подходит для внешних дисков и удалённых хранилищ Borg.",
+    "website": "https://apps.gnome.org/PikaBackup/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "BorgBackup",
+      "Инкрементальные копии",
+      "Исключения папок",
+      "Просмотр архивов"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/org.gnome.World.PikaBackup.flatpakref",
+        "version": "0.8.3"
+      }
+    ],
+    "source": "flathub",
+    "appId": "org.gnome.World.PikaBackup",
+    "developer": "Small Mammal Collective",
+    "license": "GPL-3.0",
+    "icon": "https://dl.flathub.org/media/org/gnome/World.PikaBackup/f46a518deaa0b7741b9f5b66937f06c6/icons/128x128/org.gnome.World.PikaBackup.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "authenticator-linux",
+    "name": "Authenticator",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Генератор одноразовых кодов двухфакторной аутентификации на компьютере.",
+    "fullDescription": "Authenticator хранит TOTP- и HOTP-записи и генерирует коды для входа в аккаунты. Поддерживает QR-коды, резервное копирование и импорт из других приложений.",
+    "website": "https://gitlab.gnome.org/World/Authenticator",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "TOTP и HOTP",
+      "QR-коды",
+      "Импорт записей",
+      "Резервная копия"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/com.belmoussaoui.Authenticator.flatpakref",
+        "version": "4.6.2"
+      }
+    ],
+    "source": "flathub",
+    "appId": "com.belmoussaoui.Authenticator",
+    "developer": "Bilal Elmoussaoui",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/com/belmoussaoui/Authenticator/cbb66aa59a1a410b7b890236a347dcf2/icons/128x128/com.belmoussaoui.Authenticator.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "secrets-password-manager",
+    "name": "Secrets",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Менеджер паролей для локальных баз KeePass с удобным поиском.",
+    "fullDescription": "Secrets открывает и создаёт зашифрованные базы KeePass, хранит логины, заметки и вложения. Есть генератор паролей, поиск, автозаполнение и блокировка базы по таймеру.",
+    "website": "https://apps.gnome.org/Secrets/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Базы KeePass",
+      "Генератор паролей",
+      "Вложения",
+      "Автоблокировка"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/org.gnome.World.Secrets.flatpakref",
+        "version": "13.0.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "org.gnome.World.Secrets",
+    "developer": "Falk Alexander Seidl",
+    "license": "GPL-3.0-only",
+    "icon": "https://dl.flathub.org/media/org/gnome/World.Secrets/e3fc5bb56060befcb9b4b347ded1fffc/icons/128x128/org.gnome.World.Secrets.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "metadata-cleaner",
+    "name": "Metadata Cleaner",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Просмотр и удаление скрытых метаданных из документов, фото и видео.",
+    "fullDescription": "Metadata Cleaner помогает убрать геолокацию, сведения об авторе, устройстве и другие служебные данные перед публикацией файла. Поддерживает пакетную очистку и показывает найденные поля.",
+    "website": "https://gitlab.com/metadatacleaner/metadatacleaner",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Очистка метаданных",
+      "Фото и документы",
+      "Пакетная обработка",
+      "Защита приватности"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/io.gitlab.metadatacleaner.metadatacleaner.flatpakref",
+        "version": "4.0.0"
+      }
+    ],
+    "source": "flathub",
+    "appId": "io.gitlab.metadatacleaner.metadatacleaner",
+    "developer": "Metadata Cleaner Developers",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/io/gitlab/metadatacleaner.metadatacleaner/bf08c7e4388e8bc37eb3386ff700d46e/icons/128x128/io.gitlab.metadatacleaner.metadatacleaner.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "carburetor",
+    "name": "Carburetor",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Подключение приложений к сети Tor через простой графический интерфейс.",
+    "fullDescription": "Carburetor запускает локальное подключение Tor и позволяет направлять через него совместимые приложения. Показывает состояние сети и избавляет от ручной настройки службы.",
+    "website": "https://tractor.frama.io/carburetor",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Сеть Tor",
+      "Локальный прокси",
+      "Состояние подключения",
+      "Простая настройка"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/io.frama.tractor.carburetor.flatpakref",
+        "version": "5.1.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "io.frama.tractor.carburetor",
+    "developer": "Tractor Team",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/io/frama/tractor.carburetor/6924536a31d057bd314270bf0ae361f7/icons/128x128/io.frama.tractor.carburetor.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "decoder-qr",
+    "name": "Decoder",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Создание и считывание QR-кодов с камеры, экрана или изображения.",
+    "fullDescription": "Decoder генерирует QR-коды для текста и ссылок, распознаёт их с изображения и через камеру. Результат можно быстро скопировать или открыть в подходящем приложении.",
+    "website": "https://apps.gnome.org/Decoder/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Создание QR",
+      "Сканирование камерой",
+      "Распознавание файлов",
+      "История"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/com.belmoussaoui.Decoder.flatpakref",
+        "version": "0.9.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "com.belmoussaoui.Decoder",
+    "developer": "Bilal Elmoussaoui",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/com/belmoussaoui/Decoder/0d4325828bc04ad4d610ed62a6057258/icons/128x128/com.belmoussaoui.Decoder.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "collision-hashes",
+    "name": "Collision",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Проверка контрольных сумм файлов перетаскиванием без командной строки.",
+    "fullDescription": "Collision вычисляет популярные хэши и сравнивает их с опубликованной контрольной суммой. Так можно убедиться, что загруженный файл не повреждён и не был подменён.",
+    "website": "https://collision.geopjr.dev/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "SHA-256",
+      "Сравнение хэшей",
+      "Перетаскивание файлов",
+      "Несколько алгоритмов"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/dev.geopjr.Collision.flatpakref",
+        "version": "3.14.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "dev.geopjr.Collision",
+    "developer": "Evangelos \"GeopJr\" Paterakis",
+    "license": "BSD-2-Clause",
+    "icon": "https://dl.flathub.org/media/dev/geopjr/Collision/5b0d8fea872d336b2510c1f29bd0fcb9/icons/128x128/dev.geopjr.Collision.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "impression-usb",
+    "name": "Impression",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Запись ISO-образов на USB-накопители для создания загрузочных дисков.",
+    "fullDescription": "Impression выбирает образ системы и безопасно записывает его на флешку. Минималистичный интерфейс показывает ход операции и снижает риск выбрать неверный накопитель.",
+    "website": "https://apps.gnome.org/Impression/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Запись ISO",
+      "Загрузочные флешки",
+      "Проверка устройства",
+      "Индикатор прогресса"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/io.gitlab.adhami3310.Impression.flatpakref",
+        "version": "3.7.0"
+      }
+    ],
+    "source": "flathub",
+    "appId": "io.gitlab.adhami3310.Impression",
+    "developer": "Khaleel Al-Adhami",
+    "license": "GPL-3.0",
+    "icon": "https://dl.flathub.org/media/io/gitlab/adhami3310.Impression/8edf94dc739213c8ef592ca0cafd3f9e/icons/128x128/io.gitlab.adhami3310.Impression.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "warp-file-transfer",
+    "name": "Warp",
+    "category": "internet",
+    "categoryLabel": "Интернет",
+    "shortDescription": "Защищённая передача файлов между компьютерами по одноразовому коду.",
+    "fullDescription": "Warp использует протокол Magic Wormhole для прямой отправки файлов. Получателю достаточно ввести короткий код; данные шифруются, а учётная запись не требуется.",
+    "website": "https://apps.gnome.org/Warp/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Одноразовый код",
+      "Шифрование",
+      "Без аккаунта",
+      "Прямая передача"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/app.drey.Warp.flatpakref",
+        "version": "1.0.0"
+      }
+    ],
+    "source": "flathub",
+    "appId": "app.drey.Warp",
+    "developer": "Fina Wilke",
+    "license": "GPL-3.0-only",
+    "icon": "https://dl.flathub.org/media/app/drey/Warp/66b2b74abeecd4bc7aa79644c759a203/icons/128x128/app.drey.Warp.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "warpinator",
+    "name": "Warpinator",
+    "category": "internet",
+    "categoryLabel": "Интернет",
+    "shortDescription": "Обмен файлами между устройствами в одной локальной сети.",
+    "fullDescription": "Warpinator автоматически находит компьютеры в локальной сети и передаёт файлы без облака. Можно подтверждать входящие отправления, выбирать папку сохранения и объединять устройства в группы.",
+    "website": "https://github.com/linuxmint/warpinator",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Локальная сеть",
+      "Автопоиск устройств",
+      "Без облака",
+      "Группы доступа"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/org.x.Warpinator.flatpakref",
+        "version": "2.0.3"
+      }
+    ],
+    "source": "flathub",
+    "appId": "org.x.Warpinator",
+    "developer": "Linux Mint",
+    "license": "GPL-3.0+",
+    "icon": "https://dl.flathub.org/media/org/x/Warpinator/50b3f6a42a03115622f9a064a8d5c873/icons/128x128/org.x.Warpinator.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "apostrophe-markdown",
+    "name": "Apostrophe",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Спокойный Markdown-редактор с предпросмотром и режимом без отвлечений.",
+    "fullDescription": "Apostrophe помогает сосредоточиться на тексте, подсвечивает разметку и показывает результат рядом или в отдельном окне. Документ можно экспортировать в HTML, PDF и другие форматы.",
+    "website": "https://apps.gnome.org/Apostrophe/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Markdown",
+      "Предпросмотр",
+      "Режим фокуса",
+      "Экспорт документов"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/org.gnome.gitlab.somas.Apostrophe.flatpakref",
+        "version": "3.4"
+      }
+    ],
+    "source": "flathub",
+    "appId": "org.gnome.gitlab.somas.Apostrophe",
+    "developer": "Manuel Genovés",
+    "license": "GPL-3.0+",
+    "icon": "https://dl.flathub.org/media/org/gnome/gitlab.somas.Apostrophe/8afe135e86d84dcdda329bec1185cf7a/icons/128x128/org.gnome.gitlab.somas.Apostrophe.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "foliate",
+    "name": "Foliate",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Удобное чтение EPUB и других электронных книг с заметками.",
+    "fullDescription": "Foliate открывает популярные форматы электронных книг, запоминает позицию и позволяет делать выделения. Настраиваются шрифт, поля, тема, перевод и словари.",
+    "website": "https://johnfactotum.github.io/foliate/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "EPUB и комиксы",
+      "Заметки",
+      "Темы чтения",
+      "Словари"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/com.github.johnfactotum.Foliate.flatpakref",
+        "version": "3.3.0"
+      }
+    ],
+    "source": "flathub",
+    "appId": "com.github.johnfactotum.Foliate",
+    "developer": "John Factotum",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/com/github/johnfactotum.Foliate/50c58d8da7fe3fa08d1fbf5174369d7d/icons/128x128/com.github.johnfactotum.Foliate.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "valuta-converter",
+    "name": "Valuta",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Быстрое преобразование сумм между мировыми валютами по актуальным курсам.",
+    "fullDescription": "Valuta показывает результат сразу для нескольких выбранных валют и запоминает любимые направления. Приложение удобно для поездок, покупок и быстрых расчётов без браузера.",
+    "website": "https://github.com/ideveCore/valuta",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Конвертер валют",
+      "Актуальные курсы",
+      "Избранные валюты",
+      "Быстрый расчёт"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/io.github.idevecore.Valuta.flatpakref",
+        "version": "1.4.2"
+      }
+    ],
+    "source": "flathub",
+    "appId": "io.github.idevecore.Valuta",
+    "developer": "Ideve Core",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/io/github/idevecore.Valuta/c9dbb74407cc5e9a33e35cf9a33d2073/icons/128x128/io.github.idevecore.Valuta.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "errands-tasks",
+    "name": "Errands",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Списки задач с подзадачами, приоритетами и синхронизацией CalDAV.",
+    "fullDescription": "Errands организует личные дела по спискам, поддерживает подзадачи, сроки и повторения. Через CalDAV задачи можно синхронизировать с совместимым сервером.",
+    "website": "https://github.com/mrvladus/Errands",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Списки задач",
+      "Подзадачи",
+      "Сроки и повторы",
+      "CalDAV"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/io.github.mrvladus.List.flatpakref",
+        "version": "46.2.10"
+      }
+    ],
+    "source": "flathub",
+    "appId": "io.github.mrvladus.List",
+    "developer": "Vlad Krupinskii",
+    "license": "MIT",
+    "icon": "https://dl.flathub.org/media/io/github/mrvladus.List/b8ee1ad697b5a857bbea5ffdc7960d0e/icons/128x128/io.github.mrvladus.List.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "klevernotes",
+    "name": "KleverNotes",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Markdown-заметки с папками, быстрым поиском и удобным предпросмотром.",
+    "fullDescription": "KleverNotes хранит обычные Markdown-файлы, организует их по папкам и показывает форматированный результат. Поддерживает задачи, вложения, подсветку кода и внутренние ссылки.",
+    "website": "https://invent.kde.org/office/klevernotes",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Markdown",
+      "Папки и поиск",
+      "Задачи",
+      "Подсветка кода"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/org.kde.klevernotes.flatpakref",
+        "version": "1.3.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "org.kde.klevernotes",
+    "developer": "KDE",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/org/kde/klevernotes/2c4f3b27865998a8c0a2b5a4ac737cc2/icons/128x128/org.kde.klevernotes.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "dialect-translator",
+    "name": "Dialect",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Перевод текста между языками с несколькими доступными сервисами.",
+    "fullDescription": "Dialect переводит текст через выбранного провайдера, определяет язык и озвучивает результат. Поддерживает историю, словари и быстрый доступ из буфера обмена.",
+    "website": "https://dialectapp.org/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Перевод текста",
+      "Несколько провайдеров",
+      "Озвучивание",
+      "История"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/app.drey.Dialect.flatpakref",
+        "version": "2.6.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "app.drey.Dialect",
+    "developer": "The Dialect Authors",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/app/drey/Dialect/e11bf86daeb67a9ae4f777290e4267da/icons/128x128/app.drey.Dialect.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "tangram-web-apps",
+    "name": "Tangram",
+    "category": "internet",
+    "categoryLabel": "Интернет",
+    "shortDescription": "Отдельные постоянные вкладки для почты, чатов и других веб-приложений.",
+    "fullDescription": "Tangram собирает нужные веб-сервисы в одном окне и хранит каждый в отдельной вкладке. Удобен для сервисов, которым не требуется полноценное окно браузера.",
+    "website": "https://tangram.sonny.re",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Веб-приложения",
+      "Постоянные вкладки",
+      "Уведомления",
+      "Изолированные сервисы"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/re.sonny.Tangram.flatpakref",
+        "version": "3.5"
+      }
+    ],
+    "source": "flathub",
+    "appId": "re.sonny.Tangram",
+    "developer": "Sonny Piers",
+    "license": "GPL-3.0",
+    "icon": "https://dl.flathub.org/media/re/sonny/Tangram/7e3e75b057214528c6ee75016e8dce00/icons/128x128/re.sonny.Tangram.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "newsflash-rss",
+    "name": "NewsFlash",
+    "category": "internet",
+    "categoryLabel": "Интернет",
+    "shortDescription": "Современная RSS-читалка с папками, поиском и онлайн-синхронизацией.",
+    "fullDescription": "NewsFlash объединяет ленты новостей, блоги и подкасты, отмечает прочитанное и сохраняет статьи. Работает локально или подключается к совместимым RSS-сервисам.",
+    "website": "https://gitlab.com/news_flash/news_flash_gtk",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "RSS и Atom",
+      "Папки и теги",
+      "Поиск",
+      "Синхронизация"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/io.gitlab.news_flash.NewsFlash.flatpakref",
+        "version": "5.2.3"
+      }
+    ],
+    "source": "flathub",
+    "appId": "io.gitlab.news_flash.NewsFlash",
+    "developer": "Jan Lukas Gernert",
+    "license": "GPL-3.0+",
+    "icon": "https://dl.flathub.org/media/io/gitlab/news_flash.NewsFlash/79ad860f3fc35670dc5c7208e2fc774b/icons/128x128/io.gitlab.news_flash.NewsFlash.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "fragments-torrent",
+    "name": "Fragments",
+    "category": "internet",
+    "categoryLabel": "Интернет",
+    "shortDescription": "Понятный BitTorrent-клиент для загрузки и раздачи файлов.",
+    "fullDescription": "Fragments открывает magnet-ссылки и torrent-файлы, показывает скорость и состояние загрузок. Может управлять удалённым сервером Transmission и ограничивать трафик.",
+    "website": "https://apps.gnome.org/Fragments/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "BitTorrent",
+      "Magnet-ссылки",
+      "Удалённый Transmission",
+      "Ограничение скорости"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/de.haeckerfelix.Fragments.flatpakref",
+        "version": "3.0.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "de.haeckerfelix.Fragments",
+    "developer": "Felix Häcker",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/de/haeckerfelix/Fragments/044d9768d7a02c9390e15b52a47751de/icons/128x128/de.haeckerfelix.Fragments.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "organic-maps",
+    "name": "Organic Maps",
+    "category": "education",
+    "categoryLabel": "Образование",
+    "shortDescription": "Подробные офлайн-карты OpenStreetMap без рекламы и отслеживания.",
+    "fullDescription": "Organic Maps загружает карты регионов на устройство, ищет адреса и строит маршруты без интернета. Проект использует данные OpenStreetMap и не требует аккаунта.",
+    "website": "https://organicmaps.app",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Офлайн-карты",
+      "Маршруты",
+      "OpenStreetMap",
+      "Без рекламы"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/app.organicmaps.desktop.flatpakref",
+        "version": "2026.05.28-2"
+      }
+    ],
+    "source": "flathub",
+    "appId": "app.organicmaps.desktop",
+    "developer": "The Organic Maps Community",
+    "license": "Apache-2.0",
+    "icon": "https://dl.flathub.org/media/app/organicmaps/desktop/6fb8b4ba9d61d3fbc4f43f88bb1569ff/icons/128x128/app.organicmaps.desktop.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "gnome-maps",
+    "name": "GNOME Maps",
+    "category": "education",
+    "categoryLabel": "Образование",
+    "shortDescription": "Поиск мест и построение маршрутов на картах OpenStreetMap.",
+    "fullDescription": "GNOME Maps показывает организации и достопримечательности, строит автомобильные, пешеходные и велосипедные маршруты. Местоположение можно отправить другим людям.",
+    "website": "https://apps.gnome.org/Maps/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Поиск мест",
+      "Маршруты",
+      "OpenStreetMap",
+      "Избранные места"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/org.gnome.Maps.flatpakref",
+        "version": "50.2"
+      }
+    ],
+    "source": "flathub",
+    "appId": "org.gnome.Maps",
+    "developer": "The GNOME Project",
+    "license": "GPL-2.0-or-later",
+    "icon": "https://dl.flathub.org/media/org/gnome/Maps/7a5a7593c6ae94a68d1d891b54a8546e/icons/128x128/org.gnome.Maps.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "gnome-weather",
+    "name": "GNOME Weather",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Текущая погода и прогноз для выбранных городов в аккуратном окне.",
+    "fullDescription": "GNOME Weather показывает температуру, осадки, ветер и почасовой прогноз. Можно сохранить несколько городов и быстро переключаться между ними.",
+    "website": "https://apps.gnome.org/Weather/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Текущая погода",
+      "Почасовой прогноз",
+      "Несколько городов",
+      "Геолокация"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/org.gnome.Weather.flatpakref",
+        "version": "50.0"
+      }
+    ],
+    "source": "flathub",
+    "appId": "org.gnome.Weather",
+    "developer": "The GNOME Project",
+    "license": "GPL-2.0-or-later",
+    "icon": "https://dl.flathub.org/media/org/gnome/Weather/e718a6da7f664cb622c882e538821ae6/icons/128x128/org.gnome.Weather.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "clapper-player",
+    "name": "Clapper",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Минималистичный видеоплеер Linux на базе GStreamer.",
+    "fullDescription": "Clapper воспроизводит локальные файлы и сетевые потоки, поддерживает субтитры, плейлисты и аппаратное ускорение. Интерфейс скрывает лишние элементы во время просмотра.",
+    "website": "https://rafostar.github.io/clapper",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Видео и потоки",
+      "Субтитры",
+      "Плейлисты",
+      "Аппаратное ускорение"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/com.github.rafostar.Clapper.flatpakref",
+        "version": "0.10.0"
+      }
+    ],
+    "source": "flathub",
+    "appId": "com.github.rafostar.Clapper",
+    "developer": "Rafał Dzięgiel",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/com/github/rafostar.Clapper/d11355b0b1b5239198cf538c2bf4ddd0/icons/128x128/com.github.rafostar.Clapper.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "amberol-player",
+    "name": "Amberol",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Красивый минималистичный проигрыватель локальной музыкальной коллекции.",
+    "fullDescription": "Amberol воспроизводит выбранные аудиофайлы без сложной медиатеки и лишних настроек. Очередь собирается перетаскиванием, а интерфейс подстраивает цвета под обложку альбома.",
+    "website": "https://gitlab.gnome.org/World/amberol",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Локальная музыка",
+      "Очередь воспроизведения",
+      "Обложки",
+      "Простой интерфейс"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/io.bassi.Amberol.flatpakref",
+        "version": "2026.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "io.bassi.Amberol",
+    "developer": "Emmanuele Bassi",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/io/bassi/Amberol/33caa3c38e9eac5b83ce58b3cf7080ae/icons/128x128/io.bassi.Amberol.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "shortwave-radio",
+    "name": "Shortwave",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Тысячи интернет-радиостанций с поиском, избранным и записью треков.",
+    "fullDescription": "Shortwave ищет станции в открытом каталоге, показывает сведения о композиции и поддерживает воспроизведение на сетевых устройствах. Любимые станции сохраняются для быстрого доступа.",
+    "website": "https://apps.gnome.org/Shortwave/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Интернет-радио",
+      "Поиск станций",
+      "Избранное",
+      "Сетевое воспроизведение"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/de.haeckerfelix.Shortwave.flatpakref",
+        "version": "5.1.0"
+      }
+    ],
+    "source": "flathub",
+    "appId": "de.haeckerfelix.Shortwave",
+    "developer": "Felix Häcker",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/de/haeckerfelix/Shortwave/57e51d0b06c9f8331965986ea910b4ed/icons/128x128/de.haeckerfelix.Shortwave.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "blanket-sounds",
+    "name": "Blanket",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Фоновые звуки дождя, природы и помещения для работы или отдыха.",
+    "fullDescription": "Blanket смешивает несколько окружающих звуков и сохраняет пользовательские наборы. Таймер помогает выключить воспроизведение после работы, медитации или перед сном.",
+    "website": "https://apps.gnome.org/Blanket",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Фоновые звуки",
+      "Микшер",
+      "Свои наборы",
+      "Таймер"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/com.rafaelmardojai.Blanket.flatpakref",
+        "version": "0.8.0"
+      }
+    ],
+    "source": "flathub",
+    "appId": "com.rafaelmardojai.Blanket",
+    "developer": "Rafael Mardojai CM",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/com/rafaelmardojai/Blanket/df29c39170fa43501793b18e10555563/icons/128x128/com.rafaelmardojai.Blanket.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "mousai",
+    "name": "Mousai",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Распознавание играющей музыки через микрофон за несколько секунд.",
+    "fullDescription": "Mousai записывает короткий фрагмент звука и определяет исполнителя и название композиции. Найденные треки сохраняются в истории вместе с обложкой и ссылками.",
+    "website": "https://github.com/SeaDve/Mousai",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Распознавание музыки",
+      "Микрофон",
+      "История треков",
+      "Обложки"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/io.github.seadve.Mousai.flatpakref",
+        "version": "0.7.10"
+      }
+    ],
+    "source": "flathub",
+    "appId": "io.github.seadve.Mousai",
+    "developer": "Dave Patrick Caberto",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/io/github/seadve.Mousai/e1e69a271c7db203e5c68d5e802a68e1/icons/128x128/io.github.seadve.Mousai.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "video-trimmer",
+    "name": "Video Trimmer",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Быстрая обрезка начала и конца видео без сложного монтажа.",
+    "fullDescription": "Video Trimmer выбирает нужный фрагмент на временной шкале и сохраняет его с минимальной обработкой. Подходит, когда нужно быстро убрать лишние секунды из ролика.",
+    "website": "https://gitlab.gnome.org/YaLTeR/video-trimmer",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Обрезка видео",
+      "Временная шкала",
+      "Предпросмотр",
+      "Быстрое сохранение"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/org.gnome.gitlab.YaLTeR.VideoTrimmer.flatpakref",
+        "version": "26.03.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "org.gnome.gitlab.YaLTeR.VideoTrimmer",
+    "developer": "Ivan Molodetskikh",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/org/gnome/gitlab.YaLTeR.VideoTrimmer/45d748bc1bb2fe824c27b28e05b4c01c/icons/128x128/org.gnome.gitlab.YaLTeR.VideoTrimmer.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "kooha-screen-recorder",
+    "name": "Kooha",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Простая запись экрана и звука в современных средах Linux.",
+    "fullDescription": "Kooha записывает весь экран или выбранную область, микрофон и системный звук. Перед началом можно настроить задержку, указатель мыши и формат результата.",
+    "website": "https://github.com/SeaDve/Kooha",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Запись экрана",
+      "Выбор области",
+      "Микрофон и звук",
+      "Wayland"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/io.github.seadve.Kooha.flatpakref",
+        "version": "2.3.2"
+      }
+    ],
+    "source": "flathub",
+    "appId": "io.github.seadve.Kooha",
+    "developer": "Dave Patrick Caberto",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/io/github/seadve.Kooha/4bae2311a8135a8e07572a95db8cfc7d/icons/128x128/io.github.seadve.Kooha.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "gradia",
+    "name": "Gradia",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Красивое оформление и аннотирование снимков экрана для публикации.",
+    "fullDescription": "Gradia добавляет к скриншоту фон, отступы, тени, текст и простые пометки. Готовое изображение можно скопировать или сохранить для документации и соцсетей.",
+    "website": "https://gradia.alexandervanhee.be/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Оформление скриншотов",
+      "Аннотации",
+      "Фоны и тени",
+      "Экспорт"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/be.alexandervanhee.gradia.flatpakref",
+        "version": "1.13.0"
+      }
+    ],
+    "source": "flathub",
+    "appId": "be.alexandervanhee.gradia",
+    "developer": "Alexander Vanhee",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/be/alexandervanhee/gradia/ff2ae6a0dd47a7712e804704e5eeb323/icons/128x128/be.alexandervanhee.gradia.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "drawing-editor",
+    "name": "Drawing",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Простой растровый редактор для пометок, схем, мемов и скриншотов.",
+    "fullDescription": "Drawing предлагает карандаш, фигуры, текст, обрезку, размытие и другие базовые инструменты. Подходит для быстрых правок без запуска тяжёлого графического редактора.",
+    "website": "https://maoschanz.github.io/drawing",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Рисование",
+      "Фигуры и текст",
+      "Обрезка",
+      "Размытие"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/com.github.maoschanz.drawing.flatpakref",
+        "version": "1.0.2"
+      }
+    ],
+    "source": "flathub",
+    "appId": "com.github.maoschanz.drawing",
+    "developer": "Romain F. T.",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/com/github/maoschanz.drawing/353ee37bc2557f42e0d4fd0f5795db03/icons/128x128/com.github.maoschanz.drawing.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "curtail-image-compressor",
+    "name": "Curtail",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Пакетное сжатие изображений с потерями или без потери качества.",
+    "fullDescription": "Curtail уменьшает размер PNG, JPEG, WebP и SVG с помощью проверенных оптимизаторов. Файлы можно перетащить в окно, выбрать режим и сразу увидеть экономию места.",
+    "website": "https://github.com/Huluti/Curtail",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Сжатие изображений",
+      "Пакетная обработка",
+      "PNG и JPEG",
+      "Сравнение размера"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/com.github.huluti.Curtail.flatpakref",
+        "version": "1.16.2"
+      }
+    ],
+    "source": "flathub",
+    "appId": "com.github.huluti.Curtail",
+    "developer": "Hugo Posnic",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/com/github/huluti.Curtail/35b4217432a4edaf9051f2c65bc4e96f/icons/128x128/com.github.huluti.Curtail.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "switcheroo-converter",
+    "name": "Switcheroo",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Конвертация, изменение размера и обработка нескольких изображений.",
+    "fullDescription": "Switcheroo преобразует изображения между популярными форматами, меняет размеры и качество. Можно обработать сразу несколько файлов и заранее оценить результат.",
+    "website": "https://apps.gnome.org/Converter/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Конвертация форматов",
+      "Изменение размера",
+      "Пакетная обработка",
+      "Настройка качества"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/io.gitlab.adhami3310.Converter.flatpakref",
+        "version": "2.6.0"
+      }
+    ],
+    "source": "flathub",
+    "appId": "io.gitlab.adhami3310.Converter",
+    "developer": "Khaleel Al-Adhami",
+    "license": "GPL-3.0-only",
+    "icon": "https://dl.flathub.org/media/io/gitlab/adhami3310.Converter/827ce5647dd159d9be804b2aeb749aef/icons/128x128/io.gitlab.adhami3310.Converter.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "identity-compare",
+    "name": "Identity",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Сравнение изображений и видео рядом или наложением друг на друга.",
+    "fullDescription": "Identity помогает увидеть различия между версиями картинки или ролика, синхронно масштабирует и перематывает материалы. Удобно проверять качество кодирования и обработки.",
+    "website": "https://gitlab.gnome.org/YaLTeR/identity",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Сравнение файлов",
+      "Синхронный просмотр",
+      "Масштабирование",
+      "Изображения и видео"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/org.gnome.gitlab.YaLTeR.Identity.flatpakref",
+        "version": "26.03"
+      }
+    ],
+    "source": "flathub",
+    "appId": "org.gnome.gitlab.YaLTeR.Identity",
+    "developer": "Ivan Molodetskikh",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/org/gnome/gitlab.YaLTeR.Identity/4ba862e25a993efcf2ef39d5498b0251/icons/128x128/org.gnome.gitlab.YaLTeR.Identity.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "rnote",
+    "name": "Rnote",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Рукописные заметки, схемы и наброски с поддержкой графического планшета.",
+    "fullDescription": "Rnote предоставляет бесконечный холст, кисти, фигуры, текст и импорт документов. Подходит для конспектов, объяснений, аннотаций PDF и быстрых идей.",
+    "website": "https://rnote.flxzt.net",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Рукописные заметки",
+      "Графический планшет",
+      "Фигуры",
+      "Экспорт PDF"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/com.github.flxzt.rnote.flatpakref",
+        "version": "0.14.2"
+      }
+    ],
+    "source": "flathub",
+    "appId": "com.github.flxzt.rnote",
+    "developer": "Felix Zwettler",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/com/github/flxzt.rnote/93b04722947997f1b9c5cc51f10e3ced/icons/128x128/com.github.flxzt.rnote.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "eyedropper-colors",
+    "name": "Eyedropper",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Выбор цвета с экрана и копирование значения в нужном формате.",
+    "fullDescription": "Eyedropper считывает цвет любой точки экрана, хранит палитру и преобразует значения между HEX, RGB, HSL и другими форматами. Полезен дизайнерам и веб-разработчикам.",
+    "website": "https://apps.gnome.org/Eyedropper",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Пипетка",
+      "HEX и RGB",
+      "История цветов",
+      "Палитры"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/com.github.finefindus.eyedropper.flatpakref",
+        "version": "2.2.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "com.github.finefindus.eyedropper",
+    "developer": "FineFindus",
+    "license": "GPL-3.0",
+    "icon": "https://dl.flathub.org/media/com/github/finefindus.eyedropper/57454c390f2673554cafcf7f346528da/icons/128x128/com.github.finefindus.eyedropper.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "obfuscate-images",
+    "name": "Obfuscate",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Быстрое скрытие лиц, текста и личных данных на изображениях.",
+    "fullDescription": "Obfuscate закрашивает или размывает выбранные области снимка перед публикацией. Минимальный набор инструментов помогает быстро убрать пароли, адреса и другую чувствительную информацию.",
+    "website": "https://gitlab.gnome.org/World/obfuscate/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Скрытие данных",
+      "Размытие",
+      "Закрашивание",
+      "Быстрый экспорт"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/com.belmoussaoui.Obfuscate.flatpakref",
+        "version": "0.0.10"
+      }
+    ],
+    "source": "flathub",
+    "appId": "com.belmoussaoui.Obfuscate",
+    "developer": "Bilal Elmoussaoui",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/com/belmoussaoui/Obfuscate/6158683998afcea6f4167dc6eb648b97/icons/128x128/com.belmoussaoui.Obfuscate.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "gnome-connections",
+    "name": "Connections",
+    "category": "network",
+    "categoryLabel": "Удалённый доступ",
+    "shortDescription": "Подключение к удалённым рабочим столам по протоколам RDP и VNC.",
+    "fullDescription": "Connections сохраняет параметры удалённых компьютеров и открывает их рабочий стол в отдельном окне. Поддерживает RDP и VNC, масштабирование и обмен буфером.",
+    "website": "https://apps.gnome.org/Connections",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "RDP",
+      "VNC",
+      "Масштабирование",
+      "Сохранённые подключения"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/org.gnome.Connections.flatpakref",
+        "version": "50.0"
+      }
+    ],
+    "source": "flathub",
+    "appId": "org.gnome.Connections",
+    "developer": "The GNOME Project",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/org/gnome/Connections/a5b7292f0c95975d96d22e14ff38d921/icons/128x128/org.gnome.Connections.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "gnome-characters",
+    "name": "Characters",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Поиск и копирование эмодзи, символов, валют и знаков разных письменностей.",
+    "fullDescription": "Characters группирует знаки по категориям и позволяет искать их по названию. Выбранный символ копируется в буфер обмена вместе с вариантами начертания.",
+    "website": "https://apps.gnome.org/Characters/",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Эмодзи",
+      "Специальные символы",
+      "Поиск",
+      "Копирование"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/org.gnome.Characters.flatpakref",
+        "version": "50.0"
+      }
+    ],
+    "source": "flathub",
+    "appId": "org.gnome.Characters",
+    "developer": "The GNOME Project",
+    "license": "BSD-3-Clause AND GPL-2.0-or-later",
+    "icon": "https://dl.flathub.org/media/org/gnome/Characters/ca2eab6c330dcc32c45da7583f28e295/icons/128x128/org.gnome.Characters.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "black-box-terminal",
+    "name": "Black Box",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Современный терминал GTK с вкладками, темами и удобной вставкой.",
+    "fullDescription": "Black Box предлагает аккуратный интерфейс терминала, вкладки, цветовые схемы и настраиваемые сочетания клавиш. Поддерживает прозрачность, перетаскивание вкладок и адаптивное окно.",
+    "website": "https://gitlab.gnome.org/raggesilver/blackbox",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Вкладки",
+      "Цветовые темы",
+      "Горячие клавиши",
+      "GTK 4"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/com.raggesilver.BlackBox.flatpakref",
+        "version": "0.14.0"
+      }
+    ],
+    "source": "flathub",
+    "appId": "com.raggesilver.BlackBox",
+    "developer": "Paulo Queiroz",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/com/raggesilver/BlackBox/b124d11d8cd30e566d75c849df562cc9/icons/128x128/com.raggesilver.BlackBox.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "dev-toolbox",
+    "name": "Dev Toolbox",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Набор ежедневных преобразователей и генераторов для разработчика.",
+    "fullDescription": "Dev Toolbox объединяет форматирование JSON, кодирование Base64, генерацию UUID, работу с датами, хэшами и регулярными выражениями. Инструменты работают локально в одном приложении.",
+    "website": "https://github.com/aleiepure/devtoolbox",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "JSON и Base64",
+      "UUID",
+      "Хэши",
+      "Регулярные выражения"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/me.iepure.devtoolbox.flatpakref",
+        "version": "1.3.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "me.iepure.devtoolbox",
+    "developer": "Alessandro Iepure",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/me/iepure/devtoolbox/640a058cc8ec23f49c5b63ac55b669d0/icons/128x128/me.iepure.devtoolbox.png",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "pods-containers",
+    "name": "Pods",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Графическое управление контейнерами, образами и Podman-подами.",
+    "fullDescription": "Pods подключается к Podman и показывает контейнеры, образы, тома и поды. Можно запускать и останавливать службы, смотреть логи и следить за использованием ресурсов.",
+    "website": "https://github.com/marhkb/pods",
+    "platforms": [
+      "linux"
+    ],
+    "features": [
+      "Podman",
+      "Контейнеры и образы",
+      "Логи",
+      "Мониторинг ресурсов"
+    ],
+    "downloads": [
+      {
+        "os": "linux",
+        "label": "Linux · Flatpak",
+        "type": "flatpakref",
+        "url": "https://dl.flathub.org/repo/appstream/com.github.marhkb.Pods.flatpakref",
+        "version": "3.1.1"
+      }
+    ],
+    "source": "flathub",
+    "appId": "com.github.marhkb.Pods",
+    "developer": "Marcus Behrendt",
+    "license": "GPL-3.0-or-later",
+    "icon": "https://dl.flathub.org/media/com/github/marhkb.Pods/111f3e253d36ba4705a2695ec51e6795/icons/128x128/com.github.marhkb.Pods.png",
+    "verifiedAt": "2026-07-20"
   }
 ]
