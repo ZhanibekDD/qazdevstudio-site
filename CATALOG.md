@@ -25,7 +25,7 @@ GITHUB_TOKEN=... node scripts/crawl-github-releases.mjs --all --resume --pages=3
 node scripts/review-candidates.mjs --threshold=65
 ```
 
-The crawler searches 25 desktop-software queries across eight categories, checks each repository's latest GitHub Release, rejects source archives, signatures, checksums and debug files, then ranks real binary downloads by licence, popularity, release freshness, platforms and release downloads. It writes checkpoints after every search page, so the next run continues instead of starting over.
+The crawler searches 25 desktop-software queries across eight categories, checks each repository's latest GitHub Release, rejects source archives, signatures, checksums and debug files, then ranks real binary downloads by licence, popularity, release freshness, platforms and release downloads. It waits through short GitHub API rate windows and writes checkpoints after every search page, so a later run continues instead of starting over.
 
 Generated files:
 
