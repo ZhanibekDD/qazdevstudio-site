@@ -20,6 +20,29 @@ let cursor = 0;
 const errors = [];
 let checked = 0;
 
+function wait(milliseconds) {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
+async function fetchWithRetry(url, options = {}, attempts = 3) {
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const response = await fetch(url, options);
+      if (attempt < attempts && (response.status === 429 || response.status >= 500)) {
+        await response.body?.cancel();
+        await wait(500 * attempt);
+        continue;
+      }
+      return response;
+    } catch (error) {
+      lastError = error;
+      if (attempt < attempts) await wait(500 * attempt);
+    }
+  }
+  throw lastError;
+}
+
 async function worker() {
   while (cursor < data.length) {
     const software = data[cursor++];
@@ -35,9 +58,9 @@ async function worker() {
         continue;
       }
       try {
-        let response = await fetch(download.url, {method: 'HEAD', redirect: 'follow', headers: {'User-Agent': headers['User-Agent']}});
+        let response = await fetchWithRetry(download.url, {method: 'HEAD', redirect: 'follow', headers: {'User-Agent': headers['User-Agent']}});
         if (response.status === 405 || response.status === 501) {
-          response = await fetch(download.url, {redirect: 'follow', headers: {'User-Agent': headers['User-Agent'], Range: 'bytes=0-0'}});
+          response = await fetchWithRetry(download.url, {redirect: 'follow', headers: {'User-Agent': headers['User-Agent'], Range: 'bytes=0-0'}});
           await response.body?.cancel();
         }
         if (!response.ok) errors.push(`${software.name}/${download.label}: direct URL HTTP ${response.status}`);
@@ -48,7 +71,7 @@ async function worker() {
     }
     const releaseDownloads = software.downloads.filter(download => !download.url);
     if (!releaseDownloads.length) continue;
-    const response = await fetch(`https://api.github.com/repos/${software.github}/releases/latest`, {headers});
+    const response = await fetchWithRetry(`https://api.github.com/repos/${software.github}/releases/latest`, {headers});
     if (!response.ok) {
       errors.push(`${software.name}: GitHub API ${response.status}`);
       continue;
