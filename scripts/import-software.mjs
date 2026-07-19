@@ -7,7 +7,12 @@ const args=Object.fromEntries(process.argv.slice(2).map(part=>{const [key,...val
 const repository=String(args.repo||'');
 if(!/^[\w.-]+\/[\w.-]+$/.test(repository))throw new Error('Usage: node scripts/import-software.mjs --repo=owner/repository');
 
-const headers={Accept:'application/vnd.github+json','User-Agent':'QazDevCatalog/1.0'};
+const headers={
+  Accept:'application/vnd.github+json',
+  'X-GitHub-Api-Version':'2022-11-28',
+  'User-Agent':'QazDevCatalog/1.0',
+  ...(process.env.GITHUB_TOKEN?{Authorization:`Bearer ${process.env.GITHUB_TOKEN}`}:{})
+};
 const [repoResponse,releaseResponse]=await Promise.all([
   fetch(`https://api.github.com/repos/${repository}`,{headers}),
   fetch(`https://api.github.com/repos/${repository}/releases/latest`,{headers})

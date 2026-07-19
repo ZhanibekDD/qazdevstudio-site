@@ -18,6 +18,43 @@ node scripts/import-software.mjs --repo=owner/repository
 
 The importer checks the latest public GitHub Release and writes downloadable asset metadata to `data/software.drafts.json`. Drafts are never published automatically.
 
+## Mass collection
+
+```bash
+GITHUB_TOKEN=... node scripts/crawl-github-releases.mjs --all --resume --pages=3 --max-repos=3000
+node scripts/review-candidates.mjs --threshold=65
+```
+
+The crawler searches 25 desktop-software queries across eight categories, checks each repository's latest GitHub Release, rejects source archives, signatures, checksums and debug files, then ranks real binary downloads by licence, popularity, release freshness, platforms and release downloads. It waits through short GitHub API rate windows and writes checkpoints after every search page, so a later run continues instead of starting over.
+
+Generated files:
+
+- `data/github-crawl.drafts.json` — every recognized candidate;
+- `data/github-crawl.state.json` — resumable checkpoint;
+- `data/crawl-summary.json` — source and category totals;
+- `data/review-queue.csv` and `.json` — highest-scoring moderation queue.
+
+## Publish a reviewed batch
+
+Keep the human-reviewed repository list and original Russian copy in `data/publication-selection.json`, then build a deterministic batch from a crawl artifact:
+
+```bash
+node scripts/promote-candidates.mjs --input=/path/to/github-crawl.drafts.json
+node scripts/promote-candidates.mjs --input=/path/to/github-crawl.drafts.json --apply
+node scripts/build-software-catalog.mjs
+node scripts/verify-downloads.mjs --input=data/software.batch.json
+```
+
+Promotion refuses duplicates, scores below 80, missing machine-readable licences and ambiguous asset patterns. It chooses one reviewed x64 desktop asset per available operating system. `--apply` is intentionally required before the public catalog changes.
+
+GitHub Actions runs a 700-repository collection when the crawler branch changes. After the workflow is on the default branch, it can collect up to 10,000 repositories manually and resume every Monday. The result is an artifact; it never changes the public catalog by itself.
+
+Verify all public direct-download patterns before a release:
+
+```bash
+GITHUB_TOKEN=... node scripts/verify-downloads.mjs
+```
+
 Before moving a draft to `software.json`:
 
 - confirm that the repository belongs to the real project;
@@ -26,6 +63,7 @@ Before moving a draft to `software.json`:
 - exclude signatures, checksums, source archives, debug symbols, and ARM builds unless clearly labelled;
 - test every download button against the latest release;
 - write an original Russian description.
+- leave `indexable` and `publishable` false until all checks are complete.
 
 ## Safety model
 
@@ -33,3 +71,4 @@ Before moving a draft to `software.json`:
 - Files come from `browser_download_url` in the official GitHub Releases API.
 - Only reviewed repositories and asset patterns are published.
 - The UI explains the source before download and keeps a link to the source code on detail pages.
+- A large candidate count is not a publication target: duplicate, abandoned, server-only, suspicious or weakly licensed projects remain unpublished.
