@@ -28,7 +28,7 @@ on:
       - main
     paths:
       - '.github/workflows/crawl-software.yml'
-      - 'scripts/crawl-*.mjs'
+      - 'scripts/crawl-github-releases.mjs'
       - 'scripts/lib/catalog-crawler.mjs'
       - 'scripts/crawl-config.json'
       - 'tests/crawler.test.mjs'
