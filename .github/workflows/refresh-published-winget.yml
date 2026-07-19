@@ -1,0 +1,64 @@
+name: Refresh published WinGet downloads
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 3 * * 3'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: refresh-published-winget
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NODE_NO_WARNINGS: '1'
+      VERIFY_CONCURRENCY: '10'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Read the complete current WinGet source
+        run: node scripts/crawl-winget.mjs --resume=false --max-packages=15000 --concurrency=16
+
+      - name: Refresh the reviewed allowlist
+        run: node scripts/promote-winget-candidates.mjs --apply
+
+      - name: Rebuild and verify the public catalog
+        run: |
+          node --test tests/*.test.mjs
+          node scripts/build-software-catalog.mjs
+          node scripts/verify-downloads.mjs
+
+      - name: Open a pull request when downloads changed
+        shell: bash
+        run: |
+          if git diff --quiet -- data/software.json data/software-winget.batch.json programmy sitemap-programmy.xml; then
+            echo 'Published WinGet downloads are already current.'
+            exit 0
+          fi
+          branch="automation/refresh-winget-${GITHUB_RUN_ID}"
+          git config user.name 'qazdev-catalog-bot'
+          git config user.email 'qazdev-catalog-bot@users.noreply.github.com'
+          git checkout -b "$branch"
+          git add data/software.json data/software-winget.batch.json programmy sitemap-programmy.xml
+          git commit -m 'Refresh published WinGet downloads'
+          git push origin "$branch"
+          gh pr create \
+            --base main \
+            --head "$branch" \
+            --title 'Refresh published WinGet downloads' \
+            --body 'Automated weekly refresh of the reviewed WinGet allowlist. Installer URLs, versions and SHA-256 values come from the current official Microsoft WinGet source. The catalog was rebuilt and every public download button was verified before this PR was opened.'

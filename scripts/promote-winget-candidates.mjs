@@ -19,6 +19,7 @@ const [candidates, selection, published] = await Promise.all([
 ]);
 const byIdentifier = new Map(candidates.map(candidate => [candidate.packageIdentifier.toLowerCase(), candidate]));
 const publishedBySlug = new Map(published.map(item => [item.slug, item]));
+const publishedByIdentifier = new Map(published.filter(item => item.packageIdentifier).map(item => [item.packageIdentifier.toLowerCase(), item]));
 const selectedIdentifiers = new Set();
 const selectedSlugs = new Set();
 const verifiedAt = new Intl.DateTimeFormat('en-CA', {timeZone: 'Asia/Almaty', year: 'numeric', month: '2-digit', day: '2-digit'}).format(new Date());
@@ -61,6 +62,13 @@ const batch = selection.map(metadata => {
     throw new Error(`${metadata.packageIdentifier}: installer SHA-256 is missing`);
   }
   const extension = new URL(installer.url).pathname.match(/\.([a-z0-9]+)$/i)?.[1]?.toLowerCase();
+  const previous = publishedByIdentifier.get(identifier);
+  const unchanged = previous
+    && previous.sourceManifestSha256 === candidate.sourceManifest.sha256
+    && previous.downloads?.length === 1
+    && previous.downloads[0].url === installer.url
+    && previous.downloads[0].sha256 === installer.sha256
+    && previous.downloads[0].version === candidate.version;
 
   return {
     slug: metadata.slug,
@@ -85,7 +93,7 @@ const batch = selection.map(metadata => {
     publisher: candidate.publisher,
     license: candidate.license,
     sourceManifestSha256: candidate.sourceManifest.sha256,
-    verifiedAt
+    verifiedAt: unchanged ? previous.verifiedAt : verifiedAt
   };
 });
 
