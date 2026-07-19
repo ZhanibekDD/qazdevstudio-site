@@ -9,9 +9,11 @@ on:
       - '.github/workflows/verify-catalog.yml'
       - 'data/software.json'
       - 'data/winget-publication-selection.json'
+      - 'data/flathub-publication-selection.json'
       - 'scripts/build-software-catalog.mjs'
       - 'scripts/verify-downloads.mjs'
       - 'scripts/promote-winget-candidates.mjs'
+      - 'scripts/promote-flathub-candidates.mjs'
       - 'programmy/**'
       - 'sitemap-programmy.xml'
 

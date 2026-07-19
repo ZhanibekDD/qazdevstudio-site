@@ -25,7 +25,12 @@ async function worker() {
     const software = data[cursor++];
     const directDownloads = software.downloads.filter(download => download.url);
     for (const download of directDownloads) {
-      if (!/^https:\/\//i.test(download.url) || !/^[a-f0-9]{64}$/i.test(download.sha256 || '')) {
+      let officialFlatpakRef = false;
+      try {
+        const url = new URL(download.url);
+        officialFlatpakRef = software.source === 'flathub' && download.type === 'flatpakref' && url.hostname === 'dl.flathub.org' && url.pathname === `/repo/appstream/${software.appId}.flatpakref`;
+      } catch {}
+      if (!/^https:\/\//i.test(download.url) || (!officialFlatpakRef && !/^[a-f0-9]{64}$/i.test(download.sha256 || ''))) {
         errors.push(`${software.name}/${download.label}: invalid direct URL or SHA-256`);
         continue;
       }
