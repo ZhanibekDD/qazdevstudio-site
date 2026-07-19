@@ -1,6 +1,6 @@
-# QazTools software catalog
+# QazTools direct-download catalog
 
-Static, SEO-first catalog for `qazdevstudio.kz/programmy/`.
+Static catalog for `qazdevstudio.kz/programmy/`. Every download button requests the latest release from the official GitHub repository, selects the reviewed asset pattern, and starts the original file download without opening a third-party landing page.
 
 ## Build
 
@@ -8,28 +8,28 @@ Static, SEO-first catalog for `qazdevstudio.kz/programmy/`.
 node scripts/build-software-catalog.mjs
 ```
 
-The build validates `data/software.json`, generates the catalog index, one HTML page per product, and `sitemap-programmy.xml`.
+The build validates repositories and regular expressions in `data/software.json`, removes old generated catalog HTML files, then creates the index, one detail page per program, and `sitemap-programmy.xml`.
 
-## Import drafts
-
-Apple App Store Kazakhstan:
+## Add a GitHub program draft
 
 ```bash
-node scripts/import-software.mjs --source=apple --query=crm --limit=20
+node scripts/import-software.mjs --repo=owner/repository
 ```
 
-Product Hunt:
+The importer checks the latest public GitHub Release and writes downloadable asset metadata to `data/software.drafts.json`. Drafts are never published automatically.
 
-```bash
-PRODUCT_HUNT_TOKEN=... node scripts/import-software.mjs --source=producthunt --limit=20
-```
+Before moving a draft to `software.json`:
 
-Imports are written to `data/software.drafts.json`. They never enter the public catalog automatically. Review the official website, description, category, Kazakhstan relevance, and pricing before moving a record to `software.json`.
+- confirm that the repository belongs to the real project;
+- check the open-source licence and the official website;
+- select exact release asset patterns for Windows, macOS, or Linux;
+- exclude signatures, checksums, source archives, debug symbols, and ARM builds unless clearly labelled;
+- test every download button against the latest release;
+- write an original Russian description.
 
-## Publishing checklist
+## Safety model
 
-- Run the build and verify that every card has a detail page.
-- Check external URLs and factual claims against official sources.
-- Add `Sitemap: https://qazdevstudio.kz/sitemap-programmy.xml` to `robots.txt`.
-- Link `/programmy/` from the home page and footer.
-- Submit the new sitemap in Google Search Console and Yandex Webmaster.
+- QazDev does not mirror, repackage, or modify binaries.
+- Files come from `browser_download_url` in the official GitHub Releases API.
+- Only reviewed repositories and asset patterns are published.
+- The UI explains the source before download and keeps a link to the source code on detail pages.

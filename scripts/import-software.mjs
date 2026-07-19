@@ -4,35 +4,41 @@ import {fileURLToPath} from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const args=Object.fromEntries(process.argv.slice(2).map(part=>{const [key,...value]=part.replace(/^--/,'').split('=');return[key,value.join('=')||true]}));
-const source=args.source||'apple';
-const query=args.query||'business';
-const limit=Math.min(Number(args.limit)||20,50);
-let drafts=[];
+const repository=String(args.repo||'');
+if(!/^[\w.-]+\/[\w.-]+$/.test(repository))throw new Error('Usage: node scripts/import-software.mjs --repo=owner/repository');
 
-if(source==='apple'){
-  const url=new URL('https://itunes.apple.com/search');
-  url.search=new URLSearchParams({term:query,country:'kz',entity:'software',limit:String(limit)});
-  const response=await fetch(url,{headers:{'user-agent':'QazDevCatalog/1.0'}});
-  if(!response.ok)throw new Error(`Apple Search API: ${response.status}`);
-  const payload=await response.json();
-  drafts=payload.results.map(item=>({source:'apple',sourceId:String(item.trackId),name:item.trackName,shortDescription:item.description?.slice(0,280)||'',website:item.trackViewUrl,developer:item.sellerName,categoryLabel:item.primaryGenreName,pricing:item.formattedPrice,platforms:['iOS'],iconUrl:item.artworkUrl512||item.artworkUrl100,sourcePayload:item}));
-}else if(source==='producthunt'){
-  const token=process.env.PRODUCT_HUNT_TOKEN;
-  if(!token)throw new Error('Set PRODUCT_HUNT_TOKEN before importing Product Hunt');
-  const gql=`query CatalogDrafts($first: Int!) { posts(first: $first, order: NEWEST) { edges { node { id name tagline description website url } } } }`;
-  const response=await fetch('https://api.producthunt.com/v2/api/graphql',{method:'POST',headers:{authorization:`Bearer ${token}`,'content-type':'application/json'},body:JSON.stringify({query:gql,variables:{first:limit}})});
-  if(!response.ok)throw new Error(`Product Hunt API: ${response.status}`);
-  const payload=await response.json();
-  if(payload.errors)throw new Error(JSON.stringify(payload.errors));
-  drafts=payload.data.posts.edges.map(({node})=>({source:'producthunt',sourceId:node.id,name:node.name,shortDescription:node.tagline,fullDescription:node.description,website:node.website||node.url,sourcePayload:node}));
-}else{
-  throw new Error('Supported sources: apple, producthunt');
-}
+const headers={Accept:'application/vnd.github+json','User-Agent':'QazDevCatalog/1.0'};
+const [repoResponse,releaseResponse]=await Promise.all([
+  fetch(`https://api.github.com/repos/${repository}`,{headers}),
+  fetch(`https://api.github.com/repos/${repository}/releases/latest`,{headers})
+]);
+if(!repoResponse.ok)throw new Error(`GitHub repository API: ${repoResponse.status}`);
+if(!releaseResponse.ok)throw new Error(`GitHub release API: ${releaseResponse.status}`);
+const repo=await repoResponse.json();
+const release=await releaseResponse.json();
+const downloadable=(release.assets||[]).filter(asset=>/\.(exe|msi|dmg|appimage|deb|zip)$/i.test(asset.name)||/^(install\.sh|yt-dlp_macos|yt-dlp_linux)$/i.test(asset.name));
+if(!downloadable.length)throw new Error('The latest release has no recognizable downloadable files');
+
+const draft={
+  slug:repo.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''),
+  name:repo.name,
+  github:repository,
+  website:repo.homepage||repo.html_url,
+  shortDescription:repo.description||'',
+  fullDescription:'',
+  category:'',
+  categoryLabel:'',
+  platforms:[],
+  features:repo.topics||[],
+  downloads:[],
+  latestRelease:{tag:release.tag_name,publishedAt:release.published_at,assets:downloadable.map(asset=>({name:asset.name,size:asset.size,digest:asset.digest||null,url:asset.browser_download_url}))},
+  verifiedAt:new Date().toISOString().slice(0,10)
+};
 
 const target=path.join(root,'data','software.drafts.json');
 let existing=[];
 try{existing=JSON.parse(await readFile(target,'utf8'))}catch(error){if(error.code!=='ENOENT')throw error}
-const merged=new Map(existing.map(item=>[`${item.source}:${item.sourceId}`,item]));
-for(const item of drafts)merged.set(`${item.source}:${item.sourceId}`,item);
-await writeFile(target,JSON.stringify([...merged.values()],null,2)+'\n');
-console.log(`Imported ${drafts.length} drafts from ${source}. Review ${target} before publishing.`);
+const byRepo=new Map(existing.map(item=>[item.github,item]));
+byRepo.set(repository,draft);
+await writeFile(target,JSON.stringify([...byRepo.values()],null,2)+'\n');
+console.log(`Imported ${repository} ${release.tag_name} with ${downloadable.length} downloadable assets. Review patterns in ${target}.`);
