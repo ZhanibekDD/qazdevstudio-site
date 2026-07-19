@@ -38,3 +38,7 @@ data/software-winget.batch.json
 data/winget-summary.json
 data/winget-review-queue.json
 data/winget-review-queue.csv
+data/flathub-crawl.drafts.json
+data/flathub-summary.json
+data/flathub-review-queue.json
+data/flathub-review-queue.csv

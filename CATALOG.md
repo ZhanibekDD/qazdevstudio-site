@@ -1,6 +1,6 @@
 # QazTools direct-download catalog
 
-Static catalog for `qazdevstudio.kz/programmy/`. Every download button requests the latest release from the official GitHub repository, selects the reviewed asset pattern, and starts the original file download without opening a third-party landing page.
+Static catalog for `qazdevstudio.kz/programmy/`. Every download button starts an original upstream file without opening a third-party landing page. GitHub programs resolve the latest reviewed Release asset; WinGet and Flathub records use exact verified direct URLs.
 
 ## Build
 
@@ -70,6 +70,19 @@ node scripts/verify-downloads.mjs
 ```
 
 Direct records keep the exact upstream HTTPS installer URL, version and SHA-256 from the verified WinGet manifest. The catalog button starts the original download immediately; QazDev does not host or repackage the file. Re-running promotion updates the existing allowlisted records instead of creating duplicates.
+
+The weekly `refresh-published-winget.yml` workflow repeats that verification for the reviewed allowlist, rebuilds the pages and opens a pull request only when a version, installer URL or checksum changed. It never publishes a newly discovered package by itself.
+
+## Flathub source
+
+```bash
+node scripts/crawl-flathub.mjs
+node scripts/review-flathub-candidates.mjs --threshold=80
+```
+
+The Flathub crawler reads the official compressed x86_64 AppStream index and creates direct `dl.flathub.org` `.flatpakref` links. This gives Linux users a one-click hand-off to their Flatpak installer without visiting an app landing page. Only applications with a recognized open-source licence and Flathub's verified-developer flag enter the fast moderation queue. Official Flathub icon URLs are retained for later catalog cards.
+
+All collected Flathub records remain `indexable: false` and `publishable: false`. The workflow runs weekly and uploads JSON/CSV artifacts for human review; it does not mass-publish the feed.
 
 GitHub Actions runs a 700-repository collection when the crawler branch changes. After the workflow is on the default branch, it can collect up to 10,000 repositories manually and resume every Monday. The result is an artifact; it never changes the public catalog by itself.
 

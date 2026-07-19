@@ -1,0 +1,54 @@
+name: Crawl Flathub candidates
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '11 2 * * 4'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/crawl-flathub.yml'
+      - 'scripts/crawl-flathub.mjs'
+      - 'scripts/review-flathub-candidates.mjs'
+      - 'scripts/lib/flathub-parser.mjs'
+      - 'tests/flathub-parser.test.mjs'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: flathub-crawler-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  crawl-flathub:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Test Flathub parser
+        run: node --test tests/flathub-parser.test.mjs
+
+      - name: Collect official Flathub AppStream
+        run: node scripts/crawl-flathub.mjs
+
+      - name: Build Flathub moderation queue
+        run: node scripts/review-flathub-candidates.mjs --threshold=80 --limit=5000
+
+      - name: Upload unpublished Flathub candidates
+        uses: actions/upload-artifact@v4
+        with:
+          name: flathub-candidates-${{ github.run_id }}
+          if-no-files-found: error
+          retention-days: 30
+          path: |
+            data/flathub-crawl.drafts.json
+            data/flathub-summary.json
+            data/flathub-review-queue.json
+            data/flathub-review-queue.csv
