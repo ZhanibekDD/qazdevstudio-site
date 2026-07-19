@@ -198,9 +198,11 @@ try {
       page: String(job.page)
     });
     const result = await github(`/search/repositories?${params}`);
-    const repositories = (result?.items || [])
-      .filter(repo => !processedRepositories.has(repo.full_name.toLowerCase()))
+    const unprocessed = (result?.items || [])
+      .filter(repo => !processedRepositories.has(repo.full_name.toLowerCase()));
+    const repositories = unprocessed
       .slice(0, Math.max(0, maxRepositories - processedRepositories.size));
+    const pageWasTruncated = repositories.length < unprocessed.length;
     state.searchedRepositories += repositories.length;
 
     await mapLimit(repositories, concurrency, async repo => {
@@ -214,7 +216,7 @@ try {
       }
     });
 
-    completedJobs.add(job.key);
+    if (!pageWasTruncated && !stopRequested) completedJobs.add(job.key);
     await checkpoint();
     console.log(`[${completedJobs.size}/${jobs.length}] ${job.category.label}, page ${job.page}: ${candidateMap.size} candidates from ${processedRepositories.size} repositories.`);
   }
