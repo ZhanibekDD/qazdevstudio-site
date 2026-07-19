@@ -23,6 +23,26 @@ let checked = 0;
 async function worker() {
   while (cursor < data.length) {
     const software = data[cursor++];
+    const directDownloads = software.downloads.filter(download => download.url);
+    for (const download of directDownloads) {
+      if (!/^https:\/\//i.test(download.url) || !/^[a-f0-9]{64}$/i.test(download.sha256 || '')) {
+        errors.push(`${software.name}/${download.label}: invalid direct URL or SHA-256`);
+        continue;
+      }
+      try {
+        let response = await fetch(download.url, {method: 'HEAD', redirect: 'follow', headers: {'User-Agent': headers['User-Agent']}});
+        if (response.status === 405 || response.status === 501) {
+          response = await fetch(download.url, {redirect: 'follow', headers: {'User-Agent': headers['User-Agent'], Range: 'bytes=0-0'}});
+          await response.body?.cancel();
+        }
+        if (!response.ok) errors.push(`${software.name}/${download.label}: direct URL HTTP ${response.status}`);
+        checked += 1;
+      } catch (error) {
+        errors.push(`${software.name}/${download.label}: ${error.message}`);
+      }
+    }
+    const releaseDownloads = software.downloads.filter(download => !download.url);
+    if (!releaseDownloads.length) continue;
     const response = await fetch(`https://api.github.com/repos/${software.github}/releases/latest`, {headers});
     if (!response.ok) {
       errors.push(`${software.name}: GitHub API ${response.status}`);
@@ -30,7 +50,7 @@ async function worker() {
     }
     const release = await response.json();
     const names = (release.assets || []).map(asset => asset.name);
-    for (const download of software.downloads) {
+    for (const download of releaseDownloads) {
       let pattern;
       try {
         pattern = new RegExp(download.pattern, 'i');

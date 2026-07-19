@@ -2260,5 +2260,1656 @@
       }
     ],
     "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "7-zip",
+    "name": "7-Zip",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Быстрый архиватор с высокой степенью сжатия и поддержкой популярных форматов.",
+    "fullDescription": "7-Zip создаёт и распаковывает архивы 7z, ZIP, TAR и многие другие форматы. Встраивается в Проводник Windows, умеет шифровать архивы и не показывает рекламу.",
+    "website": "https://7-zip.org/download.html",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Архивы 7z и ZIP",
+      "Шифрование AES-256",
+      "Интеграция с Windows",
+      "Без рекламы"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/ip7z/7zip/releases/download/26.02/7z2602-x64.exe",
+        "sha256": "6745fa76dc2ea031596d8678f6f6b99c3c1b435b4164a63485adbbc7b8d82ef0",
+        "version": "26.02"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "7zip.7zip",
+    "publisher": "Igor Pavlov",
+    "license": "LGPL-2.1",
+    "sourceManifestSha256": "49a2e41d6b85d774abda2e77f57c8e732ca90739abaa78c334ebd34ef55dc941",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "firefox",
+    "name": "Mozilla Firefox",
+    "category": "internet",
+    "categoryLabel": "Интернет",
+    "shortDescription": "Браузер с защитой от отслеживания, расширениями и русским интерфейсом.",
+    "fullDescription": "Firefox открывает сайты на движке Mozilla и блокирует многие трекеры по умолчанию. Поддерживает синхронизацию, контейнеры, расширения и гибкую настройку приватности.",
+    "website": "https://www.mozilla.org/firefox/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Защита от трекеров",
+      "Расширения",
+      "Синхронизация",
+      "Русский интерфейс"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://download-installer.cdn.mozilla.net/pub/firefox/releases/152.0.6/win64/ru/Firefox%20Setup%20152.0.6.exe",
+        "sha256": "dc934841eebc2feaf113e827ddfcc07c971e0c1606a5b38e9fa35834372a9f64",
+        "version": "152.0.6"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "Mozilla.Firefox.ru",
+    "publisher": "Mozilla",
+    "license": "MPL-2.0",
+    "sourceManifestSha256": "a635f4754c7bd8aad9a592476b7ef620188d85526057a02c8aefde64901acb20",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "thunderbird",
+    "name": "Mozilla Thunderbird",
+    "category": "communication",
+    "categoryLabel": "Общение",
+    "shortDescription": "Почтовый клиент с календарём, несколькими аккаунтами и русским интерфейсом.",
+    "fullDescription": "Thunderbird объединяет электронную почту, календарь и адресную книгу в одном приложении. Работает с популярными почтовыми сервисами, фильтрами, шифрованием и расширениями.",
+    "website": "https://www.thunderbird.net/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Несколько аккаунтов",
+      "Календарь",
+      "Фильтры писем",
+      "Расширения"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://download-installer.cdn.mozilla.net/pub/thunderbird/releases/152.0.1/win64/ru/Thunderbird%20Setup%20152.0.1.exe",
+        "sha256": "263db4eb9d22c5325aa2951c8230294525c03818b5346eea99a4816ba1cd0f38",
+        "version": "152.0.1"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "Mozilla.Thunderbird.ru",
+    "publisher": "Mozilla",
+    "license": "MPL-2.0",
+    "sourceManifestSha256": "4eda4b4b8a8b6ac8528d11e1fcec461e5f1297a76125ec26cdf377d71374a32f",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "vlc-media-player",
+    "name": "VLC media player",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Универсальный проигрыватель видео, музыки, дисков и сетевых потоков.",
+    "fullDescription": "VLC воспроизводит большинство медиаформатов без установки дополнительных кодеков. Поддерживает субтитры, плейлисты, сетевые трансляции, запись потока и изменение скорости.",
+    "website": "https://www.videolan.org/vlc/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Видео и музыка",
+      "Встроенные кодеки",
+      "Субтитры",
+      "Сетевые потоки"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://download.videolan.org/pub/videolan/vlc/3.0.23/win64/vlc-3.0.23-win64.exe",
+        "sha256": "20ad191348684b470ddc4e05204316f3d8e39655f412b3e392a0eef97639daaf",
+        "version": "3.0.23"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "VideoLAN.VLC",
+    "publisher": "VideoLAN",
+    "license": "GPL-2.0",
+    "sourceManifestSha256": "47dbb14f39c0c73c62a6dcb4ea44d62d2b4e8e09ebaef99d17b1bde7ce0db42c",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "libreoffice",
+    "name": "LibreOffice",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Бесплатный офисный пакет для документов, таблиц, презентаций и формул.",
+    "fullDescription": "LibreOffice включает редактор документов Writer, таблицы Calc и презентации Impress. Открывает форматы Microsoft Office, экспортирует PDF и работает без подписки.",
+    "website": "https://www.libreoffice.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Документы",
+      "Таблицы",
+      "Презентации",
+      "Экспорт в PDF"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://download.documentfoundation.org/libreoffice/stable/26.2.4/win/x86_64/LibreOffice_26.2.4_Win_x86-64.msi",
+        "sha256": "202f26cda071c5aa4996a5a28412fddceb3891dceb0366982c62650456c0730f",
+        "version": "26.2.4.2"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "TheDocumentFoundation.LibreOffice",
+    "publisher": "The Document Foundation",
+    "license": "MPL-2.0",
+    "sourceManifestSha256": "6f035a79192ceafd9b6c354ca0e76aa36e90464c4a3b07116365ab170d215815",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "gimp",
+    "name": "GIMP",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Редактор изображений с слоями, масками, кистями и расширениями.",
+    "fullDescription": "GIMP подходит для обработки фотографий, ретуши, иллюстраций и подготовки веб-графики. Поддерживает слои, маски, цветокоррекцию, плагины и множество форматов.",
+    "website": "https://www.gimp.org/downloads/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Слои и маски",
+      "Ретушь",
+      "Кисти",
+      "Плагины"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://download.gimp.org/gimp/v3.2/windows/gimp-3.2.4-setup.exe",
+        "sha256": "ec31d757dd82831d201ffcf47ffeac4175df739e0c02d5122e89aeeadfb988cc",
+        "version": "3.2.4"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "GIMP.GIMP",
+    "publisher": "The GIMP Team",
+    "license": "GPLv3",
+    "sourceManifestSha256": "fee0ad7ab6341b8441b37ca6ae8e05be38d25b71d0e2c0317398f5511d1839b7",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "blender",
+    "name": "Blender LTS",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Полный набор инструментов для 3D-моделирования, анимации и рендеринга.",
+    "fullDescription": "Blender объединяет моделирование, скульптинг, анимацию, монтаж и визуальные эффекты. LTS-ветка получает длительные исправления и подходит для стабильной рабочей среды.",
+    "website": "https://www.blender.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "3D-моделирование",
+      "Анимация",
+      "Рендеринг",
+      "Видеомонтаж"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://download.blender.org/release/Blender4.5/blender-4.5.10-windows-x64.msi",
+        "sha256": "38a3f6eed2da970ed14721f8312a8187487a35bb69a1f88bffaadb4e0612c957",
+        "version": "4.5.10"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "BlenderFoundation.Blender.LTS.4.5",
+    "publisher": "Blender Foundation",
+    "license": "GPL-3.0-or-later",
+    "sourceManifestSha256": "760cf8125b97e00ac794a507467c15ba08cbb8345599f36d3a6b2bcd4f76a8ab",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "inkscape",
+    "name": "Inkscape",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Векторный редактор для логотипов, схем, иллюстраций и SVG-файлов.",
+    "fullDescription": "Inkscape создаёт масштабируемую векторную графику и работает с форматом SVG. Есть кривые Безье, текст, слои, трассировка изображений и экспорт для печати и веба.",
+    "website": "https://inkscape.org/release/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Векторная графика",
+      "SVG",
+      "Кривые Безье",
+      "Трассировка"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://media.inkscape.org/dl/resources/file/inkscape-1.4.4_2026-05-05_dcaf3e7-x64.signed_xMx7DJV.msi",
+        "sha256": "2fa033e95113ae83d6430b2479e7e63e4266d0632a5b03f99ee3db9360e3b8b8",
+        "version": "1.4.4"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "Inkscape.Inkscape",
+    "publisher": "Inkscape",
+    "license": "GPL-2.0",
+    "sourceManifestSha256": "1086fc08616719fad1ae3e1beefbcec1028a1395968a37c193b03bf2a0ae4260",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "krita",
+    "name": "Krita",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Программа для цифрового рисования, комиксов, текстур и покадровой анимации.",
+    "fullDescription": "Krita рассчитана на художников и иллюстраторов: предлагает настраиваемые кисти, стабилизаторы, слои и цветовые модели. Поддерживает графические планшеты и простую 2D-анимацию.",
+    "website": "https://krita.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Цифровая живопись",
+      "Кисти",
+      "Графические планшеты",
+      "2D-анимация"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://download.kde.org/stable/krita/5.3.2.1/krita-x64-5.3.2.1-setup.exe",
+        "sha256": "b68c3c1000a0660c79ccb82f7a85e9ede0b9dde055561ceacd0ff2a147040fb8",
+        "version": "5.3.2.1"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "KDE.Krita",
+    "publisher": "Krita Foundation",
+    "license": "GPL-3.0",
+    "sourceManifestSha256": "371d87701b4a3a9d4331d876c0099939c3f76db70a14fb931109688aff25534a",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "kdenlive",
+    "name": "Kdenlive",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Нелинейный видеоредактор с многодорожечным монтажом, эффектами и прокси.",
+    "fullDescription": "Kdenlive позволяет монтировать видео на нескольких дорожках, работать со звуком, титрами и эффектами. Прокси-файлы ускоряют редактирование тяжёлого материала на обычном компьютере.",
+    "website": "https://kdenlive.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Многодорожечный монтаж",
+      "Эффекты",
+      "Титры",
+      "Прокси-файлы"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://download.kde.org/stable/kdenlive/26.04/windows/kdenlive-26.04.3.exe",
+        "sha256": "f5dcd8ddb7a8ef6754cee7515513d6c777bc68079c6fec37e20373f628f65fe1",
+        "version": "26.04.3"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "KDE.Kdenlive",
+    "publisher": "KDE e.V.",
+    "license": "GPL-3.0",
+    "sourceManifestSha256": "d5848f3da4bc98f01dd8d09f7bede5b7d808f85fcb046c3f62d8f3245c23c1ef",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "openshot",
+    "name": "OpenShot Video Editor",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Понятный видеоредактор для нарезки, переходов, титров и простых роликов.",
+    "fullDescription": "OpenShot предлагает удобную временную шкалу, переходы, анимированные титры и базовые эффекты. Подходит новичкам для домашних видео, учебных роликов и публикаций в соцсетях.",
+    "website": "https://www.openshot.org/download/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Монтаж видео",
+      "Переходы",
+      "Анимированные титры",
+      "Простой интерфейс"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/OpenShot/openshot-qt/releases/download/v3.5.1/OpenShot-v3.5.1-x86_64.exe",
+        "sha256": "f7894bbf87ec77f37ea46407fef0ae444cd8db52dfc9fd52d969b8a8bde55685",
+        "version": "3.5.1"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "OpenShot.OpenShot",
+    "publisher": "OpenShot Studios, LLC",
+    "license": "GPL-3.0",
+    "sourceManifestSha256": "79957b74cfa53adad136673d35cac4b4bf501ccc0dd7800f8bbb8ee408ffaba6",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "mkvtoolnix",
+    "name": "MKVToolNix",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Набор инструментов для создания и редактирования контейнеров MKV без перекодирования.",
+    "fullDescription": "MKVToolNix объединяет видео, аудиодорожки, субтитры и главы в файлах Matroska. Можно менять метаданные, порядок дорожек и разбивать файлы без потери качества.",
+    "website": "https://mkvtoolnix.download/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Контейнер MKV",
+      "Дорожки и субтитры",
+      "Главы",
+      "Без перекодирования"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://mkvtoolnix.download/windows/releases/100.0/mkvtoolnix-64-bit-100.0-setup.exe",
+        "sha256": "f0e53e5459610583e972ebb1a5c923816bb461bafb9831455680343c68cc4074",
+        "version": "100.0.0"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "MoritzBunkus.MKVToolNix",
+    "publisher": "Moritz Bunkus",
+    "license": "GPL-2.0",
+    "sourceManifestSha256": "d1884eaaf782c0df26037cd01e8df47a5766053d90d71cf943a1761cfb14a6a4",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "musescore",
+    "name": "MuseScore Studio",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Редактор нот с воспроизведением, партиями инструментов и экспортом партитур.",
+    "fullDescription": "MuseScore Studio помогает набирать нотный текст, создавать партитуры и слушать результат. Поддерживает MIDI, MusicXML, отдельные партии и экспорт в PDF или аудио.",
+    "website": "https://musescore.org/en",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Нотный редактор",
+      "MIDI",
+      "Партитуры",
+      "Экспорт PDF"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/musescore/MuseScore/releases/download/v4.7.4/MuseScore-Studio-4.7.4.260706075-x86_64.msi",
+        "sha256": "64fe70e5cb9ffe159d047d1e88db567bd101f60d36b0de28feb674716929a378",
+        "version": "4.7.4.260706075"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "Musescore.Musescore",
+    "publisher": "MuseScore BVBA and Others",
+    "license": "GPL-3.0 License",
+    "sourceManifestSha256": "589b5cd64a8ab0dd942d6a4113a003f03697cd391f4c9fbf29469e2b248d85a0",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "calibre",
+    "name": "calibre",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Менеджер электронной библиотеки с конвертацией книг и отправкой на устройства.",
+    "fullDescription": "calibre сортирует электронные книги по авторам, сериям и тегам, редактирует метаданные и обложки. Конвертирует EPUB, MOBI и другие форматы, а также подключается к ридерам.",
+    "website": "https://calibre-ebook.com/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Электронная библиотека",
+      "Конвертация книг",
+      "Метаданные",
+      "Подключение ридеров"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://download.calibre-ebook.com/9.11.0/calibre-64bit-9.11.0.msi",
+        "sha256": "59bd2a7fb7978665e16b7f94218479d64ddedc80ec7fccb47a6768ae348ceb3d",
+        "version": "9.11.0"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "calibre.calibre",
+    "publisher": "Kovid Goyal",
+    "license": "GPL-3.0",
+    "sourceManifestSha256": "92401fef7fb686f547049fb696dac434798ac6bf381adac63b85c46aaaea278c",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "sumatrapdf",
+    "name": "SumatraPDF",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Лёгкая программа для быстрого просмотра PDF, EPUB, комиксов и документов.",
+    "fullDescription": "SumatraPDF быстро запускается и не перегружает систему. Открывает PDF, электронные книги, комиксы и некоторые офисные форматы, поддерживает вкладки и горячие клавиши.",
+    "website": "https://github.com/sumatrapdfreader/sumatrapdf",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Просмотр PDF",
+      "Электронные книги",
+      "Вкладки",
+      "Быстрый запуск"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://www.sumatrapdfreader.org/dl/rel/3.6.1/SumatraPDF-3.6.1-64-install.exe",
+        "sha256": "1eee71cccd2ea6e94d5bcea54ee2f759844da3e1a0ee2f6045035b1d17b94381",
+        "version": "3.6.1"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "SumatraPDF.SumatraPDF",
+    "publisher": "Krzysztof Kowalczyk",
+    "license": "GPL-3.0",
+    "sourceManifestSha256": "7baf8128543b8e1758b4a4387c2a1a5e971903900551848bb1e9daf26d414dd0",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "bitwarden",
+    "name": "Bitwarden",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Менеджер паролей с шифрованием, генератором и синхронизацией устройств.",
+    "fullDescription": "Bitwarden хранит логины, защищённые заметки и ключи в зашифрованном хранилище. Приложение синхронизируется с браузерами и телефонами, поддерживает генератор паролей и ключи доступа.",
+    "website": "https://bitwarden.com/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Пароли",
+      "Сквозное шифрование",
+      "Синхронизация",
+      "Ключи доступа"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/bitwarden/clients/releases/download/desktop-v2026.6.1/Bitwarden-Installer-2026.6.1.exe",
+        "sha256": "88033d2130935bbbd86a83f97fef05976ff4cb9c51567106278220ca9d44ceef",
+        "version": "2026.6.1"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "Bitwarden.Bitwarden",
+    "publisher": "Bitwarden Inc.",
+    "license": "GPL-3.0 or Bitwarden-1.0",
+    "sourceManifestSha256": "5f73eba9d53793b3a3ef6b1720203c57a1dec6ce22949a3467bb56b55382bfa9",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "signal",
+    "name": "Signal",
+    "category": "communication",
+    "categoryLabel": "Общение",
+    "shortDescription": "Приватный мессенджер со сквозным шифрованием сообщений и звонков.",
+    "fullDescription": "Signal шифрует личные и групповые переписки, голосовые и видеозвонки. Настольное приложение синхронизируется с телефоном и не содержит рекламы или встроенных трекеров.",
+    "website": "https://www.signal.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Зашифрованные чаты",
+      "Звонки",
+      "Группы",
+      "Без рекламы"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://updates.signal.org/desktop/signal-desktop-win-8.19.0.exe",
+        "sha256": "95bb1f448c684466d7fb50bf6499e1272036d9e7f34087bcb2ad0f13e8e9102d",
+        "version": "8.19.0"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "OpenWhisperSystems.Signal",
+    "publisher": "Signal Messenger, LLC",
+    "license": "AGPL-3.0",
+    "sourceManifestSha256": "0f33e4dcdb2a8d16c9726f533ff071d17ba7f51ef4c18a94cf80aa3689cad587",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "telegram-desktop",
+    "name": "Telegram Desktop",
+    "category": "communication",
+    "categoryLabel": "Общение",
+    "shortDescription": "Настольный клиент Telegram для чатов, каналов, звонков и больших файлов.",
+    "fullDescription": "Telegram Desktop даёт быстрый доступ к перепискам, каналам, ботам и облачным файлам с компьютера. Поддерживает голосовые и видеозвонки, темы и несколько аккаунтов.",
+    "website": "https://desktop.telegram.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Чаты и каналы",
+      "Звонки",
+      "Большие файлы",
+      "Несколько аккаунтов"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/telegramdesktop/tdesktop/releases/download/v7.0.1/tsetup-x64.7.0.1.exe",
+        "sha256": "ee143ff7a41648ba07b56faefacffe860332b6f8660a79f64e263cb7488d2eeb",
+        "version": "7.0.1"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "Telegram.TelegramDesktop",
+    "publisher": "Telegram FZ-LLC",
+    "license": "GPL-3.0-only",
+    "sourceManifestSha256": "c2a1eb48f68edf4c01d7b6cd6f741eb45d2938240c19324e81407a0d08469e34",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "tor-browser",
+    "name": "Tor Browser",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Браузер для доступа к сети Tor и снижения отслеживания в интернете.",
+    "fullDescription": "Tor Browser направляет трафик через несколько узлов сети Tor и уменьшает цифровой отпечаток. Основан на Firefox и включает усиленные настройки приватности.",
+    "website": "https://www.torproject.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Сеть Tor",
+      "Защита приватности",
+      "Антифингерпринтинг",
+      "Изоляция сайтов"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://archive.torproject.org/tor-package-archive/torbrowser/15.0.18/tor-browser-windows-x86_64-portable-15.0.18.exe",
+        "sha256": "0222d39ab5e0e9157af1c5d8f01f79fdb6fd62ee337a671ca3f0cc6ed9aa1736",
+        "version": "15.0.18"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "TorProject.TorBrowser",
+    "publisher": "Tor Project",
+    "license": "MPL-2.0",
+    "sourceManifestSha256": "30906ade6baa06b5839e80487085454fe32d55f35e85a2869c3b968053bd6f82",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "mullvad-vpn",
+    "name": "Mullvad VPN",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Открытый VPN-клиент с WireGuard, блокировкой утечек и минимумом данных аккаунта.",
+    "fullDescription": "Mullvad VPN защищает сетевой трафик и предлагает строгие настройки приватности. Клиент поддерживает WireGuard, аварийное отключение сети и выбор серверов по странам.",
+    "website": "https://mullvad.net/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "WireGuard",
+      "Kill switch",
+      "Защита от утечек",
+      "Выбор серверов"
+    ],
+    "priceLabel": "Клиент бесплатный · VPN платный",
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/mullvad/mullvadvpn-app/releases/download/2026.3/MullvadVPN-2026.3_x64.exe",
+        "sha256": "e335507b948083100b54f8000ef5bb733e3ee959f8df6a573e9404c506cb139a",
+        "version": "2026.3"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "MullvadVPN.MullvadVPN",
+    "publisher": "Mullvad VPN",
+    "license": "GPL-3.0",
+    "sourceManifestSha256": "8c86749e1c4f63bb9a4c64d5ac42ae01ca2b6ecec187247b87af275d2a85bddd",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "tailscale",
+    "name": "Tailscale",
+    "category": "network",
+    "categoryLabel": "Удалённый доступ",
+    "shortDescription": "Защищённая mesh-сеть для доступа к своим компьютерам и сервисам из любой точки.",
+    "fullDescription": "Tailscale соединяет устройства через WireGuard без ручной настройки маршрутизаторов. Подходит для удалённого рабочего стола, домашних серверов и безопасного обмена внутри команды.",
+    "website": "https://tailscale.com/download",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Mesh VPN",
+      "WireGuard",
+      "Удалённый доступ",
+      "Простая настройка"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://pkgs.tailscale.com/stable/tailscale-setup-full-1.98.9.exe",
+        "sha256": "b3f7e15eb33b90f0686d6037453a0c680c3553b55deca649b56b6b05635c9e7b",
+        "version": "1.98.9"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "Tailscale.Tailscale",
+    "publisher": "Tailscale Inc.",
+    "license": "BSD-3-Clause",
+    "sourceManifestSha256": "02e739187ab7e8ff39072163afde81ffc2a5e46b3525471720aa0da9e86b2704",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "wireguard",
+    "name": "WireGuard",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Быстрый VPN-клиент для подключения к сетям по современному протоколу WireGuard.",
+    "fullDescription": "WireGuard создаёт защищённые туннели с небольшим количеством настроек и высокой скоростью. Приложение импортирует конфигурации, управляет несколькими туннелями и работает в фоне.",
+    "website": "https://www.wireguard.com/install/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "VPN-туннели",
+      "Высокая скорость",
+      "Импорт конфигураций",
+      "Фоновая работа"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://download.wireguard.com/windows-client/wireguard-amd64-1.1.msi",
+        "sha256": "6daa5d37a9e2950dfb8c48b95ab8e562cb2bad1c785d020f38f97bea4c6a5566",
+        "version": "1.1"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "WireGuard.WireGuard",
+    "publisher": "WireGuard LLC",
+    "license": "MIT",
+    "sourceManifestSha256": "412914dad47bcd5594ca28f7e327ecf319f9a937f2f3e420794e78ac505b13b0",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "openvpn-community",
+    "name": "OpenVPN Community",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Открытый VPN-клиент для подключения по конфигурациям OpenVPN.",
+    "fullDescription": "OpenVPN Community устанавливает клиент и сетевой драйвер для защищённых подключений. Поддерживает сертификаты, профили OVPN и разные методы аутентификации.",
+    "website": "https://openvpn.net/community/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "OpenVPN",
+      "Профили OVPN",
+      "Сертификаты",
+      "Защищённый туннель"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://swupdate.openvpn.org/community/releases/OpenVPN-2.7.5-I001-amd64.msi",
+        "sha256": "20a9b2831cc3be26c250caf60891c230f3bf3e1e7bd6e17b4e182f166026377a",
+        "version": "2.7.501"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "OpenVPNTechnologies.OpenVPN",
+    "publisher": "OpenVPN, Inc.",
+    "license": "GPLv2",
+    "sourceManifestSha256": "b61da6404fd8ede17a4e7ec7bf2432e6dcf4664e75de95538778bd020ff118f9",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "veracrypt",
+    "name": "VeraCrypt",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Шифрование дисков, флешек и защищённых контейнеров с данными.",
+    "fullDescription": "VeraCrypt создаёт зашифрованные виртуальные диски и защищает разделы целиком. Поддерживает скрытые тома, сильные алгоритмы и автоматическое подключение контейнеров.",
+    "website": "https://veracrypt.io/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Шифрование диска",
+      "Контейнеры",
+      "Скрытые тома",
+      "Защита флешек"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://launchpad.net/veracrypt/trunk/1.26.29/+download/VeraCrypt_Setup_x64_1.26.29.msi",
+        "sha256": "5ba6426983123cfb92bc1f09bd888fdbc0f53f300d0d9c5da52ce3aee8d474f0",
+        "version": "1.26.29"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "IDRIX.VeraCrypt",
+    "publisher": "IDRIX",
+    "license": "Apache 2.0",
+    "sourceManifestSha256": "058dc8da592335cfbceae76309d2f96560e67afe340e8c7467d98cc8e25fd301",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "wireshark",
+    "name": "Wireshark",
+    "category": "network",
+    "categoryLabel": "Удалённый доступ",
+    "shortDescription": "Анализатор сетевого трафика с фильтрами и разбором сотен протоколов.",
+    "fullDescription": "Wireshark захватывает пакеты и показывает содержимое сетевых соединений по уровням. Полезен для диагностики, обучения, поиска ошибок и проверки безопасности сети.",
+    "website": "https://www.wireshark.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Захват пакетов",
+      "Фильтры",
+      "Сетевые протоколы",
+      "Диагностика"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://2.na.dl.wireshark.org/win64/all-versions/Wireshark-4.6.7-x64.exe",
+        "sha256": "e67cfc2b4462cce93aecb67972d5079e85b8fe575fb18858f9260b6ec7b37258",
+        "version": "4.6.7"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "WiresharkFoundation.Wireshark",
+    "publisher": "The Wireshark developer community, https://www.wireshark.org",
+    "license": "GPL-2.0",
+    "sourceManifestSha256": "33262c5d87e901f05d9ecafce8336999ae1205c44b675448d87216cd1871179d",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "putty",
+    "name": "PuTTY",
+    "category": "network",
+    "categoryLabel": "Удалённый доступ",
+    "shortDescription": "Компактный SSH- и Telnet-клиент для подключения к серверам и сетевым устройствам.",
+    "fullDescription": "PuTTY открывает терминальные подключения по SSH, Telnet и последовательному порту. В комплект входят инструменты для ключей, защищённого копирования файлов и автоматизации.",
+    "website": "https://www.chiark.greenend.org.uk/~sgtatham/putty/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "SSH",
+      "Telnet",
+      "Серийный порт",
+      "Ключи доступа"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://the.earth.li/~sgtatham/putty/0.84/w64/putty-64bit-0.84-installer.msi",
+        "sha256": "190d00150e67ad3ff51af4b50e76a3ab97b863a34efd50472627b17c0cf4102b",
+        "version": "0.84.0.0"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "PuTTY.PuTTY",
+    "publisher": "Simon Tatham",
+    "license": "MIT",
+    "sourceManifestSha256": "21bcf36a6ac465e87a696b9574ee0ee8275bcfb3e2ae1ddf00412517874c353a",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "vscodium",
+    "name": "VSCodium",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Сборка редактора VS Code без фирменной телеметрии Microsoft.",
+    "fullDescription": "VSCodium предоставляет знакомый редактор кода с вкладками, терминалом, Git и расширениями. Сборка создаётся из открытого исходного кода VS Code и отключает фирменную телеметрию.",
+    "website": "https://vscodium.com/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Редактор кода",
+      "Расширения",
+      "Встроенный терминал",
+      "Без телеметрии Microsoft"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/VSCodium/vscodium/releases/download/1.126.04524/VSCodiumUserSetup-x64-1.126.04524.exe",
+        "sha256": "a8c0516a9b17d1ba4887898f0966445bc61b386fd11578e57433f1e57e9868c9",
+        "version": "1.126.04524"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "VSCodium.VSCodium",
+    "publisher": "VSCodium",
+    "license": "MIT",
+    "sourceManifestSha256": "6b580f0d562a998febe7111d3a4ee3fe2c78ab65385bfd38e30362f3bc4591f2",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "git-for-windows",
+    "name": "Git for Windows",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Система контроля версий Git с командной строкой и интеграцией для Windows.",
+    "fullDescription": "Git for Windows устанавливает Git Bash, основные консольные инструменты и поддержку репозиториев. Подходит для работы с GitHub, GitLab и локальной историей проектов.",
+    "website": "https://gitforwindows.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Git",
+      "Git Bash",
+      "Контроль версий",
+      "GitHub и GitLab"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/git-for-windows/git/releases/download/v2.55.0.windows.3/Git-2.55.0.3-64-bit.exe",
+        "sha256": "af12577d0fdff74243a5988197aa49b957d5044edc17004f6ddf0768996f1dca",
+        "version": "2.55.0.3"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "Git.Git",
+    "publisher": "The Git Development Community",
+    "license": "GPL-2.0",
+    "sourceManifestSha256": "f0c16b7dad47bb55bcaa7e5fae3e6e724b57e7bf447691480d7a791b64afd14d",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "virtualbox",
+    "name": "Oracle VirtualBox",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Виртуальные машины для запуска других операционных систем внутри Windows.",
+    "fullDescription": "VirtualBox создаёт изолированные виртуальные компьютеры для Windows, Linux и других систем. Поддерживает снимки состояния, общие папки, сети и импорт готовых образов.",
+    "website": "https://www.virtualbox.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Виртуальные машины",
+      "Снимки",
+      "Общие папки",
+      "Виртуальные сети"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://download.virtualbox.org/virtualbox/7.2.12/VirtualBox-7.2.12-174389-Win.exe",
+        "sha256": "5094f3d573fe2a511bfc7ae8982c2f6544ae9b5051048dc7a0e9985c74dcac4c",
+        "version": "7.2.12"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "Oracle.VirtualBox",
+    "publisher": "Oracle and/or its affiliates",
+    "license": "GPL-3.0-only",
+    "sourceManifestSha256": "b9f154bdcbeaac3354c97d75542e72a168a429ec1bc0e8d2cb1f61ac3ee602b2",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "crystaldiskinfo",
+    "name": "CrystalDiskInfo",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Контроль здоровья SSD и жёстких дисков по показателям S.M.A.R.T.",
+    "fullDescription": "CrystalDiskInfo показывает температуру, ресурс, время работы и ошибки накопителей. Предупреждает о проблемных значениях S.M.A.R.T. и помогает вовремя сделать резервную копию.",
+    "website": "https://crystalmark.info/en/software/crystaldiskinfo/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "S.M.A.R.T.",
+      "Температура диска",
+      "Состояние SSD",
+      "Предупреждения"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://sourceforge.net/projects/crystaldiskinfo/files/9.9.1/CrystalDiskInfo9_9_1.exe",
+        "sha256": "261715a9be7f30d5ee8597c834fce377e1dc3e96b300d17c3faaf38a255da02b",
+        "version": "9.9.1"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "CrystalDewWorld.CrystalDiskInfo",
+    "publisher": "Crystal Dew World",
+    "license": "MIT",
+    "sourceManifestSha256": "e1a8ad2df36628e27042d631bc2bf6e994579bb2fcb4e576cdad4456fde03d76",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "crystaldiskmark",
+    "name": "CrystalDiskMark",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Тест скорости SSD, жёстких дисков, флешек и сетевых накопителей.",
+    "fullDescription": "CrystalDiskMark измеряет последовательное и случайное чтение и запись. Можно менять размер теста, число прогонов и сравнивать реальную производительность накопителей.",
+    "website": "https://crystalmark.info/en/software/crystaldiskmark/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Скорость чтения",
+      "Скорость записи",
+      "Тест SSD",
+      "Настройка нагрузки"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://sourceforge.net/projects/crystaldiskmark/files/9.0.3/CrystalDiskMark9_0_3.exe",
+        "sha256": "1a255154e116a533f86535bc362f101e32d6171604cde9b6b554335856917e5e",
+        "version": "9.0.3"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "CrystalDewWorld.CrystalDiskMark",
+    "publisher": "Crystal Dew World",
+    "license": "MIT",
+    "sourceManifestSha256": "c414b898ea82ab74278985081a3fade9f008d3de60c500fe6f9a488925cebdd2",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "everything-search",
+    "name": "Everything",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Мгновенный поиск файлов и папок на дисках Windows по имени.",
+    "fullDescription": "Everything быстро индексирует имена файлов и показывает результаты ещё во время ввода. Поддерживает фильтры, регулярные выражения, закладки и поиск по сетевым ресурсам.",
+    "website": "https://www.voidtools.com/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Мгновенный поиск",
+      "Фильтры",
+      "Регулярные выражения",
+      "Минимальная нагрузка"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://www.voidtools.com/Everything-1.4.1.1032.x64-Setup.exe",
+        "sha256": "c42efad041d4c0bb4d4ac97ae7cbe89f153ec1fe078772392e749c7f5d5282d3",
+        "version": "1.4.1.1032"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "voidtools.Everything",
+    "publisher": "voidtools",
+    "license": "MIT",
+    "sourceManifestSha256": "bb9ab713dd04b7d0f970f36460110752dfaadb49cc0c1da02408ab476e219004",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "cryptomator",
+    "name": "Cryptomator",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Шифрование файлов перед загрузкой в облачные папки и синхронизацию.",
+    "fullDescription": "Cryptomator создаёт зашифрованное хранилище внутри обычной папки Dropbox, OneDrive или другого облака. Файлы расшифровываются на устройстве и открываются как виртуальный диск.",
+    "website": "https://cryptomator.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Шифрование файлов",
+      "Облачные папки",
+      "Виртуальный диск",
+      "Локальные ключи"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/cryptomator/cryptomator/releases/download/1.19.3/Cryptomator-1.19.3-x64.msi",
+        "sha256": "e303cced835e1a8a1041580eeaea3b7b3658c348d77ea53a108a95926625c41a",
+        "version": "1.19.3"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "Cryptomator.Cryptomator",
+    "publisher": "Skymatic GmbH",
+    "license": "GPL-3.0",
+    "sourceManifestSha256": "5ac9b98b908314b94912f7446b0cdf1ff0c278f3c15e7f1f0eb9cfc7d5a065c8",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "winmerge",
+    "name": "WinMerge",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Сравнение и объединение файлов, папок и фрагментов текста.",
+    "fullDescription": "WinMerge наглядно подсвечивает различия между версиями файлов и каталогов. Поддерживает синхронизацию папок, фильтры, плагины и трёхстороннее сравнение.",
+    "website": "https://winmerge.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Сравнение файлов",
+      "Сравнение папок",
+      "Объединение изменений",
+      "Фильтры"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/WinMerge/winmerge/releases/download/v2.16.56.2/WinMerge-2.16.56.2-x64-PerUser-Setup.exe",
+        "sha256": "e4b28c01f1568df0b333de0f95e076a54955c9d3a2132df21904ba5537c11d51",
+        "version": "2.16.56.2"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "WinMerge.WinMerge",
+    "publisher": "Thingamahoochie Software",
+    "license": "GPL-2.0",
+    "sourceManifestSha256": "a6de2abc58a4bceab65ccbe2c5cba1ee403019a7d04a32eacbea569f781cb2a7",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "freecad",
+    "name": "FreeCAD",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Параметрическая 3D-CAD-система для деталей, моделей и технических проектов.",
+    "fullDescription": "FreeCAD строит точные трёхмерные модели на основе размеров и ограничений. Подходит для механики, 3D-печати, архитектурных эскизов и обмена инженерными форматами.",
+    "website": "https://www.freecad.org/downloads.php",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Параметрическое моделирование",
+      "3D-печать",
+      "Чертежи",
+      "Инженерные форматы"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/FreeCAD/FreeCAD/releases/download/1.1.1/FreeCAD_1.1.1-Windows-x86_64-py311-installer.exe",
+        "sha256": "3e4caf58cc1d82e4e8d726572f741ae664b6e91a77c4d3cb59102d9b8bd51feb",
+        "version": "1.1.1"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "FreeCAD.FreeCAD",
+    "publisher": "FreeCAD Team",
+    "license": "LGPL-2.0-or-later",
+    "sourceManifestSha256": "23caf3eb62101c0775ba571aedecedd84135088744ca646ff9ed91131a4ed8d7",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "kicad",
+    "name": "KiCad",
+    "category": "graphics",
+    "categoryLabel": "Графика и фото",
+    "shortDescription": "Проектирование электронных схем и печатных плат с 3D-просмотром.",
+    "fullDescription": "KiCad объединяет редактор схем, трассировку печатных плат и управление библиотеками компонентов. Проверяет правила проекта и показывает готовую плату в 3D.",
+    "website": "https://www.kicad.org/download/windows/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Электрические схемы",
+      "Печатные платы",
+      "3D-просмотр",
+      "Библиотеки компонентов"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/KiCad/kicad-source-mirror/releases/download/10.0.4/kicad-10.0.4-x86_64.exe",
+        "sha256": "0542f21d8f33d4bc530768c97bfe1ecd495a88050b361d1864c12b1e7c9430cd",
+        "version": "10.0.4"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "KiCad.KiCad",
+    "publisher": "KiCad",
+    "license": "GPL-3.0",
+    "sourceManifestSha256": "59aef481ec0814850861f013c274d331d93b0a261c7040fa8ff4988294535ed4",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "arduino-ide",
+    "name": "Arduino IDE",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Среда разработки и загрузки программ на платы Arduino и совместимые контроллеры.",
+    "fullDescription": "Arduino IDE содержит редактор скетчей, менеджер плат и библиотек, монитор порта и отладку. Помогает собирать прошивки и загружать их на микроконтроллеры через USB.",
+    "website": "https://www.arduino.cc/en/software",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Скетчи Arduino",
+      "Менеджер плат",
+      "Библиотеки",
+      "Монитор порта"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/arduino/arduino-ide/releases/download/2.3.8/arduino-ide_2.3.8_Windows_64bit.exe",
+        "sha256": "934d97683be6454c627acbf97899a9788da82e4cb4aa5cc2cc2094a551d89ac8",
+        "version": "2.3.8"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "ArduinoSA.IDE.stable",
+    "publisher": "Arduino SA",
+    "license": "AGPL-3.0",
+    "sourceManifestSha256": "a6f6eac997624279b5b1001dc19208ac00a9d5cc2373cfe87c80c56a859a6a99",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "onlyoffice-desktop-editors",
+    "name": "ONLYOFFICE Desktop Editors",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Офисные редакторы документов, таблиц, презентаций и PDF с вкладками.",
+    "fullDescription": "ONLYOFFICE Desktop Editors открывает современные форматы DOCX, XLSX и PPTX без браузера. Поддерживает плагины, формы, PDF и подключение к совместимым облачным хранилищам.",
+    "website": "https://www.onlyoffice.com/en/desktop.aspx",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "DOCX и XLSX",
+      "Презентации",
+      "PDF",
+      "Плагины"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v9.4.0/DesktopEditors_x64.exe",
+        "sha256": "a3b4a7353946a2d836eadfb8f59799f98b906ab961421c05c0bee00be9307a9f",
+        "version": "9.4.0"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "ONLYOFFICE.DesktopEditors",
+    "publisher": "Ascensio System SIA",
+    "license": "AGPL-3.0",
+    "sourceManifestSha256": "3c5f29d0810c18b33f7029da7d1dcb81f43c0204617083d1ef0ffaceee9b58d4",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "zotero",
+    "name": "Zotero",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Менеджер источников, PDF и библиографии для учёбы и исследований.",
+    "fullDescription": "Zotero собирает публикации из браузера, хранит PDF и создаёт библиографию в нужном стиле. Есть заметки, теги, поиск, синхронизация и плагины для текстовых редакторов.",
+    "website": "https://www.zotero.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Библиография",
+      "PDF-библиотека",
+      "Цитирование",
+      "Синхронизация"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://download.zotero.org/client/release/9.0.6/Zotero-9.0.6_x64_setup.exe",
+        "sha256": "973bfc96a7af8b2949bbfdc46b220366b2b204942ac30d50aef9835eb152d31c",
+        "version": "9.0.6"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "DigitalScholar.Zotero",
+    "publisher": "Corporation for Digital Scholarship",
+    "license": "AGPL-3.0",
+    "sourceManifestSha256": "50e90f7f59491adb08cf6ae3a90fb45e965f98f4ea099da98e660f4ecdc469ee",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "aegisub",
+    "name": "Aegisub",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Редактор субтитров с таймингом, стилями и визуальной синхронизацией с видео.",
+    "fullDescription": "Aegisub помогает создавать и синхронизировать субтитры по звуковой волне и кадрам. Поддерживает стили ASS, автоматизацию, проверку текста и экспорт в распространённые форматы.",
+    "website": "https://aegisub.org/downloads/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Субтитры",
+      "Тайминг",
+      "Стили ASS",
+      "Звуковая волна"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/TypesettingTools/Aegisub/releases/download/v3.4.2/Aegisub-3.4.2.exe",
+        "sha256": "df0318afbc88aa461bb702a42a0d0b1203b88cec2d28b61691493766aefe784d",
+        "version": "3.4.2"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "Aegisub.Aegisub",
+    "publisher": "Aegisub Team",
+    "license": "GPL-2.0",
+    "sourceManifestSha256": "14bcf1a75998e472ed4b447871416313a4c87448827946440e5a7542a609f5c2",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "musicbrainz-picard",
+    "name": "MusicBrainz Picard",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Автоматическое исправление тегов и названий музыкальных файлов по базе MusicBrainz.",
+    "fullDescription": "Picard распознаёт альбомы и заполняет исполнителя, год, жанр, номер трека и обложку. Поддерживает акустические отпечатки, пакетную обработку и правила переименования файлов.",
+    "website": "https://picard.musicbrainz.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Музыкальные теги",
+      "Обложки",
+      "MusicBrainz",
+      "Пакетная обработка"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/metabrainz/picard/releases/download/release-2.8.2/MusicBrainz-Picard-2.8.2.msix",
+        "sha256": "076abbf3933934cb9499497c82c9ebccf417fa8926ddbb3f2d256c7491f1affd",
+        "version": "2.8.20000.0"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "MusicBrainz.Picard",
+    "publisher": "MetaBrainz Foundation Inc.",
+    "license": "GPL-2.0-only",
+    "sourceManifestSha256": "d06c0ed6aad665edb1a0575239b17837de88f703268ff737456a304792090f0e",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "kodi",
+    "name": "Kodi",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Медиацентр для фильмов, сериалов, музыки, фотографий и домашнего экрана.",
+    "fullDescription": "Kodi организует локальную медиатеку с постерами, описаниями и удобным управлением с дивана. Поддерживает сетевые папки, дополнения, пульты и полноэкранные темы.",
+    "website": "https://kodi.tv/download/windows/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Домашний медиацентр",
+      "Медиатека",
+      "Дополнения",
+      "Сетевые папки"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://mirrors.kodi.tv/releases/windows/win64/kodi-21.3-Omega-x64.exe",
+        "sha256": "2c46c2bd60b38bb60eb0a5e3468bfd43e9235521eae2910b8c81455e46335c5c",
+        "version": "21.3"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "XBMCFoundation.Kodi",
+    "publisher": "XBMC Foundation",
+    "license": "GPL-2.0-or-later",
+    "sourceManifestSha256": "6fcbdb0eb63f4276e56f983ca2033ed0a7a9c75576bcb0dc3a307e0aed5b51f2",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "jellyfin-media-player",
+    "name": "Jellyfin Media Player",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Настольный плеер для просмотра личной медиатеки с сервера Jellyfin.",
+    "fullDescription": "Jellyfin Media Player подключается к собственному медиасерверу и воспроизводит фильмы, сериалы и музыку. Поддерживает прямое воспроизведение, субтитры и управление библиотекой.",
+    "website": "https://github.com/jellyfin/jellyfin-media-player",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Jellyfin",
+      "Фильмы и сериалы",
+      "Субтитры",
+      "Личная медиатека"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/jellyfin/jellyfin-media-player/releases/download/v1.9.1/JellyfinMediaPlayer-1.9.1-windows-x64.exe",
+        "sha256": "cf1fafb6c7b5caf9d7cff0eb9669771b0072fd8ac4689114b65d63942b645624",
+        "version": "1.9.1"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "Jellyfin.JellyfinMediaPlayer",
+    "publisher": "Jellyfin",
+    "license": "GPL-2.0",
+    "sourceManifestSha256": "52b52ef88bd5b1619c421ee996379c1e07322f715bfc2ea0fe569b4961e29001",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "transmission",
+    "name": "Transmission",
+    "category": "network",
+    "categoryLabel": "Удалённый доступ",
+    "shortDescription": "Лёгкий BitTorrent-клиент с очередью, ограничениями скорости и magnet-ссылками.",
+    "fullDescription": "Transmission загружает торренты без рекламы и лишних панелей. Поддерживает magnet-ссылки, расписание скорости, шифрование соединений и удалённое управление.",
+    "website": "https://transmissionbt.com/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "BitTorrent",
+      "Magnet-ссылки",
+      "Лимиты скорости",
+      "Без рекламы"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/transmission/transmission/releases/download/4.1.3/transmission-4.1.3-x64.msi",
+        "sha256": "c8ea492d8f46fadac26e0c05b244cabba556201d5fe348dfcf1cf036621741f8",
+        "version": "4.1.3"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "Transmission.Transmission",
+    "publisher": "Transmission Project",
+    "license": "GPLv3",
+    "sourceManifestSha256": "1cfc8df0f19f0b51840987f64e0800089575a720097350830d579af620a60de2",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "duplicati",
+    "name": "Duplicati",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Зашифрованные резервные копии на облако, сервер или внешний диск по расписанию.",
+    "fullDescription": "Duplicati делает инкрементальные резервные копии и шифрует их до отправки. Работает с популярными облаками, SFTP, WebDAV и локальными накопителями.",
+    "website": "https://www.duplicati.com/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Резервные копии",
+      "Шифрование",
+      "Облачные хранилища",
+      "Расписание"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/duplicati/duplicati/releases/download/v2.3.0.4_stable_2026-07-09/duplicati-2.3.0.4_stable_2026-07-09-win-x64-gui.msi",
+        "sha256": "e098b2e9cd6435d239b266cc1370f5f5df43490e215b8a1cc25b39a474befbd0",
+        "version": "2.3.0.4"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "Duplicati.Duplicati",
+    "publisher": "Duplicati Team",
+    "license": "MIT",
+    "sourceManifestSha256": "669f40e0c0319ff228d3f6d52ce264c04cb6feb01e4e6b689684e14bc8096f07",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "autohotkey",
+    "name": "AutoHotkey",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Автоматизация действий в Windows с горячими клавишами, макросами и скриптами.",
+    "fullDescription": "AutoHotkey позволяет переназначать клавиши, вставлять шаблоны текста и автоматизировать повторяющиеся действия. Небольшие скрипты могут управлять окнами, файлами и приложениями.",
+    "website": "https://www.autohotkey.com/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Горячие клавиши",
+      "Макросы",
+      "Автоматизация Windows",
+      "Скрипты"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/AutoHotkey/AutoHotkey/releases/download/v2.0.26/AutoHotkey_2.0.26_setup.exe",
+        "sha256": "2bf1b89b1047136490fc321d2fdc988b42dd86f693eea7872746ac6adf722bc3",
+        "version": "2.0.26"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "AutoHotkey.AutoHotkey",
+    "publisher": "AutoHotkey Foundation LLC",
+    "license": "GPL-2.0",
+    "sourceManifestSha256": "42cd6a99d2c0c975f6befdb5552f4fab216e61b8a9cfb302cd52dffe928e2ae4",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "thonny",
+    "name": "Thonny",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Простая среда Python для обучения, первых программ и работы с микроконтроллерами.",
+    "fullDescription": "Thonny показывает выполнение Python-кода по шагам и помогает понять переменные и ошибки. Включает простой отладчик, управление пакетами и поддержку MicroPython.",
+    "website": "https://thonny.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Python",
+      "Пошаговая отладка",
+      "Обучение",
+      "MicroPython"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://github.com/thonny/thonny/releases/download/v5.0.0/thonny-5.0.0-x64.exe",
+        "sha256": "1a3b98bf9cecfc32e810517c0ecbaa756fbab74c5ec5bd9cdb7a39d40f52ba45",
+        "version": "5.0.0"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "AivarAnnamaa.Thonny",
+    "publisher": "Aivar Annamaa",
+    "license": "MIT",
+    "sourceManifestSha256": "31c5f395073bb514b68c2a25b6b0b7e87cbc2f9254801f6dce515354930b3270",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "okular",
+    "name": "Okular",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Просмотр PDF и документов с аннотациями, закладками и формами.",
+    "fullDescription": "Okular открывает PDF, комиксы, изображения и электронные документы. Позволяет выделять текст, оставлять заметки, заполнять формы и работать с оглавлением.",
+    "website": "https://okular.kde.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Просмотр PDF",
+      "Аннотации",
+      "Закладки",
+      "Формы"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://cdn.kde.org/ci-builds/graphics/okular/release-26.04/windows/okular-release_26.04-7510-windows-cl-msvc2022-x86_64.exe",
+        "sha256": "052ac21324e2ddd32bc997b895184be92c7480e109f0d1e0347930627fe126f6",
+        "version": "26.04.3"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "KDE.Okular",
+    "publisher": "KDE e.V.",
+    "license": "GPL-2.0-or-later",
+    "sourceManifestSha256": "056b07062e23c357fef028b551318e798399901ba8501f8a5c479dbff87eb808",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "kate-editor",
+    "name": "Kate",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Быстрый текстовый редактор с проектами, терминалом и подсветкой кода.",
+    "fullDescription": "Kate подходит для редактирования кода, конфигураций и больших текстовых файлов. Поддерживает проекты, несколько курсоров, разделение окна, плагины и встроенный терминал.",
+    "website": "https://kate-editor.org/",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Редактор кода",
+      "Проекты",
+      "Несколько курсоров",
+      "Терминал"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "url": "https://cdn.kde.org/ci-builds/utilities/kate/release-26.04/windows/kate-release_26.04-12063-windows-cl-msvc2022-x86_64.exe",
+        "sha256": "bb7054d36081d741a74c22d1701b8b622d3b46bca0627a97ed8f3186714b892a",
+        "version": "26.04.3"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "KDE.Kate",
+    "publisher": "KDE e.V.",
+    "license": "LGPL-2.1-or-later",
+    "sourceManifestSha256": "5d7babaa56c1e06e9be509904a22346df9cb78d3644cae4a626e3c25ac6a3fe3",
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "testdisk",
+    "name": "TestDisk",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Восстановление потерянных разделов, загрузочных записей и удалённых файлов.",
+    "fullDescription": "TestDisk помогает вернуть разделы после ошибок разметки и исправить загрузочные структуры диска. В комплект входит PhotoRec для восстановления файлов по сигнатурам.",
+    "website": "https://www.cgsecurity.org/wiki/TestDisk",
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Восстановление разделов",
+      "PhotoRec",
+      "Загрузочные записи",
+      "Диагностика диска"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit · portable",
+        "url": "https://www.cgsecurity.org/testdisk-7.3-WIP.win64.zip",
+        "sha256": "d96e326be57eaea5408ae6ead59802890632b76e4eb82298cf2f9854b7702cc4",
+        "version": "7.3"
+      }
+    ],
+    "source": "winget",
+    "packageIdentifier": "CGSecurity.TestDisk",
+    "publisher": "CGSecurity",
+    "license": "GPL-2.0-or-later",
+    "sourceManifestSha256": "a8115f3fee550607ff3ab33719769b979c40581f5d25660d35df3cd478949c02",
+    "verifiedAt": "2026-07-20"
   }
 ]
