@@ -34,6 +34,19 @@ Generated files:
 - `data/crawl-summary.json` — source and category totals;
 - `data/review-queue.csv` and `.json` — highest-scoring moderation queue.
 
+## Publish a reviewed batch
+
+Keep the human-reviewed repository list and original Russian copy in `data/publication-selection.json`, then build a deterministic batch from a crawl artifact:
+
+```bash
+node scripts/promote-candidates.mjs --input=/path/to/github-crawl.drafts.json
+node scripts/promote-candidates.mjs --input=/path/to/github-crawl.drafts.json --apply
+node scripts/build-software-catalog.mjs
+node scripts/verify-downloads.mjs --input=data/software.batch.json
+```
+
+Promotion refuses duplicates, scores below 80, missing machine-readable licences and ambiguous asset patterns. It chooses one reviewed x64 desktop asset per available operating system. `--apply` is intentionally required before the public catalog changes.
+
 GitHub Actions runs a 700-repository collection when the crawler branch changes. After the workflow is on the default branch, it can collect up to 10,000 repositories manually and resume every Monday. The result is an artifact; it never changes the public catalog by itself.
 
 Verify all public direct-download patterns before a release:

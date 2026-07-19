@@ -3,7 +3,12 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const data = JSON.parse(await readFile(path.join(root, 'data', 'software.json'), 'utf8'));
+const args = Object.fromEntries(process.argv.slice(2).map(part => {
+  const [key, ...value] = part.replace(/^--/, '').split('=');
+  return [key, value.join('=') || true];
+}));
+const input = path.resolve(root, String(args.input || 'data/software.json'));
+const data = JSON.parse(await readFile(input, 'utf8'));
 const headers = {
   Accept: 'application/vnd.github+json',
   'X-GitHub-Api-Version': '2022-11-28',

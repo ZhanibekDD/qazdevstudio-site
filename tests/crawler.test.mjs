@@ -6,8 +6,11 @@ test('detects operating systems and architectures', () => {
   assert.equal(detectPlatform('Tool-4.2-Windows-x64-Installer.exe'), 'windows');
   assert.equal(detectPlatform('Tool-4.2-macOS-Apple.dmg'), 'macos');
   assert.equal(detectPlatform('tool_4.2_amd64.deb'), 'linux');
+  assert.equal(detectPlatform('Logseq-darwin-x64-2.0.1.zip'), 'macos');
   assert.equal(detectPlatform('tool-source.zip'), null);
   assert.equal(detectArchitecture('tool-aarch64.AppImage'), 'arm64');
+  assert.equal(detectArchitecture('tool-apple-silicon.dmg'), 'arm64');
+  assert.equal(detectArchitecture('tool-intel.dmg'), 'x64');
   assert.equal(detectArchitecture('tool-win64.exe'), 'x64');
 });
 

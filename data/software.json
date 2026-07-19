@@ -8,9 +8,22 @@
     "fullDescription": "ShareX — мощный инструмент для скриншотов и записи экрана. Он умеет захватывать область, прокручиваемую страницу, распознавать текст, добавлять стрелки и скрывать конфиденциальные данные.",
     "github": "ShareX/ShareX",
     "website": "https://getsharex.com/",
-    "platforms": ["windows"],
-    "features": ["Скриншоты", "Запись экрана", "OCR", "Редактор"],
-    "downloads": [{"os":"windows","label":"Windows","pattern":"^ShareX-.*-setup-x64\\.exe$"}],
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Скриншоты",
+      "Запись экрана",
+      "OCR",
+      "Редактор"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "^ShareX-.*-setup-x64\\.exe$"
+      }
+    ],
     "verifiedAt": "2026-07-20"
   },
   {
@@ -22,12 +35,33 @@
     "fullDescription": "OBS Studio — бесплатная программа для записи экрана и прямых трансляций. Поддерживает сцены, камеры, микрофоны, захват приложений, плагины и аппаратное кодирование.",
     "github": "obsproject/obs-studio",
     "website": "https://obsproject.com/",
-    "platforms": ["windows", "macos", "linux"],
-    "features": ["Запись видео", "Стриминг", "Сцены", "Плагины"],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Запись видео",
+      "Стриминг",
+      "Сцены",
+      "Плагины"
+    ],
     "downloads": [
-      {"os":"windows","label":"Windows","pattern":"Windows-x64-Installer\\.exe$"},
-      {"os":"macos","label":"macOS Apple","pattern":"macOS-Apple\\.dmg$"},
-      {"os":"linux","label":"Ubuntu","pattern":"Ubuntu-24\\.04-x86_64\\.deb$"}
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "Windows-x64-Installer\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS Apple",
+        "pattern": "macOS-Apple\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Ubuntu",
+        "pattern": "Ubuntu-24\\.04-x86_64\\.deb$"
+      }
     ],
     "verifiedAt": "2026-07-20"
   },
@@ -40,9 +74,22 @@
     "fullDescription": "PowerToys добавляет в Windows продвинутые раскладки окон, массовое переименование, поиск, извлечение текста, быстрый просмотр файлов и другие инструменты продуктивности.",
     "github": "microsoft/PowerToys",
     "website": "https://learn.microsoft.com/windows/powertoys/",
-    "platforms": ["windows"],
-    "features": ["Windows", "FancyZones", "PowerRename", "Поиск"],
-    "downloads": [{"os":"windows","label":"Windows","pattern":"PowerToysUserSetup-.*-x64\\.exe$"}],
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Windows",
+      "FancyZones",
+      "PowerRename",
+      "Поиск"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "PowerToysUserSetup-.*-x64\\.exe$"
+      }
+    ],
     "verifiedAt": "2026-07-20"
   },
   {
@@ -54,9 +101,22 @@
     "fullDescription": "Notepad++ — лёгкий редактор для текста, логов и исходного кода. Поддерживает подсветку синтаксиса, регулярные выражения, макросы и расширения.",
     "github": "notepad-plus-plus/notepad-plus-plus",
     "website": "https://notepad-plus-plus.org/",
-    "platforms": ["windows"],
-    "features": ["Текст", "Код", "Регулярные выражения", "Плагины"],
-    "downloads": [{"os":"windows","label":"Windows","pattern":"Installer\\.x64\\.exe$"}],
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Текст",
+      "Код",
+      "Регулярные выражения",
+      "Плагины"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "Installer\\.x64\\.exe$"
+      }
+    ],
     "verifiedAt": "2026-07-20"
   },
   {
@@ -68,9 +128,22 @@
     "fullDescription": "Rufus быстро записывает ISO-образы на USB-накопитель и создаёт загрузочные флешки. Программа портативная и не требует установки.",
     "github": "pbatard/rufus",
     "website": "https://rufus.ie/",
-    "platforms": ["windows"],
-    "features": ["Загрузочная флешка", "ISO", "Windows", "Портативная"],
-    "downloads": [{"os":"windows","label":"Windows","pattern":"^rufus-[0-9.]+\\.exe$"}],
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Загрузочная флешка",
+      "ISO",
+      "Windows",
+      "Портативная"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "^rufus-[0-9.]+\\.exe$"
+      }
+    ],
     "verifiedAt": "2026-07-20"
   },
   {
@@ -82,12 +155,33 @@
     "fullDescription": "KeePassXC хранит пароли в зашифрованном файле на устройстве пользователя. Поддерживает генератор паролей, автозаполнение, ключи доступа и аппаратные токены.",
     "github": "keepassxreboot/keepassxc",
     "website": "https://keepassxc.org/",
-    "platforms": ["windows", "macos", "linux"],
-    "features": ["Пароли", "Шифрование", "Офлайн", "Автозаполнение"],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Пароли",
+      "Шифрование",
+      "Офлайн",
+      "Автозаполнение"
+    ],
     "downloads": [
-      {"os":"windows","label":"Windows","pattern":"Win64\\.msi$"},
-      {"os":"macos","label":"macOS Apple","pattern":"arm64\\.dmg$"},
-      {"os":"linux","label":"Linux","pattern":"x86_64\\.AppImage$"}
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "Win64\\.msi$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS Apple",
+        "pattern": "arm64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux",
+        "pattern": "x86_64\\.AppImage$"
+      }
     ],
     "verifiedAt": "2026-07-20"
   },
@@ -100,11 +194,27 @@
     "fullDescription": "HandBrake конвертирует видео, уменьшает размер файлов и предлагает готовые профили для устройств и веб-публикации. Поддерживает очередь обработки и тонкую настройку качества.",
     "github": "HandBrake/HandBrake",
     "website": "https://handbrake.fr/",
-    "platforms": ["windows", "macos"],
-    "features": ["Конвертация", "Сжатие видео", "MP4", "Очередь"],
+    "platforms": [
+      "windows",
+      "macos"
+    ],
+    "features": [
+      "Конвертация",
+      "Сжатие видео",
+      "MP4",
+      "Очередь"
+    ],
     "downloads": [
-      {"os":"windows","label":"Windows","pattern":"x86_64-Win_GUI\\.exe$"},
-      {"os":"macos","label":"macOS","pattern":"^HandBrake-[0-9.]+\\.dmg$"}
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "x86_64-Win_GUI\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^HandBrake-[0-9.]+\\.dmg$"
+      }
     ],
     "verifiedAt": "2026-07-20"
   },
@@ -117,12 +227,33 @@
     "fullDescription": "LocalSend передаёт файлы напрямую между устройствами в одной сети без облака и регистрации. Работает на компьютерах и мобильных устройствах.",
     "github": "localsend/localsend",
     "website": "https://localsend.org/",
-    "platforms": ["windows", "macos", "linux"],
-    "features": ["Передача файлов", "Без облака", "Локальная сеть", "Кроссплатформенность"],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Передача файлов",
+      "Без облака",
+      "Локальная сеть",
+      "Кроссплатформенность"
+    ],
     "downloads": [
-      {"os":"windows","label":"Windows","pattern":"windows-x86-64\\.exe$"},
-      {"os":"macos","label":"macOS","pattern":"LocalSend-[0-9.]+\\.dmg$"},
-      {"os":"linux","label":"Linux","pattern":"linux-x86-64\\.AppImage$"}
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "windows-x86-64\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "LocalSend-[0-9.]+\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux",
+        "pattern": "linux-x86-64\\.AppImage$"
+      }
     ],
     "verifiedAt": "2026-07-20"
   },
@@ -135,12 +266,33 @@
     "fullDescription": "RustDesk позволяет подключаться к другому компьютеру для помощи или удалённой работы. При необходимости можно развернуть собственный сервер соединений.",
     "github": "rustdesk/rustdesk",
     "website": "https://rustdesk.com/",
-    "platforms": ["windows", "macos", "linux"],
-    "features": ["Удалённый доступ", "Свой сервер", "Передача файлов", "Шифрование"],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Удалённый доступ",
+      "Свой сервер",
+      "Передача файлов",
+      "Шифрование"
+    ],
     "downloads": [
-      {"os":"windows","label":"Windows","pattern":"x86_64\\.exe$"},
-      {"os":"macos","label":"macOS","pattern":"x86_64\\.dmg$"},
-      {"os":"linux","label":"Linux","pattern":"x86_64\\.AppImage$"}
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "x86_64\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "x86_64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux",
+        "pattern": "x86_64\\.AppImage$"
+      }
     ],
     "verifiedAt": "2026-07-20"
   },
@@ -153,12 +305,33 @@
     "fullDescription": "Joplin хранит заметки и списки задач, поддерживает Markdown, вложения и сквозное шифрование. Синхронизацию можно настроить через разные облачные хранилища.",
     "github": "laurent22/joplin",
     "website": "https://joplinapp.org/",
-    "platforms": ["windows", "macos", "linux"],
-    "features": ["Заметки", "Markdown", "Синхронизация", "Шифрование"],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Заметки",
+      "Markdown",
+      "Синхронизация",
+      "Шифрование"
+    ],
     "downloads": [
-      {"os":"windows","label":"Windows","pattern":"^Joplin-Setup-.*\\.exe$"},
-      {"os":"macos","label":"macOS","pattern":"^Joplin-[0-9.]+\\.dmg$"},
-      {"os":"linux","label":"Linux","pattern":"^Joplin-[0-9.]+\\.AppImage$"}
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "^Joplin-Setup-.*\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^Joplin-[0-9.]+\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux",
+        "pattern": "^Joplin-[0-9.]+\\.AppImage$"
+      }
     ],
     "verifiedAt": "2026-07-20"
   },
@@ -171,12 +344,33 @@
     "fullDescription": "Flameshot делает скриншоты и сразу открывает панель разметки. Можно добавлять текст, стрелки, рамки, нумерацию и скрывать чувствительные области.",
     "github": "flameshot-org/flameshot",
     "website": "https://flameshot.org/",
-    "platforms": ["windows", "macos", "linux"],
-    "features": ["Скриншоты", "Аннотации", "Размытие", "Кроссплатформенность"],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Скриншоты",
+      "Аннотации",
+      "Размытие",
+      "Кроссплатформенность"
+    ],
     "downloads": [
-      {"os":"windows","label":"Windows","pattern":"win64\\.msi$"},
-      {"os":"macos","label":"macOS Apple","pattern":"macos-arm64\\.dmg$"},
-      {"os":"linux","label":"Linux","pattern":"appimage-x86_64\\.zip$"}
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "win64\\.msi$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS Apple",
+        "pattern": "macos-arm64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux",
+        "pattern": "appimage-x86_64\\.zip$"
+      }
     ],
     "verifiedAt": "2026-07-20"
   },
@@ -189,12 +383,33 @@
     "fullDescription": "Audacity — многодорожечный аудиоредактор для записи голоса, подкастов и музыки. Поддерживает эффекты, плагины, удаление шума и экспорт в популярные форматы.",
     "github": "audacity/audacity",
     "website": "https://www.audacityteam.org/",
-    "platforms": ["windows", "macos", "linux"],
-    "features": ["Запись звука", "Монтаж", "Удаление шума", "Плагины"],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Запись звука",
+      "Монтаж",
+      "Удаление шума",
+      "Плагины"
+    ],
     "downloads": [
-      {"os":"windows","label":"Windows","pattern":"win-.*-64bit\\.exe$"},
-      {"os":"macos","label":"macOS","pattern":"macOS-.*-universal\\.dmg$"},
-      {"os":"linux","label":"Linux","pattern":"linux-.*-x64-22\\.04\\.AppImage$"}
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "win-.*-64bit\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "macOS-.*-universal\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux",
+        "pattern": "linux-.*-x64-22\\.04\\.AppImage$"
+      }
     ],
     "verifiedAt": "2026-07-20"
   },
@@ -207,12 +422,33 @@
     "fullDescription": "PeaZip создаёт и распаковывает архивы, шифрует файлы и разбивает большие архивы на части. Это свободная альтернатива коммерческим архиваторам.",
     "github": "peazip/PeaZip",
     "website": "https://peazip.github.io/",
-    "platforms": ["windows", "macos", "linux"],
-    "features": ["Архивы", "7Z", "ZIP", "Шифрование"],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Архивы",
+      "7Z",
+      "ZIP",
+      "Шифрование"
+    ],
     "downloads": [
-      {"os":"windows","label":"Windows","pattern":"WIN64\\.exe$"},
-      {"os":"macos","label":"macOS Apple","pattern":"DARWIN\\.aarch64\\.dmg$"},
-      {"os":"linux","label":"Linux","pattern":"LINUX\\.GTK2-1_amd64\\.deb$"}
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "WIN64\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS Apple",
+        "pattern": "DARWIN\\.aarch64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux",
+        "pattern": "LINUX\\.GTK2-1_amd64\\.deb$"
+      }
     ],
     "verifiedAt": "2026-07-20"
   },
@@ -225,9 +461,22 @@
     "fullDescription": "Ventoy превращает USB-накопитель в мультизагрузочный. После установки достаточно копировать ISO-файлы на флешку и выбирать нужный образ при запуске.",
     "github": "ventoy/Ventoy",
     "website": "https://www.ventoy.net/",
-    "platforms": ["windows"],
-    "features": ["USB", "ISO", "Мультизагрузка", "Windows и Linux"],
-    "downloads": [{"os":"windows","label":"Windows","pattern":"ventoy-.*-windows\\.zip$"}],
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "USB",
+      "ISO",
+      "Мультизагрузка",
+      "Windows и Linux"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "ventoy-.*-windows\\.zip$"
+      }
+    ],
     "verifiedAt": "2026-07-20"
   },
   {
@@ -239,12 +488,33 @@
     "fullDescription": "balenaEtcher записывает ISO и другие образы на USB-накопители и карты памяти. Интерфейс состоит из трёх понятных шагов и проверяет записанные данные.",
     "github": "balena-io/etcher",
     "website": "https://etcher.balena.io/",
-    "platforms": ["windows", "macos", "linux"],
-    "features": ["Запись образов", "USB", "SD-карты", "Проверка"],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Запись образов",
+      "USB",
+      "SD-карты",
+      "Проверка"
+    ],
     "downloads": [
-      {"os":"windows","label":"Windows","pattern":"Setup\\.exe$"},
-      {"os":"macos","label":"macOS Apple","pattern":"arm64\\.dmg$"},
-      {"os":"linux","label":"Linux","pattern":"amd64\\.deb$"}
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "Setup\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS Apple",
+        "pattern": "arm64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux",
+        "pattern": "amd64\\.deb$"
+      }
     ],
     "verifiedAt": "2026-07-20"
   },
@@ -257,12 +527,33 @@
     "fullDescription": "yt-dlp — мощная консольная программа для загрузки доступного пользователю медиаконтента. Используйте её только для материалов, которые разрешено скачивать.",
     "github": "yt-dlp/yt-dlp",
     "website": "https://github.com/yt-dlp/yt-dlp",
-    "platforms": ["windows", "macos", "linux"],
-    "features": ["Видео", "Аудио", "Командная строка", "Автоматизация"],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Видео",
+      "Аудио",
+      "Командная строка",
+      "Автоматизация"
+    ],
     "downloads": [
-      {"os":"windows","label":"Windows","pattern":"^yt-dlp\\.exe$"},
-      {"os":"macos","label":"macOS","pattern":"^yt-dlp_macos$"},
-      {"os":"linux","label":"Linux","pattern":"^yt-dlp_linux$"}
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "^yt-dlp\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^yt-dlp_macos$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux",
+        "pattern": "^yt-dlp_linux$"
+      }
     ],
     "verifiedAt": "2026-07-20"
   },
@@ -275,11 +566,27 @@
     "fullDescription": "Czkawka помогает освободить место: ищет одинаковые и похожие файлы, большие объекты, пустые папки и повреждённые элементы без отправки данных в облако.",
     "github": "qarmin/czkawka",
     "website": "https://github.com/qarmin/czkawka",
-    "platforms": ["windows", "linux"],
-    "features": ["Дубликаты", "Очистка диска", "Похожие фото", "Офлайн"],
+    "platforms": [
+      "windows",
+      "linux"
+    ],
+    "features": [
+      "Дубликаты",
+      "Очистка диска",
+      "Похожие фото",
+      "Офлайн"
+    ],
     "downloads": [
-      {"os":"windows","label":"Windows","pattern":"windows_czkawka_gui_gtk_412\\.zip$"},
-      {"os":"linux","label":"Linux","pattern":"linux_krokiet_all_backends_x86_64\\.zip$"}
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "windows_czkawka_gui_gtk_412\\.zip$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux",
+        "pattern": "linux_krokiet_all_backends_x86_64\\.zip$"
+      }
     ],
     "verifiedAt": "2026-07-20"
   },
@@ -292,9 +599,22 @@
     "fullDescription": "Bulk Crap Uninstaller помогает быстро удалить несколько программ, найти тихие деинсталляторы и очистить остаточные записи. Перед удалением системных компонентов требуется внимательность.",
     "github": "Klocman/Bulk-Crap-Uninstaller",
     "website": "https://www.bcuninstaller.com/",
-    "platforms": ["windows"],
-    "features": ["Удаление программ", "Очистка", "Пакетные операции", "Windows"],
-    "downloads": [{"os":"windows","label":"Windows","pattern":"BCUninstaller_.*_setup\\.exe$"}],
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Удаление программ",
+      "Очистка",
+      "Пакетные операции",
+      "Windows"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "BCUninstaller_.*_setup\\.exe$"
+      }
+    ],
     "verifiedAt": "2026-07-20"
   },
   {
@@ -306,12 +626,33 @@
     "fullDescription": "DBeaver Community позволяет подключаться к разным базам данных, выполнять SQL-запросы, просматривать таблицы, импортировать и экспортировать данные.",
     "github": "dbeaver/dbeaver",
     "website": "https://dbeaver.io/",
-    "platforms": ["windows", "macos", "linux"],
-    "features": ["SQL", "PostgreSQL", "MySQL", "SQLite"],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "SQL",
+      "PostgreSQL",
+      "MySQL",
+      "SQLite"
+    ],
     "downloads": [
-      {"os":"windows","label":"Windows","pattern":"windows-x86_64\\.exe$"},
-      {"os":"macos","label":"macOS Apple","pattern":"macos-aarch64\\.dmg$"},
-      {"os":"linux","label":"Linux","pattern":"linux-x86_64\\.deb$"}
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "windows-x86_64\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS Apple",
+        "pattern": "macos-aarch64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux",
+        "pattern": "linux-x86_64\\.deb$"
+      }
     ],
     "verifiedAt": "2026-07-20"
   },
@@ -324,12 +665,33 @@
     "fullDescription": "Ollama запускает совместимые AI-модели локально и предоставляет простой API. Скорость и доступные модели зависят от оперативной памяти и видеокарты компьютера.",
     "github": "ollama/ollama",
     "website": "https://ollama.com/",
-    "platforms": ["windows", "macos", "linux"],
-    "features": ["Локальный AI", "LLM", "API", "Приватность"],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Локальный AI",
+      "LLM",
+      "API",
+      "Приватность"
+    ],
     "downloads": [
-      {"os":"windows","label":"Windows","pattern":"^OllamaSetup\\.exe$"},
-      {"os":"macos","label":"macOS","pattern":"^Ollama\\.dmg$"},
-      {"os":"linux","label":"Linux script","pattern":"^install\\.sh$"}
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "^OllamaSetup\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^Ollama\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux script",
+        "pattern": "^install\\.sh$"
+      }
     ],
     "verifiedAt": "2026-07-20"
   },
@@ -342,12 +704,33 @@
     "fullDescription": "Upscayl увеличивает изображения и восстанавливает детали с помощью нейросетей на компьютере пользователя. Для хорошей скорости желательно совместимое графическое оборудование.",
     "github": "upscayl/upscayl",
     "website": "https://upscayl.org/",
-    "platforms": ["windows", "macos", "linux"],
-    "features": ["Увеличение фото", "AI", "Офлайн", "Пакетная обработка"],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Увеличение фото",
+      "AI",
+      "Офлайн",
+      "Пакетная обработка"
+    ],
     "downloads": [
-      {"os":"windows","label":"Windows","pattern":"win\\.exe$"},
-      {"os":"macos","label":"macOS","pattern":"mac\\.dmg$"},
-      {"os":"linux","label":"Linux","pattern":"linux\\.AppImage$"}
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "win\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "mac\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux",
+        "pattern": "linux\\.AppImage$"
+      }
     ],
     "verifiedAt": "2026-07-20"
   },
@@ -360,9 +743,1522 @@
     "fullDescription": "Flow Launcher открывает приложения, ищет файлы, выполняет команды и поддерживает плагины. Вызывается горячей клавишей и ускоряет повседневную работу в Windows.",
     "github": "Flow-Launcher/Flow.Launcher",
     "website": "https://www.flowlauncher.com/",
-    "platforms": ["windows"],
-    "features": ["Поиск", "Запуск программ", "Плагины", "Windows"],
-    "downloads": [{"os":"windows","label":"Windows","pattern":"Flow-Launcher-Setup\\.exe$"}],
+    "platforms": [
+      "windows"
+    ],
+    "features": [
+      "Поиск",
+      "Запуск программ",
+      "Плагины",
+      "Windows"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows",
+        "pattern": "Flow-Launcher-Setup\\.exe$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "sunshine",
+    "name": "Sunshine",
+    "category": "network",
+    "categoryLabel": "Удалённый доступ",
+    "shortDescription": "Домашний сервер для быстрой трансляции игр и рабочего стола на другие устройства.",
+    "fullDescription": "Sunshine превращает компьютер в хост для Moonlight: передаёт изображение, звук и управление по локальной сети или через интернет. Поддерживает аппаратное кодирование и несколько операционных систем.",
+    "github": "LizardByte/Sunshine",
+    "website": "http://app.lizardbyte.dev/Sunshine/",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Стриминг игр",
+      "Moonlight",
+      "Аппаратное кодирование",
+      "Удалённый доступ"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^Sunshine-Windows-AMD64-installer\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^Sunshine-macOS-x86_64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^sunshine-debian-trixie-amd64\\.deb$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "appflowy",
+    "name": "AppFlowy",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Открытое рабочее пространство для заметок, проектов, таблиц и командной базы знаний.",
+    "fullDescription": "AppFlowy объединяет документы, канбан-доски, базы данных и совместную работу. Данные можно контролировать самостоятельно, поэтому программа подходит как приватная альтернатива облачным рабочим пространствам.",
+    "github": "AppFlowy-IO/AppFlowy",
+    "website": "https://appflowy.com",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Документы",
+      "Канбан",
+      "Базы данных",
+      "Совместная работа"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^AppFlowy-[0-9][0-9A-Za-z.]*-windows-x86_64\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^AppFlowy-[0-9][0-9A-Za-z.]*-macos-x86_64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^AppFlowy-[0-9][0-9A-Za-z.]*-linux-x86_64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "siyuan",
+    "name": "SiYuan",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Локальная база знаний с блочными заметками, связями, таблицами и шифрованием.",
+    "fullDescription": "SiYuan помогает строить персональную базу знаний из связанных блоков и документов. Поддерживает двунаправленные ссылки, запросы, экспорт и самостоятельную синхронизацию.",
+    "github": "siyuan-note/siyuan",
+    "website": "https://b3log.org/siyuan",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "База знаний",
+      "Связанные заметки",
+      "Блочный редактор",
+      "Локальные данные"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^siyuan-[0-9][0-9A-Za-z.]*-win\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^siyuan-[0-9][0-9A-Za-z.]*-mac\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^siyuan-[0-9][0-9A-Za-z.]*-linux\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "logseq",
+    "name": "Logseq",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Связанные заметки, ежедневник и задачи в локальных Markdown-файлах.",
+    "fullDescription": "Logseq организует мысли через ежедневные записи, ссылки и граф знаний. Заметки остаются локальными, а плагины и запросы позволяют превратить их в гибкую систему управления знаниями.",
+    "github": "logseq/logseq",
+    "website": "https://logseq.com",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Граф знаний",
+      "Ежедневник",
+      "Задачи",
+      "Markdown"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^Logseq-win-x64-[0-9][0-9A-Za-z.]*-nsis\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^Logseq-darwin-x64-[0-9][0-9A-Za-z.]*\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^Logseq-linux-x86_64-[0-9][0-9A-Za-z.]*\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "zettlr",
+    "name": "Zettlr",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Markdown-редактор для статей, исследований, заметок и больших текстовых проектов.",
+    "fullDescription": "Zettlr рассчитан на авторов и исследователей: управляет библиотекой Markdown-файлов, ссылками, цитатами и экспортом через Pandoc. Подходит для подготовки статей и книг без привязки к облаку.",
+    "github": "Zettlr/Zettlr",
+    "website": "https://www.zettlr.com",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Markdown",
+      "Цитаты",
+      "Pandoc",
+      "Большие проекты"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^Zettlr-[0-9][0-9A-Za-z.]*-x64\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^Zettlr-[0-9][0-9A-Za-z.]*-x64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^Zettlr-[0-9][0-9A-Za-z.]*-x86_64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "trilium-notes",
+    "name": "Trilium Notes",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Иерархическая база знаний с заметками, связями, скриптами и синхронизацией.",
+    "fullDescription": "Trilium Notes хранит большие коллекции заметок в дереве и связывает их перекрёстными ссылками. Есть атрибуты, история версий, визуализации и возможность развернуть собственную синхронизацию.",
+    "github": "TriliumNext/Trilium",
+    "website": "https://triliumnotes.org",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Дерево заметок",
+      "Связи",
+      "История версий",
+      "Свой сервер"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^TriliumNotes-v[0-9][0-9A-Za-z.]*-windows-x64\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^TriliumNotes-v[0-9][0-9A-Za-z.]*-macos-x64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^TriliumNotes-v[0-9][0-9A-Za-z.]*-linux-x64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "notesnook",
+    "name": "Notesnook",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Приватные заметки со сквозным шифрованием и синхронизацией между устройствами.",
+    "fullDescription": "Notesnook шифрует заметки на устройстве до отправки в синхронизацию. Редактор поддерживает форматирование, блокноты, теги, вложения и перенос данных из других сервисов.",
+    "github": "streetwriters/notesnook",
+    "website": "https://notesnook.com/",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Шифрование",
+      "Синхронизация",
+      "Теги",
+      "Импорт заметок"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^notesnook_win_x64\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^notesnook_mac_x64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^notesnook_linux_x86_64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "standard-notes",
+    "name": "Standard Notes",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Минималистичные зашифрованные заметки с приложениями для основных платформ.",
+    "fullDescription": "Standard Notes делает упор на долговечное хранение и сквозное шифрование. Можно вести простые записи, организовывать их тегами и синхронизировать без доступа сервера к содержимому.",
+    "github": "standardnotes/app",
+    "website": "https://standardnotes.com",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Зашифрованные заметки",
+      "Синхронизация",
+      "Теги",
+      "Резервные копии"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^standard-notes-[0-9][0-9A-Za-z.]*-win-x64\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^standard-notes-[0-9][0-9A-Za-z.]*-mac-x64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^standard-notes-[0-9][0-9A-Za-z.]*-linux-x86_64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "note-gen",
+    "name": "NoteGen",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Кроссплатформенные Markdown-заметки с локальными файлами и AI-инструментами.",
+    "fullDescription": "NoteGen объединяет быстрый сбор материалов, Markdown-редактор и функции искусственного интеллекта. Заметки хранятся в обычных файлах, поэтому их легко переносить и резервировать.",
+    "github": "codexu/note-gen",
+    "website": "https://notegen.top",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Markdown",
+      "Локальные файлы",
+      "AI-помощник",
+      "Сбор материалов"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^NoteGen_[0-9][0-9A-Za-z.]*_x64-setup\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^NoteGen_[0-9][0-9A-Za-z.]*_x64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^NoteGen_[0-9][0-9A-Za-z.]*_amd64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "tagspaces",
+    "name": "TagSpaces",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Локальный органайзер файлов и документов с тегами без отдельной базы данных.",
+    "fullDescription": "TagSpaces помогает классифицировать папки, документы и фотографии с помощью тегов и описаний. Работает поверх обычной файловой системы, показывает превью и не требует облачного аккаунта.",
+    "github": "tagspaces/tagspaces",
+    "website": "https://www.tagspaces.org",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Теги для файлов",
+      "Предпросмотр",
+      "Без облака",
+      "Организация документов"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^tagspaces-win-x64-[0-9][0-9A-Za-z.]*\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^tagspaces-mac-x64-[0-9][0-9A-Za-z.]*\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^tagspaces-linux-x86_64-[0-9][0-9A-Za-z.]*\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "freeplane",
+    "name": "Freeplane",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Интеллект-карты для планирования, обучения и структурирования сложных идей.",
+    "fullDescription": "Freeplane создаёт большие древовидные карты с заметками, ссылками, формулами и стилями. Программа полезна для мозговых штурмов, конспектов, планов проектов и систематизации знаний.",
+    "github": "freeplane/freeplane",
+    "website": "https://www.freeplane.org",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Интеллект-карты",
+      "Планирование",
+      "Формулы",
+      "Стили"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^Freeplane-Setup-[0-9][0-9A-Za-z.]*\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^Freeplane-[0-9][0-9A-Za-z.]*-intel\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^freeplane_[0-9][0-9A-Za-z.]*\\.upstream-1_all\\.deb$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "butterfly-notes",
+    "name": "Butterfly",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Свободный холст для рукописных заметок, схем и рисунков на разных устройствах.",
+    "fullDescription": "Butterfly предлагает бесконечный холст для пера, фигур, текста и изображений. Документы можно хранить локально, экспортировать и открывать на компьютере или мобильном устройстве.",
+    "github": "LinwoodDev/Butterfly",
+    "website": "https://butterfly.linwood.dev",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Бесконечный холст",
+      "Рисование",
+      "Рукописные заметки",
+      "Экспорт"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^linwood-butterfly-windows-setup-x86_64\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^linwood-butterfly-macos\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^linwood-butterfly-linux-alternative-x86_64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "vnote",
+    "name": "VNote",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Быстрый нативный редактор Markdown с деревом папок и удобной навигацией.",
+    "fullDescription": "VNote предназначен для технических заметок и больших коллекций Markdown-файлов. Поддерживает вкладки, поиск, диаграммы, режим чтения и работу с обычными папками.",
+    "github": "vnotex/vnote",
+    "website": "https://app.vnote.fun",
+    "platforms": [
+      "windows",
+      "linux"
+    ],
+    "features": [
+      "Markdown",
+      "Быстрый поиск",
+      "Диаграммы",
+      "Локальные папки"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^VNote-[0-9][0-9A-Za-z.]*-win64\\.zip$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^VNote-[0-9][0-9A-Za-z.]*-linux-x64\\.AppImage\\.zip$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "vicinae",
+    "name": "Vicinae",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Быстрый расширяемый лаунчер для запуска приложений, поиска и команд.",
+    "fullDescription": "Vicinae открывается горячей клавишей и ускоряет запуск приложений, поиск файлов и выполнение действий. Расширения позволяют добавить собственные команды и интеграции.",
+    "github": "vicinaehq/vicinae",
+    "website": "https://vicinae.com",
+    "platforms": [
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Быстрый запуск",
+      "Поиск",
+      "Горячие клавиши",
+      "Расширения"
+    ],
+    "downloads": [
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^Vicinae\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^Vicinae-x86_64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "qownnotes",
+    "name": "QOwnNotes",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Markdown-блокнот с локальными файлами и синхронизацией через Nextcloud или ownCloud.",
+    "fullDescription": "QOwnNotes редактирует обычные Markdown-файлы и умеет связывать их с задачами и облаком пользователя. Есть теги, шифрование, скрипты, веб-захват и гибкая настройка интерфейса.",
+    "github": "pbek/QOwnNotes",
+    "website": "https://www.qownnotes.org/",
+    "platforms": [
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Markdown",
+      "Nextcloud",
+      "Задачи",
+      "Скрипты"
+    ],
+    "downloads": [
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^QOwnNotes\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^QOwnNotes-x86_64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "markedit",
+    "name": "MarkEdit",
+    "category": "productivity",
+    "categoryLabel": "Работа и текст",
+    "shortDescription": "Лёгкий Markdown-редактор для macOS в стиле стандартного TextEdit.",
+    "fullDescription": "MarkEdit быстро открывает и редактирует Markdown без перегруженного интерфейса. Подходит для коротких заметок, документации и правок обычных текстовых файлов на Mac.",
+    "github": "MarkEdit-app/MarkEdit",
+    "website": "http://tiny.cc/markedit",
+    "platforms": [
+      "macos"
+    ],
+    "features": [
+      "Markdown",
+      "macOS",
+      "Минимализм",
+      "Быстрый редактор"
+    ],
+    "downloads": [
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^MarkEdit-[0-9][0-9A-Za-z.]*\\.dmg$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "anythingllm",
+    "name": "AnythingLLM",
+    "category": "ai",
+    "categoryLabel": "Локальный ИИ",
+    "shortDescription": "Локальное рабочее пространство для общения с моделями и поиска по своим документам.",
+    "fullDescription": "AnythingLLM подключает локальные или облачные языковые модели, индексирует документы и создаёт отдельные рабочие пространства. Подходит для приватного чата, RAG-поиска и AI-агентов.",
+    "github": "Mintplex-Labs/anything-llm",
+    "website": "https://anythingllm.com",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Локальные модели",
+      "Чат с документами",
+      "RAG",
+      "AI-агенты"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^AnythingLLMDesktop\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^AnythingLLMDesktop\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^AnythingLLMDesktop\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "meetily",
+    "name": "Meetily",
+    "category": "ai",
+    "categoryLabel": "Локальный ИИ",
+    "shortDescription": "Локальная расшифровка встреч с разделением спикеров и автоматическими итогами.",
+    "fullDescription": "Meetily записывает разговор, преобразует речь в текст и помогает подготовить протокол встречи. Обработка выполняется локально, а итоги можно формировать через Ollama без отправки аудио в облако.",
+    "github": "Zackriya-Solutions/meetily",
+    "website": "https://meetily.ai",
+    "platforms": [
+      "windows",
+      "macos"
+    ],
+    "features": [
+      "Расшифровка встреч",
+      "Разделение спикеров",
+      "Ollama",
+      "Локальная обработка"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^meetily_[0-9][0-9A-Za-z.]*_x64-setup\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^meetily_[0-9][0-9A-Za-z.]*_aarch64\\.dmg$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "omnivoice-studio",
+    "name": "OmniVoice Studio",
+    "category": "ai",
+    "categoryLabel": "Локальный ИИ",
+    "shortDescription": "Локальное клонирование голоса, дубляж видео, диктовка и создание аудиокниг.",
+    "fullDescription": "OmniVoice Studio собирает в одном интерфейсе синтез речи, клонирование голоса и озвучивание материалов. Можно готовить дубляж и длинные аудиозаписи на своём компьютере.",
+    "github": "debpalash/OmniVoice-Studio",
+    "website": "https://palash.dev/omnivoice",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Клонирование голоса",
+      "Дубляж",
+      "Диктовка",
+      "Аудиокниги"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^OmniVoice\\.Studio_[0-9][0-9A-Za-z.]*_x64_en-US\\.msi$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^OmniVoice\\.Studio_[0-9][0-9A-Za-z.]*_x64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^OmniVoice\\.Studio_[0-9][0-9A-Za-z.]*_amd64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "amical",
+    "name": "Amical",
+    "category": "ai",
+    "categoryLabel": "Локальный ИИ",
+    "shortDescription": "Офлайн-диктовка, которая превращает речь в текст прямо на компьютере.",
+    "fullDescription": "Amical позволяет надиктовывать текст в любые приложения и обрабатывает голос локальными моделями. Это ускоряет письма и заметки, не отправляя запись на внешний сервер.",
+    "github": "amicalhq/amical",
+    "website": "https://amical.ai",
+    "platforms": [
+      "windows",
+      "macos"
+    ],
+    "features": [
+      "Диктовка",
+      "Распознавание речи",
+      "Офлайн",
+      "Горячая клавиша"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^Amical-windows-x64\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^Amical-macos-x64\\.dmg$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "bruno",
+    "name": "Bruno",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Локальный API-клиент для REST и GraphQL с коллекциями, которые удобно хранить в Git.",
+    "fullDescription": "Bruno помогает создавать и отправлять HTTP-запросы, проверять ответы и вести окружения. Коллекции сохраняются в обычных текстовых файлах рядом с кодом и хорошо подходят для командной работы через Git.",
+    "github": "usebruno/bruno",
+    "website": "https://www.usebruno.com/",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "REST",
+      "GraphQL",
+      "Git-коллекции",
+      "Окружения"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^bruno_[0-9][0-9A-Za-z.]*_x64_win\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^bruno_[0-9][0-9A-Za-z.]*_x64_mac\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^bruno_[0-9][0-9A-Za-z.]*_x86_64_linux\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "insomnia",
+    "name": "Insomnia",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Кроссплатформенный клиент для тестирования REST, GraphQL, gRPC и WebSocket API.",
+    "fullDescription": "Insomnia объединяет конструктор запросов, окружения, авторизацию и просмотр ответов. Поддерживает локальное хранение проектов и популярные протоколы для разработки и отладки API.",
+    "github": "Kong/insomnia",
+    "website": "https://insomnia.rest",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "REST",
+      "GraphQL",
+      "gRPC",
+      "WebSocket"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^Insomnia\\.Core-nsis-[0-9][0-9A-Za-z.]*\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^Insomnia\\.Core-[0-9][0-9A-Za-z.]*\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^Insomnia\\.Core-[0-9][0-9A-Za-z.]*\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "dbx",
+    "name": "DBX",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Компактный клиент для SQL- и NoSQL-баз данных с единым интерфейсом.",
+    "fullDescription": "DBX подключается к PostgreSQL, MySQL, SQLite, Redis, MongoDB, ClickHouse и другим системам. Позволяет просматривать структуру, выполнять запросы и работать с данными без тяжёлой IDE.",
+    "github": "t8y2/dbx",
+    "website": "https://dbxio.com",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "SQL",
+      "NoSQL",
+      "Редактор запросов",
+      "Несколько СУБД"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^DBX_[0-9][0-9A-Za-z.]*_x64-setup\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^DBX_[0-9][0-9A-Za-z.]*_x64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^DBX_[0-9][0-9A-Za-z.]*_amd64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "rio-terminal",
+    "name": "Rio Terminal",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Быстрый терминал с GPU-ускорением, вкладками и гибкой конфигурацией.",
+    "fullDescription": "Rio отрисовывает терминал через видеокарту и поддерживает современные оболочки, вкладки и настраиваемые сочетания клавиш. Подходит разработчикам, которым важны скорость и единый интерфейс на разных системах.",
+    "github": "raphamorim/rio",
+    "website": "https://rioterm.com",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "GPU-ускорение",
+      "Терминал",
+      "Вкладки",
+      "Настройка"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^rio-installer-x86_64\\.msi$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^rio\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^rioterm_[0-9][0-9A-Za-z.]*_amd64_x11\\.deb$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "tabularis",
+    "name": "Tabularis",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Настольная SQL-среда для запросов, таблиц, ноутбуков и анализа планов выполнения.",
+    "fullDescription": "Tabularis подключается к популярным реляционным базам, Redis и аналитическим системам. В приложении есть SQL-ноутбуки, визуальный EXPLAIN и инструменты для исследования данных.",
+    "github": "TabularisDB/tabularis",
+    "website": "https://tabularis.dev",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "SQL-ноутбуки",
+      "EXPLAIN",
+      "PostgreSQL",
+      "Анализ данных"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^tabularis_[0-9][0-9A-Za-z.]*_x64-setup\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^tabularis_[0-9][0-9A-Za-z.]*_x64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^tabularis_[0-9][0-9A-Za-z.]*_amd64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "netcatty",
+    "name": "Netcatty",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Рабочее пространство для SSH, SFTP и нескольких удалённых терминалов.",
+    "fullDescription": "Netcatty хранит подключения, открывает терминальные сессии и передаёт файлы по SFTP в одном окне. Полезен администраторам и разработчикам, которые регулярно работают с несколькими серверами.",
+    "github": "binaricat/Netcatty",
+    "website": "https://netcatty.app",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "SSH",
+      "SFTP",
+      "Терминалы",
+      "Удалённые серверы"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^Netcatty-[0-9][0-9A-Za-z.]*-win-x64\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^Netcatty-[0-9][0-9A-Za-z.]*-mac-x64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^Netcatty-[0-9][0-9A-Za-z.]*-linux-x86_64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "relagit",
+    "name": "RelaGit",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Графический Git-клиент для просмотра истории, веток и изменений проекта.",
+    "fullDescription": "RelaGit показывает состояние репозитория, коммиты и ветки в наглядном интерфейсе. Позволяет выполнять повседневные операции Git без постоянной работы в терминале.",
+    "github": "relagit/relagit",
+    "website": "https://rela.dev",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Git",
+      "История коммитов",
+      "Ветки",
+      "Графический интерфейс"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^RelaGit-win\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^RelaGit-mac-x64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^RelaGit-linux\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "restfox",
+    "name": "Restfox",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Минималистичный офлайн-клиент для HTTP-запросов и WebSocket-соединений.",
+    "fullDescription": "Restfox позволяет создавать коллекции запросов, переменные окружения и проверять ответы API без обязательного аккаунта. Проекты можно хранить локально и переносить между устройствами.",
+    "github": "flawiddsouza/Restfox",
+    "website": "https://restfox.dev",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "HTTP-запросы",
+      "WebSocket",
+      "Офлайн",
+      "Коллекции"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^Restfox-[0-9][0-9A-Za-z.]*\\.Setup\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^Restfox-darwin-x64-[0-9][0-9A-Za-z.]*\\.zip$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^restfox_[0-9][0-9A-Za-z.]*_amd64\\.deb$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "apiark",
+    "name": "ApiArk",
+    "category": "developer",
+    "categoryLabel": "Разработка",
+    "shortDescription": "Лёгкий приватный API-клиент без регистрации и обязательного облака.",
+    "fullDescription": "ApiArk запускает и организует HTTP-запросы в локальном настольном приложении. Он потребляет мало памяти, хранит проекты на устройстве и подходит как компактная альтернатива крупным API-платформам.",
+    "github": "berbicanes/apiark",
+    "website": "https://github.com/berbicanes/apiark",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "API-клиент",
+      "Локальное хранение",
+      "Без аккаунта",
+      "Низкое потребление памяти"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^ApiArk_[0-9][0-9A-Za-z.]*_x64-setup\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^ApiArk_[0-9][0-9A-Za-z.]*_x64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^ApiArk_[0-9][0-9A-Za-z.]*_amd64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "losslesscut",
+    "name": "LosslessCut",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Быстрая обрезка видео и аудио без повторного кодирования и потери качества.",
+    "fullDescription": "LosslessCut вырезает ненужные фрагменты, объединяет дорожки и извлекает части медиафайлов без долгого рендеринга. Особенно удобен для первичной обработки больших записей.",
+    "github": "mifi/lossless-cut",
+    "website": "https://losslesscut.app/",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Обрезка видео",
+      "Без перекодирования",
+      "Объединение",
+      "Извлечение дорожек"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^LosslessCut-win-x64\\.7z$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^LosslessCut-mac-x64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^LosslessCut-linux-x86_64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "shotcut",
+    "name": "Shotcut",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Полноценный видеоредактор с монтажной шкалой, фильтрами и поддержкой множества форматов.",
+    "fullDescription": "Shotcut подходит для монтажа роликов, работы со звуком, цветокоррекции и экспорта в популярные форматы. Поддерживает аппаратное ускорение, прокси и проекты с несколькими дорожками.",
+    "github": "mltframework/shotcut",
+    "website": "https://www.shotcut.org",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Видеомонтаж",
+      "Фильтры",
+      "Цветокоррекция",
+      "Несколько дорожек"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^shotcut-win64-[0-9][0-9A-Za-z.]*\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^shotcut-macos-[0-9][0-9A-Za-z.]*\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^shotcut-linux-x86_64-[0-9][0-9A-Za-z.]*\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "mpc-qt",
+    "name": "MPC-QT",
+    "category": "multimedia",
+    "categoryLabel": "Видео и аудио",
+    "shortDescription": "Лёгкий медиаплеер в классическом стиле с современным движком воспроизведения.",
+    "fullDescription": "MPC-QT сохраняет простой интерфейс Media Player Classic и использует возможности mpv. Поддерживает субтитры, плейлисты, аппаратное декодирование и тонкие настройки изображения.",
+    "github": "mpc-qt/mpc-qt",
+    "website": "https://mpc-qt.github.io",
+    "platforms": [
+      "windows",
+      "linux"
+    ],
+    "features": [
+      "Видео",
+      "Субтитры",
+      "Плейлисты",
+      "Аппаратное декодирование"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^mpc-qt-win-x64-[0-9][0-9A-Za-z.]*-installer\\.exe$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^mpc-qt-linux-x64-[0-9][0-9A-Za-z.]*\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "electerm",
+    "name": "Electerm",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Терминал и менеджер подключений для SSH, SFTP, RDP, VNC и последовательных портов.",
+    "fullDescription": "Electerm объединяет локальный терминал, удалённые сессии и файловый менеджер. Можно сохранять подключения, работать с серверами по SSH и открывать удалённый рабочий стол.",
+    "github": "electerm/electerm",
+    "website": "https://electerm.org",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "SSH",
+      "SFTP",
+      "RDP и VNC",
+      "Терминал"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^electerm-[0-9][0-9A-Za-z.]*-win-x64-installer\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^electerm-[0-9][0-9A-Za-z.]*-mac-x64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^electerm-[0-9][0-9A-Za-z.]*-linux-x86_64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "tagstudio",
+    "name": "TagStudio",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Локальный каталог фотографий и файлов с тегами, коллекциями и поиском.",
+    "fullDescription": "TagStudio индексирует выбранные папки и помогает описывать материалы тегами без изменения исходных файлов. Подходит для локальных архивов изображений, документов и творческих ресурсов.",
+    "github": "TagStudioDev/TagStudio",
+    "website": "https://docs.tagstud.io/",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Каталог файлов",
+      "Теги",
+      "Коллекции",
+      "Локальный архив"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^tagstudio_v[0-9][0-9A-Za-z.]*_windows_x86_64\\.zip$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^tagstudio_v[0-9][0-9A-Za-z.]*_macos_x86_64\\.tar\\.gz$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^tagstudio_v[0-9][0-9A-Za-z.]*_linux_x86_64\\.tar\\.gz$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "double-commander",
+    "name": "Double Commander",
+    "category": "system",
+    "categoryLabel": "Система",
+    "shortDescription": "Двухпанельный файловый менеджер с вкладками, архивами и массовыми операциями.",
+    "fullDescription": "Double Commander ускоряет копирование, сравнение и организацию файлов с помощью двух панелей. Поддерживает вкладки, встроенный просмотр, архивы, плагины и пакетное переименование.",
+    "github": "doublecmd/doublecmd",
+    "website": "https://doublecmd.sourceforge.io",
+    "platforms": [
+      "windows",
+      "macos"
+    ],
+    "features": [
+      "Две панели",
+      "Архивы",
+      "Массовое переименование",
+      "Плагины"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^doublecmd-[0-9][0-9A-Za-z.]*\\.x86_64-win64\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^doublecmd-[0-9][0-9A-Za-z.]*\\.cocoa\\.x86_64\\.dmg$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "esearch",
+    "name": "eSearch",
+    "category": "screenshots",
+    "categoryLabel": "Скриншоты",
+    "shortDescription": "Скриншоты, запись экрана, офлайн-OCR, перевод и поиск по изображению.",
+    "fullDescription": "eSearch захватывает область экрана и сразу предлагает распознать текст, перевести его или найти изображение. Есть длинные скриншоты, закрепление картинки поверх окон и запись видео.",
+    "github": "xushengfeng/eSearch",
+    "website": "https://esearch-app.netlify.app/",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Скриншоты",
+      "OCR",
+      "Перевод",
+      "Запись экрана"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^eSearch-[0-9][0-9A-Za-z.]*-win32-x64\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^eSearch-[0-9][0-9A-Za-z.]*-darwin-x64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^eSearch-[0-9][0-9A-Za-z.]*-linux-x64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "snow-shot",
+    "name": "Snow Shot",
+    "category": "screenshots",
+    "categoryLabel": "Скриншоты",
+    "shortDescription": "Быстрые скриншоты с разметкой, длинным захватом и закреплением изображения поверх окон.",
+    "fullDescription": "Snow Shot делает снимки выбранной области и сразу открывает инструменты аннотации. Поддерживает прокручиваемые страницы, распознавание текста и плавающие изображения для сравнения материалов.",
+    "github": "mg-chao/snow-shot",
+    "website": "https://snowshot.top",
+    "platforms": [
+      "windows",
+      "macos"
+    ],
+    "features": [
+      "Скриншоты",
+      "Аннотации",
+      "Длинный захват",
+      "Закрепление изображения"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^Snow\\.Shot_[0-9][0-9A-Za-z.]*-beta_x64-setup_windows\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^Snow\\.Shot_[0-9][0-9A-Za-z.]*-beta_x64_darwin\\.dmg$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "screencloud",
+    "name": "ScreenCloud",
+    "category": "screenshots",
+    "categoryLabel": "Скриншоты",
+    "shortDescription": "Кроссплатформенные скриншоты с быстрой отправкой в выбранное хранилище.",
+    "fullDescription": "ScreenCloud делает снимок экрана, позволяет добавить пометки и загрузить файл через подключаемый сервис. Поддержка плагинов помогает использовать собственное или привычное хранилище.",
+    "github": "olav-st/screencloud",
+    "website": "http://screencloud.net",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Скриншоты",
+      "Аннотации",
+      "Плагины",
+      "Свои хранилища"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^ScreenCloud-v[0-9][0-9A-Za-z.]*-x64\\.msi$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^ScreenCloud-v[0-9][0-9A-Za-z.]*-x86_64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^ScreenCloud-v[0-9][0-9A-Za-z.]*-x86_64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "simplex-chat",
+    "name": "SimpleX Chat",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Приватный мессенджер без постоянных идентификаторов пользователей и телефонного номера.",
+    "fullDescription": "SimpleX Chat строит соединения через отдельные очереди сообщений и не создаёт глобальный идентификатор аккаунта. Поддерживает личные и групповые чаты, звонки и передачу файлов со сквозным шифрованием.",
+    "github": "simplex-chat/simplex-chat",
+    "website": "https://simplex.chat",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Приватные чаты",
+      "Без номера телефона",
+      "Шифрование",
+      "Звонки"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^simplex-desktop-windows-x86_64\\.msi$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^simplex-desktop-macos-x86_64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^simplex-desktop-x86_64\\.AppImage$"
+      }
+    ],
+    "verifiedAt": "2026-07-20"
+  },
+  {
+    "slug": "zen-privacy-guard",
+    "name": "Zen Privacy Guard",
+    "category": "security",
+    "categoryLabel": "Безопасность",
+    "shortDescription": "Системная блокировка рекламы и трекеров для приложений и браузеров.",
+    "fullDescription": "Zen фильтрует сетевые запросы на уровне устройства и защищает сразу несколько приложений. Списки блокировки помогают убрать рекламу, известные трекеры и нежелательные домены.",
+    "github": "irbis-sh/zen-desktop",
+    "website": "https://irbis.sh/zen",
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "features": [
+      "Блокировка рекламы",
+      "Антитрекинг",
+      "Системная фильтрация",
+      "Списки правил"
+    ],
+    "downloads": [
+      {
+        "os": "windows",
+        "label": "Windows 64-bit",
+        "pattern": "^Zen-amd64-installer\\.exe$"
+      },
+      {
+        "os": "macos",
+        "label": "macOS",
+        "pattern": "^Zen-amd64\\.dmg$"
+      },
+      {
+        "os": "linux",
+        "label": "Linux 64-bit",
+        "pattern": "^Zen_linux_amd64\\.tar\\.gz$"
+      }
+    ],
     "verifiedAt": "2026-07-20"
   }
 ]

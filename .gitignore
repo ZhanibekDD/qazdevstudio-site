@@ -33,3 +33,4 @@ data/*.state.json
 data/review-queue.json
 data/review-queue.csv
 data/crawl-summary.json
+data/software.batch.json

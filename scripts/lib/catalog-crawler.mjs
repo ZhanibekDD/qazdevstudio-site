@@ -17,8 +17,8 @@ export function slugify(value) {
 }
 
 export function detectArchitecture(name) {
-  if (/(?:arm64|aarch64)/i.test(name)) return 'arm64';
-  if (/(?:x86_64|x64|amd64|win64)/i.test(name)) return 'x64';
+  if (/(?:arm64|aarch64|apple[-_. ]?silicon|silicon)/i.test(name)) return 'arm64';
+  if (/(?:x86_64|x64|amd64|win64|intel)/i.test(name)) return 'x64';
   if (/(?:i[3-6]86|x86|win32)/i.test(name)) return 'x86';
   if (/(?:universal|all[-_.]?arch|noarch)/i.test(name)) return 'universal';
   return 'unknown';
@@ -30,8 +30,8 @@ export function detectPlatform(name) {
   }
 
   if (/\.(?:zip|7z|tar\.gz|tgz)$/i.test(name)) {
-    if (/(?:windows|win32|win64|win[-_.]?x64)/i.test(name)) return 'windows';
     if (/(?:macos|darwin|osx)/i.test(name)) return 'macos';
+    if (/(?:windows|(?:^|[-_.])win(?:32|64|[-_.]?x64)(?:[-_.]|$))/i.test(name)) return 'windows';
     if (/(?:linux|ubuntu|debian)/i.test(name)) return 'linux';
   }
 
