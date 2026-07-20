@@ -1,0 +1,58 @@
+name: Build and publish software catalog
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/build-catalog.yml'
+      - 'data/software.json'
+      - 'scripts/build-software-catalog.mjs'
+      - 'scripts/verify-downloads.mjs'
+      - 'programmy/catalog.js'
+      - 'programmy/catalog.css'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-public-catalog
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run parser tests
+        run: node --test tests/*.test.mjs
+
+      - name: Build 1,000 program pages and search index
+        run: node scripts/build-software-catalog.mjs
+
+      - name: Verify every download rule structurally
+        env:
+          VERIFY_NETWORK: 'false'
+        run: node scripts/verify-downloads.mjs
+
+      - name: Commit generated catalog
+        shell: bash
+        run: |
+          if git diff --quiet -- programmy sitemap-programmy.xml; then
+            echo "Catalog is already current"
+            exit 0
+          fi
+          git config user.name "qazdev-catalog-bot"
+          git config user.email "qazdev-catalog-bot@users.noreply.github.com"
+          git add programmy sitemap-programmy.xml
+          git commit -m "Build 1,000-page verified software catalog [skip ci]"
+          git push origin HEAD:main
