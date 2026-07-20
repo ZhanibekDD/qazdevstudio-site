@@ -3,5 +3,4 @@ Allow: /
 Disallow: /404.html
 Disallow: /api/
 
-Sitemap: https://qazdevstudio.kz/sitemap.xml
-Sitemap: https://qazdevstudio.kz/sitemap-programmy.xml
+Sitemap: https://qazdevstudio.kz/sitemap-index.xml
