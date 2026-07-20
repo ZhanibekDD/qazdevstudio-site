@@ -43,3 +43,4 @@ data/flathub-summary.json
 data/flathub-review-queue.json
 data/flathub-review-queue.csv
 data/software-flathub.batch.json
+data/software-expansion.batch.json
