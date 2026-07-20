@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="preload" href="/assets/qazdev-system-hero.webp" as="image" type="image/webp" fetchpriority="high">
-  <link rel="stylesheet" href="/css/styles.css?v=20260720.3">
+  <link rel="stylesheet" href="/css/styles.css?v=20260720.4">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_KZ">
   <meta property="og:site_name" content="QazDev Studio">
@@ -102,7 +102,7 @@
   <header class="v3-header" id="header">
     <div class="v3-container v3-nav">
       <a class="v3-brand" href="/" aria-label="QazDev Studio — главная">
-        <span class="v3-brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <img class="v3-brand-logo" src="/assets/qazdev-mark.svg" width="40" height="40" alt="">
         <span><strong>QazDev</strong><small>systems studio</small></span>
       </a>
       <nav class="v3-menu" id="navMenu" aria-label="Основная навигация">
@@ -123,7 +123,7 @@
         <div class="v3-hero-shell">
           <div class="v3-hero-copy">
             <p class="v3-kicker"><span></span> Независимая digital‑студия · Казахстан</p>
-            <h1 id="hero-title">Не просто сайт.<br><em>Рабочая система</em><br>для вашего бизнеса.</h1>
+            <h1 id="hero-title">Цифровая система<br><em>для роста бизнеса.</em></h1>
             <p class="v3-lead">Проектирую сайты, Telegram‑ботов, CRM и автоматизацию, которые принимают заявки, сохраняют данные и убирают ручную рутину.</p>
             <div class="v3-actions">
               <a class="v3-btn v3-btn-primary" href="https://wa.me/77000300024?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9D%D1%83%D0%B6%D0%BD%D0%B0%20%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%B0%D1%8F%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81%D0%B0" target="_blank" rel="noopener">Получить план запуска <span>↗</span></a>
@@ -135,7 +135,7 @@
               <li><strong>KZ</strong><span>Работа по всему<br>Казахстану</span></li>
             </ul>
           </div>
-          <div class="v3-hero-visual" aria-label="Визуализация цифровой системы">
+          <div class="v3-hero-visual" role="img" aria-label="Визуализация цифровой системы">
             <img src="/assets/qazdev-system-hero.webp" alt="Связанные модули цифровой системы бизнеса" width="1200" height="686" fetchpriority="high" decoding="async">
             <div class="v3-live-card v3-live-top"><i></i><span>Система работает</span><b>online</b></div>
             <div class="v3-live-card v3-live-bottom"><span>Новая заявка</span><strong>→ CRM → Telegram</strong><b>только что</b></div>
@@ -144,9 +144,14 @@
       </div>
     </section>
 
-    <div class="v3-marquee" aria-label="Направления работы">
-      <div><span>Сайты под заявки</span><i>✦</i><span>Telegram‑боты</span><i>✦</i><span>CRM‑системы</span><i>✦</i><span>Автоматизация</span><i>✦</i><span>Интеграции API</span><i>✦</i><span>Личные кабинеты</span><i>✦</i><span>Сайты под заявки</span><i>✦</i><span>Telegram‑боты</span></div>
-    </div>
+    <section class="v3-marquee" aria-label="Направления работы">
+      <div class="v3-marquee-track">
+        <span>Сайты под заявки</span><i>✦</i><span>Telegram‑боты</span><i>✦</i><span>CRM‑системы</span><i>✦</i><span>Автоматизация</span><i>✦</i><span>Интеграции API</span><i>✦</i><span>Личные кабинеты</span><i>✦</i>
+        <span aria-hidden="true">Сайты под заявки</span><i aria-hidden="true">✦</i><span aria-hidden="true">Telegram‑боты</span><i aria-hidden="true">✦</i><span aria-hidden="true">CRM‑системы</span><i aria-hidden="true">✦</i><span aria-hidden="true">Автоматизация</span><i aria-hidden="true">✦</i><span aria-hidden="true">Интеграции API</span><i aria-hidden="true">✦</i><span aria-hidden="true">Личные кабинеты</span><i aria-hidden="true">✦</i>
+        <span aria-hidden="true">Сайты под заявки</span><i aria-hidden="true">✦</i><span aria-hidden="true">Telegram‑боты</span><i aria-hidden="true">✦</i><span aria-hidden="true">CRM‑системы</span><i aria-hidden="true">✦</i><span aria-hidden="true">Автоматизация</span><i aria-hidden="true">✦</i><span aria-hidden="true">Интеграции API</span><i aria-hidden="true">✦</i><span aria-hidden="true">Личные кабинеты</span><i aria-hidden="true">✦</i>
+        <span aria-hidden="true">Сайты под заявки</span><i aria-hidden="true">✦</i><span aria-hidden="true">Telegram‑боты</span><i aria-hidden="true">✦</i><span aria-hidden="true">CRM‑системы</span><i aria-hidden="true">✦</i><span aria-hidden="true">Автоматизация</span><i aria-hidden="true">✦</i><span aria-hidden="true">Интеграции API</span><i aria-hidden="true">✦</i><span aria-hidden="true">Личные кабинеты</span><i aria-hidden="true">✦</i>
+      </div>
+    </section>
 
     <section class="v3-intro v3-section" id="systems">
       <div class="v3-container">
@@ -163,7 +168,7 @@
             <a href="/razrabotka-saitov-kazakhstan.html">Разработка сайтов <span>↗</span></a>
             <div class="v3-browser-demo" aria-hidden="true">
               <div><i></i><i></i><i></i><span>your-company.kz</span></div>
-              <section><b>Понятное предложение</b><small>Доверие · выгоды · результат</small><button>Оставить заявку</button></section>
+              <section><b>Понятное предложение</b><small>Доверие · выгоды · результат</small><span class="v3-demo-button">Оставить заявку</span></section>
             </div>
           </article>
           <article class="v3-bento-card v3-bento-bot v3-reveal">
@@ -204,7 +209,7 @@
               <li><span>04</span><div><b>Документы уходят клиенту</b><small>Без копирования и ручного заполнения</small></div></li>
             </ul>
           </div>
-          <div class="v3-map-board v3-reveal" aria-label="Схема обработки заявки">
+          <div class="v3-map-board v3-reveal" role="img" aria-label="Схема обработки заявки">
             <div class="v3-map-grid"></div>
             <div class="v3-node v3-node-site"><i>◎</i><span>Сайт</span><small>Новая заявка</small></div>
             <div class="v3-node v3-node-core"><i>Q</i><span>QazDev Core</span><small>Данные сохранены</small></div>
@@ -310,11 +315,11 @@
 
   <footer class="v3-footer">
     <div class="v3-container">
-      <div class="v3-footer-top"><a class="v3-brand is-footer" href="/"><span class="v3-brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span><strong>QazDev</strong><small>systems studio</small></span></a><p>Сайты, боты, CRM и автоматизация<br>для бизнеса в Казахстане.</p><div><a href="https://t.me/QazDevStudio" target="_blank" rel="noopener">Telegram ↗</a><a href="https://wa.me/77000300024" target="_blank" rel="noopener">WhatsApp ↗</a><a href="mailto:hello@qazdevstudio.kz">Email ↗</a></div></div>
+      <div class="v3-footer-top"><a class="v3-brand is-footer" href="/"><img class="v3-brand-logo" src="/assets/qazdev-mark.svg" width="40" height="40" alt=""><span><strong>QazDev</strong><small>systems studio</small></span></a><p>Сайты, боты, CRM и автоматизация<br>для бизнеса в Казахстане.</p><div><a href="https://t.me/QazDevStudio" target="_blank" rel="noopener">Telegram ↗</a><a href="https://wa.me/77000300024" target="_blank" rel="noopener">WhatsApp ↗</a><a href="mailto:hello@qazdevstudio.kz">Email ↗</a></div></div>
       <div class="v3-footer-links"><div><b>Решения</b><a href="/razrabotka-saitov-kazakhstan.html">Разработка сайтов</a><a href="/telegram-bot-dlya-biznesa.html">Telegram‑боты</a><a href="/crm-dlya-malogo-biznesa.html">CRM‑системы</a><a href="/avtomatizaciya-biznesa.html">Автоматизация</a></div><div><b>Полезное</b><a href="/programmy/">Каталог программ</a><a href="/templates/">Шаблоны</a><a href="/blog/">Блог</a><a href="/ready-solutions.html">Готовые пакеты</a></div><div><b>География</b><a href="/razrabotka-saitov-taldykorgan.html">Талдыкорган</a><a href="/razrabotka-saitov-almaty.html">Алматы</a><a href="/razrabotka-saitov-astana.html">Астана</a><a href="/razrabotka-saitov-kazakhstan.html">Весь Казахстан</a></div></div>
       <div class="v3-footer-bottom"><span>© <span id="currentYear">2026</span> QazDev Studio</span><span>Талдыкорган · Казахстан</span><a href="/privacy.html">Политика конфиденциальности</a></div>
     </div>
   </footer>
-  <script src="/js/main.js?v=20260720.3" defer></script>
+  <script src="/js/main.js?v=20260720.4" defer></script>
 </body>
 </html>
