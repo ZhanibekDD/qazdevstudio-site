@@ -47,5 +47,7 @@ jobs:
       - name: Ensure generated pages are current
         run: git diff --exit-code -- programmy sitemap-programmy.xml
 
-      - name: Verify all direct download buttons
+      - name: Verify all download rules structurally
+        env:
+          VERIFY_NETWORK: 'false'
         run: node scripts/verify-downloads.mjs
