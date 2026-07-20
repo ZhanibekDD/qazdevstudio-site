@@ -1,0 +1,9 @@
+<svg width="244" height="56" viewBox="0 0 244 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="1" width="54" height="54" rx="16" fill="#111319"/>
+  <rect x="1" y="1" width="54" height="54" rx="16" stroke="white" stroke-opacity=".12"/>
+  <path d="M17 18.5C17 15.462 19.462 13 22.5 13H31.5C35.642 13 39 16.358 39 20.5V29.5C39 33.642 35.642 37 31.5 37H24.5C20.358 37 17 33.642 17 29.5V18.5Z" stroke="#5B73FF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M31.5 31.5L42 42" stroke="#C9FF4A" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="39" cy="39" r="3" fill="#C9FF4A"/>
+  <text x="69" y="29" fill="#F8F8F5" font-family="Manrope, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="-1">QazDev</text>
+  <text x="70" y="43" fill="#9297A3" font-family="JetBrains Mono, monospace" font-size="8" font-weight="600" letter-spacing="1.5">DIGITAL SYSTEMS</text>
+</svg>
