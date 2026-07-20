@@ -1,5 +1,15 @@
 /* QazDev Studio — main.js */
 
+/* Google AdSense */
+(function loadAdSense() {
+  if (document.querySelector('script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]')) return;
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8638191147118359';
+  script.crossOrigin = 'anonymous';
+  document.head.appendChild(script);
+})();
+
 const WA_NUMBER = '77000300024';
 
 /* === HEADER SCROLL === */
