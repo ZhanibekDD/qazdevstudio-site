@@ -8,6 +8,10 @@
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="theme-color" content="#0b0d12">
   <meta name="color-scheme" content="light dark">
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (!location.hash) addEventListener('pageshow', () => scrollTo(0, 0), { once: true });
+  </script>
   <link rel="canonical" href="https://qazdevstudio.kz/">
   <link rel="alternate" hreflang="ru-KZ" href="https://qazdevstudio.kz/">
   <link rel="alternate" hreflang="x-default" href="https://qazdevstudio.kz/">
