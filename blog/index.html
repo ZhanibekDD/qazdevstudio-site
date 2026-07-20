@@ -10,14 +10,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/pages.css">
+<link rel="stylesheet" href="../css/pages.css?v=20260720.4">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Blog","name":"Блог QazDev Studio","description":"Практические статьи об IT для бизнеса в Казахстане","url":"https://qazdevstudio.kz/blog/","publisher":{"@type":"Organization","name":"QazDev Studio","url":"https://qazdevstudio.kz"}}
 </script>
 </head>
-<body>
+<body class="blog-page">
 
-<nav class="p-nav">
+<nav class="p-nav" aria-label="Основная навигация">
   <div class="p-nav-inner">
     <a href="/" class="p-nav-logo">
       <svg width="32" height="32" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#080D1C"/><circle cx="19" cy="19" r="11" stroke="#00D4FF" stroke-width="2" fill="none"/><path d="M27 27L36 36" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/><path d="M13 16L11 19L13 22M25 16L27 19L25 22M21 23L18 15" stroke="#00D4FF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/></svg>
@@ -26,7 +26,7 @@
     <div class="p-nav-links">
       <a href="/" class="p-nav-link">Главная</a>
       <a href="/solutions/" class="p-nav-link">Решения</a>
-      <a href="/blog/" class="p-nav-link" style="color:var(--blue)">Блог</a>
+      <a href="/blog/" class="p-nav-link is-active" aria-current="page">Блог</a>
       <a href="/calculator.html" class="p-nav-link">Калькулятор</a>
     </div>
     <a href="https://wa.me/77000300024?text=Здравствуйте!%20Читал%20блог%2C%20хочу%20обсудить%20задачу." class="p-nav-cta" target="_blank" rel="noopener">Написать</a>
@@ -34,45 +34,27 @@
 </nav>
 
 <main>
-<div class="p-container" style="padding-top:48px;padding-bottom:80px">
+<div class="blog-shell">
+  <section class="blog-hero">
+    <div>
+      <nav class="p-breadcrumb" aria-label="Хлебные крошки"><a href="/">Главная</a><span>→</span><span>Блог</span></nav>
+      <div class="p-tag">20 практических разборов</div>
+      <h1>Блог о <em>системном росте</em> бизнеса</h1>
+    </div>
+    <p>Сайты, CRM, Telegram‑боты и автоматизация без рекламной воды. Объясняю решения, цены и ошибки на языке предпринимателя.</p>
+  </section>
 
-  <nav class="p-breadcrumb">
-    <a href="/">Главная</a>
-    <span>→</span>
-    <span>Блог</span>
-  </nav>
-
-  <div class="p-tag">// Знания</div>
-  <h1 style="font-size:clamp(28px,5vw,44px);font-weight:800;color:var(--text-1);line-height:1.15;margin-bottom:12px">Блог об IT для бизнеса</h1>
-  <p style="font-size:16px;color:var(--text-3);margin-bottom:40px;max-width:600px;line-height:1.7">Практические статьи о Telegram-ботах, CRM, автоматизации и сайтах. Без воды — только то, что реально работает для малого и среднего бизнеса в Казахстане.</p>
-
-  <!-- Фильтры -->
-  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px" id="filters">
-    <button class="filter-btn active" data-cat="all">Все статьи</button>
-    <button class="filter-btn" data-cat="bot">Телеграм-боты</button>
-    <button class="filter-btn" data-cat="crm">CRM и заявки</button>
-    <button class="filter-btn" data-cat="site">Сайты</button>
-    <button class="filter-btn" data-cat="auto">Автоматизация</button>
-    <button class="filter-btn" data-cat="compare">Сравнения</button>
+  <div class="blog-toolbar">
+    <div class="blog-filters" id="filters">
+      <button class="filter-btn active" type="button" data-cat="all">Все</button>
+      <button class="filter-btn" type="button" data-cat="bot">Telegram‑боты</button>
+      <button class="filter-btn" type="button" data-cat="crm">CRM и заявки</button>
+      <button class="filter-btn" type="button" data-cat="site">Сайты</button>
+      <button class="filter-btn" type="button" data-cat="auto">Автоматизация</button>
+      <button class="filter-btn" type="button" data-cat="compare">Сравнения</button>
+    </div>
+    <div class="blog-count">20 материалов · обновлено в 2026</div>
   </div>
-
-  <style>
-    .filter-btn{font-family:'Manrope',sans-serif;font-size:13px;font-weight:600;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-3);cursor:pointer;transition:all .2s}
-    .filter-btn:hover,.filter-btn.active{background:var(--blue);color:#000;border-color:var(--blue)}
-    .blog-card{display:flex;flex-direction:column;gap:10px;padding:24px;background:rgba(13,20,38,.7);border:1px solid var(--border);border-radius:16px;text-decoration:none;transition:border-color .2s,transform .2s}
-    .blog-card:hover{border-color:rgba(0,212,255,.35);transform:translateY(-2px)}
-    .blog-card-cat{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-4)}
-    .blog-card-cat.bot{color:#00D4FF}
-    .blog-card-cat.crm{color:#10B981}
-    .blog-card-cat.site{color:#7C3AED}
-    .blog-card-cat.auto{color:#F5C542}
-    .blog-card-cat.compare{color:#F87171}
-    .blog-card-title{font-size:16px;font-weight:700;color:var(--text-1);line-height:1.4}
-    .blog-card-desc{font-size:13px;color:var(--text-3);line-height:1.6;flex:1}
-    .blog-card-read{font-size:12px;color:var(--text-4);margin-top:4px}
-    .blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-    .blog-card[data-cat].hidden{display:none}
-  </style>
 
   <div class="blog-grid" id="grid">
 
@@ -224,7 +206,7 @@
   </div>
 
   <!-- CTA -->
-  <div class="p-cta" style="margin-top:56px">
+  <div class="p-cta blog-cta">
     <h2>Нужна консультация по IT для бизнеса?</h2>
     <p>Расскажите задачу — подберём решение и объясним что подойдёт именно вам.</p>
     <div class="p-cta-btns">
