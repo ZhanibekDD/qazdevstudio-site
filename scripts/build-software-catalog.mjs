@@ -1,4 +1,5 @@
 import {readFile, writeFile, mkdir, readdir, unlink} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
@@ -8,6 +9,10 @@ const categoryDir = path.join(outputDir, 'kategorii');
 const site = 'https://qazdevstudio.kz';
 const initialCardLimit = 60;
 const items = JSON.parse(await readFile(path.join(root, 'data', 'software.json'), 'utf8'));
+const assetVersion = createHash('sha1').update((await Promise.all([
+  readFile(path.join(outputDir, 'catalog.css'), 'utf8'),
+  readFile(path.join(outputDir, 'catalog.js'), 'utf8')
+])).join('\n')).digest('hex').slice(0, 10);
 await Promise.all([mkdir(outputDir, {recursive: true}), mkdir(categoryDir, {recursive: true})]);
 
 const required = ['slug', 'name', 'category', 'categoryLabel', 'shortDescription', 'fullDescription', 'website', 'platforms', 'features', 'downloads', 'verifiedAt'];
@@ -67,9 +72,9 @@ const categories = [...new Map(items.map(item => [item.category, item.categoryLa
   .map(([id, label]) => ({id, label, count: items.filter(item => item.category === id).length}))
   .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, 'ru'));
 
-const head = ({title, description, canonical, schema = ''}) => `<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${e(title)}</title><meta name="description" content="${e(description)}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="${e(canonical)}"><meta property="og:type" content="website"><meta property="og:site_name" content="QazDev Studio"><meta property="og:title" content="${e(title)}"><meta property="og:description" content="${e(description)}"><meta property="og:url" content="${e(canonical)}"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/programmy/catalog.css">${schema}`;
+const head = ({title, description, canonical, schema = ''}) => `<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${e(title)}</title><meta name="description" content="${e(description)}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="${e(canonical)}"><meta property="og:type" content="website"><meta property="og:site_name" content="QazDev Studio"><meta property="og:title" content="${e(title)}"><meta property="og:description" content="${e(description)}"><meta property="og:url" content="${e(canonical)}"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/programmy/catalog.css?v=${assetVersion}">${schema}`;
 const header = `<header class="site-header"><div class="container nav"><a class="brand" href="/"><span>QazDev</span> Studio</a><nav class="nav-links" aria-label="Основная навигация"><a href="/programmy/">Программы</a><a href="/templates/">Шаблоны</a><a href="/blog/">Блог</a><a class="nav-cta" href="https://wa.me/77000300024?text=${encodeURIComponent('Здравствуйте! Нужна программа или автоматизация для бизнеса')}">Написать нам</a></nav></div></header>`;
-const footer = `<footer class="site-footer"><div class="container footer-row"><span>© 2026 QazDev Studio · Казахстан</span><span>Прямые файлы от разработчиков · <a href="mailto:hello@qazdevstudio.kz">Предложить программу</a></span></div></footer><div class="download-toast" id="downloadToast" role="status" aria-live="polite"></div><script src="/programmy/catalog.js" defer></script>`;
+const footer = `<footer class="site-footer"><div class="container footer-row"><span>© 2026 QazDev Studio · Казахстан</span><span>Прямые файлы от разработчиков · <a href="mailto:hello@qazdevstudio.kz">Предложить программу</a></span></div></footer><div class="download-toast" id="downloadToast" role="status" aria-live="polite"></div><script src="/programmy/catalog.js?v=${assetVersion}" defer></script>`;
 const layout = ({title, description, canonical, body, schema = ''}) => `<!doctype html><html lang="ru"><head>${head({title, description, canonical, schema})}</head><body>${header}${body}${footer}</body></html>`;
 
 const categoryButtons = [{id: 'all', label: 'Все'}, ...categories]
