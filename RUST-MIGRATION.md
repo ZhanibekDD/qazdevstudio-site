@@ -12,6 +12,8 @@ sitemaps at runtime, and serves the existing utilities during migration.
 - Server-rendered home, service, blog, catalog and software pages
 - Compatibility redirects for three broken historical service URLs
 - Existing static tools are served from an allowlisted legacy directory
+- First-party SQLite analytics and Telegram reports run in Rust
+- The retained IP utility uses the Rust `/api/geo-track` endpoint
 - Docker image for Plesk or any Linux host
 
 The browser still receives HTML, CSS and a small JavaScript file. That is normal:
@@ -51,12 +53,16 @@ Recommended Plesk deployment:
 
 1. Install/open the Docker extension.
 2. Run the image with container port `8080` mapped to host `127.0.0.1:18080`.
-3. Set `LEGACY_ROOT=/app/legacy` and `RUST_LOG=qazdevstudio=info,tower_http=info`.
-4. Add the reverse-proxy rule from `deploy/nginx-qazdevstudio.conf`.
-5. Check `/health`, `/robots.txt`, `/sitemap-index.xml`, `/ads.txt`, the homepage,
+3. Mount a persistent volume at `/app/data`.
+4. Set `LEGACY_ROOT=/app/legacy`, `QAZDEV_DB_PATH=/app/data/analytics.sqlite`
+   and `RUST_LOG=qazdevstudio=info,tower_http=info`.
+5. For Telegram reports, set `TELEGRAM_BOT_TOKEN`, `TELEGRAM_ADMIN_ID` and a
+   long random `TELEGRAM_WEBHOOK_SECRET`; configure the webhook URL as
+   `https://qazdevstudio.kz/api/bot` with the same secret token.
+6. Add the reverse-proxy rule from `deploy/nginx-qazdevstudio.conf`.
+7. Check `/health`, `/robots.txt`, `/sitemap-index.xml`, `/ads.txt`, the homepage,
    the Astana page, the blog and several software pages.
-6. Only then switch live traffic from the old document root to the Rust process.
+8. Only then switch live traffic from the old document root to the Rust process.
 
 Do not delete the existing static deployment until the Rust container has been
 healthy for at least 24 hours. Rollback is simply removing the proxy rule.
-
