@@ -22,6 +22,22 @@ use tower_http::{
 };
 
 const DOMAIN: &str = "https://qazdevstudio.kz";
+const PROGRAM_CATEGORIES: [(&str, &str); 14] = [
+    ("system", "Система"),
+    ("productivity", "Продуктивность"),
+    ("developer", "Разработка"),
+    ("multimedia", "Мультимедиа"),
+    ("graphics", "Графика"),
+    ("games", "Игры"),
+    ("internet", "Интернет"),
+    ("education", "Образование"),
+    ("security", "Безопасность"),
+    ("communication", "Общение"),
+    ("network", "Сеть"),
+    ("ai", "Искусственный интеллект"),
+    ("screenshots", "Скриншоты"),
+    ("files", "Файлы"),
+];
 const SOFTWARE_JSON: &str = include_str!("../data/software.json");
 const SITE_CSS: &str = include_str!("../rust-static/site.css");
 const SITE_JS: &str = include_str!("../rust-static/site.js");
@@ -178,6 +194,7 @@ pub fn app(state: AppState) -> Router {
         .route("/blog/{file}", get(blog_article))
         .route("/programmy/", get(catalog))
         .route("/programmy/index.html", get(catalog))
+        .route("/programmy/kategorii/{file}", get(program_category))
         .route("/programmy/{file}", get(program_detail))
         .route("/api/programs", get(programs_api))
         .route("/api/track", post(track_event))
@@ -298,6 +315,37 @@ async fn catalog(State(state): State<AppState>) -> impl IntoResponse {
     render(CatalogTemplate {
         count: state.software.len(),
         featured,
+    })
+}
+
+async fn program_category(State(state): State<AppState>, Path(file): Path<String>) -> Response {
+    let Some(slug) = file.strip_suffix(".html") else {
+        return not_found();
+    };
+    let Some((category, label)) = PROGRAM_CATEGORIES
+        .iter()
+        .find(|(category, _)| *category == slug)
+        .copied()
+    else {
+        return not_found();
+    };
+    let programs = state
+        .software
+        .iter()
+        .filter(|app| app.category == category)
+        .cloned()
+        .collect::<Vec<_>>();
+    let count = programs.len();
+
+    render(CategoryTemplate {
+        title: format!("Программы: {label} — скачать официальные версии | QazTools"),
+        description: format!(
+            "{count} проверенных программ в категории «{label}» для Windows, Linux и macOS с официальными ссылками."
+        ),
+        canonical: format!("{DOMAIN}/programmy/kategorii/{category}.html"),
+        label,
+        count,
+        programs,
     })
 }
 
@@ -439,10 +487,8 @@ async fn geo_track(
     headers: HeaderMap,
     Json(request): Json<GeoRequest>,
 ) -> Json<GeoResponse> {
-    let _context = (
-        request.page_url.chars().take(300).collect::<String>(),
-        request.referrer.chars().take(300).collect::<String>(),
-    );
+    let page_url = request.page_url.chars().take(300).collect::<String>();
+    let referrer = request.referrer.chars().take(300).collect::<String>();
     let user_agent = header_text(&headers, header::USER_AGENT.as_str());
     let ip = parse_client_ip(&headers).unwrap_or(IpAddr::V4(std::net::Ipv4Addr::UNSPECIFIED));
     let geo = if public_ip(ip) {
@@ -473,7 +519,7 @@ async fn geo_track(
         .unwrap_or_default()
         .to_string();
 
-    Json(GeoResponse {
+    let response = GeoResponse {
         ok: true,
         ip: ip.to_string(),
         city: if success { geo.city } else { "—".to_string() },
@@ -496,7 +542,24 @@ async fn geo_track(
         asn,
         hosting: geo.hosting || geo.proxy,
         device: device_label(&user_agent).to_string(),
-    })
+    };
+
+    if let Some(config) = state.telegram.as_ref() {
+        let mut text = format!(
+            "Открыли инструмент «Мой IP»\nIP: {}\nГород: {}\nСтрана: {}\nУстройство: {}\nСтраница: {}",
+            response.ip, response.city, response.country, response.device, page_url
+        );
+        if !referrer.is_empty() {
+            text.push_str("\nИсточник: ");
+            text.push_str(&referrer);
+        }
+        if let Err(error) = send_telegram(&state.http_client, config, &config.admin_id, &text).await
+        {
+            tracing::warn!(%error, "IP utility Telegram notification failed");
+        }
+    }
+
+    Json(response)
 }
 
 async fn bot_webhook(
@@ -698,24 +761,47 @@ async fn sitemap_index() -> Response {
 }
 
 async fn sitemap_main() -> Response {
-    let mut urls = vec![
-        "/".to_string(),
-        "/razrabotka-saitov-kazakhstan.html".to_string(),
-        "/razrabotka-saitov-astana.html".to_string(),
-        "/razrabotka-saitov-almaty.html".to_string(),
-        "/razrabotka-saitov-karaganda.html".to_string(),
-        "/razrabotka-saitov-shymkent.html".to_string(),
-        "/razrabotka-saitov-taldykorgan.html".to_string(),
-        "/telegram-bot-kazakhstan.html".to_string(),
-        "/crm-dlya-biznesa-kazakhstan.html".to_string(),
-        "/avtomatizaciya-biznesa-kazakhstan.html".to_string(),
-        "/blog/".to_string(),
-        "/programmy/".to_string(),
-        "/calculator.html".to_string(),
-        "/tz-generator.html".to_string(),
-        "/utm.html".to_string(),
-        "/obrabotka-izobrazheniy-online.html".to_string(),
-    ];
+    let mut urls = [
+        "/",
+        "/calculator.html",
+        "/checklist-saita.html",
+        "/automation-quiz.html",
+        "/tz-generator.html",
+        "/ready-solutions.html",
+        "/razrabotka-saitov-kazakhstan.html",
+        "/telegram-bot-kazakhstan.html",
+        "/crm-dlya-biznesa-kazakhstan.html",
+        "/avtomatizaciya-biznesa-kazakhstan.html",
+        "/avtomatizaciya-dokumentov.html",
+        "/razrabotka-saitov-almaty.html",
+        "/razrabotka-saitov-astana.html",
+        "/razrabotka-saitov-shymkent.html",
+        "/razrabotka-saitov-karaganda.html",
+        "/razrabotka-saitov-taldykorgan.html",
+        "/solutions/",
+        "/solutions/kak-ne-teryat-zayavki-v-whatsapp.html",
+        "/solutions/telegram-bot-dlya-biznesa.html",
+        "/solutions/crm-dlya-malogo-biznesa.html",
+        "/solutions/avtomatizaciya-dokumentov.html",
+        "/solutions/sait-dlya-yurista.html",
+        "/solutions/sait-dlya-uchebnogo-centra.html",
+        "/solutions/chto-luchshe-sait-bot-ili-crm.html",
+        "/blog/",
+        "/programmy/",
+        "/obrabotka-izobrazheniy-online.html",
+        "/utm.html",
+        "/moy-ip.html",
+        "/templates/",
+        "/templates/dogovor-razrabotka-saita.html",
+        "/templates/tz-na-sait.html",
+        "/templates/tz-na-telegram-bot.html",
+        "/templates/kommercheskoe-predlozhenie.html",
+        "/ip.html",
+        "/privacy.html",
+    ]
+    .into_iter()
+    .map(str::to_string)
+    .collect::<Vec<_>>();
     urls.extend(
         blog_articles()
             .into_iter()
@@ -725,12 +811,17 @@ async fn sitemap_main() -> Response {
 }
 
 async fn sitemap_programs(State(state): State<AppState>) -> Response {
-    xml_urlset(
+    let mut urls = PROGRAM_CATEGORIES
+        .iter()
+        .map(|(slug, _)| format!("/programmy/kategorii/{slug}.html"))
+        .collect::<Vec<_>>();
+    urls.extend(
         state
             .software
             .iter()
             .map(|app| format!("/programmy/{}.html", app.slug)),
-    )
+    );
+    xml_urlset(urls)
 }
 
 async fn legacy_root_page(State(state): State<AppState>, uri: Uri) -> Response {
@@ -864,6 +955,17 @@ struct ArticleTemplate {
 struct CatalogTemplate {
     count: usize,
     featured: Vec<Software>,
+}
+
+#[derive(Template)]
+#[template(path = "category.html")]
+struct CategoryTemplate {
+    title: String,
+    description: String,
+    canonical: String,
+    label: &'static str,
+    count: usize,
+    programs: Vec<Software>,
 }
 
 #[derive(Template)]
@@ -1319,6 +1421,20 @@ mod tests {
                     .header(header::CONTENT_TYPE, "application/json")
                     .header("x-real-ip", "127.0.0.1")
                     .body(Body::from("{}"))
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+        assert_eq!(response.status(), StatusCode::OK);
+    }
+
+    #[tokio::test]
+    async fn program_category_is_rendered_by_rust() {
+        let response = app(AppState::new(PathBuf::from(env!("CARGO_MANIFEST_DIR"))))
+            .oneshot(
+                Request::builder()
+                    .uri("/programmy/kategorii/system.html")
+                    .body(Body::empty())
                     .unwrap(),
             )
             .await
