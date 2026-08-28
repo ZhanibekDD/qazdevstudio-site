@@ -14,6 +14,7 @@ sitemaps at runtime, and serves the existing utilities during migration.
 - Existing static tools are served from an allowlisted legacy directory
 - First-party SQLite analytics and Telegram reports run in Rust
 - The retained IP utility uses the Rust `/api/geo-track` endpoint
+- Pattern-based GitHub downloads are resolved by Rust on click and cached for one hour
 - Docker image for Plesk or any Linux host
 
 The browser still receives HTML, CSS and a small JavaScript file. That is normal:
