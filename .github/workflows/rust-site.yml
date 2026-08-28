@@ -1,3 +1,4 @@
+# Verifies the Rust application and publishes the production container from main.
 name: Rust site
 
 on:
@@ -74,4 +75,3 @@ jobs:
             ghcr.io/zhanibekdd/qazdevstudio-site:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
