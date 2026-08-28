@@ -1,16 +1,19 @@
-use std::{collections::HashMap, path::PathBuf, sync::Arc};
+mod analytics;
 
+use std::{collections::HashMap, net::IpAddr, path::PathBuf, sync::Arc, time::Duration};
+
+use analytics::{Analytics, RequestMeta, TrackPayload, format_report, notification_text};
 use askama::Template;
 use axum::{
     Json, Router,
     body::Body,
-    extract::{Path, State},
-    http::{HeaderValue, StatusCode, Uri, header},
+    extract::{DefaultBodyLimit, Path, State},
+    http::{HeaderMap, HeaderValue, StatusCode, Uri, header},
     response::{Html, IntoResponse, Redirect, Response},
     routing::{get, post},
 };
 use serde::{Deserialize, Serialize};
-use serde_json::json;
+use serde_json::{Value, json};
 use tower_http::{
     compression::CompressionLayer,
     services::{ServeDir, ServeFile},
@@ -73,6 +76,16 @@ pub struct AppState {
     software: Arc<Vec<Software>>,
     software_index: Arc<HashMap<String, usize>>,
     legacy_root: Arc<PathBuf>,
+    analytics: Option<Analytics>,
+    telegram: Option<TelegramConfig>,
+    http_client: reqwest::Client,
+}
+
+#[derive(Clone)]
+struct TelegramConfig {
+    bot_token: Arc<str>,
+    admin_id: Arc<str>,
+    webhook_secret: Arc<str>,
 }
 
 impl AppState {
@@ -80,7 +93,28 @@ impl AppState {
         let legacy_root = std::env::var("LEGACY_ROOT")
             .map(PathBuf::from)
             .unwrap_or_else(|_| PathBuf::from(env!("CARGO_MANIFEST_DIR")));
-        Self::new(legacy_root)
+        let mut state = Self::new(legacy_root);
+        if let Ok(path) = std::env::var("QAZDEV_DB_PATH") {
+            match Analytics::open(path) {
+                Ok(analytics) => state.analytics = Some(analytics),
+                Err(error) => tracing::error!(%error, "analytics database is unavailable"),
+            }
+        }
+        if let (Ok(bot_token), Ok(admin_id)) = (
+            std::env::var("TELEGRAM_BOT_TOKEN"),
+            std::env::var("TELEGRAM_ADMIN_ID"),
+        ) && !bot_token.is_empty()
+            && !admin_id.is_empty()
+        {
+            state.telegram = Some(TelegramConfig {
+                bot_token: bot_token.into(),
+                admin_id: admin_id.into(),
+                webhook_secret: std::env::var("TELEGRAM_WEBHOOK_SECRET")
+                    .unwrap_or_default()
+                    .into(),
+            });
+        }
+        state
     }
 
     pub fn new(legacy_root: PathBuf) -> Self {
@@ -96,6 +130,13 @@ impl AppState {
             software: Arc::new(software),
             software_index: Arc::new(software_index),
             legacy_root: Arc::new(legacy_root),
+            analytics: None,
+            telegram: None,
+            http_client: reqwest::Client::builder()
+                .timeout(Duration::from_secs(6))
+                .user_agent("QazDevStudio-Rust/1.0")
+                .build()
+                .expect("valid HTTP client configuration"),
         }
     }
 }
@@ -139,8 +180,12 @@ pub fn app(state: AppState) -> Router {
         .route("/programmy/index.html", get(catalog))
         .route("/programmy/{file}", get(program_detail))
         .route("/api/programs", get(programs_api))
-        .route("/api/track", post(track_compatibility))
-        .route("/api/track.php", post(track_compatibility))
+        .route("/api/track", post(track_event))
+        .route("/api/track.php", post(track_event))
+        .route("/api/geo-track", post(geo_track))
+        .route("/api/geo-track.php", post(geo_track))
+        .route("/api/bot", post(bot_webhook))
+        .route("/api/bot.php", post(bot_webhook))
         .route("/health", get(health))
         .route("/site.css", get(site_css))
         .route("/site.js", get(site_js))
@@ -161,6 +206,7 @@ pub fn app(state: AppState) -> Router {
         )
         .fallback(legacy_root_page)
         .with_state(state)
+        .layer(DefaultBodyLimit::max(16 * 1024))
         .layer(CompressionLayer::new())
         .layer(SetResponseHeaderLayer::if_not_present(
             header::X_CONTENT_TYPE_OPTIONS,
@@ -306,7 +352,211 @@ async fn programs_api(State(state): State<AppState>) -> impl IntoResponse {
     Json(programs)
 }
 
-async fn track_compatibility() -> StatusCode {
+async fn track_event(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Json(payload): Json<TrackPayload>,
+) -> StatusCode {
+    if payload.visitor_id.trim().is_empty()
+        || payload.session_id.trim().is_empty()
+        || payload.event_type.trim().is_empty()
+    {
+        return StatusCode::BAD_REQUEST;
+    }
+    if payload.event_type.len() > 64 || payload.page_url.len() > 1_000 {
+        return StatusCode::PAYLOAD_TOO_LARGE;
+    }
+
+    let meta = RequestMeta {
+        user_agent: header_text(&headers, header::USER_AGENT.as_str()),
+        ip: client_ip(&headers),
+    };
+
+    if let Some(analytics) = state.analytics.clone() {
+        let record = payload.clone();
+        match tokio::task::spawn_blocking(move || analytics.record(&record, &meta)).await {
+            Ok(Ok(())) => {}
+            Ok(Err(error)) => tracing::warn!(%error, "analytics event was not stored"),
+            Err(error) => tracing::warn!(%error, "analytics storage task failed"),
+        }
+    }
+
+    if let (Some(config), Some(text)) = (state.telegram.as_ref(), notification_text(&payload))
+        && let Err(error) = send_telegram(&state.http_client, config, &config.admin_id, &text).await
+    {
+        tracing::warn!(%error, "Telegram notification failed");
+    }
+
+    StatusCode::NO_CONTENT
+}
+
+#[derive(Debug, Default, Deserialize)]
+struct GeoRequest {
+    #[serde(default)]
+    page_url: String,
+    #[serde(default)]
+    referrer: String,
+}
+
+#[derive(Debug, Default, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct IpApiResponse {
+    status: String,
+    country: String,
+    country_code: String,
+    region_name: String,
+    city: String,
+    lat: Option<f64>,
+    lon: Option<f64>,
+    timezone: String,
+    isp: String,
+    #[serde(rename = "as")]
+    as_name: String,
+    hosting: bool,
+    proxy: bool,
+}
+
+#[derive(Debug, Serialize)]
+struct GeoResponse {
+    ok: bool,
+    ip: String,
+    city: String,
+    region: String,
+    country: String,
+    code: String,
+    flag: String,
+    lat: String,
+    lon: String,
+    tz: String,
+    isp: String,
+    asn: String,
+    hosting: bool,
+    device: String,
+}
+
+async fn geo_track(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Json(request): Json<GeoRequest>,
+) -> Json<GeoResponse> {
+    let _context = (
+        request.page_url.chars().take(300).collect::<String>(),
+        request.referrer.chars().take(300).collect::<String>(),
+    );
+    let user_agent = header_text(&headers, header::USER_AGENT.as_str());
+    let ip = parse_client_ip(&headers).unwrap_or(IpAddr::V4(std::net::Ipv4Addr::UNSPECIFIED));
+    let geo = if public_ip(ip) {
+        let url = format!(
+            "http://ip-api.com/json/{ip}?fields=status,country,countryCode,regionName,city,lat,lon,timezone,isp,as,hosting,proxy&lang=ru"
+        );
+        match state.http_client.get(url).send().await {
+            Ok(response) => response.json::<IpApiResponse>().await.unwrap_or_default(),
+            Err(error) => {
+                tracing::warn!(%error, "IP geolocation request failed");
+                IpApiResponse::default()
+            }
+        }
+    } else {
+        IpApiResponse::default()
+    };
+    let success = geo.status == "success";
+    let country_code = if success {
+        geo.country_code
+    } else {
+        String::new()
+    };
+    let asn = geo
+        .as_name
+        .split_whitespace()
+        .next()
+        .filter(|value| value.starts_with("AS"))
+        .unwrap_or_default()
+        .to_string();
+
+    Json(GeoResponse {
+        ok: true,
+        ip: ip.to_string(),
+        city: if success { geo.city } else { "—".to_string() },
+        region: if success {
+            geo.region_name
+        } else {
+            String::new()
+        },
+        country: if success {
+            geo.country
+        } else {
+            "—".to_string()
+        },
+        flag: country_flag(&country_code),
+        code: country_code,
+        lat: geo.lat.map(format_coordinate).unwrap_or_default(),
+        lon: geo.lon.map(format_coordinate).unwrap_or_default(),
+        tz: geo.timezone,
+        isp: geo.isp,
+        asn,
+        hosting: geo.hosting || geo.proxy,
+        device: device_label(&user_agent).to_string(),
+    })
+}
+
+async fn bot_webhook(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Json(update): Json<Value>,
+) -> StatusCode {
+    let Some(config) = state.telegram.as_ref() else {
+        return StatusCode::NOT_FOUND;
+    };
+    if config.webhook_secret.is_empty() {
+        return StatusCode::NOT_FOUND;
+    }
+    if header_text(&headers, "x-telegram-bot-api-secret-token") != config.webhook_secret.as_ref() {
+        return StatusCode::FORBIDDEN;
+    }
+
+    let message = update.get("message").unwrap_or(&Value::Null);
+    let user_id = message
+        .pointer("/from/id")
+        .and_then(Value::as_i64)
+        .map(|value| value.to_string())
+        .unwrap_or_default();
+    let chat_id = message
+        .pointer("/chat/id")
+        .and_then(Value::as_i64)
+        .map(|value| value.to_string())
+        .unwrap_or_default();
+    if user_id != config.admin_id.as_ref() || chat_id.is_empty() {
+        return StatusCode::NO_CONTENT;
+    }
+
+    let command = message
+        .get("text")
+        .and_then(Value::as_str)
+        .unwrap_or_default();
+    let text = if matches!(command, "/start" | "/report" | "📊 Сегодня" | "📈 7 дней")
+    {
+        if let Some(analytics) = state.analytics.clone() {
+            match tokio::task::spawn_blocking(move || analytics.report()).await {
+                Ok(Ok(report)) => format_report(&report),
+                Ok(Err(error)) => {
+                    tracing::warn!(%error, "analytics report failed");
+                    "Не удалось собрать отчёт.".to_string()
+                }
+                Err(error) => {
+                    tracing::warn!(%error, "analytics report task failed");
+                    "Не удалось собрать отчёт.".to_string()
+                }
+            }
+        } else {
+            "Аналитика не подключена.".to_string()
+        }
+    } else {
+        "QazDev Analytics\n\nКоманды:\n/report — текущий отчёт".to_string()
+    };
+
+    if let Err(error) = send_telegram(&state.http_client, config, &chat_id, &text).await {
+        tracing::warn!(%error, "Telegram report failed");
+    }
     StatusCode::NO_CONTENT
 }
 
@@ -314,8 +564,104 @@ async fn health(State(state): State<AppState>) -> impl IntoResponse {
     Json(json!({
         "status": "ok",
         "runtime": "rust",
-        "programs": state.software.len()
+        "programs": state.software.len(),
+        "analytics": state.analytics.is_some()
     }))
+}
+
+async fn send_telegram(
+    client: &reqwest::Client,
+    config: &TelegramConfig,
+    chat_id: &str,
+    text: &str,
+) -> reqwest::Result<()> {
+    client
+        .post(format!(
+            "https://api.telegram.org/bot{}/sendMessage",
+            config.bot_token
+        ))
+        .json(&json!({ "chat_id": chat_id, "text": text }))
+        .send()
+        .await?
+        .error_for_status()?;
+    Ok(())
+}
+
+fn header_text(headers: &HeaderMap, name: &str) -> String {
+    headers
+        .get(name)
+        .and_then(|value| value.to_str().ok())
+        .unwrap_or_default()
+        .trim()
+        .to_string()
+}
+
+fn client_ip(headers: &HeaderMap) -> String {
+    for name in ["cf-connecting-ip", "x-forwarded-for", "x-real-ip"] {
+        let value = header_text(headers, name);
+        if !value.is_empty() {
+            return value;
+        }
+    }
+    String::new()
+}
+
+fn parse_client_ip(headers: &HeaderMap) -> Option<IpAddr> {
+    client_ip(headers)
+        .split(',')
+        .next()
+        .and_then(|value| value.trim().parse().ok())
+}
+
+fn public_ip(ip: IpAddr) -> bool {
+    match ip {
+        IpAddr::V4(value) => {
+            !(value.is_private()
+                || value.is_loopback()
+                || value.is_link_local()
+                || value.is_broadcast()
+                || value.is_documentation()
+                || value.is_unspecified())
+        }
+        IpAddr::V6(value) => {
+            !(value.is_loopback()
+                || value.is_unique_local()
+                || value.is_unicast_link_local()
+                || value.is_unspecified())
+        }
+    }
+}
+
+fn country_flag(code: &str) -> String {
+    let bytes = code.as_bytes();
+    if bytes.len() != 2 || !bytes.iter().all(u8::is_ascii_alphabetic) {
+        return "🌍".to_string();
+    }
+    bytes
+        .iter()
+        .filter_map(|byte| char::from_u32(127_397 + u32::from(byte.to_ascii_uppercase())))
+        .collect()
+}
+
+fn format_coordinate(value: f64) -> String {
+    format!("{value:.6}")
+        .trim_end_matches('0')
+        .trim_end_matches('.')
+        .to_string()
+}
+
+fn device_label(user_agent: &str) -> &'static str {
+    let lower = user_agent.to_ascii_lowercase();
+    if lower.contains("ipad") || (lower.contains("android") && !lower.contains("mobile")) {
+        "📱 Планшет"
+    } else if lower.contains("iphone")
+        || lower.contains("android")
+        || lower.contains("windows phone")
+    {
+        "📱 Смартфон"
+    } else {
+        "💻 ПК / Ноутбук"
+    }
 }
 
 async fn site_css() -> Response {
@@ -757,6 +1103,13 @@ struct Article {
 fn blog_articles() -> Vec<Article> {
     vec![
         Article {
+            slug: "kak-podklyuchit-kaspi-pay",
+            category: "Платежи",
+            title: "Как подключить Kaspi Pay на сайт",
+            description: "Практический разбор подключения оплаты, ссылок и сценариев для бизнеса в Казахстане.",
+            reading_time: "6 минут",
+        },
+        Article {
             slug: "skolko-stoit-sait-v-kazakhstane",
             category: "Разработка",
             title: "Сколько стоит сайт в Казахстане в 2026 году",
@@ -954,6 +1307,32 @@ mod tests {
             .await
             .unwrap();
         assert_eq!(response.status(), StatusCode::NOT_FOUND);
+    }
+
+    #[tokio::test]
+    async fn geo_endpoint_is_preserved() {
+        let response = app(AppState::new(PathBuf::from(env!("CARGO_MANIFEST_DIR"))))
+            .oneshot(
+                Request::builder()
+                    .method("POST")
+                    .uri("/api/geo-track.php")
+                    .header(header::CONTENT_TYPE, "application/json")
+                    .header("x-real-ip", "127.0.0.1")
+                    .body(Body::from("{}"))
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+        assert_eq!(response.status(), StatusCode::OK);
+    }
+
+    #[test]
+    fn existing_kaspi_article_stays_discoverable() {
+        assert!(
+            blog_articles()
+                .iter()
+                .any(|article| article.slug == "kak-podklyuchit-kaspi-pay")
+        );
     }
 
     #[test]
