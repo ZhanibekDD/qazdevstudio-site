@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}{{ service.title }}{% endblock %}
+{% block description %}{{ service.description }}{% endblock %}
+{% block canonical %}{{ service.canonical }}{% endblock %}
+{% block body_class %}service-page{% endblock %}
+
+{% block head %}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"{{ service.heading }}","provider":{"@type":"Organization","name":"QazDev Studio","url":"https://qazdevstudio.kz/"},"areaServed":{"@type":"Country","name":"Казахстан"},"url":"{{ service.canonical }}"}</script>
+{% endblock %}
+
+{% block content %}
+<section class="service-hero page-grid">
+  <div class="hero-index"><span>УСЛУГА</span><span>{{ service.eyebrow }}</span></div>
+  <div class="service-hero-main">
+    <h1>{{ service.heading }}</h1>
+    <p class="service-lead">{{ service.lead }}</p>
+    <div class="button-row">
+      <a class="button button-primary" href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20проект" target="_blank" rel="noopener">Обсудить проект</a>
+      <a class="text-link" href="#prices">Смотреть цены ↓</a>
+    </div>
+  </div>
+  <aside class="location-note"><small>География без выдумок</small><p>{{ service.location_note }}</p></aside>
+</section>
+
+<section class="service-proof section-shell">
+  <div class="section-heading compact"><span class="section-number">01 / Результат</span><h2>{{ service.offer }}</h2></div>
+  <ol class="deliverable-list">
+    {% for item in service.deliverables %}<li><span>0{{ loop.index }}</span><p>{{ item }}</p></li>{% endfor %}
+  </ol>
+</section>
+
+<section class="case-inline section-shell">
+  <div><span class="section-number">02 / Пример</span><h2>Посмотрите живой проект,<br>а не картинку из портфолио.</h2></div>
+  <div><strong>ZakonExpert</strong><p>Рабочая юридическая платформа: большой справочник, поиск, сервисные страницы и автоматизированное обновление данных.</p><a class="text-link" href="https://zakonexpertt.kz/" target="_blank" rel="noopener">Открыть проект ↗</a></div>
+</section>
+
+<section class="pricing-section section-shell" id="prices">
+  <header class="section-heading compact"><span class="section-number">03 / Стоимость</span><h2>Цена зависит от объёма,<br>но старт понятен заранее.</h2></header>
+  <div class="price-grid">
+    {% for package in service.packages %}
+    <article><small>{{ package.name }}</small><strong>{{ package.price }}</strong><span>{{ package.term }}</span><p>{{ package.description }}</p><a href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20{{ package.name }}" target="_blank" rel="noopener">Обсудить →</a></article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="faq-section section-shell">
+  <header class="section-heading compact"><span class="section-number">04 / Вопросы</span><h2>Честно до начала работ.</h2></header>
+  <div class="faq-list">
+    {% for faq in service.faqs %}<details><summary>{{ faq.question }}<span>+</span></summary><p>{{ faq.answer }}</p></details>{% endfor %}
+  </div>
+</section>
+{% endblock %}
+

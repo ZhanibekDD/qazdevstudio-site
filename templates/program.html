@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Скачать {{ app.name }} — официальная версия | QazTools{% endblock %}
+{% block description %}{{ app.short_description }} Скачать {{ app.name }} из официального источника, информация о версии, лицензии и системе.{% endblock %}
+{% block canonical %}https://qazdevstudio.kz/programmy/{{ app.slug }}.html{% endblock %}
+{% block body_class %}program-page-rust{% endblock %}
+
+{% block content %}
+<section class="program-hero section-shell">
+  <nav class="breadcrumbs"><a href="/">QazDev</a><span>/</span><a href="/programmy/">Программы</a><span>/</span><span>{{ app.name }}</span></nav>
+  <div class="program-title-row">
+    <span class="program-icon large">{% if app.icon.len() > 0 %}<img src="{{ app.icon }}" alt="Логотип {{ app.name }}">{% else %}{{ app.name.chars().next().unwrap_or('Q') }}{% endif %}</span>
+    <div><small>{{ app.category_label }}</small><h1>{{ app.name }}</h1><p>{{ app.short_description }}</p></div>
+  </div>
+  <dl class="program-facts">
+    {% if app.developer.len() > 0 %}<div><dt>Разработчик</dt><dd>{{ app.developer }}</dd></div>{% endif %}
+    {% if app.version.len() > 0 %}<div><dt>Версия</dt><dd>{{ app.version }}</dd></div>{% endif %}
+    {% if app.license.len() > 0 %}<div><dt>Лицензия</dt><dd>{{ app.license }}</dd></div>{% endif %}
+    <div><dt>Системы</dt><dd>{{ app.platforms|join(", ") }}</dd></div>
+  </dl>
+</section>
+
+<section class="program-body section-shell">
+  <article>
+    <span class="section-number">О программе</span>
+    <h2>Что делает {{ app.name }}</h2>
+    <p>{{ app.full_description }}</p>
+    {% if app.features.len() > 0 %}<ul>{% for feature in app.features %}<li>{{ feature }}</li>{% endfor %}</ul>{% endif %}
+  </article>
+  <aside class="download-panel">
+    <small>Официальные источники</small>
+    {% for download in app.downloads %}{% if download.url.len() > 0 %}<a class="button button-primary" href="{{ download.url }}" target="_blank" rel="noopener nofollow">{{ download.label }}{% if download.version.len() > 0 %} · {{ download.version }}{% endif %}</a>{% else if download.pattern.len() > 0 && app.github.len() > 0 %}<a class="button button-primary" href="/api/download/{{ app.slug }}/{{ loop.index0 }}" rel="nofollow">{{ download.label }} · последняя версия</a>{% endif %}{% endfor %}
+    {% if app.website.len() > 0 %}<a class="button button-secondary" href="{{ app.website }}" target="_blank" rel="noopener nofollow">Официальный сайт ↗</a>{% endif %}
+    <p>QazTools не переупаковывает установщики и не добавляет рекламные программы.</p>
+  </aside>
+</section>
+
+{% if related.len() > 0 %}<section class="related-section section-shell"><span class="section-number">Похожие программы</span><div class="related-grid">{% for item in related %}<a href="/programmy/{{ item.slug }}.html"><small>{{ item.category_label }}</small><strong>{{ item.name }}</strong><span>Открыть →</span></a>{% endfor %}</div></section>{% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Скачать программы для Windows, Linux и macOS — QazTools{% endblock %}
+{% block description %}Каталог проверенных программ с официальными ссылками: Windows, Linux и macOS. Поиск без рекламных установщиков и лишних переходов.{% endblock %}
+{% block canonical %}https://qazdevstudio.kz/programmy/{% endblock %}
+{% block body_class %}catalog-page-rust{% endblock %}
+
+{% block content %}
+<section class="catalog-hero section-shell">
+  <div><span class="section-number">QAZTOOLS / КАТАЛОГ</span><h1>Найдите программу.<br><em>Скачайте из официального источника.</em></h1></div>
+  <p>{{ count }} карточек для Windows, Linux и macOS. Каталог не притворяется портфолио студии — это отдельный полезный продукт QazTools.</p>
+  <label class="catalog-search"><span>Поиск</span><input id="program-search" type="search" placeholder="Например: VLC, скриншоты, VPN" autocomplete="off"><kbd>/</kbd></label>
+</section>
+
+<section class="catalog-results section-shell">
+  <div class="catalog-results-head"><span id="program-count">Популярные программы</span><button id="clear-search" type="button" hidden>Сбросить</button></div>
+  <div class="program-grid" id="program-grid">
+    {% for app in featured %}
+    <a class="program-card" href="/programmy/{{ app.slug }}.html">
+      <span class="program-icon">{% if app.icon.len() > 0 %}<img src="{{ app.icon }}" alt="" loading="lazy">{% else %}{{ app.name.chars().next().unwrap_or('Q') }}{% endif %}</span>
+      <div><small>{{ app.category_label }}</small><h2>{{ app.name }}</h2><p>{{ app.short_description }}</p><b>{{ app.platforms|join(", ") }}</b></div><i>↗</i>
+    </a>
+    {% endfor %}
+  </div>
+  <div class="catalog-empty" id="catalog-empty" hidden><strong>Ничего не найдено</strong><p>Попробуйте название программы или задачу другими словами.</p></div>
+</section>
+{% endblock %}
+

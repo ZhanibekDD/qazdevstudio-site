@@ -44,3 +44,6 @@ data/flathub-review-queue.json
 data/flathub-review-queue.csv
 data/software-flathub.batch.json
 data/software-expansion.batch.json
+
+# Rust build output
+/target/

@@ -1,0 +1,9 @@
+.git
+.github
+target
+api/config.php
+*.sqlite
+*.db
+*.log
+*.xlsx
+

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Блог QazDev — сайты, CRM и автоматизация без рекламной воды{% endblock %}
+{% block description %}Практические разборы разработки сайтов, CRM, Telegram-ботов и автоматизации для предпринимателей Казахстана.{% endblock %}
+{% block canonical %}https://qazdevstudio.kz/blog/{% endblock %}
+{% block body_class %}blog-page-rust{% endblock %}
+
+{% block content %}
+<section class="editorial-hero section-shell">
+  <span class="section-number">QAZDEV / ЗАПИСКИ</span>
+  <h1>Разбираю цифровые решения<br><em>языком предпринимателя.</em></h1>
+  <p>Цены, ограничения, ошибки и выбор инструментов. Без «революционных технологий» и обещаний вывести сайт в топ за неделю.</p>
+</section>
+
+<section class="featured-article section-shell">
+  {% for article in articles %}{% if loop.first %}
+  <a href="/blog/{{ article.slug }}.html">
+    <span class="featured-label">Начать отсюда</span>
+    <div><small>{{ article.category }}</small><h2>{{ article.title }}</h2><p>{{ article.description }}</p></div>
+    <b>{{ article.reading_time }} →</b>
+  </a>
+  {% endif %}{% endfor %}
+</section>
+
+<section class="article-list section-shell">
+  <div class="article-list-head"><span>Все материалы</span><span>{{ articles.len() }} разборов</span></div>
+  {% for article in articles %}{% if !loop.first %}
+  <a href="/blog/{{ article.slug }}.html" data-search-text="{{ article.title }} {{ article.category }}">
+    <span>{{ loop.index }}</span>
+    <small>{{ article.category }}</small>
+    <div><h2>{{ article.title }}</h2><p>{{ article.description }}</p></div>
+    <b>{{ article.reading_time }}</b><i>↗</i>
+  </a>
+  {% endif %}{% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+{% block canonical %}{{ canonical }}{% endblock %}
+{% block body_class %}catalog-page-rust{% endblock %}
+
+{% block content %}
+<section class="catalog-hero section-shell">
+  <div><span class="section-number">QAZTOOLS / КАТЕГОРИЯ</span><h1>{{ label }}.<br><em>Только официальные источники.</em></h1></div>
+  <p>{{ count }} проверенных программ. QazTools не переупаковывает установщики и не добавляет рекламные программы.</p>
+  <label class="catalog-search"><span>Поиск по всему каталогу</span><input id="program-search" type="search" placeholder="Название программы или задача" autocomplete="off"><kbd>/</kbd></label>
+</section>
+
+<section class="catalog-results section-shell">
+  <div class="catalog-results-head"><span id="program-count">{{ count }} программ</span><button id="clear-search" type="button" hidden>Сбросить</button></div>
+  <div class="program-grid" id="program-grid">
+    {% for app in programs %}
+    <a class="program-card" href="/programmy/{{ app.slug }}.html">
+      <span class="program-icon">{% if app.icon.len() > 0 %}<img src="{{ app.icon }}" alt="" loading="lazy">{% else %}{{ app.name.chars().next().unwrap_or('Q') }}{% endif %}</span>
+      <div><small>{{ app.category_label }}</small><h2>{{ app.name }}</h2><p>{{ app.short_description }}</p><b>{{ app.platforms|join(", ") }}</b></div><i>↗</i>
+    </a>
+    {% endfor %}
+  </div>
+  <div class="catalog-empty" id="catalog-empty" hidden><strong>Ничего не найдено</strong><p>Попробуйте название программы или задачу другими словами.</p></div>
+</section>
+{% endblock %}
