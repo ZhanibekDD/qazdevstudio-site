@@ -29,7 +29,7 @@
   </article>
   <aside class="download-panel">
     <small>Официальные источники</small>
-    {% for download in app.downloads %}{% if download.url.len() > 0 %}<a class="button button-primary" href="{{ download.url }}" target="_blank" rel="noopener nofollow">{{ download.label }}{% if download.version.len() > 0 %} · {{ download.version }}{% endif %}</a>{% endif %}{% endfor %}
+    {% for download in app.downloads %}{% if download.url.len() > 0 %}<a class="button button-primary" href="{{ download.url }}" target="_blank" rel="noopener nofollow">{{ download.label }}{% if download.version.len() > 0 %} · {{ download.version }}{% endif %}</a>{% else if download.pattern.len() > 0 && app.github.len() > 0 %}<a class="button button-primary" href="/api/download/{{ app.slug }}/{{ loop.index0 }}" rel="nofollow">{{ download.label }} · последняя версия</a>{% endif %}{% endfor %}
     {% if app.website.len() > 0 %}<a class="button button-secondary" href="{{ app.website }}" target="_blank" rel="noopener nofollow">Официальный сайт ↗</a>{% endif %}
     <p>QazTools не переупаковывает установщики и не добавляет рекламные программы.</p>
   </aside>
@@ -37,4 +37,3 @@
 
 {% if related.len() > 0 %}<section class="related-section section-shell"><span class="section-number">Похожие программы</span><div class="related-grid">{% for item in related %}<a href="/programmy/{{ item.slug }}.html"><small>{{ item.category_label }}</small><strong>{{ item.name }}</strong><span>Открыть →</span></a>{% endfor %}</div></section>{% endif %}
 {% endblock %}
-
