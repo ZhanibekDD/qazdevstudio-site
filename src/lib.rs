@@ -163,8 +163,13 @@ impl AppState {
     }
 
     pub fn new(legacy_root: PathBuf) -> Self {
-        let software: Vec<Software> =
+        let mut software: Vec<Software> =
             serde_json::from_str(SOFTWARE_JSON).expect("data/software.json must be valid JSON");
+        for app in &mut software {
+            if app.category == "ai" {
+                app.category_label = "Локальный ИИ".to_string();
+            }
+        }
         let software_index = software
             .iter()
             .enumerate()
@@ -255,6 +260,10 @@ pub fn app(state: AppState) -> Router {
         .route_service(
             "/site.webmanifest",
             ServeFile::new(legacy.join("site.webmanifest")),
+        )
+        .route_service(
+            "/efeebfa2eec920c3dacdc19c51c483dc.txt",
+            ServeFile::new(legacy.join("efeebfa2eec920c3dacdc19c51c483dc.txt")),
         )
         .fallback(legacy_root_page)
         .with_state(state)
@@ -460,7 +469,10 @@ async fn download_asset(
             return official_download_fallback(app);
         }
     };
-    let Ok(pattern) = regex::Regex::new(&download.pattern) else {
+    let Ok(pattern) = regex::RegexBuilder::new(&download.pattern)
+        .case_insensitive(true)
+        .build()
+    else {
         tracing::warn!(pattern = %download.pattern, "invalid embedded download pattern");
         return official_download_fallback(app);
     };
@@ -1596,7 +1608,7 @@ mod tests {
             CachedRelease {
                 loaded_at: Instant::now(),
                 assets: Arc::new(vec![GithubAsset {
-                    name: "ShareX-18.0.0-setup-x64.exe".to_string(),
+                    name: "sharex-18.0.0-setup-x64.exe".to_string(),
                     browser_download_url:
                         "https://github.com/ShareX/ShareX/releases/download/v18/ShareX-18.0.0-setup-x64.exe"
                             .to_string(),
@@ -1624,6 +1636,32 @@ mod tests {
         assert!(PROGRAM_CATEGORIES.contains(&("productivity", "Работа и текст")));
         assert!(PROGRAM_CATEGORIES.contains(&("multimedia", "Видео и аудио")));
         assert!(PROGRAM_CATEGORIES.contains(&("network", "Удалённый доступ")));
+    }
+
+    #[test]
+    fn ai_labels_are_normalized() {
+        let state = AppState::new(PathBuf::from(env!("CARGO_MANIFEST_DIR")));
+        assert!(
+            state
+                .software
+                .iter()
+                .filter(|app| app.category == "ai")
+                .all(|app| app.category_label == "Локальный ИИ")
+        );
+    }
+
+    #[tokio::test]
+    async fn indexnow_key_is_served() {
+        let response = app(AppState::new(PathBuf::from(env!("CARGO_MANIFEST_DIR"))))
+            .oneshot(
+                Request::builder()
+                    .uri("/efeebfa2eec920c3dacdc19c51c483dc.txt")
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+        assert_eq!(response.status(), StatusCode::OK);
     }
 
     #[test]
