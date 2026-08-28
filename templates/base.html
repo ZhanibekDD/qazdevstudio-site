@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru-KZ">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>{% block title %}QazDev Studio{% endblock %}</title>
+  <meta name="description" content="{% block description %}Разработка сайтов и цифровых систем для бизнеса в Казахстане.{% endblock %}">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="theme-color" content="#f2efe7">
+  <meta name="google-adsense-account" content="ca-pub-8638191147118359">
+  <link rel="canonical" href="{% block canonical %}https://qazdevstudio.kz/{% endblock %}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/site.css?v=rust-1">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8638191147118359" crossorigin="anonymous"></script>
+  {% block head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  <a class="skip-link" href="#content">Перейти к содержанию</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="QazDev Studio — главная">
+      <strong>QAZDEV</strong><span>KZ / SOFTWARE &amp; SYSTEMS</span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+      <a href="/razrabotka-saitov-kazakhstan.html">Разработка</a>
+      <a href="/blog/">Разборы</a>
+      <a href="/programmy/">Программы</a>
+      <a href="/#contact">Контакты</a>
+    </nav>
+    <a class="header-contact" href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20проект" target="_blank" rel="noopener">Обсудить задачу</a>
+    <button class="menu-button" type="button" aria-controls="site-nav" aria-expanded="false">Меню</button>
+  </header>
+
+  <main id="content">{% block content %}{% endblock %}</main>
+
+  <footer class="site-footer" id="contact">
+    <div class="footer-statement">
+      <span>Есть задача?</span>
+      <a href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20проект" target="_blank" rel="noopener">Напишите её своими словами →</a>
+    </div>
+    <div class="footer-grid">
+      <div><strong>QAZDEV</strong><p>Разработка сайтов, сервисов и внутренних систем для бизнеса.</p></div>
+      <div><small>Связь</small><a href="https://wa.me/77000300024" target="_blank" rel="noopener">WhatsApp</a><a href="https://t.me/QazDevStudio" target="_blank" rel="noopener">Telegram</a><a href="mailto:hello@qazdevstudio.kz">hello@qazdevstudio.kz</a></div>
+      <div><small>География</small><span>Талдыкорган</span><span>Весь Казахстан — онлайн</span></div>
+      <div><small>Документы</small><a href="/privacy.html">Конфиденциальность</a><span>© 2026</span></div>
+    </div>
+  </footer>
+  <script src="/site.js?v=rust-1" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
+

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+{% block canonical %}{{ canonical }}{% endblock %}
+{% block body_class %}article-page-rust{% endblock %}
+
+{% block content %}
+<div class="article-wrap">
+  <a class="article-back" href="/blog/">← Все разборы</a>
+  <div class="legacy-content">{{ body|safe }}</div>
+</div>
+{% endblock %}
+
