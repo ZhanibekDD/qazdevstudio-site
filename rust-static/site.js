@@ -69,11 +69,15 @@
   search.addEventListener('input', async () => {
     if (controller) controller.abort();
     controller = new AbortController();
+    const value = search.value;
+    if (!value.trim()) {
+      render('');
+      return;
+    }
     try {
       await load();
-      const value = search.value;
       setTimeout(() => {
-        if (!controller.signal.aborted && value === search.value && value.trim()) render(value);
+        if (!controller.signal.aborted && value === search.value) render(value);
       }, 90);
     } catch (error) {
       count.textContent = 'Поиск временно недоступен';
@@ -93,3 +97,78 @@
   });
 })();
 
+(() => {
+  const randomId = prefix => {
+    const value = self.crypto?.randomUUID?.()
+      || `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+    return `${prefix}-${value}`;
+  };
+  const visitorKey = 'qazdev_visitor_v2';
+  const sessionKey = 'qazdev_session_v2';
+  let visitorId = localStorage.getItem(visitorKey);
+  let sessionId = sessionStorage.getItem(sessionKey);
+  if (!visitorId) {
+    visitorId = randomId('v');
+    localStorage.setItem(visitorKey, visitorId);
+  }
+  if (!sessionId) {
+    sessionId = randomId('s');
+    sessionStorage.setItem(sessionKey, sessionId);
+  }
+
+  const params = new URLSearchParams(location.search);
+  const base = () => ({
+    visitor_id: visitorId,
+    session_id: sessionId,
+    page_url: `${location.pathname}${location.search}`,
+    page_title: document.title,
+    referrer: document.referrer,
+    utm_source: params.get('utm_source') || '',
+    utm_medium: params.get('utm_medium') || '',
+    utm_campaign: params.get('utm_campaign') || ''
+  });
+  const track = (eventType, eventLabel = '', extra = {}) => {
+    const payload = JSON.stringify({
+      ...base(),
+      event_type: eventType,
+      event_label: eventLabel,
+      extra
+    });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon('/api/track', new Blob([payload], { type: 'application/json' }));
+      return;
+    }
+    fetch('/api/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: payload,
+      keepalive: true
+    }).catch(() => {});
+  };
+
+  track('page_view');
+
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href]');
+    if (!link) return;
+    const href = link.getAttribute('href') || '';
+    const label = link.textContent.trim().slice(0, 200);
+    if (href.includes('wa.me') || href.includes('whatsapp')) track('whatsapp_click', label);
+    else if (href.includes('t.me/')) track('telegram_click', label);
+    else if (href.startsWith('tel:')) track('phone_click', label);
+    else if (href.startsWith('mailto:')) track('email_click', label);
+  });
+
+  document.addEventListener('submit', event => {
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement)) return;
+    const values = new FormData(form);
+    track('form_submit', form.getAttribute('aria-label') || form.id || 'Форма', {
+      name: values.get('name') || '',
+      phone: values.get('phone') || '',
+      city: values.get('city') || '',
+      service: values.get('service') || '',
+      comment: values.get('comment') || values.get('message') || ''
+    });
+  });
+})();
