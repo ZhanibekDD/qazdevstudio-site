@@ -10,6 +10,7 @@ publish = false
 [dependencies]
 askama = "0.16"
 axum = { version = "0.8.9", features = ["http1", "json", "tokio"] }
+regex = "1.12"
 reqwest = { version = "0.13.4", default-features = false, features = ["json", "rustls"] }
 rusqlite = { version = "0.40.2", default-features = false, features = ["bundled"] }
 serde = { version = "1", features = ["derive"] }
