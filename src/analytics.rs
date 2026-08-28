@@ -201,7 +201,7 @@ impl Analytics {
     pub fn report(&self) -> rusqlite::Result<AnalyticsReport> {
         let connection = self.connect()?;
         let now = unix_timestamp();
-        let day = now - 86_400;
+        let day = start_of_almaty_day(now);
         let week = now - 7 * 86_400;
 
         let visits_today = connection.query_row(
@@ -317,6 +317,11 @@ fn unix_timestamp() -> i64 {
         .as_secs() as i64
 }
 
+fn start_of_almaty_day(timestamp: i64) -> i64 {
+    const ALMATY_UTC_OFFSET: i64 = 5 * 60 * 60;
+    (timestamp + ALMATY_UTC_OFFSET).div_euclid(86_400) * 86_400 - ALMATY_UTC_OFFSET
+}
+
 fn clean(value: &str, max: usize) -> String {
     value
         .trim()
@@ -407,6 +412,13 @@ mod tests {
     #[test]
     fn cleans_html_markers() {
         assert_eq!(clean(" <b>hello</b> ", 20), "bhello/b");
+    }
+
+    #[test]
+    fn uses_almaty_calendar_midnight() {
+        let utc_day_ten = 10 * 86_400;
+        let now = utc_day_ten + 20 * 60 * 60;
+        assert_eq!(start_of_almaty_day(now), utc_day_ten + 19 * 60 * 60);
     }
 
     #[test]
