@@ -1,6 +1,12 @@
 mod analytics;
 
-use std::{collections::HashMap, net::IpAddr, path::PathBuf, sync::Arc, time::Duration};
+use std::{
+    collections::HashMap,
+    net::IpAddr,
+    path::PathBuf,
+    sync::{Arc, RwLock},
+    time::{Duration, Instant},
+};
 
 use analytics::{Analytics, RequestMeta, TrackPayload, format_report, notification_text};
 use askama::Template;
@@ -24,17 +30,17 @@ use tower_http::{
 const DOMAIN: &str = "https://qazdevstudio.kz";
 const PROGRAM_CATEGORIES: [(&str, &str); 14] = [
     ("system", "Система"),
-    ("productivity", "Продуктивность"),
+    ("productivity", "Работа и текст"),
     ("developer", "Разработка"),
-    ("multimedia", "Мультимедиа"),
-    ("graphics", "Графика"),
+    ("multimedia", "Видео и аудио"),
+    ("graphics", "Графика и фото"),
     ("games", "Игры"),
     ("internet", "Интернет"),
     ("education", "Образование"),
     ("security", "Безопасность"),
     ("communication", "Общение"),
-    ("network", "Сеть"),
-    ("ai", "Искусственный интеллект"),
+    ("network", "Удалённый доступ"),
+    ("ai", "Локальный ИИ"),
     ("screenshots", "Скриншоты"),
     ("files", "Файлы"),
 ];
@@ -57,6 +63,8 @@ pub struct Software {
     pub full_description: String,
     #[serde(default)]
     pub website: String,
+    #[serde(default)]
+    pub github: String,
     #[serde(default)]
     pub platforms: Vec<String>,
     #[serde(default)]
@@ -85,6 +93,8 @@ pub struct SoftwareDownload {
     pub url: String,
     #[serde(default)]
     pub version: String,
+    #[serde(default)]
+    pub pattern: String,
 }
 
 #[derive(Clone)]
@@ -95,6 +105,25 @@ pub struct AppState {
     analytics: Option<Analytics>,
     telegram: Option<TelegramConfig>,
     http_client: reqwest::Client,
+    github_token: Option<Arc<str>>,
+    release_cache: Arc<RwLock<HashMap<String, CachedRelease>>>,
+}
+
+#[derive(Clone)]
+struct CachedRelease {
+    loaded_at: Instant,
+    assets: Arc<Vec<GithubAsset>>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+struct GithubRelease {
+    assets: Vec<GithubAsset>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+struct GithubAsset {
+    name: String,
+    browser_download_url: String,
 }
 
 #[derive(Clone)]
@@ -153,6 +182,11 @@ impl AppState {
                 .user_agent("QazDevStudio-Rust/1.0")
                 .build()
                 .expect("valid HTTP client configuration"),
+            github_token: std::env::var("GITHUB_TOKEN")
+                .ok()
+                .filter(|token| !token.is_empty())
+                .map(Arc::from),
+            release_cache: Arc::new(RwLock::new(HashMap::new())),
         }
     }
 }
@@ -197,6 +231,7 @@ pub fn app(state: AppState) -> Router {
         .route("/programmy/kategorii/{file}", get(program_category))
         .route("/programmy/{file}", get(program_detail))
         .route("/api/programs", get(programs_api))
+        .route("/api/download/{slug}/{index}", get(download_asset))
         .route("/api/track", post(track_event))
         .route("/api/track.php", post(track_event))
         .route("/api/geo-track", post(geo_track))
@@ -398,6 +433,100 @@ async fn programs_api(State(state): State<AppState>) -> impl IntoResponse {
         })
         .collect::<Vec<_>>();
     Json(programs)
+}
+
+async fn download_asset(
+    State(state): State<AppState>,
+    Path((slug, index)): Path<(String, usize)>,
+) -> Response {
+    let Some(app_index) = state.software_index.get(&slug).copied() else {
+        return not_found();
+    };
+    let app = &state.software[app_index];
+    let Some(download) = app.downloads.get(index) else {
+        return not_found();
+    };
+    if valid_download_url(&download.url) {
+        return Redirect::temporary(&download.url).into_response();
+    }
+    if app.github.is_empty() || download.pattern.is_empty() {
+        return official_download_fallback(app);
+    }
+
+    let assets = match github_release_assets(&state, &app.github).await {
+        Ok(assets) => assets,
+        Err(error) => {
+            tracing::warn!(%error, repository = %app.github, "GitHub release lookup failed");
+            return official_download_fallback(app);
+        }
+    };
+    let Ok(pattern) = regex::Regex::new(&download.pattern) else {
+        tracing::warn!(pattern = %download.pattern, "invalid embedded download pattern");
+        return official_download_fallback(app);
+    };
+    let Some(asset) = assets.iter().find(|asset| {
+        pattern.is_match(&asset.name) && valid_download_url(&asset.browser_download_url)
+    }) else {
+        return official_download_fallback(app);
+    };
+    Redirect::temporary(&asset.browser_download_url).into_response()
+}
+
+async fn github_release_assets(
+    state: &AppState,
+    repository: &str,
+) -> reqwest::Result<Arc<Vec<GithubAsset>>> {
+    if let Ok(cache) = state.release_cache.read()
+        && let Some(entry) = cache.get(repository)
+        && entry.loaded_at.elapsed() < Duration::from_secs(3_600)
+    {
+        return Ok(Arc::clone(&entry.assets));
+    }
+
+    let mut request = state
+        .http_client
+        .get(format!(
+            "https://api.github.com/repos/{repository}/releases/latest"
+        ))
+        .header(reqwest::header::ACCEPT, "application/vnd.github+json");
+    if let Some(token) = state.github_token.as_ref() {
+        request = request.bearer_auth(token);
+    }
+    let release = request
+        .send()
+        .await?
+        .error_for_status()?
+        .json::<GithubRelease>()
+        .await?;
+    let assets = Arc::new(release.assets);
+    if let Ok(mut cache) = state.release_cache.write() {
+        cache.insert(
+            repository.to_string(),
+            CachedRelease {
+                loaded_at: Instant::now(),
+                assets: Arc::clone(&assets),
+            },
+        );
+    }
+    Ok(assets)
+}
+
+fn valid_download_url(url: &str) -> bool {
+    url.starts_with("https://") || url.starts_with("http://")
+}
+
+fn official_download_fallback(app: &Software) -> Response {
+    if !app.github.is_empty() {
+        return Redirect::temporary(&format!(
+            "https://github.com/{}/releases/latest",
+            app.github
+        ))
+        .into_response();
+    }
+    if valid_download_url(&app.website) {
+        return Redirect::temporary(&app.website).into_response();
+    }
+    not_found()
 }
 
 async fn track_event(
@@ -1357,6 +1486,7 @@ fn blog_articles() -> Vec<Article> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use axum::body::to_bytes;
     use axum::http::Request;
     use tower::ServiceExt;
 
@@ -1440,6 +1570,60 @@ mod tests {
             .await
             .unwrap();
         assert_eq!(response.status(), StatusCode::OK);
+    }
+
+    #[tokio::test]
+    async fn pattern_download_button_is_kept() {
+        let response = app(AppState::new(PathBuf::from(env!("CARGO_MANIFEST_DIR"))))
+            .oneshot(
+                Request::builder()
+                    .uri("/programmy/sharex.html")
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+        let body = to_bytes(response.into_body(), 1_000_000).await.unwrap();
+        let html = String::from_utf8(body.to_vec()).unwrap();
+        assert!(html.contains("/api/download/sharex/0"));
+    }
+
+    #[tokio::test]
+    async fn pattern_download_resolves_from_cache() {
+        let state = AppState::new(PathBuf::from(env!("CARGO_MANIFEST_DIR")));
+        state.release_cache.write().unwrap().insert(
+            "ShareX/ShareX".to_string(),
+            CachedRelease {
+                loaded_at: Instant::now(),
+                assets: Arc::new(vec![GithubAsset {
+                    name: "ShareX-18.0.0-setup-x64.exe".to_string(),
+                    browser_download_url:
+                        "https://github.com/ShareX/ShareX/releases/download/v18/ShareX-18.0.0-setup-x64.exe"
+                            .to_string(),
+                }]),
+            },
+        );
+        let response = app(state)
+            .oneshot(
+                Request::builder()
+                    .uri("/api/download/sharex/0")
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+        assert_eq!(response.status(), StatusCode::TEMPORARY_REDIRECT);
+        assert_eq!(
+            response.headers().get(header::LOCATION).unwrap(),
+            "https://github.com/ShareX/ShareX/releases/download/v18/ShareX-18.0.0-setup-x64.exe"
+        );
+    }
+
+    #[test]
+    fn category_names_match_catalog_labels() {
+        assert!(PROGRAM_CATEGORIES.contains(&("productivity", "Работа и текст")));
+        assert!(PROGRAM_CATEGORIES.contains(&("multimedia", "Видео и аудио")));
+        assert!(PROGRAM_CATEGORIES.contains(&("network", "Удалённый доступ")));
     }
 
     #[test]
