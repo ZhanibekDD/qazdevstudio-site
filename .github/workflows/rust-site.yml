@@ -13,6 +13,7 @@ on:
       - 'src/**'
       - 'templates/**'
       - 'rust-static/**'
+      - 'node-static/**'
       - 'data/software.json'
       - '.github/workflows/rust-site.yml'
   push:
@@ -92,10 +93,12 @@ jobs:
           test -f target/plesk-site/index.html
           test -f target/plesk-site/programmy/index.html
           test -f target/plesk-site/api/programs.json
+          test -f target/plesk-site/app.js
           test -f target/plesk-site/sitemap-index.xml
           test "$(find target/plesk-site/programmy -maxdepth 1 -name '*.html' | wc -l)" -ge 1001
           grep -q '<strong>QAZDEV</strong>' target/plesk-site/index.html
           grep -q 'pub-8638191147118359' target/plesk-site/ads.txt
+          node --check target/plesk-site/app.js
       - name: Publish Plesk-ready branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
