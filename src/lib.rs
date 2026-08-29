@@ -107,6 +107,7 @@ pub struct AppState {
     http_client: reqwest::Client,
     github_token: Option<Arc<str>>,
     release_cache: Arc<RwLock<HashMap<String, CachedRelease>>>,
+    static_export: bool,
 }
 
 #[derive(Clone)]
@@ -192,7 +193,17 @@ impl AppState {
                 .filter(|token| !token.is_empty())
                 .map(Arc::from),
             release_cache: Arc::new(RwLock::new(HashMap::new())),
+            static_export: false,
         }
+    }
+
+    /// Builds the same application in a mode suitable for a plain static host.
+    /// Pages remain rendered by Rust, while dynamic download lookups fall back
+    /// to the publisher's official release page.
+    pub fn for_static_export(legacy_root: PathBuf) -> Self {
+        let mut state = Self::new(legacy_root);
+        state.static_export = true;
+        state
     }
 }
 
@@ -236,6 +247,7 @@ pub fn app(state: AppState) -> Router {
         .route("/programmy/kategorii/{file}", get(program_category))
         .route("/programmy/{file}", get(program_detail))
         .route("/api/programs", get(programs_api))
+        .route("/api/programs.json", get(programs_api))
         .route("/api/download/{slug}/{index}", get(download_asset))
         .route("/api/track", post(track_event))
         .route("/api/track.php", post(track_event))
@@ -412,7 +424,11 @@ async fn program_detail(State(state): State<AppState>, Path(file): Path<String>)
         .cloned()
         .collect();
 
-    render(ProgramTemplate { app, related })
+    render(ProgramTemplate {
+        app,
+        related,
+        static_export: state.static_export,
+    })
 }
 
 #[derive(Serialize)]
@@ -1114,6 +1130,7 @@ struct CategoryTemplate {
 struct ProgramTemplate {
     app: Software,
     related: Vec<Software>,
+    static_export: bool,
 }
 
 #[derive(Template)]

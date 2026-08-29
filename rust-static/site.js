@@ -61,7 +61,7 @@
 
   const load = async () => {
     if (programs.length) return;
-    const response = await fetch('/api/programs', { headers: { Accept: 'application/json' } });
+    const response = await fetch('/api/programs.json', { headers: { Accept: 'application/json' } });
     if (!response.ok) throw new Error('Не удалось загрузить каталог');
     programs = await response.json();
   };
@@ -135,10 +135,10 @@
       extra
     });
     if (navigator.sendBeacon) {
-      navigator.sendBeacon('/api/track', new Blob([payload], { type: 'application/json' }));
+      navigator.sendBeacon('/api/track.php', new Blob([payload], { type: 'application/json' }));
       return;
     }
-    fetch('/api/track', {
+    fetch('/api/track.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: payload,

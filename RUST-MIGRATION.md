@@ -67,3 +67,17 @@ Recommended Plesk deployment:
 
 Do not delete the existing static deployment until the Rust container has been
 healthy for at least 24 hours. Rollback is simply removing the proxy rule.
+
+## Shared Plesk without Docker
+
+The same Rust templates can be exported for a plain Apache/Nginx document root:
+
+```bash
+cargo run --release --locked --bin export-static -- target/plesk-site
+```
+
+GitHub Actions publishes that output to the `plesk-static` branch. A shared
+Plesk subscription should deploy this branch to `/httpdocs`; it must not deploy
+the Rust source branch (`main`) into the public document root. The static build
+keeps the PHP analytics compatibility endpoints until the domain is moved to
+the full Rust container.
