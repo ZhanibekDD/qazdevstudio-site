@@ -29,7 +29,7 @@ on:
       - '.github/workflows/rust-site.yml'
 
 permissions:
-  contents: read
+  contents: write
   packages: write
 
 concurrency:
@@ -75,3 +75,37 @@ jobs:
             ghcr.io/zhanibekdd/qazdevstudio-site:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  plesk-static:
+    if: github.event_name == 'push'
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Rust toolchain
+        run: rustup show
+      - name: Render production site with Rust
+        run: cargo run --release --locked --bin export-static -- target/plesk-site
+      - name: Validate static production output
+        run: |
+          test -f target/plesk-site/index.html
+          test -f target/plesk-site/programmy/index.html
+          test -f target/plesk-site/api/programs.json
+          test -f target/plesk-site/sitemap-index.xml
+          test "$(find target/plesk-site/programmy -maxdepth 1 -name '*.html' | wc -l)" -ge 1001
+          grep -q '<strong>QAZDEV</strong>' target/plesk-site/index.html
+          grep -q 'pub-8638191147118359' target/plesk-site/ads.txt
+      - name: Publish Plesk-ready branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          export PUBLISH_DIR="$RUNNER_TEMP/qazdevstudio-plesk"
+          cp -a target/plesk-site "$PUBLISH_DIR"
+          git -C "$PUBLISH_DIR" init -b plesk-static
+          git -C "$PUBLISH_DIR" config user.name 'github-actions[bot]'
+          git -C "$PUBLISH_DIR" config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C "$PUBLISH_DIR" add --all
+          git -C "$PUBLISH_DIR" commit -m "Publish Rust static site ${GITHUB_SHA::7}"
+          git -C "$PUBLISH_DIR" remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git -C "$PUBLISH_DIR" push --force origin plesk-static

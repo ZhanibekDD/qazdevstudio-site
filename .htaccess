@@ -1,9 +1,18 @@
 RewriteEngine On
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
 
 # One canonical host: HTTPS without www.
 RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} ^www\.qazdevstudio\.kz$ [NC]
 RewriteRule ^ https://qazdevstudio.kz%{REQUEST_URI} [R=301,L,NE]
+
+# Historical URLs preserved by the Rust router on VPS and here on static Plesk.
+RewriteRule ^telegram-bot-dlya-biznesa\.html$ /telegram-bot-kazakhstan.html [R=301,L]
+RewriteRule ^crm-dlya-malogo-biznesa\.html$ /crm-dlya-biznesa-kazakhstan.html [R=301,L]
+RewriteRule ^avtomatizaciya-biznesa\.html$ /avtomatizaciya-biznesa-kazakhstan.html [R=301,L]
+
+AddType application/json .json
 
 # Keep HTML fresh after deploys; versioned static files may be cached.
 <IfModule mod_headers.c>
