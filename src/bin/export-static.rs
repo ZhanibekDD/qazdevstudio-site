@@ -94,6 +94,7 @@ fn copy_legacy_public_files(root: &Path, output: &Path) -> std::io::Result<()> {
     for file in [".htaccess", "efeebfa2eec920c3dacdc19c51c483dc.txt"] {
         copy_file_if_present(&root.join(file), &output.join(file))?;
     }
+    copy_file_if_present(&root.join("node-static/app.js"), &output.join("app.js"))?;
 
     for directory in ["api", "assets", "css", "js", "solutions"] {
         copy_directory(&root.join(directory), &output.join(directory))?;
