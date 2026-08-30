@@ -106,8 +106,8 @@ jobs:
           grep -q 'content="index,follow' target/plesk-site/programmy/sharex.html
           grep -q 'content="noindex,follow"' target/plesk-site/programmy/audio-player.html
           grep -q 'простой аудиоплеер GNOME' target/plesk-site/programmy/audio-player.html
-          grep -q '/programmy/sharex.html' target/plesk-site/sitemap-programs.xml
-          ! grep -q '/programmy/audio-player.html' target/plesk-site/sitemap-programs.xml
+          grep -q '/programmy/sharex.html' target/plesk-site/sitemap-programmy.xml
+          ! grep -q '/programmy/audio-player.html' target/plesk-site/sitemap-programmy.xml
           grep -q 'pub-8638191147118359' target/plesk-site/ads.txt
           node --check target/plesk-site/app.js
           export QAZDEV_DATA_DIR="$RUNNER_TEMP/qazdev-analytics"

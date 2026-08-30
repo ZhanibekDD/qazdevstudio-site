@@ -1683,7 +1683,7 @@ mod tests {
         let response = app(AppState::new(PathBuf::from(env!("CARGO_MANIFEST_DIR"))))
             .oneshot(
                 Request::builder()
-                    .uri("/sitemap-programs.xml")
+                    .uri("/sitemap-programmy.xml")
                     .body(Body::empty())
                     .unwrap(),
             )
