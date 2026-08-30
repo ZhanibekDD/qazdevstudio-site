@@ -1,0 +1,19 @@
+{
+  "name": "QazDev Studio — цифровые системы для бизнеса",
+  "short_name": "QazDev",
+  "description": "Сайты, Telegram-боты, CRM и автоматизация для бизнеса в Казахстане.",
+  "lang": "ru-KZ",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f3f1eb",
+  "theme_color": "#0b0d12",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

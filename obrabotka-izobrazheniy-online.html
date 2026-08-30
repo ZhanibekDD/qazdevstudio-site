@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Сжать, изменить размер и конвертировать фото онлайн — QazTools</title>
+  <meta name="description" content="Бесплатная обработка изображений в браузере: сжатие JPG и PNG, изменение размера, конвертация в WebP и удаление метаданных. Файлы не загружаются на сервер.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://qazdevstudio.kz/obrabotka-izobrazheniy-online.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Обработка изображений онлайн — QazTools">
+  <meta property="og:description" content="Сжимайте, меняйте размер и формат изображений прямо в браузере. Без загрузки файлов на сервер.">
+  <meta property="og:url" content="https://qazdevstudio.kz/obrabotka-izobrazheniy-online.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/image-tools.css?v=1">
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"QazTools — обработка изображений","url":"https://qazdevstudio.kz/obrabotka-izobrazheniy-online.html","applicationCategory":"MultimediaApplication","operatingSystem":"Любая система с современным браузером","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"KZT"},"featureList":["Сжатие изображений","Изменение размера","Конвертация JPG, PNG и WebP","Удаление EXIF и метаданных"]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Загружаются ли изображения на сервер?","acceptedAnswer":{"@type":"Answer","text":"Нет. Обработка выполняется локально средствами браузера; выбранный файл не отправляется на сервер QazDev."}},{"@type":"Question","name":"Какие форматы поддерживаются?","acceptedAnswer":{"@type":"Answer","text":"Инструмент открывает форматы, которые поддерживает браузер, и сохраняет результат в JPG, PNG или WebP."}},{"@type":"Question","name":"Удаляются ли EXIF и геолокация?","acceptedAnswer":{"@type":"Answer","text":"Да. Результат создаётся заново через Canvas без исходных EXIF-метаданных и GPS-координат."}}]}]</script>
+</head>
+<body>
+  <header class="tool-header">
+    <div class="tool-container tool-nav">
+      <a class="tool-brand" href="/"><i></i><span>QazDev</span><small>QazTools Online</small></a>
+      <nav><a href="/programmy/">Программы</a><a href="/blog/">Блог</a><a href="/#tools">Все инструменты</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool-hero">
+      <div class="tool-container">
+        <p class="tool-kicker">01 / Image Lab · работает локально</p>
+        <h1>Сожмите изображение.<br><em>Не отдавая его серверу.</em></h1>
+        <p class="tool-lead">Изменяйте размер, качество и формат JPG, PNG или WebP. При сохранении удаляются EXIF, модель устройства и GPS‑координаты.</p>
+        <div class="privacy-line"><b>●</b> Файл остаётся на вашем устройстве <span>·</span> Без регистрации <span>·</span> Бесплатно</div>
+      </div>
+    </section>
+
+    <section class="workspace-section">
+      <div class="tool-container workspace-grid">
+        <div class="upload-panel">
+          <input id="imageInput" type="file" accept="image/*" hidden>
+          <button class="drop-zone" id="dropZone" type="button">
+            <span class="drop-icon">＋</span>
+            <strong>Выберите изображение</strong>
+            <small>или перетащите JPG, PNG, WebP сюда</small>
+          </button>
+          <div class="preview" id="preview" hidden>
+            <img id="previewImage" alt="Предпросмотр выбранного изображения">
+            <div class="preview-meta"><strong id="fileName"></strong><span id="originalInfo"></span></div>
+            <button id="replaceFile" type="button">Заменить</button>
+          </div>
+        </div>
+
+        <form class="control-panel" id="imageForm">
+          <div class="control-head"><span>Настройки результата</span><b id="statusText">Ожидает файл</b></div>
+          <div class="control-row two">
+            <label>Ширина, px<input id="widthInput" type="number" min="1" max="16000" placeholder="1920"></label>
+            <label>Высота, px<input id="heightInput" type="number" min="1" max="16000" placeholder="1080"></label>
+          </div>
+          <label class="check"><input id="keepRatio" type="checkbox" checked><span>Сохранять пропорции</span></label>
+          <div class="control-row two">
+            <label>Формат<select id="formatSelect"><option value="image/webp">WebP</option><option value="image/jpeg">JPG</option><option value="image/png">PNG</option></select></label>
+            <label>Качество <output id="qualityValue">82%</output><input id="qualityInput" type="range" min="20" max="100" value="82"></label>
+          </div>
+          <label class="check locked"><input type="checkbox" checked disabled><span>Удалить EXIF, GPS и метаданные</span><b>Всегда</b></label>
+          <button class="process-button" id="processButton" type="submit" disabled>Обработать изображение <span>→</span></button>
+          <p class="error" id="errorText" role="alert" hidden></p>
+        </form>
+      </div>
+
+      <div class="tool-container result-panel" id="resultPanel" hidden>
+        <div class="result-copy"><p class="tool-kicker">Результат готов</p><h2 id="savingTitle">Изображение обработано</h2><div class="result-stats"><span>Было<strong id="beforeSize">—</strong></span><span>Стало<strong id="afterSize">—</strong></span><span>Экономия<strong id="savedPercent">—</strong></span><span>Размер<strong id="resultDimensions">—</strong></span></div></div>
+        <div class="result-preview"><img id="resultImage" alt="Обработанное изображение"></div>
+        <div class="result-actions"><a id="downloadResult" download>Скачать результат <span>↓</span></a><button id="processAnother" type="button">Обработать другое</button></div>
+      </div>
+    </section>
+
+    <section class="tool-content">
+      <div class="tool-container">
+        <div class="content-head"><p class="tool-kicker">Что умеет инструмент</p><h2>Четыре задачи.<br><em>Одна безопасная страница.</em></h2></div>
+        <div class="benefit-grid">
+          <article><i>01</i><h3>Сжатие изображений</h3><p>Уменьшает размер JPG и WebP для сайта, WhatsApp, маркетплейса или электронной почты.</p></article>
+          <article><i>02</i><h3>Изменение размера</h3><p>Задайте точную ширину или высоту. Пропорции рассчитываются автоматически.</p></article>
+          <article><i>03</i><h3>Конвертация формата</h3><p>Преобразуйте PNG в JPG, JPG в WebP или сохраните прозрачность в PNG.</p></article>
+          <article><i>04</i><h3>Удаление метаданных</h3><p>Новый файл не содержит исходную геолокацию, EXIF и информацию о камере.</p></article>
+        </div>
+        <div class="faq-grid"><div><p class="tool-kicker">FAQ</p><h2>Важное о файлах</h2></div><div><details open><summary>Изображение куда-нибудь отправляется?</summary><p>Нет. JavaScript читает его локально, а новый файл создаётся браузером на вашем устройстве.</p></details><details><summary>Почему PNG иногда становится больше?</summary><p>PNG использует сжатие без потерь. Для фотографий обычно выгоднее WebP или JPG; PNG лучше подходит для схем и прозрачности.</p></details><details><summary>Можно ли использовать на телефоне?</summary><p>Да. Страница адаптирована для современных мобильных браузеров, но очень большие фотографии требуют больше памяти.</p></details></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="tool-footer"><div class="tool-container"><span>© 2026 QazDev Studio · QazTools</span><a href="/privacy.html">Конфиденциальность</a></div></footer>
+  <script src="/js/image-tools.js?v=1" defer></script>
+</body>
+</html>

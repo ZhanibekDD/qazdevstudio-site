@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Какой мой IP адрес — определить онлайн бесплатно</title>
+<meta name="description" content="Узнайте свой IP адрес, местоположение, провайдера, браузер и устройство онлайн бесплатно. Терминальный сканер от QazDev Studio.">
+<link rel="canonical" href="https://qazdevstudio.kz/moy-ip.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050814;--bg1:#080D1C;--bg2:#0D1426;
+  --blue:#00D4FF;--emerald:#10B981;--gold:#F5C542;--red:#F87171;--purple:#7C3AED;
+  --t1:#fff;--t2:#E5E7EB;--t3:#94A3B8;--t4:#64748B;
+  --border:rgba(0,212,255,.12);
+}
+html,body{min-height:100vh;background:var(--bg);color:var(--t2);font-family:'Manrope',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* Grid background */
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+
+/* Nav */
+.nav{padding:14px 24px;border-bottom:1px solid var(--border);background:rgba(5,8,20,.95);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:100}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-t{font-size:14px;font-weight:800;color:var(--t1)}.logo-t span{color:var(--blue)}
+.nav-r{display:flex;align-items:center;gap:20px}
+.nav-link{font-size:13px;font-weight:600;color:var(--t3);text-decoration:none;transition:color .2s}.nav-link:hover{color:var(--blue)}
+@media(max-width:560px){.nav-link{display:none}}
+
+/* Layout */
+.wrap{max-width:800px;margin:0 auto;padding:48px 20px 80px;position:relative;z-index:1}
+
+/* Terminal header */
+.term-header{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t4);letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.term-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:.2}50%{opacity:1}}
+
+/* Big IP display */
+.ip-stage{text-align:center;padding:56px 24px 40px;position:relative}
+.ip-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t4);text-transform:uppercase;letter-spacing:.15em;margin-bottom:20px}
+.ip-number{font-family:'JetBrains Mono',monospace;font-size:clamp(32px,7vw,64px);font-weight:600;color:var(--blue);letter-spacing:.06em;text-shadow:0 0 40px rgba(0,212,255,.35);transition:all .6s ease;min-height:72px;display:flex;align-items:center;justify-content:center;gap:4px}
+.ip-cursor{display:inline-block;width:3px;height:.9em;background:var(--blue);animation:cur 0.7s step-end infinite}
+@keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
+.ip-status{margin-top:20px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+.badge-live{background:rgba(16,185,129,.1);color:var(--emerald);border:1px solid rgba(16,185,129,.25)}
+.badge-vpn{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.22)}
+.badge-copy{background:rgba(0,212,255,.08);color:var(--blue);border:1px solid rgba(0,212,255,.2);cursor:pointer;transition:all .2s}
+.badge-copy:hover{background:rgba(0,212,255,.18)}
+.badge-copy.ok{background:rgba(16,185,129,.1);color:var(--emerald);border-color:rgba(16,185,129,.3)}
+
+/* Scan progress */
+.scan-wrap{margin-bottom:32px}
+.scan-bar-bg{height:3px;background:rgba(0,212,255,.1);border-radius:2px;overflow:hidden;margin-bottom:10px}
+.scan-bar{height:100%;background:linear-gradient(90deg,var(--blue),var(--emerald));border-radius:2px;width:0%;transition:width .4s ease}
+.scan-log{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--t4);height:18px;overflow:hidden}
+.scan-log span{color:var(--emerald)}
+
+/* Privacy score */
+.score-ring-wrap{display:flex;flex-direction:column;align-items:center;gap:8px}
+.score-ring{position:relative;width:80px;height:80px}
+.score-ring svg{transform:rotate(-90deg)}
+.score-ring-bg{stroke:rgba(0,212,255,.1);fill:none;stroke-width:6}
+.score-ring-fill{stroke:var(--emerald);fill:none;stroke-width:6;stroke-linecap:round;stroke-dasharray:201;stroke-dashoffset:201;transition:stroke-dashoffset 1.2s ease}
+.score-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:var(--t1);font-family:'JetBrains Mono',monospace}
+.score-label{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--t4);text-transform:uppercase;letter-spacing:.08em}
+
+/* Cards grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:32px}
+
+/* Card */
+.card{background:rgba(8,13,28,.85);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color .25s}
+.card:hover{border-color:rgba(0,212,255,.25)}
+.card-head{padding:14px 18px 12px;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:center;justify-content:space-between}
+.card-title{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--t4);text-transform:uppercase;letter-spacing:.1em}
+.card-icon{font-size:16px}
+.card-body{padding:4px 0}
+
+/* Rows */
+.row{display:flex;justify-content:space-between;align-items:center;padding:9px 18px;gap:12px;border-bottom:1px solid rgba(255,255,255,.03)}
+.row:last-child{border-bottom:none}
+.rk{font-size:12px;color:var(--t4);flex-shrink:0}
+.rv{font-size:13px;color:var(--t1);font-weight:600;text-align:right;word-break:break-all;transition:color .3s}
+.rv.mono{font-family:'JetBrains Mono',monospace;font-size:12px}
+.rv.ok{color:var(--emerald)}
+.rv.warn{color:var(--red)}
+.rv.dim{color:var(--t4);font-weight:400}
+.rv.loading{color:var(--t4);font-weight:400}
+
+/* Pill indicator */
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;font-family:'JetBrains Mono',monospace}
+.pill-ok{background:rgba(16,185,129,.1);color:var(--emerald)}
+.pill-warn{background:rgba(248,113,113,.08);color:var(--red)}
+.pill-blue{background:rgba(0,212,255,.08);color:var(--blue)}
+
+/* Map link */
+.map-link{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--blue);text-decoration:none;border:1px solid rgba(0,212,255,.18);border-radius:6px;padding:3px 9px;margin-top:4px;transition:all .2s;font-family:'JetBrains Mono',monospace}
+.map-link:hover{border-color:var(--blue);background:rgba(0,212,255,.06)}
+
+/* Wide card for score + summary */
+.card-wide{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;gap:0}
+.card-score{padding:24px 28px;border-right:1px solid rgba(255,255,255,.05);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-width:160px}
+.card-summary{padding:12px 0}
+@media(max-width:520px){.card-wide{grid-template-columns:1fr}.card-score{border-right:none;border-bottom:1px solid rgba(255,255,255,.05)}}
+
+/* FAQ */
+.faq{margin-top:40px;margin-bottom:32px}
+.faq-h{font-size:18px;font-weight:800;color:var(--t1);margin-bottom:16px}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.faq-q{padding:14px 18px;font-size:14px;font-weight:700;color:var(--t1);cursor:pointer;display:flex;justify-content:space-between;gap:12px;user-select:none;transition:background .2s}
+.faq-q:hover{background:rgba(0,212,255,.04)}
+.faq-arr{color:var(--blue);flex-shrink:0;transition:transform .25s;font-size:18px;line-height:1}
+.faq-item.open .faq-arr{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-ai{padding:0 18px 14px;font-size:13px;color:var(--t3);line-height:1.7}
+.faq-item.open .faq-a{max-height:250px}
+
+/* CTA */
+.cta{background:rgba(8,13,28,.9);border:1px solid var(--border);border-radius:18px;padding:32px;text-align:center;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(circle,rgba(0,212,255,.06),transparent 70%);pointer-events:none}
+.cta h2{font-size:20px;font-weight:800;color:var(--t1);margin-bottom:8px;position:relative}
+.cta p{font-size:14px;color:var(--t3);margin-bottom:20px;position:relative}
+.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:relative}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;border:none;border-radius:10px;cursor:pointer;text-decoration:none;padding:12px 22px;transition:all .2s}
+.btn-wa{background:#25D366;color:#fff}.btn-wa:hover{background:#1fba5a;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--t2);border:1px solid var(--border)}.btn-ghost:hover{border-color:rgba(0,212,255,.4);color:var(--blue)}
+
+.footer{border-top:1px solid var(--border);padding:20px;text-align:center;font-size:12px;color:var(--t4);font-family:'JetBrains Mono',monospace;position:relative;z-index:1}
+.footer a{color:var(--t4);text-decoration:none}.footer a:hover{color:var(--blue)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#080D1C"/><circle cx="19" cy="19" r="11" stroke="#00D4FF" stroke-width="2" fill="none"/><path d="M27 27L36 36" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/><path d="M13 16L11 19L13 22M25 16L27 19L25 22M21 23L18 15" stroke="#00D4FF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/></svg>
+    <span class="logo-t">QazDev <span>Studio</span></span>
+  </a>
+  <div class="nav-r">
+    <a href="/utm.html" class="nav-link">UTM</a>
+    <a href="/blog/" class="nav-link">Блог</a>
+    <a href="/" class="nav-link">Главная</a>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+  <!-- Terminal header -->
+  <div class="term-header">
+    <div class="term-dot"></div>
+    <span>NETWORK_SCAN v2.0 // QazDev Studio</span>
+  </div>
+
+  <!-- Scan progress -->
+  <div class="scan-wrap">
+    <div class="scan-bar-bg"><div class="scan-bar" id="scan-bar"></div></div>
+    <div class="scan-log" id="scan-log">Инициализация...</div>
+  </div>
+
+  <!-- IP big display -->
+  <div class="ip-stage">
+    <div class="ip-label">// Ваш IP-адрес</div>
+    <div class="ip-number" id="ip-num"><span id="ip-text"></span><span class="ip-cursor" id="ip-cur"></span></div>
+    <div class="ip-status" id="ip-status" style="opacity:0;transition:opacity .4s"></div>
+  </div>
+
+  <!-- Cards -->
+  <div class="grid" id="cards" style="opacity:0;transition:opacity .5s">
+
+    <!-- Wide: privacy score + network summary -->
+    <div class="card card-wide">
+      <div class="card-score">
+        <div class="score-ring-wrap">
+          <div class="score-ring">
+            <svg viewBox="0 0 72 72" width="80" height="80">
+              <circle class="score-ring-bg" cx="36" cy="36" r="32"/>
+              <circle class="score-ring-fill" id="score-fill" cx="36" cy="36" r="32"/>
+            </svg>
+            <div class="score-num" id="score-num">—</div>
+          </div>
+          <div class="score-label">Privacy Score</div>
+        </div>
+      </div>
+      <div class="card-summary">
+        <div class="card-head" style="border-bottom:1px solid rgba(255,255,255,.04)">
+          <div class="card-title">Сводка</div>
+          <div class="card-icon">📡</div>
+        </div>
+        <div class="card-body">
+          <div class="row"><span class="rk">Соединение</span><span class="rv ok" id="s-online">✓ Онлайн</span></div>
+          <div class="row"><span class="rk">Тип трафика</span><span class="rv loading" id="s-type">Сканирую...</span></div>
+          <div class="row"><span class="rk">VPN / Прокси</span><span class="rv loading" id="s-vpn">Сканирую...</span></div>
+          <div class="row"><span class="rk">Часовой пояс</span><span class="rv mono" id="s-tz">—</span></div>
+          <div class="row"><span class="rk">Устройство</span><span class="rv" id="s-device">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Геолокация -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">🌍 Геолокация</div>
+        <div id="loc-flag" style="font-size:20px"></div>
+      </div>
+      <div class="card-body">
+        <div class="row"><span class="rk">Страна</span><span class="rv loading" id="g-country">...</span></div>
+        <div class="row"><span class="rk">Город</span><span class="rv loading" id="g-city">...</span></div>
+        <div class="row"><span class="rk">Регион</span><span class="rv loading" id="g-region">...</span></div>
+        <div class="row"><span class="rk">Часовой пояс</span><span class="rv mono loading" id="g-tz">...</span></div>
+        <div class="row"><span class="rk">Координаты</span>
+          <div style="text-align:right">
+            <div class="rv mono loading" id="g-coords">...</div>
+            <a href="#" class="map-link" id="map-link" style="display:none">🗺 Карта</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Провайдер -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">🏢 Провайдер</div>
+      </div>
+      <div class="card-body">
+        <div class="row"><span class="rk">ISP</span><span class="rv loading" id="g-isp">...</span></div>
+        <div class="row"><span class="rk">ASN</span><span class="rv mono loading" id="g-asn">...</span></div>
+        <div class="row"><span class="rk">Тип узла</span><span class="rv loading" id="g-nodetype">...</span></div>
+        <div class="row"><span class="rk">Хостинг</span><span class="rv loading" id="g-hosting">...</span></div>
+      </div>
+    </div>
+
+    <!-- Браузер -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">🌐 Браузер</div>
+        <div id="br-icon" style="font-size:16px"></div>
+      </div>
+      <div class="card-body">
+        <div class="row"><span class="rk">Браузер</span><span class="rv" id="b-name">—</span></div>
+        <div class="row"><span class="rk">Версия</span><span class="rv mono" id="b-ver">—</span></div>
+        <div class="row"><span class="rk">Движок</span><span class="rv" id="b-engine">—</span></div>
+        <div class="row"><span class="rk">Язык</span><span class="rv mono" id="b-lang">—</span></div>
+        <div class="row"><span class="rk">Cookies</span><span class="rv" id="b-cookies">—</span></div>
+      </div>
+    </div>
+
+    <!-- Устройство -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">💻 Устройство</div>
+      </div>
+      <div class="card-body">
+        <div class="row"><span class="rk">Тип</span><span class="rv" id="d-type">—</span></div>
+        <div class="row"><span class="rk">ОС</span><span class="rv" id="d-os">—</span></div>
+        <div class="row"><span class="rk">Экран</span><span class="rv mono" id="d-screen">—</span></div>
+        <div class="row"><span class="rk">Плотность</span><span class="rv mono" id="d-dpr">—</span></div>
+        <div class="row"><span class="rk">Тач-экран</span><span class="rv" id="d-touch">—</span></div>
+      </div>
+    </div>
+
+    <!-- Конфиденциальность -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">🔒 Конфиденциальность</div>
+      </div>
+      <div class="card-body">
+        <div class="row"><span class="rk">Do Not Track</span><span class="rv" id="p-dnt">—</span></div>
+        <div class="row"><span class="rk">JavaScript</span><span class="rv ok">✓ Включён</span></div>
+        <div class="row"><span class="rk">localStorage</span><span class="rv" id="p-ls">—</span></div>
+        <div class="row"><span class="rk">Сеть</span><span class="rv" id="p-net">—</span></div>
+        <div class="row"><span class="rk">JS Таймзона</span><span class="rv mono" id="p-jtz">—</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq">
+    <div class="faq-h">Частые вопросы</div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="faq(this)">Что такое IP-адрес? <span class="faq-arr">+</span></div>
+      <div class="faq-a"><div class="faq-ai">IP-адрес — уникальный числовой идентификатор вашего устройства в интернете, присваиваемый провайдером. По нему можно определить страну, город и провайдера, но не точный домашний адрес.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="faq(this)">Почему город определяется неточно? <span class="faq-arr">+</span></div>
+      <div class="faq-a"><div class="faq-ai">Геолокация по IP приблизительная. Провайдер может зарегистрировать IP-блок в одном городе, а обслуживать другой. При мобильном интернете (4G/5G) погрешность выше — трафик проходит через городские узлы сети.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="faq(this)">VPN скрывает мой реальный IP? <span class="faq-arr">+</span></div>
+      <div class="faq-a"><div class="faq-ai">Да — VPN заменяет ваш IP на адрес сервера. Сайты видят IP VPN, а не провайдера. Однако некоторые браузеры могут раскрыть реальный IP через WebRTC даже при включённом VPN (утечка WebRTC). Строка "VPN / Прокси" выше показывает, детектируется ли VPN.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="faq(this)">Что такое Privacy Score? <span class="faq-arr">+</span></div>
+      <div class="faq-a"><div class="faq-ai">Это наша условная оценка анонимности от 0 до 100. Учитывается: VPN/прокси (-20), Do Not Track (+10), блокировка cookies (-15), тип соединения и другие сигналы. Чем выше — тем меньше данных о вас видят сайты.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="faq(this)">Может ли сайт узнать мой точный адрес? <span class="faq-arr">+</span></div>
+      <div class="faq-a"><div class="faq-ai">Нет. По IP можно определить только примерный город и провайдера. Точный адрес (улица, квартира) доступен только провайдеру по официальному запросу правоохранительных органов.</div></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Нужен сайт, бот или автоматизация?</h2>
+    <p>IT-решения для бизнеса в Казахстане — от лендинга до полной автоматизации процессов.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/77000300024?text=Здравствуйте!%20Нашёл%20ваш%20IP-инструмент%2C%20хочу%20обсудить%20проект." class="btn btn-wa" target="_blank" rel="noopener">Написать в WhatsApp</a>
+      <a href="/blog/" class="btn btn-ghost">Читать блог</a>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer class="footer">
+  © 2026 <a href="/">QazDev Studio</a> · <a href="/utm.html">UTM-генератор</a> · <a href="/blog/">Блог</a> · <a href="/privacy.html">Политика</a>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+/* ── Scan animation ─────────────────────────────────────────── */
+var scanSteps = [
+  [5,  'Определяем ваш IP-адрес...'],
+  [20, 'Запрос к геолокационной базе...'],
+  [45, 'Получаем данные провайдера...'],
+  [65, 'Анализируем браузер и устройство...'],
+  [85, 'Проверяем признаки VPN/прокси...'],
+  [100,'Сканирование завершено ✓'],
+];
+var scanIdx = 0;
+function nextStep(){
+  if(scanIdx >= scanSteps.length) return;
+  var s = scanSteps[scanIdx++];
+  document.getElementById('scan-bar').style.width = s[0]+'%';
+  var log = document.getElementById('scan-log');
+  log.innerHTML = '<span>›</span> ' + s[1];
+  if(scanIdx < scanSteps.length) setTimeout(nextStep, scanIdx===1?300:600);
+}
+setTimeout(nextStep, 200);
+
+/* ── IP typewriter ──────────────────────────────────────────── */
+function typeIP(ip, cb){
+  var el = document.getElementById('ip-text');
+  var i = 0;
+  function tick(){
+    el.textContent = ip.slice(0,i+1);
+    i++;
+    if(i < ip.length) setTimeout(tick, 60);
+    else { document.getElementById('ip-cur').style.display='none'; cb&&cb(); }
+  }
+  tick();
+}
+
+/* ── Browser / device detection ────────────────────────────── */
+var ua = navigator.userAgent;
+function detectBrowser(){
+  if(/YaBrowser/i.test(ua))     return {n:'Яндекс Браузер',v:(ua.match(/YaBrowser\/([\d.]+)/)||[])[1]||'',e:'Blink',i:'🟡'};
+  if(/Edg\//i.test(ua))         return {n:'Microsoft Edge',v:(ua.match(/Edg\/([\d.]+)/)||[])[1]||'',e:'Blink',i:'🔵'};
+  if(/OPR\//i.test(ua))         return {n:'Opera',v:(ua.match(/OPR\/([\d.]+)/)||[])[1]||'',e:'Blink',i:'🔴'};
+  if(/SamsungBrowser/i.test(ua))return {n:'Samsung Internet',v:(ua.match(/SamsungBrowser\/([\d.]+)/)||[])[1]||'',e:'Blink',i:'🔷'};
+  if(/Chrome/i.test(ua))        return {n:'Google Chrome',v:(ua.match(/Chrome\/([\d.]+)/)||[])[1]||'',e:'Blink',i:'🟢'};
+  if(/Firefox/i.test(ua))       return {n:'Mozilla Firefox',v:(ua.match(/Firefox\/([\d.]+)/)||[])[1]||'',e:'Gecko',i:'🦊'};
+  if(/Safari/i.test(ua))        return {n:'Apple Safari',v:(ua.match(/Version\/([\d.]+)/)||[])[1]||'',e:'WebKit',i:'🍎'};
+  return {n:'Другой',v:'',e:'—',i:'🌐'};
+}
+function detectOS(){
+  if(/Windows NT 10/i.test(ua)) return 'Windows 10/11';
+  if(/Windows NT 6.3/i.test(ua))return 'Windows 8.1';
+  if(/Windows NT 6.1/i.test(ua))return 'Windows 7';
+  if(/Windows/i.test(ua))       return 'Windows';
+  if(/iPhone/i.test(ua))        return 'iOS (iPhone)';
+  if(/iPad/i.test(ua))          return 'iPadOS';
+  if(/Android/i.test(ua)){var v=ua.match(/Android ([\d.]+)/);return 'Android'+(v?' '+v[1]:'')}
+  if(/Mac OS X/i.test(ua)){var v=ua.match(/Mac OS X ([\d_]+)/);return 'macOS'+(v?' '+v[1].replace(/_/g,'.'):'');}
+  if(/Linux/i.test(ua)) return 'Linux';
+  return 'Неизвестно';
+}
+function detectDevice(){
+  if(/iPhone/i.test(ua))          return '📱 iPhone';
+  if(/iPad/i.test(ua))            return '📱 iPad';
+  if(/Android.*Mobile/i.test(ua)) return '📱 Android смартфон';
+  if(/Android/i.test(ua))         return '📱 Android планшет';
+  return '💻 ПК / Ноутбук';
+}
+
+var br = detectBrowser();
+var os = detectOS();
+var dev = detectDevice();
+var hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+var jstz = Intl.DateTimeFormat().resolvedOptions().timeZone || '—';
+
+function set(id, val, cls){
+  var el = document.getElementById(id); if(!el) return;
+  el.textContent = val || '—';
+  if(cls) el.className = 'rv ' + cls;
+  else if(el.classList.contains('loading')) el.classList.remove('loading');
+}
+
+set('b-name', br.n);
+set('b-ver', br.v||'—', 'mono');
+set('b-engine', br.e);
+set('b-lang', navigator.language||'—', 'mono');
+set('b-cookies', navigator.cookieEnabled?'✓ Включены':'✗ Выключены', navigator.cookieEnabled?'ok':'warn');
+document.getElementById('br-icon').textContent = br.i;
+
+set('d-type', dev);
+set('d-os', os);
+set('d-screen', screen.width+'×'+screen.height, 'mono');
+set('d-dpr', (window.devicePixelRatio||1).toFixed(1)+'x', 'mono');
+set('d-touch', hasTouch?'✓ Есть':'— Нет', hasTouch?'ok':'');
+
+var dnt = navigator.doNotTrack||window.doNotTrack;
+set('p-dnt', dnt==='1'?'✓ Включён':dnt==='0'?'Выключен':'Не задан', dnt==='1'?'ok':'');
+var lsOk=false; try{localStorage.setItem('_q','1');localStorage.removeItem('_q');lsOk=true;}catch(e){}
+set('p-ls', lsOk?'✓ Доступен':'✗ Заблокирован', lsOk?'ok':'warn');
+set('p-jtz', jstz, 'mono');
+set('s-tz', jstz, 'mono');
+set('s-device', dev);
+
+var conn = navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+var netStr = '—';
+if(conn){
+  var typeMap={wifi:'Wi-Fi',cellular:'Мобильный',ethernet:'Ethernet',bluetooth:'BT',none:'Нет',unknown:'Неизвестно'};
+  netStr = (typeMap[conn.type||conn.effectiveType]||conn.effectiveType||'?');
+  if(conn.downlink) netStr += ' · '+conn.downlink+' Мбит/с';
+}
+set('p-net', netStr);
+
+/* ── Geo from server ─────────────────────────────────────────── */
+var _privScore = 70;
+
+fetch('/api/geo-track.php',{
+  method:'POST',
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({page_url:location.href,referrer:document.referrer||''})
+})
+.then(function(r){return r.json()})
+.then(function(d){
+  if(!d.ok) throw new Error();
+  var ip = d.ip||'';
+
+  // Typewrite IP
+  setTimeout(function(){
+    typeIP(ip, function(){
+      // Show status
+      var st = document.getElementById('ip-status');
+      st.innerHTML = (d.hosting
+        ? '<span class="badge badge-vpn">⚠️ Хостинг / VPN</span>'
+        : '<span class="badge badge-live">✅ Живой пользователь</span>')
+        + '<button class="badge badge-copy" id="copy-ip" onclick="copyIP(\''+ip+'\')">⎘ Скопировать</button>';
+      st.style.opacity='1';
+    });
+  }, 800);
+
+  // Show cards
+  setTimeout(function(){
+    document.getElementById('cards').style.opacity='1';
+  }, 1400);
+
+  // Geo
+  var flag = d.flag||'🌍';
+  document.getElementById('loc-flag').textContent = flag;
+  set('g-country', flag+' '+(d.country||'—'));
+  set('g-city', d.city||'—');
+  set('g-region', d.region||'—');
+  set('g-tz', d.tz||'—', 'mono');
+  if(d.lat&&d.lon){
+    set('g-coords', d.lat+', '+d.lon, 'mono');
+    var ml = document.getElementById('map-link');
+    ml.href='https://maps.google.com/?q='+d.lat+','+d.lon;
+    ml.style.display='inline-flex'; ml.target='_blank'; ml.rel='noopener';
+  } else { set('g-coords','—'); }
+
+  // ISP
+  set('g-isp', d.isp||'—');
+  set('g-asn', d.asn||'—', 'mono');
+  set('g-nodetype', d.hosting?'Дата-центр':'Интернет-провайдер');
+  set('g-hosting', d.hosting?'⚠️ Обнаружен':'✓ Не обнаружен', d.hosting?'warn':'ok');
+
+  // Summary
+  set('s-type', d.hosting?'⚠️ Хостинг/VPN':'✓ Реальный провайдер', d.hosting?'warn':'ok');
+  set('s-vpn', d.hosting?'⚠️ Обнаружен':'✓ Не обнаружен', d.hosting?'warn':'ok');
+
+  // Privacy score
+  if(d.hosting) _privScore -= 25;
+  if(dnt==='1') _privScore += 8;
+  if(!navigator.cookieEnabled) _privScore += 5;
+  if(lsOk===false) _privScore += 4;
+  _privScore = Math.max(10, Math.min(98, _privScore));
+
+  setTimeout(function(){
+    var numEl = document.getElementById('score-num');
+    var fill  = document.getElementById('score-fill');
+    var circumference = 201;
+    fill.style.strokeDashoffset = circumference - (circumference * _privScore / 100);
+    fill.style.stroke = _privScore>=70?'var(--emerald)':_privScore>=40?'var(--gold)':'var(--red)';
+    var cur=0; var target=_privScore;
+    var timer=setInterval(function(){cur+=2;numEl.textContent=Math.min(cur,target);if(cur>=target)clearInterval(timer);},20);
+  }, 1600);
+
+})
+.catch(function(){
+  set('g-country','Ошибка загрузки','warn');
+  ['g-city','g-region','g-tz','g-isp','g-asn','g-nodetype','g-hosting','s-type','s-vpn','g-coords'].forEach(function(id){
+    set(id,'—');
+  });
+  setTimeout(function(){
+    document.getElementById('ip-num').innerHTML='<span style="font-size:18px;color:var(--red)">Не удалось получить данные</span>';
+    document.getElementById('ip-status').style.opacity='1';
+    document.getElementById('cards').style.opacity='1';
+  },800);
+});
+
+/* ── Copy IP ──────────────────────────────────────────────────── */
+window.copyIP = function(ip){
+  navigator.clipboard.writeText(ip).then(function(){
+    var btn=document.getElementById('copy-ip');
+    if(!btn)return;
+    btn.textContent='✓ Скопировано!';
+    btn.classList.add('ok');
+    setTimeout(function(){btn.textContent='⎘ Скопировать';btn.classList.remove('ok');},2000);
+  });
+};
+
+/* ── FAQ ─────────────────────────────────────────────────────── */
+window.faq = function(el){ el.parentElement.classList.toggle('open'); };
+
+})();
+</script>
+<script src="js/track.js"></script>
+</body>
+</html>

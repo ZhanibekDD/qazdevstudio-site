@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Генератор технического задания (ТЗ) — QazDev Studio</title>
+<meta name="description" content="Сформируйте готовое ТЗ для разработчика за 5 минут. Выберите тип проекта, ответьте на вопросы — получите структурированное техническое задание.">
+<link rel="canonical" href="https://qazdevstudio.kz/tz-generator.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+<nav class="p-nav">
+  <a href="/" class="p-nav-logo">
+    <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#080D1C"/><circle cx="19" cy="19" r="11" stroke="#00D4FF" stroke-width="2" fill="none"/><path d="M27 27L36 36" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/><path d="M13 16L11 19L13 22M25 16L27 19L25 22M21 23L18 15" stroke="#00D4FF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/></svg>
+    <span class="p-nav-logo-text">QazDev <span>Studio</span></span>
+  </a>
+  <div class="p-nav-actions">
+    <a href="/" class="p-nav-link">Главная</a>
+    <a href="https://wa.me/77000300024" class="p-nav-cta">Обсудить проект</a>
+  </div>
+</nav>
+
+<main>
+<div class="p-container" style="padding-top:48px;padding-bottom:80px;">
+
+  <div class="p-breadcrumb">
+    <a href="/">Главная</a><span>/</span><span>Генератор ТЗ</span>
+  </div>
+
+  <div class="p-tag">// Инструмент</div>
+  <h1 style="font-size:clamp(28px,5vw,44px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;">Генератор технического задания</h1>
+  <p style="font-size:16px;color:#94A3B8;margin-bottom:40px;max-width:600px;">Ответьте на вопросы — получите готовое ТЗ, которое можно скопировать, скачать или сразу отправить разработчику.</p>
+
+  <!-- Type selector -->
+  <div id="typeSelect" style="margin-bottom:32px;">
+    <div class="p-label" style="font-size:15px;font-weight:700;color:#fff;margin-bottom:16px;">Что нужно разработать?</div>
+    <div class="p-grid p-grid--3" style="gap:12px;">
+      <button class="p-card" onclick="selectType('site')" style="cursor:pointer;text-align:left;border:none;">
+        <div class="p-card-icon">🌐</div>
+        <div class="p-card-title">Сайт / Лендинг</div>
+        <div class="p-card-desc">Корпоративный сайт или лендинг для продаж</div>
+      </button>
+      <button class="p-card" onclick="selectType('bot')" style="cursor:pointer;text-align:left;border:none;">
+        <div class="p-card-icon">🤖</div>
+        <div class="p-card-title">Telegram-бот</div>
+        <div class="p-card-desc">Бот для заявок, уведомлений или автоматизации</div>
+      </button>
+      <button class="p-card" onclick="selectType('crm')" style="cursor:pointer;text-align:left;border:none;">
+        <div class="p-card-icon">📊</div>
+        <div class="p-card-title">CRM-система</div>
+        <div class="p-card-desc">База клиентов, воронка, статусы, аналитика</div>
+      </button>
+      <button class="p-card" onclick="selectType('docs')" style="cursor:pointer;text-align:left;border:none;">
+        <div class="p-card-icon">📄</div>
+        <div class="p-card-title">Автоматизация документов</div>
+        <div class="p-card-desc">Генерация договоров, счетов, актов из шаблонов</div>
+      </button>
+      <button class="p-card" onclick="selectType('integration')" style="cursor:pointer;text-align:left;border:none;">
+        <div class="p-card-icon">🔗</div>
+        <div class="p-card-title">Интеграция</div>
+        <div class="p-card-desc">Связать несколько сервисов через API</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Form (hidden until type selected) -->
+  <div id="tzForm" style="display:none;">
+    <div style="margin-bottom:24px;display:flex;align-items:center;gap:12px;">
+      <button class="p-btn p-btn--ghost p-btn--sm" onclick="resetType()">← Изменить тип</button>
+      <span style="font-size:13px;color:#64748B;" id="selectedTypeLabel"></span>
+    </div>
+
+    <div class="p-form" id="formFields"></div>
+
+    <button class="p-btn p-btn--primary" style="margin-top:20px;width:100%;max-width:400px;" onclick="generateTZ()">Сгенерировать ТЗ →</button>
+  </div>
+
+  <!-- Result -->
+  <div id="tzResult" style="display:none;margin-top:32px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
+      <h2 style="font-size:20px;font-weight:700;color:#fff;">Готовое техническое задание</h2>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="p-btn p-btn--ghost p-btn--sm" onclick="copyTZ()">📋 Скопировать</button>
+        <button class="p-btn p-btn--ghost p-btn--sm" onclick="downloadTZ()">⬇ Скачать TXT</button>
+        <button class="p-btn p-btn--wa p-btn--sm" onclick="sendTZtoWA()">WhatsApp →</button>
+      </div>
+    </div>
+    <pre id="tzOutput" style="background:rgba(5,8,20,.9);border:1px solid rgba(0,212,255,.15);border-radius:12px;padding:24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#E5E7EB;white-space:pre-wrap;line-height:1.7;overflow-x:auto;"></pre>
+    <div id="copyMsg" style="display:none;margin-top:8px;font-size:13px;color:#10B981;">✓ Скопировано в буфер обмена</div>
+
+    <div class="p-cta" style="margin-top:32px;">
+      <h2>Готовы обсудить проект?</h2>
+      <p>Отправьте это ТЗ — разберу и дам точную оценку в течение часа.</p>
+      <div class="p-cta-btns">
+        <button class="p-btn p-btn--wa" onclick="sendTZtoWA()">Отправить ТЗ в WhatsApp</button>
+        <a href="/calculator.html" class="p-btn p-btn--ghost">Рассчитать стоимость</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer class="p-footer">
+  <div class="p-footer-inner">
+    <span class="p-footer-copy">© 2026 QazDev Studio. Казахстан.</span>
+    <div class="p-footer-links">
+      <a href="/">Главная</a><a href="/calculator.html">Калькулятор</a>
+      <a href="/checklist-saita.html">Чек-лист</a><a href="/privacy.html">Политика</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/track.js"></script>
+<script>
+const WA = '77000300024';
+let currentType = '';
+let tzText = '';
+
+const FORMS = {
+  site: [
+    { id:'company', label:'Название компании / проекта', type:'text', ph:'QazDev Studio' },
+    { id:'goal', label:'Цель сайта', type:'select', opts:['Получать заявки', 'Рассказать об услугах', 'Продавать товары', 'Представить портфолио', 'Другое'] },
+    { id:'audience', label:'Целевая аудитория', type:'text', ph:'Малый бизнес Казахстана, возраст 25–45' },
+    { id:'pages', label:'Разделы сайта (через запятую)', type:'text', ph:'Главная, Услуги, Портфолио, Контакты' },
+    { id:'design', label:'Стиль дизайна', type:'select', opts:['Тёмный, премиум', 'Светлый, минимализм', 'Корпоративный', 'Яркий, динамичный', 'Без предпочтений'] },
+    { id:'func', label:'Функции (выберите)', type:'checks', opts:['Форма заявки','WhatsApp-кнопка','Telegram-кнопка','Галерея/Портфолио','Блог/Статьи','Личный кабинет','Каталог товаров','Онлайн-оплата','Карта','SEO-оптимизация'] },
+    { id:'deadline', label:'Желаемый срок запуска', type:'text', ph:'2–3 недели, или конкретная дата' },
+    { id:'budget', label:'Бюджет (ориентировочно)', type:'text', ph:'100 000 – 200 000 ₸' },
+    { id:'notes', label:'Дополнительно', type:'textarea', ph:'Референсы, особые пожелания, важные детали...' },
+  ],
+  bot: [
+    { id:'company', label:'Название / сфера бизнеса', type:'text', ph:'Учебный центр, Алматы' },
+    { id:'purpose', label:'Основная задача бота', type:'select', opts:['Приём заявок','Запись на услугу','Ответы на вопросы (FAQ)','Уведомления клиентам','Управление для сотрудников','Продажи и каталог'] },
+    { id:'users', label:'Кто будет использовать бота?', type:'select', opts:['Клиенты (внешний)','Сотрудники (внутренний)','И клиенты, и сотрудники'] },
+    { id:'features', label:'Функции бота', type:'checks', opts:['Приём заявок в Telegram','Уведомления владельцу','Запись в Google Sheets','Ответы на FAQ','Кнопки выбора услуги','Геолокация','Фото/файлы от пользователя','Рассылка по базе','Интеграция с сайтом'] },
+    { id:'notify', label:'Куда приходят уведомления о заявках?', type:'text', ph:'Telegram: @QazDevStudio' },
+    { id:'deadline', label:'Желаемый срок', type:'text', ph:'1–2 недели' },
+    { id:'notes', label:'Примеры сценариев / дополнительно', type:'textarea', ph:'Клиент пишет /start → выбирает услугу → вводит имя → заявка приходит в Telegram' },
+  ],
+  crm: [
+    { id:'company', label:'Название / сфера', type:'text', ph:'Юридическая компания' },
+    { id:'users_count', label:'Количество сотрудников в CRM', type:'select', opts:['1 (только я)','2–5','5–20','Более 20'] },
+    { id:'pipeline', label:'Этапы воронки продаж', type:'text', ph:'Новый → В работе → Счёт → Оплачен → Завершён' },
+    { id:'fields', label:'Поля клиента (что нужно хранить)', type:'textarea', ph:'Имя, телефон, email, компания, услуга, сумма договора, статус оплаты, примечания' },
+    { id:'features', label:'Функции', type:'checks', opts:['Воронка сделок','База контактов','История общения','Уведомления в Telegram','Генерация документов','Аналитика и отчёты','Импорт из Excel','Интеграция с сайтом','Мобильный доступ'] },
+    { id:'deadline', label:'Желаемый срок', type:'text', ph:'3–6 недель' },
+    { id:'notes', label:'Дополнительно', type:'textarea', ph:'Особые требования, интеграции с другими системами...' },
+  ],
+  docs: [
+    { id:'company', label:'Название / сфера', type:'text', ph:'Строительная компания' },
+    { id:'doc_types', label:'Типы документов (через запятую)', type:'text', ph:'Договор подряда, Счёт-фактура, Акт выполненных работ' },
+    { id:'source', label:'Откуда берутся данные для документа?', type:'select', opts:['Ввожу вручную','Из Google Sheets / Excel','Из CRM-системы','Из формы на сайте','Из Telegram-бота'] },
+    { id:'output', label:'Формат готового документа', type:'checks', opts:['PDF','Word (DOCX)','Excel','Отправка на email','Telegram-уведомление','Google Drive'] },
+    { id:'template', label:'Есть ли готовый шаблон документа?', type:'select', opts:['Да, пришлю в Word/PDF','Нет, нужно разработать','Частично есть'] },
+    { id:'volume', label:'Сколько документов в месяц?', type:'text', ph:'50–100 документов' },
+    { id:'notes', label:'Дополнительно', type:'textarea', ph:'Особые поля, нумерация, подписи...' },
+  ],
+  integration: [
+    { id:'company', label:'Название / сфера', type:'text', ph:'Интернет-магазин' },
+    { id:'systems', label:'Какие системы нужно связать?', type:'text', ph:'Сайт на WordPress + AmoCRM + Telegram-бот + Google Sheets' },
+    { id:'trigger', label:'Что запускает автоматизацию?', type:'select', opts:['Новая заявка с сайта','Новый клиент в CRM','Изменение статуса','По расписанию','Вручную'] },
+    { id:'action', label:'Что должно происходить автоматически?', type:'textarea', ph:'Заявка с сайта → запись в Google Sheets → уведомление в Telegram → ответ клиенту на email' },
+    { id:'apis', label:'Есть ли доступ к API сервисов?', type:'select', opts:['Да, есть документация','Нет, нужно помочь разобраться','Частично'] },
+    { id:'notes', label:'Дополнительно', type:'textarea', ph:'Примеры данных, частота запросов, особые условия...' },
+  ],
+};
+
+const TYPE_NAMES = { site:'🌐 Сайт / Лендинг', bot:'🤖 Telegram-бот', crm:'📊 CRM-система', docs:'📄 Автоматизация документов', integration:'🔗 Интеграция сервисов' };
+
+function selectType(type) {
+  currentType = type;
+  document.getElementById('typeSelect').style.display = 'none';
+  document.getElementById('tzForm').style.display = 'block';
+  document.getElementById('selectedTypeLabel').textContent = TYPE_NAMES[type];
+  renderForm(FORMS[type]);
+}
+function resetType() {
+  document.getElementById('typeSelect').style.display = 'block';
+  document.getElementById('tzForm').style.display = 'none';
+  document.getElementById('tzResult').style.display = 'none';
+}
+
+function renderForm(fields) {
+  document.getElementById('formFields').innerHTML = fields.map(f => {
+    if (f.type === 'text') return `<div class="p-field"><label class="p-label" for="${f.id}">${f.label}</label><input class="p-input" id="${f.id}" type="text" placeholder="${f.ph||''}"></div>`;
+    if (f.type === 'textarea') return `<div class="p-field"><label class="p-label" for="${f.id}">${f.label}</label><textarea class="p-textarea" id="${f.id}" placeholder="${f.ph||''}"></textarea></div>`;
+    if (f.type === 'select') return `<div class="p-field"><label class="p-label" for="${f.id}">${f.label}</label><select class="p-select" id="${f.id}">${f.opts.map(o=>`<option>${o}</option>`).join('')}</select></div>`;
+    if (f.type === 'checks') return `<div class="p-field"><div class="p-label">${f.label}</div><div class="p-options">${f.opts.map(o=>`<label class="p-option"><input type="checkbox" value="${o}"><span>${o}</span></label>`).join('')}</div></div>`;
+    return '';
+  }).join('');
+
+  document.querySelectorAll('.p-options .p-option').forEach(opt => {
+    opt.addEventListener('click', () => opt.classList.toggle('active'));
+  });
+}
+
+function getFormData() {
+  const fields = FORMS[currentType];
+  const data = {};
+  fields.forEach(f => {
+    if (f.type === 'checks') {
+      const checked = [...document.querySelectorAll(`#formFields input[type=checkbox]:checked`)].map(i=>i.value);
+      data[f.id] = { label: f.label, value: checked.join(', ') || 'не выбрано' };
+    } else {
+      const el = document.getElementById(f.id);
+      data[f.id] = { label: f.label, value: el ? el.value.trim() || '—' : '—' };
+    }
+  });
+  return data;
+}
+
+function generateTZ() {
+  const data = getFormData();
+  const date = new Date().toLocaleDateString('ru');
+  let txt = `ТЕХНИЧЕСКОЕ ЗАДАНИЕ\n`;
+  txt += `${'='.repeat(50)}\n`;
+  txt += `Тип проекта: ${TYPE_NAMES[currentType]}\n`;
+  txt += `Дата: ${date}\n`;
+  txt += `Заказчик: qazdevstudio.kz / @QazDevStudio\n`;
+  txt += `${'='.repeat(50)}\n\n`;
+
+  Object.values(data).forEach(({ label, value }) => {
+    txt += `${label}:\n${value}\n\n`;
+  });
+
+  txt += `${'─'.repeat(50)}\n`;
+  txt += `Сформировано: https://qazdevstudio.kz/tz-generator.html\n`;
+  txt += `Связь: wa.me/77000300024 | t.me/QazDevStudio`;
+
+  tzText = txt;
+  document.getElementById('tzOutput').textContent = txt;
+  document.getElementById('tzResult').style.display = 'block';
+  document.getElementById('tzResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  trackEvent('tz_generated', TYPE_NAMES[currentType]);
+}
+
+function copyTZ() {
+  navigator.clipboard.writeText(tzText).then(() => {
+    document.getElementById('copyMsg').style.display = 'block';
+    setTimeout(() => { document.getElementById('copyMsg').style.display = 'none'; }, 2500);
+  });
+}
+function downloadTZ() {
+  const blob = new Blob([tzText], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'tz-qazdevstudio.txt';
+  a.click();
+}
+function sendTZtoWA() {
+  const short = tzText.substring(0, 1500);
+  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(short), '_blank');
+  trackEvent('whatsapp_click', 'ТЗ → WhatsApp');
+}
+</script>
+</body>
+</html>

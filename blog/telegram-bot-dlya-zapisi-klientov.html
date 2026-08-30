@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ru-KZ">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Telegram-бот для записи клиентов: как это работает — QazDev Studio</title>
+  <meta name="description" content="Как работает Telegram-бот для записи клиентов: пошагово от первого сообщения до подтверждения. Напоминания, перенос, отмена. Реальные примеры для Казахстана.">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="theme-color" content="#f2efe7">
+  <meta name="google-adsense-account" content="ca-pub-8638191147118359">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8638191147118359" crossorigin="anonymous"></script>
+  
+  <link rel="canonical" href="https://qazdevstudio.kz/blog/telegram-bot-dlya-zapisi-klientov.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/site.css?v=20260830.1">
+  
+</head>
+<body class="article-page-rust">
+  <a class="skip-link" href="#content">Перейти к содержанию</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="QazDev Studio — главная">
+      <strong>QAZDEV</strong><span>KZ / SOFTWARE &amp; SYSTEMS</span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+      <a href="/razrabotka-saitov-kazakhstan.html">Разработка</a>
+      <a href="/blog/">Разборы</a>
+      <a href="/programmy/">Программы</a>
+      <a href="/#contact">Контакты</a>
+    </nav>
+    <a class="header-contact" href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20проект" target="_blank" rel="noopener">Обсудить задачу</a>
+    <button class="menu-button" type="button" aria-controls="site-nav" aria-expanded="false">Меню</button>
+  </header>
+
+  <main id="content">
+<div class="article-wrap">
+  <a class="article-back" href="/blog/">← Все разборы</a>
+  <div class="legacy-content">
+<div class="p-container p-article" style="padding-top:40px;padding-bottom:80px">
+
+  <nav class="p-breadcrumb">
+    <a href="/">Главная</a><span>→</span>
+    <a href="/blog/">Блог</a><span>→</span>
+    <span>Telegram-боты</span>
+  </nav>
+
+  <div class="p-tag">// Telegram-боты</div>
+  <h1>Telegram-бот для записи клиентов: как это работает</h1>
+  <p style="font-size:15px;color:var(--text-3);margin-bottom:32px">Администратор не успевает отвечать на все сообщения, клиенты уходят к конкуренту. Бот принимает запись в любое время — без звонков, без ожидания, без потерь.</p>
+
+  <h2>В чём проблема без бота</h2>
+  <p>Типичная картина: клиент пишет в WhatsApp в 22:00 — "есть ли окошко на завтра?". Администратор видит сообщение только утром. К этому моменту клиент уже записался в другое место или просто забыл.</p>
+  <p>Другая ситуация: запись ведётся в тетради или в Excel. Мастер заболел, его записи никто не перенёс. Клиент приехал — мастера нет. Обиделся, ушёл, написал отзыв.</p>
+  <p>Третья проблема — нет напоминаний. Клиент записался две недели назад, забыл, не пришёл. Мастер потерял оплаченный слот. Таких неявок в среднем 15–20% без системы напоминаний.</p>
+
+  <h2>Как работает бот записи: пошагово</h2>
+  <p>Клиент находит бота через ссылку на сайте, QR-код в салоне или кнопку в Instagram. Нажимает /start — и начинается сценарий.</p>
+  <p><strong>Шаг 1.</strong> Бот здоровается и показывает кнопки с услугами: "Стрижка", "Окрашивание", "Маникюр". Клиент выбирает одним нажатием.</p>
+  <p><strong>Шаг 2.</strong> Бот показывает список мастеров, которые выполняют эту услугу, с краткой информацией. Клиент выбирает мастера.</p>
+  <p><strong>Шаг 3.</strong> Бот показывает доступные даты на ближайшие 7–14 дней. Только свободные слоты — занятое время не отображается.</p>
+  <p><strong>Шаг 4.</strong> Клиент выбирает удобное время. Бот спрашивает имя и номер телефона (если нужно).</p>
+  <p><strong>Шаг 5.</strong> Бот подтверждает запись и отправляет итог: услуга, мастер, дата, время, адрес. Мастер получает уведомление в свой Telegram.</p>
+
+  <div class="p-box p-box--blue" style="margin:32px 0">
+    <div class="p-box-title">Пример диалога с ботом</div>
+    <p style="font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2">
+      Бот: Привет! Выберите услугу:<br>
+      [Маникюр] [Педикюр] [Наращивание]<br><br>
+      Клиент: Маникюр<br><br>
+      Бот: Выберите мастера:<br>
+      [Айгерим] [Мадина]<br><br>
+      Клиент: Айгерим<br><br>
+      Бот: Ближайшие свободные даты:<br>
+      [28 июн, пт] [30 июн, вс] [1 июл, пн]<br><br>
+      Клиент: 30 июн<br><br>
+      Бот: Выберите время:<br>
+      [11:00] [13:00] [15:30]<br><br>
+      Клиент: 13:00<br><br>
+      Бот: Готово! Запись подтверждена.<br>
+      Айгерим, маникюр, 30 июня в 13:00.<br>
+      Адрес: ул. Абая 12, 2 этаж.<br>
+      Напомню за день и за час до визита.
+    </p>
+  </div>
+
+  <h2>Что ещё делает бот кроме записи</h2>
+  <p><strong>Напоминания.</strong> За 24 часа бот пишет клиенту: "Напоминаем о вашей записи завтра в 13:00 к Айгерим". За 1 час — ещё одно напоминание. Количество неявок падает с 20% до 3–5%.</p>
+  <p><strong>Перенос и отмена.</strong> Клиент нажимает кнопку в напоминании — "Перенести" или "Отменить". Бот освобождает слот и предлагает новое время. Мастер получает обновлённое расписание без звонков.</p>
+  <p><strong>Сбор отзывов.</strong> После визита бот автоматически пишет: "Как прошёл визит? Оцените от 1 до 5". Плохую оценку можно обработать сразу, хорошую — попросить оставить на 2GIS или Google Maps.</p>
+  <p><strong>Повторные визиты.</strong> Через 3–4 недели бот сам напишет: "Прошло 4 недели с последнего маникюра — хотите записаться снова?" Клиент не ищет номер, не думает — просто нажимает "Да".</p>
+
+  <h2>Для каких бизнесов подходит</h2>
+  <ul>
+    <li><strong>Салоны красоты и барбершопы</strong> — запись к конкретному мастеру, выбор времени, напоминания</li>
+    <li><strong>Стоматологии и клиники</strong> — запись к врачу, уведомления о приёме, напоминание взять документы</li>
+    <li><strong>Юридические компании</strong> — запись на первичную консультацию, сбор базовой информации до встречи</li>
+    <li><strong>Репетиторы и учебные центры</strong> — расписание, запись на пробный урок, оплата</li>
+    <li><strong>Автосервисы</strong> — запись на ТО, уточнение марки авто и проблемы заранее</li>
+    <li><strong>Фотографы и видеографы</strong> — проверка занятости, предоплата, бриф перед съёмкой</li>
+  </ul>
+
+  <h2>Что нужно для запуска</h2>
+  <p>Перед тем как отдать задачу разработчику, подготовьте следующее:</p>
+  <ul>
+    <li>Список услуг с ценами и длительностью (стрижка — 45 мин, окрашивание — 2 часа)</li>
+    <li>Список мастеров и их рабочие дни/часы</li>
+    <li>Telegram-аккаунты мастеров — туда будут приходить уведомления о новых записях</li>
+    <li>Адрес и телефон — бот будет высылать их клиенту после подтверждения</li>
+    <li>Решение: нужна ли предоплата через бота или только после визита</li>
+  </ul>
+
+  <h2>Сколько стоит и окупается ли</h2>
+  <p>Бот для записи клиентов стоит от 70 000 до 150 000 тг в зависимости от количества мастеров, услуг и дополнительных функций (оплата, рассылки, аналитика).</p>
+  <p>Для сравнения: администратор на телефоне обходится в 80 000–120 000 тг в месяц. Бот работает 24/7, не болеет, не уходит в отпуск и не ошибается при записи.</p>
+  <p>Реальная экономия начинается с первого месяца. Сокращение неявок на 15% — это дополнительные 3–4 слота в неделю, которые раньше просто сгорали. При среднем чеке 5 000 тг это 60 000–80 000 тг в месяц только на неявках.</p>
+
+  <div class="p-box p-box--emerald" style="margin-top:40px">
+    <div class="p-box-title">Главное</div>
+    <p>Бот для записи работает круглосуточно, принимает заявки в любое время и сам напоминает клиентам о визите. Неявки сокращаются до 3–5%. Для запуска нужны список услуг, расписание мастеров и 3–7 рабочих дней на разработку. Стоимость разового проекта сопоставима с месячной зарплатой администратора.</p>
+  </div>
+
+  <div class="p-cta" style="margin-top:48px">
+    <h2>Хотите бот для записи клиентов?</h2>
+    <p>Покажем как будет выглядеть именно в вашем бизнесе — с вашими услугами и расписанием. Оценка за 1 день.</p>
+    <div class="p-cta-btns">
+      <a href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20бот%20для%20записи%20клиентов." class="p-btn p-btn--wa" target="_blank" rel="noopener">Написать в WhatsApp</a>
+      <a href="/blog/" class="p-btn p-btn--ghost">Другие статьи</a>
+    </div>
+  </div>
+
+  <div style="margin-top:48px;padding-top:32px;border-top:1px solid var(--border)">
+    <div style="font-size:13px;color:var(--text-4);margin-bottom:16px;font-family:'JetBrains Mono',monospace">// Читайте также</div>
+    <div class="p-grid p-grid--2">
+      <a href="/blog/kak-sdelat-telegram-bot.html" class="p-card">
+        <div class="p-card-tag">Telegram-боты</div>
+        <div class="p-card-title">Как сделать Telegram-бот для бизнеса</div>
+        <div class="p-card-desc">Три пути создать бота, реальные цены и что подготовить до заказа.</div>
+      </a>
+      <a href="/blog/telegram-bot-dlya-salona-krasoty.html" class="p-card">
+        <div class="p-card-tag">Telegram-боты</div>
+        <div class="p-card-title">Telegram-бот для салона красоты: запись, напоминания, акции</div>
+        <div class="p-card-desc">Как бот закрывает запись ночью и возвращает клиентов через 3 недели.</div>
+      </a>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+</main>
+
+  <footer class="site-footer" id="contact">
+    <div class="footer-statement">
+      <span>Есть задача?</span>
+      <a href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20проект" target="_blank" rel="noopener">Напишите её своими словами →</a>
+    </div>
+    <div class="footer-grid">
+      <div><strong>QAZDEV</strong><p>Разработка сайтов, сервисов и внутренних систем для бизнеса.</p></div>
+      <div><small>Связь</small><a href="https://wa.me/77000300024" target="_blank" rel="noopener">WhatsApp</a><a href="https://t.me/QazDevStudio" target="_blank" rel="noopener">Telegram</a><a href="mailto:hello@qazdevstudio.kz">hello@qazdevstudio.kz</a></div>
+      <div><small>География</small><span>Казахстан</span><span>Работа онлайн</span></div>
+      <div><small>Документы</small><a href="/privacy.html">Конфиденциальность</a><span>© 2026</span></div>
+    </div>
+  </footer>
+  <script src="/site.js?v=20260830.1" defer></script>
+  
+</body>
+</html>

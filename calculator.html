@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Калькулятор стоимости IT-проекта — QazDev Studio</title>
+<meta name="description" content="Рассчитайте примерную стоимость и срок разработки сайта, Telegram-бота, CRM или автоматизации для вашего бизнеса в Казахстане.">
+<link rel="canonical" href="https://qazdevstudio.kz/calculator.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/pages.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Калькулятор стоимости IT-проекта","url":"https://qazdevstudio.kz/calculator.html","description":"Онлайн-калькулятор стоимости разработки сайта, Telegram-бота, CRM и автоматизации для бизнеса в Казахстане","isPartOf":{"@type":"WebSite","url":"https://qazdevstudio.kz","name":"QazDev Studio"}}</script>
+</head>
+<body>
+
+<nav class="p-nav">
+  <a href="/" class="p-nav-logo">
+    <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#080D1C"/><circle cx="19" cy="19" r="11" stroke="#00D4FF" stroke-width="2" fill="none"/><path d="M27 27L36 36" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/><path d="M13 16L11 19L13 22M25 16L27 19L25 22M21 23L18 15" stroke="#00D4FF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/></svg>
+    <span class="p-nav-logo-text">QazDev <span>Studio</span></span>
+  </a>
+  <div class="p-nav-actions">
+    <a href="/" class="p-nav-link">Главная</a>
+    <a href="/#contact" class="p-nav-cta">Обсудить проект</a>
+  </div>
+</nav>
+
+<main>
+<div class="p-container" style="padding-top:48px; padding-bottom:80px;">
+
+  <div class="p-breadcrumb">
+    <a href="/">Главная</a><span>/</span>
+    <span>Калькулятор</span>
+  </div>
+
+  <div class="p-tag">// Инструмент</div>
+  <h1 style="font-size:clamp(28px,5vw,44px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;">Калькулятор стоимости IT-проекта</h1>
+  <p style="font-size:16px;color:#94A3B8;margin-bottom:40px;max-width:600px;">Выберите параметры — получите ориентировочный бюджет, срок и формат запуска. Расчёт автоматически сформируется в сообщение для WhatsApp.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;" class="calc-layout">
+
+    <!-- Left: Form -->
+    <div class="p-form" id="calcForm">
+
+      <div class="p-field">
+        <div class="p-label">Что нужно разработать?</div>
+        <div class="p-options" id="serviceOpts">
+          <label class="p-option active"><input type="radio" name="service" value="landing" checked><span>Лендинг</span></label>
+          <label class="p-option"><input type="radio" name="service" value="site"><span>Многостраничный сайт</span></label>
+          <label class="p-option"><input type="radio" name="service" value="bot"><span>Telegram-бот</span></label>
+          <label class="p-option"><input type="radio" name="service" value="crm"><span>CRM-система</span></label>
+          <label class="p-option"><input type="radio" name="service" value="docs"><span>Автоматизация документов</span></label>
+          <label class="p-option"><input type="radio" name="service" value="integration"><span>Интеграция сервисов</span></label>
+        </div>
+      </div>
+
+      <div class="p-field">
+        <div class="p-label">Дополнительные функции:</div>
+        <div class="p-options" id="featOpts">
+          <label class="p-option"><input type="checkbox" name="feat" value="design"><span>Дизайн с нуля</span></label>
+          <label class="p-option"><input type="checkbox" name="feat" value="form"><span>Форма заявки</span></label>
+          <label class="p-option"><input type="checkbox" name="feat" value="crm_db"><span>База клиентов</span></label>
+          <label class="p-option"><input type="checkbox" name="feat" value="admin"><span>Админ-панель</span></label>
+          <label class="p-option"><input type="checkbox" name="feat" value="tg_notify"><span>Уведомления Telegram</span></label>
+          <label class="p-option"><input type="checkbox" name="feat" value="pdf"><span>Генерация PDF/Word</span></label>
+          <label class="p-option"><input type="checkbox" name="feat" value="seo"><span>SEO-оптимизация</span></label>
+          <label class="p-option"><input type="checkbox" name="feat" value="analytics"><span>Аналитика</span></label>
+        </div>
+      </div>
+
+      <div class="p-field">
+        <label class="p-label" for="cityCalc">Ваш город</label>
+        <input class="p-input" id="cityCalc" type="text" placeholder="Алматы, Астана, Шымкент...">
+      </div>
+
+      <div class="p-field">
+        <label class="p-label" for="phoneCalc">Телефон (необязательно)</label>
+        <input class="p-input" id="phoneCalc" type="tel" placeholder="+7 700 030 0024">
+      </div>
+
+      <div class="p-field">
+        <label class="p-label" for="commentCalc">Комментарий к проекту</label>
+        <textarea class="p-textarea" id="commentCalc" placeholder="Опишите задачу кратко..."></textarea>
+      </div>
+
+      <button class="p-btn p-btn--primary" style="width:100%" onclick="calcResult()">Рассчитать →</button>
+    </div>
+
+    <!-- Right: Result -->
+    <div>
+      <div class="p-result" id="calcResult" style="display:none;">
+        <div class="p-result-title">// Результат расчёта</div>
+
+        <div class="p-result-item">
+          <span class="p-result-key">Тип проекта</span>
+          <span class="p-result-val" id="resService">—</span>
+        </div>
+        <div class="p-result-item">
+          <span class="p-result-key">Примерный бюджет</span>
+          <span class="p-result-val emerald" id="resBudget">—</span>
+        </div>
+        <div class="p-result-item">
+          <span class="p-result-key">Примерный срок</span>
+          <span class="p-result-val" id="resDays">—</span>
+        </div>
+        <div class="p-result-item">
+          <span class="p-result-key">Формат запуска</span>
+          <span class="p-result-val gold" id="resFormat">—</span>
+        </div>
+
+        <div id="resFeatsList" style="margin:16px 0;font-size:13px;color:#94A3B8;"></div>
+
+        <div id="resComment" style="margin-bottom:20px;font-size:13px;color:#64748B;line-height:1.6;"></div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="p-btn p-btn--wa" onclick="sendToWA()" style="flex:1;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.554 4.101 1.523 5.822L0 24l6.335-1.502A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.028-1.382l-.36-.214-3.762.892.948-3.67-.235-.375A9.785 9.785 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818 5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+            Отправить в WhatsApp
+          </button>
+          <a href="/#contact" class="p-btn p-btn--ghost" style="flex:1;">Обсудить детали</a>
+        </div>
+      </div>
+
+      <div id="calcPlaceholder" style="padding:40px 24px;border:1px dashed rgba(0,212,255,0.15);border-radius:16px;text-align:center;color:#64748B;">
+        <div style="font-size:48px;margin-bottom:16px;">📊</div>
+        <div style="font-size:15px;">Заполните форму слева<br>и нажмите «Рассчитать»</div>
+      </div>
+
+      <div style="margin-top:24px;">
+        <div class="p-box p-box--blue">
+          <div class="p-box-title">ℹ️ Как читать расчёт</div>
+          <p>Это ориентировочная оценка. Точная стоимость зависит от деталей задачи. После расчёта можно сразу отправить параметры в WhatsApp — отвечу в течение часа.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="p-cta" style="margin-top:48px;">
+    <h2>Нужна точная оценка проекта?</h2>
+    <p>Опишите задачу — разберу бесплатно и скажу реальную стоимость без скрытых доплат.</p>
+    <div class="p-cta-btns">
+      <a href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20получить%20точную%20оценку%20проекта." class="p-btn p-btn--wa" onclick="trackEvent('whatsapp_click','Точная оценка — калькулятор')">WhatsApp</a>
+      <a href="https://t.me/QazDevStudio" class="p-btn p-btn--ghost" onclick="trackEvent('telegram_click','Telegram — калькулятор')">Telegram</a>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer class="p-footer">
+  <div class="p-footer-inner">
+    <span class="p-footer-copy">© 2026 QazDev Studio. Казахстан.</span>
+    <div class="p-footer-links">
+      <a href="/">Главная</a>
+      <a href="/tz-generator.html">Генератор ТЗ</a>
+      <a href="/checklist-saita.html">Чек-лист сайта</a>
+      <a href="/privacy.html">Политика</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/track.js"></script>
+<script>
+const WA = '77000300024';
+
+const BASE = {
+  landing:     { price:[80000,180000],  days:'7–14 дней',   name:'Лендинг' },
+  site:        { price:[150000,350000], days:'14–30 дней',  name:'Многостраничный сайт' },
+  bot:         { price:[60000,200000],  days:'5–21 день',   name:'Telegram-бот' },
+  crm:         { price:[200000,500000], days:'21–60 дней',  name:'CRM-система' },
+  docs:        { price:[80000,250000],  days:'10–30 дней',  name:'Автоматизация документов' },
+  integration: { price:[40000,150000],  days:'3–14 дней',   name:'Интеграция сервисов' },
+};
+
+const FEAT_PRICES = {
+  design: 40000, form: 15000, crm_db: 50000,
+  admin: 80000, tg_notify: 20000, pdf: 40000,
+  seo: 30000, analytics: 15000,
+};
+const FEAT_NAMES = {
+  design:'Дизайн с нуля', form:'Форма заявки', crm_db:'База клиентов',
+  admin:'Админ-панель', tg_notify:'Уведомления Telegram', pdf:'Генерация PDF/Word',
+  seo:'SEO-оптимизация', analytics:'Аналитика',
+};
+
+function fmt(n) { return n.toLocaleString('ru') + ' ₸'; }
+
+function calcResult() {
+  const svc = document.querySelector('input[name="service"]:checked')?.value || 'landing';
+  const feats = [...document.querySelectorAll('input[name="feat"]:checked')].map(i => i.value);
+  const city = document.getElementById('cityCalc').value.trim();
+  const phone = document.getElementById('phoneCalc').value.trim();
+  const comment = document.getElementById('commentCalc').value.trim();
+
+  const base = BASE[svc];
+  let addPrice = feats.reduce((s,f) => s + (FEAT_PRICES[f]||0), 0);
+  let minP = base.price[0] + addPrice;
+  let maxP = base.price[1] + Math.round(addPrice * 1.2);
+
+  const total = feats.length;
+  let format = total <= 1 ? 'MVP — быстрый запуск' : total <= 4 ? 'Стандарт' : 'Расширенный';
+  let comment_text = total <= 1
+    ? 'Минимальный рабочий продукт. Подходит для быстрого теста идеи.'
+    : total <= 4
+    ? 'Полноценное решение с базовым набором функций. Оптимальный выбор.'
+    : 'Комплексная система. Потребует детальной проработки архитектуры.';
+
+  document.getElementById('resService').textContent = base.name;
+  document.getElementById('resBudget').textContent = fmt(minP) + ' — ' + fmt(maxP);
+  document.getElementById('resDays').textContent = base.days;
+  document.getElementById('resFormat').textContent = format;
+  document.getElementById('resComment').textContent = comment_text;
+
+  if (feats.length) {
+    document.getElementById('resFeatsList').innerHTML =
+      '<strong style="color:#E5E7EB;font-size:13px;">Включённые функции:</strong><br>' +
+      feats.map(f => '✓ ' + FEAT_NAMES[f]).join('<br>');
+  } else {
+    document.getElementById('resFeatsList').innerHTML = '';
+  }
+
+  document.getElementById('calcPlaceholder').style.display = 'none';
+  document.getElementById('calcResult').style.display = 'block';
+
+  // Store for WA
+  window._calcData = { svc, feats, base, minP, maxP, format, city, phone, comment };
+  trackEvent('calculator_submit', base.name, { service: svc, features: feats.join(','), budget_min: minP });
+}
+
+function sendToWA() {
+  const d = window._calcData;
+  if (!d) return;
+  const featText = d.feats.length ? '\n\nФункции:\n' + d.feats.map(f => '• ' + FEAT_NAMES[f]).join('\n') : '';
+  const cityText = d.city ? `\nГород: ${d.city}` : '';
+  const phoneText = d.phone ? `\nТелефон: ${d.phone}` : '';
+  const commentText = d.comment ? `\nКомментарий: ${d.comment}` : '';
+  const text = `Здравствуйте! Рассчитал проект на калькуляторе.\n\nТип: ${d.base.name}\nБюджет: ${fmt(d.minP)} — ${fmt(d.maxP)}\nСрок: ${d.base.days}\nФормат: ${d.format}${featText}${cityText}${phoneText}${commentText}`;
+  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(text), '_blank');
+  trackEvent('whatsapp_click', 'Калькулятор → WhatsApp');
+}
+
+// Toggle option styles
+document.querySelectorAll('.p-options').forEach(group => {
+  const isRadio = group.querySelector('input[type=radio]');
+  group.querySelectorAll('.p-option').forEach(opt => {
+    const input = opt.querySelector('input');
+    opt.addEventListener('click', () => {
+      if (isRadio) {
+        group.querySelectorAll('.p-option').forEach(o => o.classList.remove('active'));
+      }
+      opt.classList.toggle('active', input.checked);
+    });
+  });
+});
+
+// FAQ
+document.querySelectorAll('.p-faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.p-faq-item');
+    item.classList.toggle('open');
+  });
+});
+</script>
+<style>
+@media(max-width:760px){.calc-layout{grid-template-columns:1fr!important;}}
+</style>
+</body>
+</html>
