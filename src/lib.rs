@@ -189,7 +189,11 @@ impl AppState {
             }
             app.editorial = editorial.contains(&app.slug);
         }
-        assert_eq!(editorial.len(), 162, "editorial program list changed unexpectedly");
+        assert_eq!(
+            editorial.len(),
+            162,
+            "editorial program list changed unexpectedly"
+        );
         assert!(
             editorial
                 .iter()
@@ -1054,10 +1058,7 @@ fn software_json_ld(app: &Software) -> String {
         "url".to_string(),
         json!(format!("{DOMAIN}/programmy/{}.html", app.slug)),
     );
-    data.insert(
-        "applicationCategory".to_string(),
-        json!(app.category_label),
-    );
+    data.insert("applicationCategory".to_string(), json!(app.category_label));
     data.insert(
         "operatingSystem".to_string(),
         json!(app.platforms.join(", ")),
@@ -1615,7 +1616,10 @@ mod tests {
         let state = AppState::new(PathBuf::from(env!("CARGO_MANIFEST_DIR")));
         assert_eq!(state.software.len(), 1_000);
         assert_eq!(state.software_index.len(), state.software.len());
-        assert_eq!(state.software.iter().filter(|app| app.editorial).count(), 162);
+        assert_eq!(
+            state.software.iter().filter(|app| app.editorial).count(),
+            162
+        );
     }
 
     #[tokio::test]
