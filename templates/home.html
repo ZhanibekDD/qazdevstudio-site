@@ -4,6 +4,7 @@
 {% block description %}QazDev Studio разрабатывает сайты, CRM, Telegram-ботов и автоматизацию для бизнеса. Прямая работа с разработчиком, понятные этапы и рабочий результат.{% endblock %}
 {% block canonical %}https://qazdevstudio.kz/{% endblock %}
 {% block body_class %}home-page{% endblock %}
+{% block adsense %}{% endblock %}
 
 {% block head %}
 <meta property="og:type" content="website">
@@ -91,9 +92,24 @@
   </ol>
 </section>
 
+<section class="lead-section section-shell" id="request">
+  <div class="lead-intro">
+    <span class="section-number">05 / Заявка</span>
+    <h2>Опишите задачу.<br><em>Отвечу лично.</em></h2>
+    <p>Форма соберёт понятное сообщение и откроет WhatsApp. Никаких регистраций и звонков менеджера.</p>
+  </div>
+  <form class="lead-form" data-whatsapp-form aria-label="Заявка на проект">
+    <label><span>Как к вам обращаться</span><input type="text" name="name" autocomplete="name" maxlength="80" required placeholder="Ваше имя"></label>
+    <label><span>Что нужно</span><select name="service" required><option value="">Выберите задачу</option><option>Сайт</option><option>Telegram-бот</option><option>CRM или личный кабинет</option><option>Автоматизация</option><option>Нужно разобраться</option></select></label>
+    <label class="lead-message"><span>Коротко о задаче</span><textarea name="message" rows="5" maxlength="1000" required placeholder="Что должно работать и для кого?"></textarea></label>
+    <button class="button button-primary" type="submit">Сформировать сообщение в WhatsApp →</button>
+    <small>Данные не отправляются на сервер сайта — сообщение откроется у вас в WhatsApp.</small>
+  </form>
+</section>
+
 <section class="utility-section section-shell">
   <header class="section-heading compact">
-    <span class="section-number">05 / Полезное</span>
+    <span class="section-number">06 / Полезное</span>
     <h2>Инструменты — отдельно.<br>Студия — отдельно.</h2>
     <p>Каталог и бесплатные сервисы остаются полезным продуктом, но больше не маскируются под портфолио студии.</p>
   </header>
@@ -104,4 +120,3 @@
   </div>
 </section>
 {% endblock %}
-

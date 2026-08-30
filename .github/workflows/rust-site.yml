@@ -15,6 +15,7 @@ on:
       - 'rust-static/**'
       - 'node-static/**'
       - 'data/software.json'
+      - 'data/editorial-programs.json'
       - '.github/workflows/rust-site.yml'
   push:
     branches: [main]
@@ -26,7 +27,9 @@ on:
       - 'src/**'
       - 'templates/**'
       - 'rust-static/**'
+      - 'node-static/**'
       - 'data/software.json'
+      - 'data/editorial-programs.json'
       - '.github/workflows/rust-site.yml'
 
 permissions:
@@ -97,8 +100,28 @@ jobs:
           test -f target/plesk-site/sitemap-index.xml
           test "$(find target/plesk-site/programmy -maxdepth 1 -name '*.html' | wc -l)" -ge 1001
           grep -q '<strong>QAZDEV</strong>' target/plesk-site/index.html
+          grep -q 'data-whatsapp-form' target/plesk-site/index.html
+          ! grep -q 'pagead2.googlesyndication.com' target/plesk-site/index.html
+          grep -q 'SoftwareApplication' target/plesk-site/programmy/sharex.html
+          grep -q 'content="index,follow' target/plesk-site/programmy/sharex.html
+          grep -q 'content="noindex,follow"' target/plesk-site/programmy/audio-player.html
+          grep -q 'простой аудиоплеер GNOME' target/plesk-site/programmy/audio-player.html
+          grep -q '/programmy/sharex.html' target/plesk-site/sitemap-programmy.xml
+          ! grep -q '/programmy/audio-player.html' target/plesk-site/sitemap-programmy.xml
           grep -q 'pub-8638191147118359' target/plesk-site/ads.txt
           node --check target/plesk-site/app.js
+          export QAZDEV_DATA_DIR="$RUNNER_TEMP/qazdev-analytics"
+          PORT=4181 node target/plesk-site/app.js &
+          NODE_PID=$!
+          trap 'kill "$NODE_PID" 2>/dev/null || true' EXIT
+          for attempt in 1 2 3 4 5; do
+            curl --fail --silent http://127.0.0.1:4181/health >/dev/null && break
+            sleep 1
+          done
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' -X POST -H 'Content-Type: application/json' --data '{"event_type":"page_view","page_url":"/ci"}' http://127.0.0.1:4181/api/track.php)" = "204"
+          test -s "$QAZDEV_DATA_DIR/analytics-$(date -u +%Y-%m).ndjson"
+          kill "$NODE_PID"
+          trap - EXIT
       - name: Publish Plesk-ready branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

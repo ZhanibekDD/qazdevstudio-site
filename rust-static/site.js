@@ -163,12 +163,25 @@
     const form = event.target;
     if (!(form instanceof HTMLFormElement)) return;
     const values = new FormData(form);
-    track('form_submit', form.getAttribute('aria-label') || form.id || 'Форма', {
-      name: values.get('name') || '',
-      phone: values.get('phone') || '',
-      city: values.get('city') || '',
-      service: values.get('service') || '',
-      comment: values.get('comment') || values.get('message') || ''
-    });
+    const service = String(values.get('service') || 'Нужно разобраться').slice(0, 120);
+    const label = form.getAttribute('aria-label') || form.id || 'Форма';
+
+    if (form.matches('[data-whatsapp-form]')) {
+      event.preventDefault();
+      const name = String(values.get('name') || '').trim().slice(0, 80);
+      const message = String(values.get('message') || '').trim().slice(0, 1000);
+      const text = [
+        'Здравствуйте! Хочу обсудить проект.',
+        '',
+        `Имя: ${name}`,
+        `Задача: ${service}`,
+        `Описание: ${message}`
+      ].join('\n');
+      track('generate_lead', service, { channel: 'whatsapp', service });
+      window.open(`https://wa.me/77000300024?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    track('form_submit', label, { service });
   });
 })();

@@ -5,14 +5,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>{% block title %}QazDev Studio{% endblock %}</title>
   <meta name="description" content="{% block description %}Разработка сайтов и цифровых систем для бизнеса в Казахстане.{% endblock %}">
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="robots" content="{% block robots %}index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1{% endblock %}">
   <meta name="theme-color" content="#f2efe7">
   <meta name="google-adsense-account" content="ca-pub-8638191147118359">
+  {% block adsense %}
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8638191147118359" crossorigin="anonymous"></script>
+  {% endblock %}
   <link rel="canonical" href="{% block canonical %}https://qazdevstudio.kz/{% endblock %}">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="/site.css?v=rust-1">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8638191147118359" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/site.css?v=20260830.1">
   {% block head %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
@@ -45,8 +47,7 @@
       <div><small>Документы</small><a href="/privacy.html">Конфиденциальность</a><span>© 2026</span></div>
     </div>
   </footer>
-  <script src="/site.js?v=rust-1" defer></script>
+  <script src="/site.js?v=20260830.1" defer></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>
-
