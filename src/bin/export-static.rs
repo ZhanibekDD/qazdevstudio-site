@@ -28,13 +28,12 @@ const CATEGORIES: [&str; 14] = [
     "files",
 ];
 
-const SERVICE_PAGES: [&str; 9] = [
+const SERVICE_PAGES: [&str; 8] = [
     "razrabotka-saitov-kazakhstan.html",
     "razrabotka-saitov-astana.html",
     "razrabotka-saitov-almaty.html",
     "razrabotka-saitov-karaganda.html",
     "razrabotka-saitov-shymkent.html",
-    "razrabotka-saitov-taldykorgan.html",
     "telegram-bot-kazakhstan.html",
     "crm-dlya-biznesa-kazakhstan.html",
     "avtomatizaciya-biznesa-kazakhstan.html",
