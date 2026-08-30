@@ -252,7 +252,10 @@ pub fn app(state: AppState) -> Router {
         .route("/razrabotka-saitov-almaty.html", get(service_page))
         .route("/razrabotka-saitov-karaganda.html", get(service_page))
         .route("/razrabotka-saitov-shymkent.html", get(service_page))
-        .route("/razrabotka-saitov-taldykorgan.html", get(service_page))
+        .route(
+            "/razrabotka-saitov-taldykorgan.html",
+            get(|| async { Redirect::permanent("/razrabotka-saitov-kazakhstan.html") }),
+        )
         .route("/telegram-bot-kazakhstan.html", get(service_page))
         .route("/crm-dlya-biznesa-kazakhstan.html", get(service_page))
         .route("/avtomatizaciya-biznesa-kazakhstan.html", get(service_page))
@@ -965,7 +968,6 @@ async fn sitemap_main() -> Response {
         "/razrabotka-saitov-astana.html",
         "/razrabotka-saitov-shymkent.html",
         "/razrabotka-saitov-karaganda.html",
-        "/razrabotka-saitov-taldykorgan.html",
         "/solutions/",
         "/solutions/kak-ne-teryat-zayavki-v-whatsapp.html",
         "/solutions/telegram-bot-dlya-biznesa.html",
@@ -1255,12 +1257,6 @@ impl ServicePage {
                 "Сайты для бизнеса Шымкента: от структуры и дизайна до запуска и аналитики. Работа напрямую с разработчиком.",
                 "https://qazdevstudio.kz/razrabotka-saitov-shymkent.html",
             ),
-            "/razrabotka-saitov-taldykorgan.html" => Self::city(
-                "Талдыкорган",
-                "Разработка сайтов в Талдыкоргане — QazDev Studio",
-                "Разработка сайтов и цифровых систем в Талдыкоргане. Личная встреча или удалённая работа, договор и поддержка.",
-                "https://qazdevstudio.kz/razrabotka-saitov-taldykorgan.html",
-            ),
             "/telegram-bot-kazakhstan.html" => Self::technology(
                 "Telegram‑боты",
                 "Разработка Telegram-ботов для бизнеса в Казахстане — QazDev",
@@ -1312,14 +1308,10 @@ impl ServicePage {
                 "Алматы" => "Разработка сайтов в Алматы напрямую с разработчиком",
                 "Караганда" => "Разработка сайтов для бизнеса Караганды",
                 "Шымкент" => "Разработка сайтов для бизнеса Шымкента",
-                "Талдыкорган" => "Разработка сайтов в Талдыкоргане",
                 _ => "Разработка сайтов в Казахстане",
             },
             lead: "Сначала разбираю задачу и путь клиента. Затем показываю структуру, фиксирую этапы и только после этого пишу код.",
             location_note: match city {
-                "Талдыкорган" => {
-                    "QazDev Studio находится в Талдыкоргане. Можно встретиться лично или вести проект онлайн."
-                }
                 "Астана" => {
                     "Работаю с компаниями Астаны удалённо. Не выдаю виртуальный адрес за офис: созвоны, демонстрации и документы проходят онлайн."
                 }
@@ -1632,6 +1624,7 @@ mod tests {
         let html = String::from_utf8(body.to_vec()).unwrap();
         assert!(html.contains("data-whatsapp-form"));
         assert!(!html.contains("pagead2.googlesyndication.com"));
+        assert!(!html.contains("Талдыкорган"));
     }
 
     #[tokio::test]
@@ -1708,6 +1701,24 @@ mod tests {
             .await
             .unwrap();
         assert_eq!(response.status(), StatusCode::PERMANENT_REDIRECT);
+    }
+
+    #[tokio::test]
+    async fn removed_city_page_redirects_to_kazakhstan() {
+        let response = app(AppState::new(PathBuf::from(env!("CARGO_MANIFEST_DIR"))))
+            .oneshot(
+                Request::builder()
+                    .uri("/razrabotka-saitov-taldykorgan.html")
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+        assert_eq!(response.status(), StatusCode::PERMANENT_REDIRECT);
+        assert_eq!(
+            response.headers().get(header::LOCATION).unwrap(),
+            "/razrabotka-saitov-kazakhstan.html"
+        );
     }
 
     #[tokio::test]

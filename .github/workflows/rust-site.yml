@@ -101,6 +101,7 @@ jobs:
           test "$(find target/plesk-site/programmy -maxdepth 1 -name '*.html' | wc -l)" -ge 1001
           grep -q '<strong>QAZDEV</strong>' target/plesk-site/index.html
           grep -q 'data-whatsapp-form' target/plesk-site/index.html
+          ! grep -qi 'Талдыкорган' target/plesk-site/index.html
           ! grep -q 'pagead2.googlesyndication.com' target/plesk-site/index.html
           grep -q 'SoftwareApplication' target/plesk-site/programmy/sharex.html
           grep -q 'content="index,follow' target/plesk-site/programmy/sharex.html
@@ -108,6 +109,7 @@ jobs:
           grep -q 'простой аудиоплеер GNOME' target/plesk-site/programmy/audio-player.html
           grep -q '/programmy/sharex.html' target/plesk-site/sitemap-programmy.xml
           ! grep -q '/programmy/audio-player.html' target/plesk-site/sitemap-programmy.xml
+          ! grep -qi 'taldykorgan' target/plesk-site/sitemap.xml
           grep -q 'pub-8638191147118359' target/plesk-site/ads.txt
           node --check target/plesk-site/app.js
           export QAZDEV_DATA_DIR="$RUNNER_TEMP/qazdev-analytics"

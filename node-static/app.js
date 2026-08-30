@@ -42,6 +42,7 @@ const MIME_TYPES = new Map([
 ]);
 
 const REDIRECTS = new Map([
+  ['/razrabotka-saitov-taldykorgan.html', '/razrabotka-saitov-kazakhstan.html'],
   ['/telegram-bot-dlya-biznesa.html', '/telegram-bot-kazakhstan.html'],
   ['/crm-dlya-malogo-biznesa.html', '/crm-dlya-biznesa-kazakhstan.html'],
   ['/avtomatizaciya-biznesa.html', '/avtomatizaciya-biznesa-kazakhstan.html'],
