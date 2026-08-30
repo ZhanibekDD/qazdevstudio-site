@@ -4,6 +4,11 @@
 {% block description %}{{ app.short_description }} Скачать {{ app.name }} из официального источника, информация о версии, лицензии и системе.{% endblock %}
 {% block canonical %}https://qazdevstudio.kz/programmy/{{ app.slug }}.html{% endblock %}
 {% block body_class %}program-page-rust{% endblock %}
+{% block robots %}{% if app.editorial %}index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1{% else %}noindex,follow{% endif %}{% endblock %}
+
+{% block head %}
+{% if app.editorial %}<script type="application/ld+json">{{ structured_data|safe }}</script>{% endif %}
+{% endblock %}
 
 {% block content %}
 <section class="program-hero section-shell">

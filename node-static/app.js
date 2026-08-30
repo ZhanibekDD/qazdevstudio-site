@@ -8,6 +8,19 @@ const { URL } = require('node:url');
 const ROOT = path.resolve(__dirname);
 const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
+const DATA_DIR = path.resolve(process.env.QAZDEV_DATA_DIR || path.join(ROOT, '.data'));
+const MAX_TRACK_BODY = 16 * 1024;
+const TRACK_EVENTS = new Set([
+  'page_view',
+  'whatsapp_click',
+  'telegram_click',
+  'phone_click',
+  'email_click',
+  'form_submit',
+  'generate_lead',
+  'download_click',
+]);
+const rateLimits = new Map();
 
 const MIME_TYPES = new Map([
   ['.css', 'text/css; charset=utf-8'],
@@ -48,6 +61,138 @@ function sendJson(response, status, value) {
     'Cache-Control': 'no-store',
   });
   response.end(body);
+}
+
+function limitedString(value, maximum = 240) {
+  if (typeof value !== 'string') return '';
+  return value.replace(/[\u0000-\u001f\u007f]/g, ' ').trim().slice(0, maximum);
+}
+
+function safePageUrl(value) {
+  try {
+    const url = new URL(String(value || '/'), 'https://qazdevstudio.kz');
+    return limitedString(url.pathname, 500);
+  } catch {
+    return '/';
+  }
+}
+
+function safeIdentifier(value) {
+  const identifier = limitedString(value, 100);
+  return /^[a-z0-9-]{1,100}$/i.test(identifier) ? identifier : '';
+}
+
+function safeReferrer(value) {
+  if (!value) return '';
+  try {
+    const url = new URL(String(value));
+    return limitedString(`${url.hostname}${url.pathname}`, 300);
+  } catch {
+    return '';
+  }
+}
+
+function trackingAllowed(request) {
+  const forwarded = String(request.headers['x-forwarded-for'] || '').split(',')[0].trim();
+  const key = forwarded || request.socket.remoteAddress || 'unknown';
+  const now = Date.now();
+  if (rateLimits.size > 10_000) {
+    for (const [address, value] of rateLimits) {
+      if (now - value.startedAt >= 60_000) rateLimits.delete(address);
+    }
+  }
+  const entry = rateLimits.get(key);
+  if (!entry || now - entry.startedAt >= 60_000) {
+    rateLimits.set(key, { startedAt: now, count: 1 });
+    return true;
+  }
+  entry.count += 1;
+  return entry.count <= 120;
+}
+
+function readJsonBody(request) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    let size = 0;
+    let tooLarge = false;
+    request.on('data', chunk => {
+      size += chunk.length;
+      if (size > MAX_TRACK_BODY) {
+        tooLarge = true;
+        chunks.length = 0;
+        return;
+      }
+      if (!tooLarge) chunks.push(chunk);
+    });
+    request.on('end', () => {
+      if (tooLarge) {
+        const error = new Error('payload too large');
+        error.statusCode = 413;
+        reject(error);
+        return;
+      }
+      try {
+        resolve(JSON.parse(Buffer.concat(chunks).toString('utf8') || '{}'));
+      } catch {
+        const error = new Error('invalid json');
+        error.statusCode = 400;
+        reject(error);
+      }
+    });
+    request.on('error', reject);
+  });
+}
+
+async function storeTrackingEvent(payload) {
+  if (!payload || typeof payload !== 'object' || !TRACK_EVENTS.has(payload.event_type)) {
+    const error = new Error('invalid event');
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const timestamp = new Date().toISOString();
+  const extra = payload.extra && typeof payload.extra === 'object' ? payload.extra : {};
+  const record = {
+    timestamp,
+    event_type: payload.event_type,
+    event_label: limitedString(payload.event_label, 200),
+    visitor_id: safeIdentifier(payload.visitor_id),
+    session_id: safeIdentifier(payload.session_id),
+    page_url: safePageUrl(payload.page_url),
+    page_title: limitedString(payload.page_title, 240),
+    referrer: safeReferrer(payload.referrer),
+    utm_source: limitedString(payload.utm_source, 100),
+    utm_medium: limitedString(payload.utm_medium, 100),
+    utm_campaign: limitedString(payload.utm_campaign, 140),
+    channel: limitedString(extra.channel, 40),
+    service: limitedString(extra.service, 120),
+  };
+  const month = timestamp.slice(0, 7);
+  await fs.promises.mkdir(DATA_DIR, { recursive: true, mode: 0o750 });
+  await fs.promises.appendFile(
+    path.join(DATA_DIR, `analytics-${month}.ndjson`),
+    `${JSON.stringify(record)}\n`,
+    { encoding: 'utf8', mode: 0o640 },
+  );
+}
+
+async function handleTracking(request, response) {
+  if (!trackingAllowed(request)) {
+    response.writeHead(429, { 'Cache-Control': 'no-store', 'Retry-After': '60' });
+    response.end();
+    return;
+  }
+  try {
+    const payload = await readJsonBody(request);
+    await storeTrackingEvent(payload);
+    response.writeHead(204, { 'Cache-Control': 'no-store' });
+    response.end();
+  } catch (error) {
+    const status = Number(error.statusCode) || 500;
+    if (status === 500) console.error('Tracking write failed:', error.message);
+    response.writeHead(status, { 'Cache-Control': 'no-store' });
+    response.end();
+  }
 }
 
 function safeFilePath(urlPath) {
@@ -151,8 +296,7 @@ const server = http.createServer(async (request, response) => {
   }
 
   if (request.method === 'POST' && ['/api/track', '/api/track.php'].includes(url.pathname)) {
-    response.writeHead(204, { 'Cache-Control': 'no-store' });
-    response.end();
+    await handleTracking(request, response);
     return;
   }
 

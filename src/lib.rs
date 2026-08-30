@@ -1,7 +1,7 @@
 mod analytics;
 
 use std::{
-    collections::HashMap,
+    collections::{HashMap, HashSet},
     net::IpAddr,
     path::PathBuf,
     sync::{Arc, RwLock},
@@ -45,6 +45,7 @@ const PROGRAM_CATEGORIES: [(&str, &str); 14] = [
     ("files", "Файлы"),
 ];
 const SOFTWARE_JSON: &str = include_str!("../data/software.json");
+const EDITORIAL_PROGRAMS_JSON: &str = include_str!("../data/editorial-programs.json");
 const SITE_CSS: &str = include_str!("../rust-static/site.css");
 const SITE_JS: &str = include_str!("../rust-static/site.js");
 
@@ -81,6 +82,8 @@ pub struct Software {
     pub icon: String,
     #[serde(default)]
     pub verified_at: String,
+    #[serde(skip)]
+    pub editorial: bool,
 }
 
 #[derive(Debug, Clone, Deserialize)]
@@ -166,11 +169,33 @@ impl AppState {
     pub fn new(legacy_root: PathBuf) -> Self {
         let mut software: Vec<Software> =
             serde_json::from_str(SOFTWARE_JSON).expect("data/software.json must be valid JSON");
+        let editorial: HashSet<String> = serde_json::from_str(EDITORIAL_PROGRAMS_JSON)
+            .expect("data/editorial-programs.json must be a valid JSON string array");
         for app in &mut software {
             if app.category == "ai" {
                 app.category_label = "Локальный ИИ".to_string();
             }
+            if app.slug == "audio-player" {
+                app.short_description = "Audio Player — простой аудиоплеер GNOME для воспроизведения локальных файлов в Linux. Версия 49.6."
+                    .to_string();
+                app.full_description = "Audio Player (Decibels) воспроизводит локальные аудиофайлы без обязательной медиатеки. Поддерживает форму волны, изменение скорости, быстрый переход по треку и одновременное открытие нескольких файлов. Версия 49.6 распространяется через официальный Flathub."
+                    .to_string();
+                app.features = vec![
+                    "Аудио".to_string(),
+                    "Регулировка скорости".to_string(),
+                    "Форма волны".to_string(),
+                    "Flatpak".to_string(),
+                ];
+            }
+            app.editorial = editorial.contains(&app.slug);
         }
+        assert_eq!(editorial.len(), 162, "editorial program list changed unexpectedly");
+        assert!(
+            editorial
+                .iter()
+                .all(|slug| software.iter().any(|app| &app.slug == slug)),
+            "editorial program list contains an unknown slug"
+        );
         let software_index = software
             .iter()
             .enumerate()
@@ -341,9 +366,9 @@ async fn blog_article(State(state): State<AppState>, Path(file): Path<String>) -
 async fn catalog(State(state): State<AppState>) -> impl IntoResponse {
     let preferred = [
         "sharex",
-        "vlc",
+        "vlc-media-player",
         "firefox",
-        "7zip",
+        "7-zip",
         "obs-studio",
         "telegram-desktop",
         "wireguard",
@@ -416,6 +441,7 @@ async fn program_detail(State(state): State<AppState>, Path(file): Path<String>)
         return not_found();
     };
     let app = state.software[index].clone();
+    let structured_data = software_json_ld(&app);
     let related = state
         .software
         .iter()
@@ -427,6 +453,7 @@ async fn program_detail(State(state): State<AppState>, Path(file): Path<String>)
     render(ProgramTemplate {
         app,
         related,
+        structured_data,
         static_export: state.static_export,
     })
 }
@@ -976,6 +1003,7 @@ async fn sitemap_programs(State(state): State<AppState>) -> Response {
         state
             .software
             .iter()
+            .filter(|app| app.editorial)
             .map(|app| format!("/programmy/{}.html", app.slug)),
     );
     xml_urlset(urls)
@@ -1014,6 +1042,52 @@ where
     }
     body.push_str("</urlset>");
     text_response(&body, "application/xml; charset=utf-8")
+}
+
+fn software_json_ld(app: &Software) -> String {
+    let mut data = serde_json::Map::new();
+    data.insert("@context".to_string(), json!("https://schema.org"));
+    data.insert("@type".to_string(), json!("SoftwareApplication"));
+    data.insert("name".to_string(), json!(app.name));
+    data.insert("description".to_string(), json!(app.short_description));
+    data.insert(
+        "url".to_string(),
+        json!(format!("{DOMAIN}/programmy/{}.html", app.slug)),
+    );
+    data.insert(
+        "applicationCategory".to_string(),
+        json!(app.category_label),
+    );
+    data.insert(
+        "operatingSystem".to_string(),
+        json!(app.platforms.join(", ")),
+    );
+    if !app.version.is_empty() {
+        data.insert("softwareVersion".to_string(), json!(app.version));
+    }
+    if !app.license.is_empty() {
+        data.insert("license".to_string(), json!(app.license));
+    }
+    if !app.developer.is_empty() {
+        data.insert(
+            "author".to_string(),
+            json!({"@type": "Organization", "name": app.developer}),
+        );
+    }
+    if !app.icon.is_empty() {
+        data.insert("image".to_string(), json!(app.icon));
+    }
+    if let Some(download) = app.downloads.iter().find(|download| {
+        download.url.starts_with("https://") || download.url.starts_with("http://")
+    }) {
+        data.insert("downloadUrl".to_string(), json!(download.url));
+    }
+
+    Value::Object(data)
+        .to_string()
+        .replace('&', "\\u0026")
+        .replace('<', "\\u003c")
+        .replace('>', "\\u003e")
 }
 
 fn static_asset(body: &'static str, content_type: &'static str, cache: &'static str) -> Response {
@@ -1130,6 +1204,7 @@ struct CategoryTemplate {
 struct ProgramTemplate {
     app: Software,
     related: Vec<Software>,
+    structured_data: String,
     static_export: bool,
 }
 
@@ -1540,6 +1615,81 @@ mod tests {
         let state = AppState::new(PathBuf::from(env!("CARGO_MANIFEST_DIR")));
         assert_eq!(state.software.len(), 1_000);
         assert_eq!(state.software_index.len(), state.software.len());
+        assert_eq!(state.software.iter().filter(|app| app.editorial).count(), 162);
+    }
+
+    #[tokio::test]
+    async fn commercial_home_has_lead_form_without_adsense_script() {
+        let response = app(AppState::new(PathBuf::from(env!("CARGO_MANIFEST_DIR"))))
+            .oneshot(Request::builder().uri("/").body(Body::empty()).unwrap())
+            .await
+            .unwrap();
+        let body = to_bytes(response.into_body(), 1_000_000).await.unwrap();
+        let html = String::from_utf8(body.to_vec()).unwrap();
+        assert!(html.contains("data-whatsapp-form"));
+        assert!(!html.contains("pagead2.googlesyndication.com"));
+    }
+
+    #[tokio::test]
+    async fn editorial_and_generated_programs_have_different_indexing_rules() {
+        let router = app(AppState::new(PathBuf::from(env!("CARGO_MANIFEST_DIR"))));
+        let editorial = router
+            .clone()
+            .oneshot(
+                Request::builder()
+                    .uri("/programmy/sharex.html")
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+        let editorial = String::from_utf8(
+            to_bytes(editorial.into_body(), 1_000_000)
+                .await
+                .unwrap()
+                .to_vec(),
+        )
+        .unwrap();
+        assert!(editorial.contains("content=\"index,follow"));
+        assert!(editorial.contains("SoftwareApplication"));
+
+        let generated = router
+            .oneshot(
+                Request::builder()
+                    .uri("/programmy/audio-player.html")
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+        let generated = String::from_utf8(
+            to_bytes(generated.into_body(), 1_000_000)
+                .await
+                .unwrap()
+                .to_vec(),
+        )
+        .unwrap();
+        assert!(generated.contains("content=\"noindex,follow\""));
+        assert!(generated.contains("простой аудиоплеер GNOME"));
+        assert!(!generated.contains("SoftwareApplication"));
+    }
+
+    #[tokio::test]
+    async fn program_sitemap_contains_only_editorial_cards() {
+        let response = app(AppState::new(PathBuf::from(env!("CARGO_MANIFEST_DIR"))))
+            .oneshot(
+                Request::builder()
+                    .uri("/sitemap-programs.xml")
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+        let body = to_bytes(response.into_body(), 1_000_000).await.unwrap();
+        let xml = String::from_utf8(body.to_vec()).unwrap();
+        assert!(xml.contains("/programmy/sharex.html"));
+        assert!(!xml.contains("/programmy/audio-player.html"));
+        assert_eq!(xml.matches("<url>").count(), 162 + PROGRAM_CATEGORIES.len());
     }
 
     #[tokio::test]

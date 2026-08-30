@@ -4,6 +4,7 @@
 {% block description %}{{ service.description }}{% endblock %}
 {% block canonical %}{{ service.canonical }}{% endblock %}
 {% block body_class %}service-page{% endblock %}
+{% block adsense %}{% endblock %}
 
 {% block head %}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"{{ service.heading }}","provider":{"@type":"Organization","name":"QazDev Studio","url":"https://qazdevstudio.kz/"},"areaServed":{"@type":"Country","name":"Казахстан"},"url":"{{ service.canonical }}"}</script>
@@ -44,11 +45,25 @@
   </div>
 </section>
 
+<section class="lead-section section-shell" id="request">
+  <div class="lead-intro">
+    <span class="section-number">04 / Заявка</span>
+    <h2>Расскажите, что должно<br>измениться в бизнесе.</h2>
+    <p>Я получу уже структурированное сообщение и смогу ответить по формату, срокам и следующему шагу.</p>
+  </div>
+  <form class="lead-form" data-whatsapp-form aria-label="Заявка: {{ service.eyebrow }}">
+    <input type="hidden" name="service" value="{{ service.eyebrow }}">
+    <label><span>Как к вам обращаться</span><input type="text" name="name" autocomplete="name" maxlength="80" required placeholder="Ваше имя"></label>
+    <label class="lead-message"><span>Задача</span><textarea name="message" rows="5" maxlength="1000" required placeholder="Что нужно сделать, для кого и к какому сроку?"></textarea></label>
+    <button class="button button-primary" type="submit">Сформировать сообщение в WhatsApp →</button>
+    <small>Данные не сохраняются на сайте — сообщение откроется у вас в WhatsApp.</small>
+  </form>
+</section>
+
 <section class="faq-section section-shell">
-  <header class="section-heading compact"><span class="section-number">04 / Вопросы</span><h2>Честно до начала работ.</h2></header>
+  <header class="section-heading compact"><span class="section-number">05 / Вопросы</span><h2>Честно до начала работ.</h2></header>
   <div class="faq-list">
     {% for faq in service.faqs %}<details><summary>{{ faq.question }}<span>+</span></summary><p>{{ faq.answer }}</p></details>{% endfor %}
   </div>
 </section>
 {% endblock %}
-
