@@ -16,6 +16,14 @@ on:
       - 'node-static/**'
       - 'data/software.json'
       - 'data/editorial-programs.json'
+      - '.htaccess'
+      - '*.html'
+      - 'js/**'
+      - 'css/**'
+      - 'assets/**'
+      - 'api/**'
+      - 'blog/**'
+      - 'solutions/**'
       - '.github/workflows/rust-site.yml'
   push:
     branches: [main]
@@ -30,6 +38,14 @@ on:
       - 'node-static/**'
       - 'data/software.json'
       - 'data/editorial-programs.json'
+      - '.htaccess'
+      - '*.html'
+      - 'js/**'
+      - 'css/**'
+      - 'assets/**'
+      - 'api/**'
+      - 'blog/**'
+      - 'solutions/**'
       - '.github/workflows/rust-site.yml'
 
 permissions:
@@ -111,7 +127,17 @@ jobs:
           ! grep -q '/programmy/audio-player.html' target/plesk-site/sitemap-programmy.xml
           ! grep -qi 'taldykorgan' target/plesk-site/sitemap.xml
           grep -q 'pub-8638191147118359' target/plesk-site/ads.txt
+          test ! -e target/plesk-site/razrabotka-saitov-taldykorgan.html
+          grep -q 'razrabotka-saitov-taldykorgan' target/plesk-site/.htaccess
+          grep -qF 'server\.js' target/plesk-site/.htaccess
+          ! grep -q 'pagead2.googlesyndication.com' target/plesk-site/blog/skolko-stoit-sait-v-kazakhstane.html
+          grep -q 'class="mobile-cta"' target/plesk-site/index.html
+          ! grep -q '/api/track.php' target/plesk-site/site.js
+          grep -q "TRACK_URL = '/api/track'" target/plesk-site/js/track.js
+          ! grep -q '/ip.html' target/plesk-site/sitemap.xml
           node --check target/plesk-site/app.js
+          node --check target/plesk-site/site.js
+          node --check target/plesk-site/js/track.js
           export QAZDEV_DATA_DIR="$RUNNER_TEMP/qazdev-analytics"
           PORT=4181 node target/plesk-site/app.js &
           NODE_PID=$!
@@ -122,6 +148,9 @@ jobs:
           done
           test "$(curl --silent --output /dev/null --write-out '%{http_code}' -X POST -H 'Content-Type: application/json' --data '{"event_type":"page_view","page_url":"/ci"}' http://127.0.0.1:4181/api/track.php)" = "204"
           test -s "$QAZDEV_DATA_DIR/analytics-$(date -u +%Y-%m).ndjson"
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' -X POST -H 'Content-Type: application/json' --data '{"event_type":"whatsapp_form_submit","page_url":"/ci","extra":{"ref":"QD-CI234","service":"Сайт"}}' http://127.0.0.1:4181/api/track)" = "204"
+          grep -q '"ref":"QD-CI234"' "$QAZDEV_DATA_DIR/analytics-$(date -u +%Y-%m).ndjson"
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' -X POST -H 'Content-Type: application/json' --data '{"event_type":"calculator_submit","page_url":"/calculator.html"}' http://127.0.0.1:4181/api/track)" = "204"
           kill "$NODE_PID"
           trap - EXIT
       - name: Publish Plesk-ready branch

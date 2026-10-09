@@ -18,7 +18,13 @@ const TRACK_EVENTS = new Set([
   'email_click',
   'form_submit',
   'generate_lead',
+  'whatsapp_form_submit',
   'download_click',
+  'calculator_submit',
+  'quiz_completed',
+  'checklist_completed',
+  'tz_generated',
+  'button_click',
 ]);
 const rateLimits = new Map();
 
@@ -167,6 +173,7 @@ async function storeTrackingEvent(payload) {
     utm_campaign: limitedString(payload.utm_campaign, 140),
     channel: limitedString(extra.channel, 40),
     service: limitedString(extra.service, 120),
+    ref: /^QD-[A-Z0-9]{4,8}$/.test(String(extra.ref || '')) ? extra.ref : '',
   };
   const month = timestamp.slice(0, 7);
   await fs.promises.mkdir(DATA_DIR, { recursive: true, mode: 0o750 });

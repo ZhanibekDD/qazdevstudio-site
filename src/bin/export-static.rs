@@ -80,6 +80,10 @@ fn copy_legacy_public_files(root: &Path, output: &Path) -> std::io::Result<()> {
     for entry in fs::read_dir(root)? {
         let entry = entry?;
         let path = entry.path();
+        // Removed from public positioning; served only as a redirect.
+        if entry.file_name() == "razrabotka-saitov-taldykorgan.html" {
+            continue;
+        }
         if path.is_file()
             && matches!(
                 path.extension().and_then(|value| value.to_str()),
