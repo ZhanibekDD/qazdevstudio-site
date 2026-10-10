@@ -132,6 +132,8 @@ jobs:
           grep -qF 'server\.js' target/plesk-site/.htaccess
           ! grep -q 'pagead2.googlesyndication.com' target/plesk-site/blog/skolko-stoit-sait-v-kazakhstane.html
           grep -q 'class="mobile-cta"' target/plesk-site/index.html
+          test -s target/plesk-site/assets/fonts/unbounded-cyrillic.woff2
+          test -s target/plesk-site/assets/fonts/manrope-cyrillic.woff2
           ! grep -q '/api/track.php' target/plesk-site/site.js
           grep -q "TRACK_URL = '/api/track'" target/plesk-site/js/track.js
           ! grep -q '/ip.html' target/plesk-site/sitemap.xml

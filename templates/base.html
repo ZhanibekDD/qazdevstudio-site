@@ -6,7 +6,8 @@
   <title>{% block title %}QazDev Studio{% endblock %}</title>
   <meta name="description" content="{% block description %}Разработка сайтов и цифровых систем для бизнеса в Казахстане.{% endblock %}">
   <meta name="robots" content="{% block robots %}index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1{% endblock %}">
-  <meta name="theme-color" content="#f2efe7">
+  <meta name="theme-color" content="#07080b">
+  <meta name="color-scheme" content="dark">
   <meta name="google-adsense-account" content="ca-pub-8638191147118359">
   {% block adsense %}
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8638191147118359" crossorigin="anonymous"></script>
@@ -14,31 +15,44 @@
   <link rel="canonical" href="{% block canonical %}https://qazdevstudio.kz/{% endblock %}">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="/site.css?v=20261010.1">
+  <link rel="preload" href="/assets/fonts/unbounded-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/site.css?v=20261010.2">
+  <script>
+    // Reveal animations hide content only when JavaScript runs; if site.js
+    // never initialises, everything is shown after a short delay.
+    document.documentElement.classList.add('js');
+    setTimeout(function () { if (!window.__qdMotion) document.documentElement.classList.add('reveal-all'); }, 2500);
+  </script>
   {% block head %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
   <a class="skip-link" href="#content">Перейти к содержанию</a>
-  <header class="site-header">
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header" data-header>
     <a class="brand" href="/" aria-label="QazDev Studio — главная">
-      <strong>QAZDEV</strong><span>KZ / SOFTWARE &amp; SYSTEMS</span>
+      <svg class="brand-mark" viewBox="0 0 56 56" aria-hidden="true"><rect x="1" y="1" width="54" height="54" rx="16"/><path class="q" d="M17 18.5C17 15.462 19.462 13 22.5 13H31.5C35.642 13 39 16.358 39 20.5V29.5C39 33.642 35.642 37 31.5 37H24.5C20.358 37 17 33.642 17 29.5V18.5Z"/><path class="tail" d="M31.5 31.5L42 42"/><circle cx="39" cy="39" r="3"/></svg>
+      <span class="brand-word"><b>QazDev</b><small>Studio</small></span>
     </a>
     <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
-      <a href="/razrabotka-saitov-kazakhstan.html">Разработка</a>
-      <a href="/blog/">Разборы</a>
-      <a href="/programmy/">Программы</a>
-      <a href="/#contact">Контакты</a>
+      <a href="/razrabotka-saitov-kazakhstan.html"><span>Разработка</span></a>
+      <a href="/blog/"><span>Разборы</span></a>
+      <a href="/programmy/"><span>Программы</span></a>
+      <a href="/#contact"><span>Контакты</span></a>
     </nav>
-    <a class="header-contact" href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20проект" target="_blank" rel="noopener">Обсудить задачу</a>
-    <button class="menu-button" type="button" aria-controls="site-nav" aria-expanded="false">Меню</button>
+    <a class="header-contact" data-magnetic href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20проект" target="_blank" rel="noopener"><span>Обсудить задачу</span><i aria-hidden="true">↗</i></a>
+    <button class="menu-button" type="button" aria-controls="site-nav" aria-expanded="false"><span class="menu-lines" aria-hidden="true"><i></i><i></i></span><span class="menu-label">Меню</span></button>
   </header>
 
   <main id="content">{% block content %}{% endblock %}</main>
 
   <footer class="site-footer" id="contact">
-    <div class="footer-statement">
-      <span>Есть задача?</span>
-      <a href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20проект" target="_blank" rel="noopener">Напишите её своими словами →</a>
+    <div class="footer-cta" data-reveal>
+      <span class="section-number">Есть задача?</span>
+      <a class="footer-big" href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20проект" target="_blank" rel="noopener">Напишите её <em>своими словами</em> <i aria-hidden="true">→</i></a>
     </div>
     <div class="footer-grid">
       <div><strong>QAZDEV</strong><p>Разработка сайтов, сервисов и внутренних систем для бизнеса.</p></div>
@@ -46,11 +60,12 @@
       <div><small>География</small><span>Казахстан</span><span>Работа онлайн</span></div>
       <div><small>Документы</small><a href="/privacy.html">Конфиденциальность</a><span>© 2026</span></div>
     </div>
+    <div class="footer-wordmark" aria-hidden="true"><span>QAZDEV</span></div>
   </footer>
   {% block mobile_cta %}
   <a class="mobile-cta" href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20проект" target="_blank" rel="noopener">Написать в WhatsApp</a>
   {% endblock %}
-  <script src="/site.js?v=20261010.1" defer></script>
+  <script src="/site.js?v=20261010.2" defer></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

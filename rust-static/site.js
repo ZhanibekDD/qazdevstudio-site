@@ -2,18 +2,19 @@
   const menuButton = document.querySelector('.menu-button');
   const nav = document.querySelector('#site-nav');
   if (menuButton && nav) {
-    menuButton.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
+    const label = menuButton.querySelector('.menu-label') || menuButton;
+    const setMenu = open => {
+      nav.classList.toggle('open', open);
       document.body.classList.toggle('menu-open', open);
       menuButton.setAttribute('aria-expanded', String(open));
-      menuButton.textContent = open ? 'Закрыть' : 'Меню';
-    });
+      label.textContent = open ? 'Закрыть' : 'Меню';
+    };
+    menuButton.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
     nav.addEventListener('click', event => {
-      if (!event.target.closest('a')) return;
-      nav.classList.remove('open');
-      document.body.classList.remove('menu-open');
-      menuButton.setAttribute('aria-expanded', 'false');
-      menuButton.textContent = 'Меню';
+      if (event.target.closest('a')) setMenu(false);
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && nav.classList.contains('open')) setMenu(false);
     });
   }
 
@@ -212,5 +213,245 @@
     }
 
     track('form_submit', label, { service });
+  });
+})();
+
+// Motion layer. Content is complete without it: reveal states are applied only
+// after this script runs, and reduced-motion users get the static page.
+(() => {
+  window.__qdMotion = true;
+  const root = document.documentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+  const splitWords = element => {
+    let index = 0;
+    const walk = node => {
+      [...node.childNodes].forEach(child => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const fragment = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) {
+              fragment.append(document.createTextNode(part));
+              return;
+            }
+            const outer = document.createElement('span');
+            const inner = document.createElement('span');
+            outer.className = 'w';
+            inner.textContent = part;
+            inner.style.setProperty('--wi', index++);
+            outer.append(inner);
+            fragment.append(outer);
+          });
+          child.replaceWith(fragment);
+        } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== 'BR') {
+          walk(child);
+        }
+      });
+    };
+    walk(element);
+    element.classList.add('is-split');
+  };
+
+  const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/_';
+  const scramble = element => {
+    const original = element.textContent;
+    const frames = 22;
+    let frame = 0;
+    const tick = () => {
+      frame += 1;
+      const settled = Math.floor((frame / frames) * original.length);
+      element.textContent = [...original].map((char, i) => (
+        i < settled || char === ' ' || char === '/' ? char : glyphs[Math.floor(Math.random() * glyphs.length)]
+      )).join('');
+      if (frame < frames) requestAnimationFrame(tick);
+      else element.textContent = original;
+    };
+    tick();
+  };
+
+  const countUp = element => {
+    const target = Number(element.dataset.count);
+    if (!Number.isFinite(target)) return;
+    const start = performance.now();
+    const step = now => {
+      const t = Math.min(1, (now - start) / 1500);
+      element.textContent = String(Math.round(target * (1 - (1 - t) ** 4)));
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  const typeLoop = element => {
+    const text = element.dataset.type || '';
+    let length = 0;
+    let deleting = false;
+    const tick = () => {
+      element.textContent = text.slice(0, length);
+      let delay = deleting ? 24 : 58;
+      if (!deleting && length < text.length) length += 1;
+      else if (!deleting) { deleting = true; delay = 2400; }
+      else if (length > 0) length -= 1;
+      else { deleting = false; delay = 500; }
+      setTimeout(tick, delay);
+    };
+    tick();
+  };
+
+  const observed = document.querySelectorAll('[data-reveal], [data-split], [data-scramble], [data-count], [data-type]');
+  if (reduce || !('IntersectionObserver' in window)) {
+    observed.forEach(element => element.classList.add('is-in'));
+  } else {
+    document.querySelectorAll('[data-split]').forEach(splitWords);
+    const enter = element => {
+      element.classList.add('is-in');
+      if (element.hasAttribute('data-scramble')) scramble(element);
+      if (element.hasAttribute('data-count')) countUp(element);
+      if (element.hasAttribute('data-type')) typeLoop(element);
+    };
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        observer.unobserve(entry.target);
+        enter(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    observed.forEach(element => observer.observe(element));
+
+    // Pause decorative loops while their section is off screen.
+    const ambient = new IntersectionObserver(entries => {
+      entries.forEach(entry => entry.target.classList.toggle('is-offscreen', !entry.isIntersecting));
+    });
+    document.querySelectorAll('.hero, .marquee, .lead-panel, .case-screen').forEach(element => ambient.observe(element));
+  }
+
+  const header = document.querySelector('[data-header]');
+  const progressBar = document.querySelector('.scroll-progress');
+  const processLists = [...document.querySelectorAll('[data-process] .process-steps')];
+  const art = document.querySelector('.hero-art[data-depth]');
+  const narrow = matchMedia('(max-width: 980px)');
+  let pointerX = 0;
+  let pointerY = 0;
+  let lastY = scrollY;
+  let queued = false;
+
+  const updateProcess = () => processLists.forEach(list => {
+    const rect = list.getBoundingClientRect();
+    const vertical = narrow.matches;
+    const span = vertical ? rect.height : innerHeight * 0.55;
+    const progress = reduce ? 1 : clamp((innerHeight * 0.8 - rect.top) / span, 0, 1);
+    list.style.setProperty('--progress', progress.toFixed(3));
+    const reach = progress * (vertical ? list.offsetHeight : list.offsetWidth);
+    [...list.children].forEach(step => {
+      step.classList.toggle('is-active', (vertical ? step.offsetTop : step.offsetLeft) <= reach + 4);
+    });
+  });
+
+  const updateParallax = () => {
+    if (!art || reduce) return;
+    const depth = Number(art.dataset.depth) || 0;
+    art.style.setProperty('--px', `${(pointerX * depth).toFixed(1)}px`);
+    art.style.setProperty('--py', `${(Math.min(scrollY, innerHeight) * 0.18 + pointerY * depth).toFixed(1)}px`);
+  };
+
+  const onScroll = () => {
+    queued = false;
+    const y = scrollY;
+    const max = root.scrollHeight - innerHeight;
+    progressBar?.style.setProperty('--p', max > 0 ? clamp(y / max, 0, 1).toFixed(4) : '0');
+    if (header) {
+      header.classList.toggle('is-scrolled', y > 20);
+      const menuOpen = document.body.classList.contains('menu-open');
+      if (!menuOpen && y > 420 && y > lastY + 2) header.classList.add('is-hidden');
+      else if (y < lastY - 2 || y <= 420 || menuOpen) header.classList.remove('is-hidden');
+    }
+    lastY = y;
+    updateProcess();
+    updateParallax();
+  };
+  addEventListener('scroll', () => {
+    if (!queued) {
+      queued = true;
+      requestAnimationFrame(onScroll);
+    }
+  }, { passive: true });
+  addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+
+  if (!finePointer || reduce) return;
+  root.classList.add('has-pointer');
+
+  const glow = document.querySelector('.cursor-glow');
+  let targetX = innerWidth / 2;
+  let targetY = innerHeight / 2;
+  let glowX = targetX;
+  let glowY = targetY;
+  let glowFrame = 0;
+  const follow = () => {
+    glowX += (targetX - glowX) * 0.14;
+    glowY += (targetY - glowY) * 0.14;
+    glow?.style.setProperty('--cx', `${glowX.toFixed(1)}px`);
+    glow?.style.setProperty('--cy', `${glowY.toFixed(1)}px`);
+    glowFrame = Math.abs(targetX - glowX) + Math.abs(targetY - glowY) > 0.6 ? requestAnimationFrame(follow) : 0;
+  };
+
+  const local = (event, element) => {
+    const rect = element.getBoundingClientRect();
+    return { rect, x: event.clientX - rect.left, y: event.clientY - rect.top };
+  };
+
+  addEventListener('pointermove', event => {
+    targetX = event.clientX;
+    targetY = event.clientY;
+    if (!glowFrame) glowFrame = requestAnimationFrame(follow);
+    pointerX = event.clientX / innerWidth - 0.5;
+    pointerY = event.clientY / innerHeight - 0.5;
+    updateParallax();
+
+    const spotlight = event.target.closest?.('[data-spotlight]');
+    if (spotlight) {
+      const { rect, x, y } = local(event, spotlight);
+      spotlight.style.setProperty('--sx', `${((x / rect.width) * 100).toFixed(1)}%`);
+      spotlight.style.setProperty('--sy', `${((y / rect.height) * 100).toFixed(1)}%`);
+    }
+    const lit = event.target.closest?.('[data-glow], .service-card');
+    if (lit) {
+      const { x, y } = local(event, lit);
+      lit.style.setProperty('--mx', `${x.toFixed(0)}px`);
+      lit.style.setProperty('--my', `${y.toFixed(0)}px`);
+    }
+    const tilt = event.target.closest?.('[data-tilt]');
+    if (tilt) {
+      const { rect, x, y } = local(event, tilt);
+      const rx = (0.5 - y / rect.height) * 9;
+      const ry = (x / rect.width - 0.5) * 11;
+      tilt.style.transform = `perspective(900px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+      tilt.style.setProperty('--mx', `${x.toFixed(0)}px`);
+      tilt.style.setProperty('--my', `${y.toFixed(0)}px`);
+    }
+    const magnet = event.target.closest?.('[data-magnetic]');
+    if (magnet) {
+      const { rect, x, y } = local(event, magnet);
+      magnet.style.setProperty('--tx', `${((x - rect.width / 2) * 0.22).toFixed(1)}px`);
+      magnet.style.setProperty('--ty', `${((y - rect.height / 2) * 0.32).toFixed(1)}px`);
+    }
+  }, { passive: true });
+
+  document.addEventListener('pointerout', event => {
+    const leaving = (selector, reset) => {
+      const element = event.target.closest?.(selector);
+      if (element && !element.contains(event.relatedTarget)) reset(element);
+    };
+    leaving('[data-tilt]', element => { element.style.transform = ''; });
+    leaving('[data-magnetic]', element => {
+      element.style.setProperty('--tx', '0px');
+      element.style.setProperty('--ty', '0px');
+    });
+  });
+
+  document.addEventListener('pointerover', event => {
+    glow?.classList.toggle('is-hover', Boolean(event.target.closest?.('a, button, input, select, textarea, summary, label')));
   });
 })();

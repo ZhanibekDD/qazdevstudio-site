@@ -1645,6 +1645,15 @@ mod tests {
     }
 
     #[tokio::test]
+    async fn home_uses_self_hosted_fonts_and_social_preview() {
+        let html = page_html("/").await;
+        assert!(html.contains("/assets/fonts/unbounded-cyrillic.woff2"));
+        assert!(!html.contains("fonts.googleapis.com"));
+        assert!(html.contains("og:image"));
+        assert!(html.contains("одну ясную задачу."));
+    }
+
+    #[tokio::test]
     async fn catalog_keeps_ads_without_studio_contact_bar() {
         for uri in ["/programmy/", "/programmy/sharex.html"] {
             let html = page_html(uri).await;

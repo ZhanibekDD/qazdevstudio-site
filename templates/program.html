@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-<section class="program-hero section-shell">
+<section class="program-hero shell">
   <nav class="breadcrumbs"><a href="/">QazDev</a><span>/</span><a href="/programmy/">Программы</a><span>/</span><span>{{ app.name }}</span></nav>
   <div class="program-title-row">
     <span class="program-icon large">{% if app.icon.len() > 0 %}<img src="{{ app.icon }}" alt="Логотип {{ app.name }}">{% else %}{{ app.name.chars().next().unwrap_or('Q') }}{% endif %}</span>
@@ -26,7 +26,7 @@
   </dl>
 </section>
 
-<section class="program-body section-shell">
+<section class="program-body shell">
   <article>
     <span class="section-number">О программе</span>
     <h2>Что делает {{ app.name }}</h2>
@@ -41,5 +41,5 @@
   </aside>
 </section>
 
-{% if related.len() > 0 %}<section class="related-section section-shell"><span class="section-number">Похожие программы</span><div class="related-grid">{% for item in related %}<a href="/programmy/{{ item.slug }}.html"><small>{{ item.category_label }}</small><strong>{{ item.name }}</strong><span>Открыть →</span></a>{% endfor %}</div></section>{% endif %}
+{% if related.len() > 0 %}<section class="related-section shell"><span class="section-number">Похожие программы</span><div class="related-grid">{% for item in related %}<a href="/programmy/{{ item.slug }}.html"><small>{{ item.category_label }}</small><strong>{{ item.name }}</strong><span>Открыть →</span></a>{% endfor %}</div></section>{% endif %}
 {% endblock %}

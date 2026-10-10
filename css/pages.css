@@ -344,3 +344,59 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   .blog-card{min-height:235px}
   .blog-count{display:none}
 }
+
+/* ================================================================
+   QAZDEV V5 — dark theme shared with the Rust-rendered pages.
+   Inline styles on these pages were written for a dark background.
+   ================================================================ */
+@font-face{font-family:"Unbounded";font-style:normal;font-weight:400 900;font-display:swap;src:url("/assets/fonts/unbounded-cyrillic.woff2") format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Unbounded";font-style:normal;font-weight:400 900;font-display:swap;src:url("/assets/fonts/unbounded-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122,U+2212}
+:root{
+  --bg-0:#07080b;--bg-1:#10131a;--bg-2:#161a23;
+  --blue:#8494ff;--purple:#a77dff;--emerald:#c9ff4a;--gold:#f5c542;
+  --text-1:#f3f4ef;--text-2:#d7dae0;--text-3:#9ba1ad;--text-4:#6b717d;
+  --border:rgba(255,255,255,.1);--border-purple:rgba(132,148,255,.32);
+  color-scheme:dark;
+}
+body{background:radial-gradient(70% 45% at 100% 0%,rgba(61,85,240,.24),transparent 62%),radial-gradient(50% 40% at 0% 35%,rgba(155,107,255,.12),transparent 62%),var(--bg-0);background-attachment:fixed;color:var(--text-2)}
+::selection{background:#c9ff4a;color:#07080b}
+.p-nav{background:rgba(7,8,11,.72);border-bottom-color:var(--border);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4)}
+.p-nav-logo-text{color:var(--text-1)}
+.p-nav-link{color:#c5c9d2}
+.p-nav-link:hover,.p-nav-link.is-active{color:var(--emerald)}
+.p-nav-cta{border-radius:999px;background:var(--emerald);color:#07080b;transition:transform .3s,background .3s}
+.p-nav-cta::after{color:#07080b}
+.p-nav-cta:hover{background:#fff;color:#07080b;transform:translateY(-2px)}
+.p-hero h1,.p-article>h1,.blog-hero h1,.p-article h2,.p-cta h2{font-family:"Unbounded","Manrope",sans-serif;font-weight:800;letter-spacing:-.04em}
+.p-article h2,.p-cta h2{font-weight:700;letter-spacing:-.03em}
+.p-hero h1,.p-article>h1{animation:v5-up .9s cubic-bezier(.22,1,.36,1) both}
+.p-tag{color:var(--emerald)}
+.p-article a{color:var(--emerald);border-bottom-color:rgba(201,255,74,.3)}
+.p-box,.p-card,.p-pricing,.p-form,.p-result,.p-score{background:rgba(255,255,255,.035);border-color:var(--border);box-shadow:none}
+.p-box--blue{background:rgba(91,115,255,.1);border-color:rgba(91,115,255,.32)}
+.p-box--purple{background:rgba(155,107,255,.1);border-color:rgba(155,107,255,.3)}
+.p-box--emerald{background:rgba(201,255,74,.07);border-color:rgba(201,255,74,.28)}
+.p-box--gold{background:rgba(245,197,66,.08);border-color:rgba(245,197,66,.28)}
+.p-card{border-radius:22px;transition:transform .5s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .4s}
+.p-card:hover{transform:translateY(-6px);border-color:rgba(201,255,74,.45);box-shadow:0 24px 60px -24px rgba(91,115,255,.6)}
+.p-btn{border-radius:999px;transition:transform .3s,box-shadow .3s,background .3s,color .3s}
+.p-btn:hover{transform:translateY(-2px)}
+.p-btn--primary{background:linear-gradient(135deg,#6b80ff,#3d55f0);color:#fff;box-shadow:0 14px 40px -14px rgba(91,115,255,.9)}
+.p-btn--wa{background:var(--emerald);color:#07080b}
+.p-btn--ghost{color:var(--text-1);border-color:rgba(255,255,255,.18)}
+.p-btn--ghost:hover{border-color:var(--emerald);color:var(--emerald)}
+.p-cta{border:1px solid rgba(255,255,255,.14);border-radius:30px;background:radial-gradient(100% 120% at 100% 0%,rgba(91,115,255,.45),transparent 55%),#0d1017;box-shadow:0 40px 100px -40px rgba(61,85,240,.6)}
+.p-cta p{color:#c9cde6}
+.p-input,.p-select,.p-textarea{background:rgba(0,0,0,.3);border-color:rgba(255,255,255,.17);color:var(--text-1);border-radius:14px}
+.p-input:focus,.p-select:focus,.p-textarea:focus{border-color:var(--emerald);box-shadow:0 0 0 4px rgba(201,255,74,.12)}
+.p-select option{background:#12151c}
+.p-option,.p-quiz-opt{color:var(--text-3)}
+.p-option.active,.p-quiz-opt:hover,.p-quiz-opt.selected{background:rgba(91,115,255,.14);border-color:var(--blue);color:#fff}
+.p-footer{background:transparent;border-top:1px solid var(--border)}
+.blog-hero h1 em{color:transparent;background:linear-gradient(100deg,#8494ff,#a77dff 42%,#c9ff4a);-webkit-background-clip:text;background-clip:text;font-family:inherit;font-weight:800}
+.filter-btn:hover,.filter-btn.active{background:var(--emerald)!important;border-color:var(--emerald)!important;color:#07080b!important}
+.blog-card{background:rgba(255,255,255,.035)!important;box-shadow:none}
+.blog-card:hover{border-color:rgba(201,255,74,.45)!important;box-shadow:0 24px 60px -24px rgba(91,115,255,.6)}
+.blog-card::after{color:var(--emerald)}
+@keyframes v5-up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.p-hero h1,.p-article>h1{animation:none}.p-card,.p-btn{transition:none}}
