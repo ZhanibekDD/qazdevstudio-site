@@ -535,9 +535,17 @@
       const hero = canvas.closest('.hero') || canvas.parentElement;
       let width = 1;
       let height = 1;
+      // Drops resolution on devices that cannot keep up.
+      let quality = 1;
+      let lastFrame = 0;
+      let slowFrames = 0;
+      let countedFrames = 0;
+      let frameTime = 0;
+      let warmup = 8;
+      let stopped = false;
       const resize = () => {
         const rect = canvas.getBoundingClientRect();
-        const scale = innerWidth < 700 ? 0.42 : 0.55;
+        const scale = (innerWidth < 700 ? 0.42 : 0.55) * quality;
         width = Math.max(1, Math.round(rect.width * scale));
         height = Math.max(1, Math.round(rect.height * scale));
         canvas.width = width;
@@ -559,7 +567,25 @@
       const started = performance.now();
       const draw = now => {
         frame = 0;
-        if (!visible || document.hidden) return;
+        if (stopped || !visible || document.hidden) { lastFrame = 0; return; }
+        if (lastFrame && --warmup < 0) {
+          countedFrames += 1;
+          frameTime += now - lastFrame;
+          if (now - lastFrame > 28) slowFrames += 1;
+          if (countedFrames === 20 || (countedFrames >= 6 && frameTime > 1200)) {
+            // Too slow even at the lowest resolution: fall back to the CSS background.
+            if (frameTime / countedFrames > 45 || (slowFrames > 12 && quality <= 0.5)) {
+              stopped = true;
+              hero.classList.remove('has-gl');
+              return;
+            }
+            if (slowFrames > 12) { quality -= 0.25; resize(); }
+            countedFrames = 0;
+            slowFrames = 0;
+            frameTime = 0;
+          }
+        }
+        lastFrame = now;
         const seconds = (now - started) / 1000;
         if (!finePointer) {
           tx = 0.6 + 0.22 * Math.sin(seconds * 0.35);
@@ -755,5 +781,239 @@
         letter.style.fontVariationSettings = `"wght" ${Math.round(400 + 500 * clamp(1 - distance / 460, 0, 1))}`;
       });
     }, { passive: true });
+  }
+})();
+
+// v3: raymarched 3D brand mark, scroll-lit manifesto and live work screenshots.
+(() => {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+  const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  // Glassy chrome "Q" from the logo, rendered with a signed distance field.
+  const canvas = document.querySelector('canvas.hero-q');
+  const gl = canvas?.getContext('webgl', { antialias: false, alpha: true, premultipliedAlpha: true, depth: false, powerPreference: 'low-power' });
+  if (canvas && gl) {
+    const fragment = `
+      precision highp float;
+      uniform vec2 u_res; uniform float u_time; uniform vec2 u_rot; uniform float u_steps;
+      mat2 rot(float a) { float c = cos(a), s = sin(a); return mat2(c, -s, s, c); }
+      float sdRoundRect(vec2 p, vec2 b, float r) { vec2 q = abs(p) - b + r; return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r; }
+      float sdCapsule(vec3 p, vec3 a, vec3 b, float r) { vec3 pa = p - a, ba = b - a; float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0); return length(pa - ba * h) - r; }
+      vec2 map(vec3 p) {
+        p.y -= 0.07 * sin(u_time * 0.9);
+        p.xz = rot(u_rot.x + 0.32 * sin(u_time * 0.35)) * p.xz;
+        p.yz = rot(u_rot.y + 0.16 * sin(u_time * 0.28)) * p.yz;
+        p.xy = rot(0.1) * p.xy;
+        p += vec3(0.1, -0.14, 0.0);
+        float ring2d = abs(sdRoundRect(p.xy, vec2(0.61, 0.67), 0.3)) - 0.14;
+        vec2 w = vec2(ring2d, abs(p.z) - 0.11);
+        float ring = min(max(w.x, w.y), 0.0) + length(max(w, 0.0)) - 0.05;
+        float tail = sdCapsule(p, vec3(0.19, -0.36, 0.0), vec3(0.78, -0.94, 0.0), 0.15);
+        return ring < tail ? vec2(ring, 0.0) : vec2(tail, 1.0);
+      }
+      vec3 normalAt(vec3 p) {
+        vec2 e = vec2(0.0015, 0.0);
+        return normalize(vec3(map(p + e.xyy).x - map(p - e.xyy).x, map(p + e.yxy).x - map(p - e.yxy).x, map(p + e.yyx).x - map(p - e.yyx).x));
+      }
+      vec3 env(vec3 r) {
+        vec3 c = mix(vec3(0.02, 0.025, 0.05), vec3(0.22, 0.3, 0.9), smoothstep(-0.3, 0.8, r.y));
+        c += vec3(0.79, 1.0, 0.29) * pow(max(dot(r, normalize(vec3(0.7, 0.5, 0.4))), 0.0), 18.0) * 1.4;
+        c += vec3(0.62, 0.42, 1.0) * pow(max(dot(r, normalize(vec3(-0.8, 0.1, 0.5))), 0.0), 6.0) * 0.9;
+        c += vec3(1.0) * smoothstep(0.96, 1.0, abs(sin(r.y * 9.0 + r.x * 3.0 + u_time * 0.2))) * 0.25;
+        return c;
+      }
+      void main() {
+        vec2 uv = (gl_FragCoord.xy - 0.5 * u_res) / u_res.y;
+        vec3 ro = vec3(0.0, 0.0, 4.5);
+        vec3 rd = normalize(vec3(uv, -1.75));
+        float b = dot(ro, rd), c = dot(ro, ro) - 2.4, h = b * b - c;
+        vec4 color = vec4(0.0);
+        float closest = 10.0;
+        if (h > 0.0) {
+          float t = -b - sqrt(h), tMax = -b + sqrt(h);
+          vec2 hit = vec2(1.0, 0.0);
+          for (int i = 0; i < 90; i++) {
+            if (float(i) >= u_steps) break;
+            hit = map(ro + rd * t);
+            closest = min(closest, hit.x);
+            if (hit.x < 0.0015 || t > tMax) break;
+            t += hit.x * 0.9;
+          }
+          if (hit.x < 0.0015) {
+            vec3 p = ro + rd * t, n = normalAt(p);
+            float fres = pow(1.0 - max(dot(n, -rd), 0.0), 2.5);
+            vec3 base = hit.y > 0.5 ? vec3(0.72, 1.0, 0.22) : vec3(0.32, 0.42, 1.0);
+            float diff = max(dot(n, normalize(vec3(0.5, 0.8, 0.6))), 0.0);
+            vec3 col = base * (0.12 + 0.6 * diff) + env(reflect(rd, n)) * (0.45 + 0.55 * fres);
+            col += fres * mix(vec3(0.6, 0.45, 1.0), vec3(0.79, 1.0, 0.29), hit.y) * 0.55;
+            color = vec4(col, 1.0);
+          }
+        }
+        if (color.a < 1.0) {
+          float halo = exp(-closest * 9.0) * 0.36;
+          color = vec4(vec3(0.36, 0.45, 1.0) * halo, halo);
+        }
+        gl_FragColor = color;
+      }`;
+    const compile = (type, source) => {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      return gl.getShaderParameter(shader, gl.COMPILE_STATUS) ? shader : null;
+    };
+    const vertex = compile(gl.VERTEX_SHADER, 'attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}');
+    const pixels = compile(gl.FRAGMENT_SHADER, fragment);
+    const program = gl.createProgram();
+    if (vertex && pixels) {
+      gl.attachShader(program, vertex);
+      gl.attachShader(program, pixels);
+      gl.linkProgram(program);
+    }
+    if (vertex && pixels && gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      gl.useProgram(program);
+      gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      const position = gl.getAttribLocation(program, 'p');
+      gl.enableVertexAttribArray(position);
+      gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+      const uRes = gl.getUniformLocation(program, 'u_res');
+      const uTime = gl.getUniformLocation(program, 'u_time');
+      const uRot = gl.getUniformLocation(program, 'u_rot');
+      const uSteps = gl.getUniformLocation(program, 'u_steps');
+      const hero = canvas.closest('.hero');
+      // Quality levels drop automatically if frames take too long.
+      const levels = finePointer ? [[1.25, 90], [0.9, 70], [0.65, 56]] : [[1, 70], [0.75, 56], [0.55, 44]];
+      let level = 0;
+      let width = 1;
+      let height = 1;
+      const resize = () => {
+        const rect = canvas.getBoundingClientRect();
+        const scale = Math.min(devicePixelRatio || 1, 1.5) * levels[level][0];
+        width = Math.max(1, Math.round(rect.width * scale));
+        height = Math.max(1, Math.round(rect.height * scale));
+        canvas.width = width;
+        canvas.height = height;
+        gl.viewport(0, 0, width, height);
+      };
+      resize();
+      addEventListener('resize', resize, { passive: true });
+      let rx = 0, ry = 0, targetX = 0, targetY = 0;
+      addEventListener('pointermove', event => {
+        targetX = (event.clientX / innerWidth - 0.5) * 1.1;
+        targetY = (event.clientY / innerHeight - 0.5) * 0.7;
+      }, { passive: true });
+      let visible = true;
+      let frame = 0;
+      let last = 0;
+      let slow = 0;
+      let counted = 0;
+      let spent = 0;
+      let warmup = 8;
+      let stopped = false;
+      const started = performance.now();
+      const draw = now => {
+        frame = 0;
+        if (stopped || !visible || document.hidden) { last = 0; return; }
+        if (last && --warmup < 0) {
+          counted += 1;
+          spent += now - last;
+          if (now - last > 28) slow += 1;
+          if (counted === 20 || (counted >= 6 && spent > 1200)) {
+            // Too slow even at the lowest level: show the static artwork instead.
+            if (spent / counted > 45 || (slow > 12 && level === levels.length - 1)) {
+              stopped = true;
+              hero?.classList.remove('has-q');
+              return;
+            }
+            if (slow > 12) { level += 1; resize(); }
+            counted = 0;
+            slow = 0;
+            spent = 0;
+          }
+        }
+        last = now;
+        rx += (targetX + scrollY * 0.0016 - rx) * 0.06;
+        ry += (targetY - ry) * 0.06;
+        gl.uniform2f(uRes, width, height);
+        gl.uniform1f(uTime, (now - started) / 1000);
+        gl.uniform2f(uRot, rx, ry);
+        gl.uniform1f(uSteps, levels[level][1]);
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        frame = requestAnimationFrame(draw);
+      };
+      const wake = () => { if (visible && !document.hidden && !frame) frame = requestAnimationFrame(draw); };
+      if ('IntersectionObserver' in window) new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; wake(); }).observe(canvas);
+      document.addEventListener('visibilitychange', wake);
+      canvas.addEventListener('webglcontextlost', () => hero?.classList.remove('has-q'));
+      hero?.classList.add('has-q');
+      wake();
+    }
+  }
+
+  // Manifesto words light up as the pinned statement scrolls past.
+  const manifesto = document.querySelector('[data-manifesto]');
+  if (manifesto) {
+    const text = manifesto.querySelector('.manifesto-text');
+    const words = [];
+    const walk = node => {
+      [...node.childNodes].forEach(child => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const fragment = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { fragment.append(document.createTextNode(part)); return; }
+            const word = document.createElement('span');
+            word.className = 'mw';
+            word.textContent = part;
+            words.push(word);
+            fragment.append(word);
+          });
+          child.replaceWith(fragment);
+        } else if (child.nodeType === Node.ELEMENT_NODE) {
+          walk(child);
+        }
+      });
+    };
+    walk(text);
+    manifesto.classList.add('manifesto-on');
+    const update = () => {
+      const rect = manifesto.getBoundingClientRect();
+      const span = Math.max(1, manifesto.offsetHeight - innerHeight * 0.6);
+      const progress = clamp((innerHeight * 0.55 - rect.top) / span, 0, 1);
+      const lit = Math.round(progress * words.length);
+      words.forEach((word, index) => word.classList.toggle('lit', index < lit));
+      manifesto.style.setProperty('--mp', progress.toFixed(3));
+    };
+    update();
+    addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+    addEventListener('resize', update, { passive: true });
+  }
+
+  // Real screenshots scroll inside their device frames with the page.
+  const shots = [...document.querySelectorAll('img[data-shot]')];
+  if (shots.length) {
+    const state = shots.map(() => ({ y: 0 }));
+    let frame = 0;
+    const tick = () => {
+      frame = 0;
+      let moving = false;
+      shots.forEach((img, index) => {
+        const box = img.parentElement.getBoundingClientRect();
+        const travel = Math.max(0, img.getBoundingClientRect().height - box.height);
+        const progress = clamp((innerHeight - box.top) / (innerHeight + box.height), 0, 1);
+        const target = -travel * progress;
+        state[index].y += (target - state[index].y) * 0.12;
+        if (Math.abs(target - state[index].y) > 0.5) moving = true;
+        img.style.setProperty('--shot-y', `${state[index].y.toFixed(1)}px`);
+      });
+      if (moving) frame = requestAnimationFrame(tick);
+    };
+    const kick = () => { if (!frame) frame = requestAnimationFrame(tick); };
+    addEventListener('scroll', kick, { passive: true });
+    shots.forEach(img => img.addEventListener('load', kick));
+    kick();
   }
 })();
