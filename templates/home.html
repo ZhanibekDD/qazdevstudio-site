@@ -23,8 +23,15 @@
 {% endblock %}
 
 {% block content %}
+<div class="intro" aria-hidden="true">
+  <svg viewBox="0 0 56 56"><rect x="1" y="1" width="54" height="54" rx="16"/><path class="q" d="M17 18.5C17 15.462 19.462 13 22.5 13H31.5C35.642 13 39 16.358 39 20.5V29.5C39 33.642 35.642 37 31.5 37H24.5C20.358 37 17 33.642 17 29.5V18.5Z"/><path class="tail" d="M31.5 31.5L42 42"/><circle cx="39" cy="39" r="3"/></svg>
+  <span class="intro-bar"><i></i></span>
+  <span class="intro-count"></span>
+</div>
+
 <section class="hero" data-spotlight>
   <div class="hero-bg" aria-hidden="true">
+    <canvas class="hero-gl"></canvas>
     <span class="aurora aurora-1"></span><span class="aurora aurora-2"></span><span class="aurora aurora-3"></span>
     <span class="hero-lines"></span>
     <img class="hero-art" src="/assets/qazdev-system-hero.webp" alt="" width="1200" height="686" fetchpriority="high" decoding="async" data-depth="18">
@@ -102,42 +109,66 @@
   </article>
 </section>
 
-<section class="services-section shell">
-  <header class="section-heading">
+<section class="services-section" data-hscroll>
+  <div class="hscroll-sticky">
+  <header class="section-heading shell">
     <span class="section-number" data-scramble>03 / Что делаю</span>
     <h2 data-split>Не продаю «любой сайт». <em>Собираю нужный формат.</em></h2>
   </header>
-  <div class="service-grid">
-    <a class="service-card" data-glow data-reveal style="--i:0" href="/razrabotka-saitov-kazakhstan.html">
+  <div class="service-grid hscroll-track shell">
+    <a class="service-card" data-cursor="Подробнее" data-glow data-reveal style="--i:0" href="/razrabotka-saitov-kazakhstan.html">
       <span class="service-num">01</span>
       <svg class="service-icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="9" width="36" height="28" rx="5"/><path d="M6 17h36M14 13h.01M19 13h.01M16 41h16"/></svg>
       <h3>Сайты под заявки и доверие</h3><p>Структура, тексты, дизайн, код, аналитика и SEO‑основа.</p>
       <div class="service-foot"><b>от 150 000 ₸</b><i aria-hidden="true">↗</i></div>
     </a>
-    <a class="service-card" data-glow data-reveal style="--i:1" href="/telegram-bot-kazakhstan.html">
+    <a class="service-card" data-cursor="Подробнее" data-glow data-reveal style="--i:1" href="/telegram-bot-kazakhstan.html">
       <span class="service-num">02</span>
       <svg class="service-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M41 9 6 22.5l11 4.2L21 39l6-8.2 9 6.7L41 9Z"/><path d="m17 26.7 15-10.2"/></svg>
       <h3>Telegram‑боты под процесс</h3><p>Заявки, запись, статусы, документы и уведомления.</p>
       <div class="service-foot"><b>от 120 000 ₸</b><i aria-hidden="true">↗</i></div>
     </a>
-    <a class="service-card" data-glow data-reveal style="--i:2" href="/crm-dlya-biznesa-kazakhstan.html">
+    <a class="service-card" data-cursor="Подробнее" data-glow data-reveal style="--i:2" href="/crm-dlya-biznesa-kazakhstan.html">
       <span class="service-num">03</span>
       <svg class="service-icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="8" width="14" height="14" rx="3"/><rect x="27" y="8" width="14" height="14" rx="3"/><rect x="7" y="27" width="14" height="14" rx="3"/><path d="M34 27v14M27 34h14"/></svg>
       <h3>CRM и личные кабинеты</h3><p>Роли, клиенты, задачи, история, файлы и отчёты.</p>
       <div class="service-foot"><b>от 350 000 ₸</b><i aria-hidden="true">↗</i></div>
     </a>
-    <a class="service-card" data-glow data-reveal style="--i:3" href="/avtomatizaciya-biznesa-kazakhstan.html">
+    <a class="service-card" data-cursor="Подробнее" data-glow data-reveal style="--i:3" href="/avtomatizaciya-biznesa-kazakhstan.html">
       <span class="service-num">04</span>
       <svg class="service-icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="6"/><path d="M24 6v6M24 36v6M6 24h6M36 24h6M11.3 11.3l4.2 4.2M32.5 32.5l4.2 4.2M11.3 36.7l4.2-4.2M32.5 15.5l4.2-4.2"/></svg>
       <h3>Интеграции и автоматизация</h3><p>Связываю сайт, мессенджеры, документы и внешние API.</p>
       <div class="service-foot"><b>по оценке</b><i aria-hidden="true">↗</i></div>
     </a>
   </div>
+  <div class="hscroll-progress" aria-hidden="true"><i></i></div>
+  </div>
+</section>
+
+<section class="build-section shell">
+  <header class="section-heading">
+    <span class="section-number" data-scramble>04 / Как собираю</span>
+    <h2 data-split>Код превращается <em>в интерфейс, который приносит заявки.</em></h2>
+    <p>Иллюстрация процесса: слева разметка и логика, справа — страница, которая из них собирается. Последняя строка — заявка, которая не теряется.</p>
+  </header>
+  <div class="build-demo" data-build data-reveal aria-hidden="true">
+    <div class="build-code"><div class="build-bar"><span></span><span></span><span></span><b>clinic-landing.html</b></div><pre><code></code></pre></div>
+    <div class="build-preview"><div class="build-bar"><span></span><span></span><span></span><b>clinic.kz</b></div>
+      <div class="bp-canvas">
+        <div class="bp-nav bp-step"><i></i><span></span><span></span><span></span><b></b></div>
+        <div class="bp-hero bp-step"><strong>Запись в клинику онлайн</strong><p></p><p class="short"></p></div>
+        <div class="bp-cta bp-step">Записаться →</div>
+        <div class="bp-cards bp-step"><i></i><i></i><i></i></div>
+        <div class="bp-form bp-step"><span></span><span></span><b>Отправить</b></div>
+      </div>
+      <div class="bp-toast bp-step"><b>✓</b> Новая заявка → Telegram</div>
+    </div>
+  </div>
 </section>
 
 <section class="process-section shell" data-process>
   <header class="section-heading">
-    <span class="section-number" data-scramble>04 / Процесс</span>
+    <span class="section-number" data-scramble>05 / Процесс</span>
     <h2 data-split>Сначала смысл. Потом интерфейс. <em>Затем код.</em></h2>
   </header>
   <ol class="process-steps">
@@ -152,7 +183,7 @@
 <section class="lead-section shell" id="request">
   <div class="lead-panel" data-reveal>
     <div class="lead-intro">
-      <span class="section-number" data-scramble>05 / Заявка</span>
+      <span class="section-number" data-scramble>06 / Заявка</span>
       <h2 data-split>Опишите задачу. <em>Отвечу лично.</em></h2>
       <p>Форма соберёт понятное сообщение и откроет WhatsApp. Никаких регистраций и звонков менеджера.</p>
     </div>
@@ -168,14 +199,14 @@
 
 <section class="utility-section shell">
   <header class="section-heading">
-    <span class="section-number" data-scramble>06 / Полезное</span>
+    <span class="section-number" data-scramble>07 / Полезное</span>
     <h2 data-split>Инструменты — отдельно. <em>Студия — отдельно.</em></h2>
     <p>Каталог и бесплатные сервисы остаются полезным продуктом, но не маскируются под портфолио студии.</p>
   </header>
   <div class="utility-grid">
-    <a data-tilt data-reveal style="--i:0" href="/programmy/"><small>QAZTOOLS / 01</small><strong>Каталог проверенных программ</strong><span>Найти программу →</span></a>
-    <a data-tilt data-reveal style="--i:1" href="/obrabotka-izobrazheniy-online.html"><small>QAZTOOLS / 02</small><strong>Обработка изображений в браузере</strong><span>Открыть инструмент →</span></a>
-    <a data-tilt data-reveal style="--i:2" href="/calculator.html"><small>QAZDEV / 03</small><strong>Оценка формата и стоимости проекта</strong><span>Рассчитать →</span></a>
+    <a data-cursor="Перейти" data-tilt data-reveal style="--i:0" href="/programmy/"><small>QAZTOOLS / 01</small><strong>Каталог проверенных программ</strong><span>Найти программу →</span></a>
+    <a data-cursor="Перейти" data-tilt data-reveal style="--i:1" href="/obrabotka-izobrazheniy-online.html"><small>QAZTOOLS / 02</small><strong>Обработка изображений в браузере</strong><span>Открыть инструмент →</span></a>
+    <a data-cursor="Перейти" data-tilt data-reveal style="--i:2" href="/calculator.html"><small>QAZDEV / 03</small><strong>Оценка формата и стоимости проекта</strong><span>Рассчитать →</span></a>
   </div>
 </section>
 {% endblock %}

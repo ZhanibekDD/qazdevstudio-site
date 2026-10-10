@@ -8,7 +8,7 @@
 
 {% block content %}
 <section class="hero hero-plain editorial-hero" data-spotlight>
-  <div class="hero-bg" aria-hidden="true"><span class="aurora aurora-1"></span><span class="aurora aurora-2"></span><span class="aurora aurora-3"></span><span class="hero-lines"></span></div>
+  <div class="hero-bg" aria-hidden="true"><canvas class="hero-gl"></canvas><span class="aurora aurora-1"></span><span class="aurora aurora-2"></span><span class="aurora aurora-3"></span><span class="hero-lines"></span></div>
   <div class="hero-inner shell">
     <span class="section-number" data-scramble>QAZDEV / ЗАПИСКИ</span>
     <h1 class="hero-title"><span class="line"><span>Разбираю цифровые решения</span></span> <span class="line"><span class="grad-text">языком предпринимателя.</span></span></h1>
@@ -18,7 +18,7 @@
 
 <section class="featured-article shell">
   {% for article in articles %}{% if loop.first %}
-  <a href="/blog/{{ article.slug }}.html" data-glow data-reveal>
+  <a href="/blog/{{ article.slug }}.html" data-cursor="Читать" data-glow data-reveal>
     <span class="featured-label">Начать отсюда</span>
     <div><small>{{ article.category }}</small><h2>{{ article.title }}</h2><p>{{ article.description }}</p></div>
     <b>{{ article.reading_time }} →</b>
@@ -29,7 +29,7 @@
 <section class="article-list shell">
   <div class="article-list-head"><span>Все материалы</span><span>{{ articles.len() }} разборов</span></div>
   {% for article in articles %}{% if !loop.first %}
-  <a data-reveal href="/blog/{{ article.slug }}.html" data-search-text="{{ article.title }} {{ article.category }}">
+  <a data-cursor="Читать" data-reveal href="/blog/{{ article.slug }}.html" data-search-text="{{ article.title }} {{ article.category }}">
     <span>{{ loop.index }}</span>
     <small>{{ article.category }}</small>
     <div><h2>{{ article.title }}</h2><p>{{ article.description }}</p></div>

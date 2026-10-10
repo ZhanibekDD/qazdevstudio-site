@@ -17,12 +17,17 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/unbounded-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/site.css?v=20261010.2">
+  <link rel="stylesheet" href="/site.css?v=20261010.3">
   <script>
     // Reveal animations hide content only when JavaScript runs; if site.js
     // never initialises, everything is shown after a short delay.
     document.documentElement.classList.add('js');
     setTimeout(function () { if (!window.__qdMotion) document.documentElement.classList.add('reveal-all'); }, 2500);
+    // Short intro only on the first home page view of a session.
+    try {
+      if ((location.pathname === '/' || location.pathname === '/index.html') && !sessionStorage.getItem('qd_intro_seen')
+        && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('intro-on');
+    } catch (error) {}
   </script>
   {% block head %}{% endblock %}
 </head>
@@ -30,6 +35,7 @@
   <a class="skip-link" href="#content">Перейти к содержанию</a>
   <div class="scroll-progress" aria-hidden="true"></div>
   <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-ring"><i></i><b class="cursor-label"></b></span></div>
   <div class="grain" aria-hidden="true"></div>
 
   <header class="site-header" data-header>
@@ -65,7 +71,7 @@
   {% block mobile_cta %}
   <a class="mobile-cta" href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20проект" target="_blank" rel="noopener">Написать в WhatsApp</a>
   {% endblock %}
-  <script src="/site.js?v=20261010.2" defer></script>
+  <script src="/site.js?v=20261010.3" defer></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>
