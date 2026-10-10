@@ -103,23 +103,24 @@
       || `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
     return `${prefix}-${value}`;
   };
-  const remember = (storage, key, create) => {
+  // Storage can be missing or throw on access (blocked cookies, privacy modes);
+  // touching it outside try would stop this script and the WhatsApp form with it.
+  const remember = (storageName, key, create) => {
     try {
-      let value = storage.getItem(key);
-      if (!value) {
-        value = create();
-        storage.setItem(key, value);
-      }
-      return value;
-    } catch {
-      return create();
-    }
+      const saved = self[storageName].getItem(key);
+      if (saved) return saved;
+    } catch {}
+    const value = create();
+    try {
+      self[storageName].setItem(key, value);
+    } catch {}
+    return value;
   };
-  const visitorId = remember(localStorage, 'qazdev_visitor_v2', () => randomId('v'));
-  const sessionId = remember(sessionStorage, 'qazdev_session_v2', () => randomId('s'));
+  const visitorId = remember('localStorage', 'qazdev_visitor_v2', () => randomId('v'));
+  const sessionId = remember('sessionStorage', 'qazdev_session_v2', () => randomId('s'));
   // Short code added to WhatsApp messages: lets a real conversation be matched
   // to the page and traffic source of the visit. A click alone is not a lead.
-  const leadRef = remember(sessionStorage, 'qazdev_lead_ref', () => {
+  const leadRef = remember('sessionStorage', 'qazdev_lead_ref', () => {
     const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
     const bytes = self.crypto?.getRandomValues?.(new Uint8Array(5))
       || Uint8Array.from({ length: 5 }, () => Math.floor(Math.random() * 256));
