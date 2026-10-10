@@ -6,6 +6,7 @@ COPY src ./src
 COPY templates ./templates
 COPY rust-static ./rust-static
 COPY data/software.json ./data/software.json
+COPY data/editorial-programs.json ./data/editorial-programs.json
 
 RUN cargo build --release --locked
 
