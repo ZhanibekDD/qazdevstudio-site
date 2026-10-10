@@ -3,23 +3,29 @@
 // /api/track always reaches the application.
 const TRACK_URL = '/api/track';
 
-function _qdStored(storage, key, create) {
+// Storage can be missing or throw on access (blocked cookies, privacy modes).
+// Values are kept in memory too, so one page always uses one visitor, session
+// and lead code even when nothing can be persisted.
+const _qdMemory = {};
+function _qdStored(storageName, key, create) {
   try {
-    let id = storage.getItem(key);
-    if (!id) { id = create(); storage.setItem(key, id); }
-    return id;
-  } catch(_) { return create(); }
+    const saved = window[storageName].getItem(key);
+    if (saved) return saved;
+  } catch(_) {}
+  if (!_qdMemory[key]) _qdMemory[key] = create();
+  try { window[storageName].setItem(key, _qdMemory[key]); } catch(_) {}
+  return _qdMemory[key];
 }
 function _qdVid() {
-  return _qdStored(localStorage, 'qd_vid', () => 'v' + Date.now().toString(36) + Math.random().toString(36).slice(2,7));
+  return _qdStored('localStorage', 'qd_vid', () => 'v' + Date.now().toString(36) + Math.random().toString(36).slice(2,7));
 }
 function _qdSid() {
-  return _qdStored(sessionStorage, 'qd_sid', () => 's' + Date.now().toString(36) + Math.random().toString(36).slice(2,7));
+  return _qdStored('sessionStorage', 'qd_sid', () => 's' + Date.now().toString(36) + Math.random().toString(36).slice(2,7));
 }
 // Short code added to WhatsApp messages: lets a real conversation be matched
 // to the page and traffic source of the visit. A click alone is not a lead.
 function qdLeadRef() {
-  return _qdStored(sessionStorage, 'qazdev_lead_ref', () => {
+  return _qdStored('sessionStorage', 'qazdev_lead_ref', () => {
     const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
     let code = 'QD-';
     for (let i = 0; i < 5; i++) code += alphabet[Math.floor(Math.random() * alphabet.length)];
