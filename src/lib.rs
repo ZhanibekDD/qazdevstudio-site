@@ -1656,6 +1656,10 @@ mod tests {
             "data-hscroll",
             "data-build",
             "class=\"intro\"",
+            "canvas class=\"hero-q\"",
+            "data-manifesto",
+            "/assets/work/zakonexpert-desktop.webp",
+            "https://zakonexpert.kz/",
         ] {
             assert!(html.contains(hook), "{hook}");
         }

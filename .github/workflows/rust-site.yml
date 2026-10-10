@@ -134,6 +134,9 @@ jobs:
           grep -q 'class="mobile-cta"' target/plesk-site/index.html
           test -s target/plesk-site/assets/fonts/unbounded-cyrillic.woff2
           test -s target/plesk-site/assets/fonts/manrope-cyrillic.woff2
+          test -s target/plesk-site/assets/work/zakonexpert-desktop.webp
+          test -s target/plesk-site/assets/work/zakonexpert-mobile.webp
+          ! grep -q 'zakonexpertt.kz' target/plesk-site/index.html
           ! grep -q '/api/track.php' target/plesk-site/site.js
           grep -q "TRACK_URL = '/api/track'" target/plesk-site/js/track.js
           ! grep -q '/ip.html' target/plesk-site/sitemap.xml
