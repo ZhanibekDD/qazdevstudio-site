@@ -7,63 +7,90 @@
 {% block adsense %}{% endblock %}
 
 {% block head %}
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ service.title }}">
+<meta property="og:description" content="{{ service.description }}">
+<meta property="og:url" content="{{ service.canonical }}">
+<meta property="og:image" content="https://qazdevstudio.kz/assets/og-qazdev-studio.jpg">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"{{ service.heading }}","provider":{"@type":"Organization","name":"QazDev Studio","url":"https://qazdevstudio.kz/"},"areaServed":{"@type":"Country","name":"Казахстан"},"url":"{{ service.canonical }}"}</script>
 {% endblock %}
 
 {% block content %}
-<section class="service-hero page-grid">
-  <div class="hero-index"><span>УСЛУГА</span><span>{{ service.eyebrow }}</span></div>
-  <div class="service-hero-main">
-    <h1>{{ service.heading }}</h1>
-    <p class="service-lead">{{ service.lead }}</p>
-    <div class="button-row">
-      <a class="button button-primary" href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20проект" target="_blank" rel="noopener">Обсудить проект</a>
-      <a class="text-link" href="#prices">Смотреть цены ↓</a>
+<section class="hero service-hero" data-spotlight>
+  <div class="hero-bg" aria-hidden="true">
+    <span class="aurora aurora-1"></span><span class="aurora aurora-2"></span><span class="aurora aurora-3"></span>
+    <span class="hero-lines"></span>
+  </div>
+  <div class="hero-inner shell">
+    <p class="status-pill"><span class="pulse" aria-hidden="true"></span>Услуга · {{ service.eyebrow }}</p>
+    <h1 class="hero-title service-title"><span class="line"><span>{{ service.heading }}</span></span></h1>
+    <div class="hero-bottom">
+      <p class="hero-lead">{{ service.lead }}</p>
+      <div class="button-row">
+        <a class="button button-primary" data-magnetic href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20проект" target="_blank" rel="noopener"><span>Обсудить проект</span><i aria-hidden="true">↗</i></a>
+        <a class="button button-ghost" href="#prices"><span>Смотреть цены</span><i aria-hidden="true">↓</i></a>
+      </div>
     </div>
   </div>
-  <aside class="location-note"><small>География без выдумок</small><p>{{ service.location_note }}</p></aside>
+  <aside class="founder-card location-note" data-tilt>
+    <span class="avatar" aria-hidden="true"><span>KZ</span></span>
+    <div><small>География без выдумок</small><p>{{ service.location_note }}</p></div>
+  </aside>
 </section>
 
-<section class="service-proof section-shell">
-  <div class="section-heading compact"><span class="section-number">01 / Результат</span><h2>{{ service.offer }}</h2></div>
+<section class="service-proof shell">
+  <header class="section-heading">
+    <span class="section-number" data-scramble>01 / Результат</span>
+    <h2 data-split>{{ service.offer }}</h2>
+  </header>
   <ol class="deliverable-list">
-    {% for item in service.deliverables %}<li><span>0{{ loop.index }}</span><p>{{ item }}</p></li>{% endfor %}
+    {% for item in service.deliverables %}<li data-reveal style="--i:{{ loop.index0 }}"><span>0{{ loop.index }}</span><p>{{ item }}</p><i aria-hidden="true">✓</i></li>{% endfor %}
   </ol>
 </section>
 
-<section class="case-inline section-shell">
-  <div><span class="section-number">02 / Пример</span><h2>Посмотрите живой проект,<br>а не картинку из портфолио.</h2></div>
-  <div><strong>ZakonExpert</strong><p>Рабочая юридическая платформа: большой справочник, поиск, сервисные страницы и автоматизированное обновление данных.</p><a class="text-link" href="https://zakonexpertt.kz/" target="_blank" rel="noopener">Открыть проект ↗</a></div>
+<section class="shell case-inline-wrap">
+  <div class="case-inline" data-reveal data-glow>
+    <div><span class="section-number" data-scramble>02 / Пример</span><h2 data-split>Посмотрите живой проект, <em>а не картинку из портфолио.</em></h2></div>
+    <div><strong>ZakonExpert</strong><p>Рабочая юридическая платформа: большой справочник, поиск, сервисные страницы и автоматизированное обновление данных.</p><a class="text-link" href="https://zakonexpertt.kz/" target="_blank" rel="noopener">Открыть проект <i aria-hidden="true">↗</i></a></div>
+  </div>
 </section>
 
-<section class="pricing-section section-shell" id="prices">
-  <header class="section-heading compact"><span class="section-number">03 / Стоимость</span><h2>Цена зависит от объёма,<br>но старт понятен заранее.</h2></header>
+<section class="pricing-section shell" id="prices">
+  <header class="section-heading">
+    <span class="section-number" data-scramble>03 / Стоимость</span>
+    <h2 data-split>Цена зависит от объёма, <em>но старт понятен заранее.</em></h2>
+  </header>
   <div class="price-grid">
     {% for package in service.packages %}
-    <article><small>{{ package.name }}</small><strong>{{ package.price }}</strong><span>{{ package.term }}</span><p>{{ package.description }}</p><a href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20{{ package.name }}" target="_blank" rel="noopener">Обсудить →</a></article>
+    <article data-glow data-reveal style="--i:{{ loop.index0 }}"><small>{{ package.name }}</small><strong>{{ package.price }}</strong><span>{{ package.term }}</span><p>{{ package.description }}</p><a data-magnetic href="https://wa.me/77000300024?text=Здравствуйте!%20Хочу%20обсудить%20{{ package.name }}" target="_blank" rel="noopener">Обсудить <i aria-hidden="true">→</i></a></article>
     {% endfor %}
   </div>
 </section>
 
-<section class="lead-section section-shell" id="request">
-  <div class="lead-intro">
-    <span class="section-number">04 / Заявка</span>
-    <h2>Расскажите, что должно<br>измениться в бизнесе.</h2>
-    <p>Я получу уже структурированное сообщение и смогу ответить по формату, срокам и следующему шагу.</p>
+<section class="lead-section shell" id="request">
+  <div class="lead-panel" data-reveal>
+    <div class="lead-intro">
+      <span class="section-number" data-scramble>04 / Заявка</span>
+      <h2 data-split>Расскажите, что должно <em>измениться в бизнесе.</em></h2>
+      <p>Я получу уже структурированное сообщение и смогу ответить по формату, срокам и следующему шагу.</p>
+    </div>
+    <form class="lead-form" data-whatsapp-form aria-label="Заявка: {{ service.eyebrow }}">
+      <input type="hidden" name="service" value="{{ service.eyebrow }}">
+      <label><span>Как к вам обращаться</span><input type="text" name="name" autocomplete="name" maxlength="80" required placeholder="Ваше имя"></label>
+      <label class="lead-message"><span>Задача</span><textarea name="message" rows="5" maxlength="1000" required placeholder="Что нужно сделать, для кого и к какому сроку?"></textarea></label>
+      <button class="button button-primary" data-magnetic type="submit"><span>Сформировать сообщение в WhatsApp</span><i aria-hidden="true">→</i></button>
+      <small>Данные не сохраняются на сайте — сообщение откроется у вас в WhatsApp.</small>
+    </form>
   </div>
-  <form class="lead-form" data-whatsapp-form aria-label="Заявка: {{ service.eyebrow }}">
-    <input type="hidden" name="service" value="{{ service.eyebrow }}">
-    <label><span>Как к вам обращаться</span><input type="text" name="name" autocomplete="name" maxlength="80" required placeholder="Ваше имя"></label>
-    <label class="lead-message"><span>Задача</span><textarea name="message" rows="5" maxlength="1000" required placeholder="Что нужно сделать, для кого и к какому сроку?"></textarea></label>
-    <button class="button button-primary" type="submit">Сформировать сообщение в WhatsApp →</button>
-    <small>Данные не сохраняются на сайте — сообщение откроется у вас в WhatsApp.</small>
-  </form>
 </section>
 
-<section class="faq-section section-shell">
-  <header class="section-heading compact"><span class="section-number">05 / Вопросы</span><h2>Честно до начала работ.</h2></header>
+<section class="faq-section shell">
+  <header class="section-heading">
+    <span class="section-number" data-scramble>05 / Вопросы</span>
+    <h2 data-split>Честно <em>до начала работ.</em></h2>
+  </header>
   <div class="faq-list">
-    {% for faq in service.faqs %}<details><summary>{{ faq.question }}<span>+</span></summary><p>{{ faq.answer }}</p></details>{% endfor %}
+    {% for faq in service.faqs %}<details data-reveal style="--i:{{ loop.index0 }}"><summary>{{ faq.question }}<span aria-hidden="true"></span></summary><p>{{ faq.answer }}</p></details>{% endfor %}
   </div>
 </section>
 {% endblock %}

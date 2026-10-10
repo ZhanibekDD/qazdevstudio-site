@@ -7,13 +7,16 @@
 {% block mobile_cta %}{% endblock %}
 
 {% block content %}
-<section class="catalog-hero section-shell">
-  <div><span class="section-number">QAZTOOLS / КАТЕГОРИЯ</span><h1>{{ label }}.<br><em>Только официальные источники.</em></h1></div>
+<section class="hero hero-plain catalog-hero" data-spotlight>
+  <div class="hero-bg" aria-hidden="true"><span class="aurora aurora-1"></span><span class="aurora aurora-2"></span><span class="aurora aurora-3"></span><span class="hero-lines"></span></div>
+  <div class="hero-inner shell catalog-inner">
+  <div><span class="section-number" data-scramble>QAZTOOLS / КАТЕГОРИЯ</span><h1>{{ label }}.<br><em>Только официальные источники.</em></h1></div>
   <p>{{ count }} проверенных программ. QazTools не переупаковывает установщики и не добавляет рекламные программы.</p>
   <label class="catalog-search"><span>Поиск по всему каталогу</span><input id="program-search" type="search" placeholder="Название программы или задача" autocomplete="off"><kbd>/</kbd></label>
+  </div>
 </section>
 
-<section class="catalog-results section-shell">
+<section class="catalog-results shell">
   <div class="catalog-results-head"><span id="program-count">{{ count }} программ</span><button id="clear-search" type="button" hidden>Сбросить</button></div>
   <div class="program-grid" id="program-grid">
     {% for app in programs %}
