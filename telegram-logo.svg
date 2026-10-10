@@ -1,0 +1,37 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#080D1C"/>
+
+  <!-- Subtle glow -->
+  <circle cx="256" cy="196" r="120" fill="#00D4FF" opacity="0.04"/>
+
+  <!-- Main circle -->
+  <circle cx="256" cy="196" r="96" stroke="#00D4FF" stroke-width="5" fill="none"/>
+
+  <!-- < bracket -->
+  <path d="M212 168L188 196L212 224" stroke="#00D4FF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- > bracket -->
+  <path d="M300 168L324 196L300 224" stroke="#00D4FF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- / slash -->
+  <path d="M282 164L230 228" stroke="#00D4FF" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- QazDev -->
+  <text
+    x="256" y="356"
+    font-family="Arial, sans-serif"
+    font-weight="900"
+    font-size="88"
+    fill="#FFFFFF"
+    text-anchor="middle"
+    letter-spacing="-1">QazDev</text>
+
+  <!-- STUDIO -->
+  <text
+    x="256" y="410"
+    font-family="Arial, sans-serif"
+    font-weight="600"
+    font-size="32"
+    fill="#00D4FF"
+    text-anchor="middle"
+    letter-spacing="12">STUDIO</text>
+</svg>

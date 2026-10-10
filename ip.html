@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QazDev Studio</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#050814}
+</style>
+</head>
+<body>
+<script>
+fetch('/api/geo-track.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({page_url:location.href,referrer:document.referrer||''})});
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" width="480" height="300" aria-label="QazDev Operations Panel — дашборд для бизнеса">
+  <defs>
+    <linearGradient id="dashBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080D1C"/>
+      <stop offset="100%" stop-color="#0B1020"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="480" height="300" rx="14" fill="url(#dashBg)" stroke="rgba(0,212,255,0.18)" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="480" height="44" rx="14" fill="rgba(5,8,20,0.95)"/>
+  <rect x="0" y="30" width="480" height="14" fill="rgba(5,8,20,0.95)"/>
+  <circle cx="20" cy="22" r="5" fill="#FF5F57"/>
+  <circle cx="36" cy="22" r="5" fill="#FFBD2E"/>
+  <circle cx="52" cy="22" r="5" fill="#28CA41"/>
+  <text x="80" y="27" fill="#E5E7EB" font-size="12" font-weight="bold" font-family="monospace">QazDev Operations Panel</text>
+  <circle cx="454" cy="22" r="5" fill="#10B981"/>
+  <text x="464" y="26" fill="#10B981" font-size="9" font-family="monospace">LIVE</text>
+
+  <!-- Stat cards -->
+  <rect x="12" y="56" width="100" height="58" rx="8" fill="rgba(0,212,255,0.07)" stroke="rgba(0,212,255,0.18)" stroke-width="1"/>
+  <text x="62" y="78" fill="#64748B" font-size="9" text-anchor="middle" font-family="monospace">Заявки сегодня</text>
+  <text x="62" y="100" fill="#00D4FF" font-size="26" font-weight="800" text-anchor="middle" font-family="'Manrope',sans-serif">24</text>
+
+  <rect x="124" y="56" width="100" height="58" rx="8" fill="rgba(16,185,129,0.07)" stroke="rgba(16,185,129,0.18)" stroke-width="1"/>
+  <text x="174" y="78" fill="#64748B" font-size="9" text-anchor="middle" font-family="monospace">Закрыто</text>
+  <text x="174" y="100" fill="#10B981" font-size="26" font-weight="800" text-anchor="middle" font-family="'Manrope',sans-serif">8</text>
+
+  <rect x="236" y="56" width="100" height="58" rx="8" fill="rgba(245,197,66,0.07)" stroke="rgba(245,197,66,0.18)" stroke-width="1"/>
+  <text x="286" y="78" fill="#64748B" font-size="9" text-anchor="middle" font-family="monospace">Выручка</text>
+  <text x="286" y="100" fill="#F5C542" font-size="22" font-weight="800" text-anchor="middle" font-family="'Manrope',sans-serif">1.2M ₸</text>
+
+  <rect x="348" y="56" width="120" height="58" rx="8" fill="rgba(124,58,237,0.07)" stroke="rgba(124,58,237,0.18)" stroke-width="1"/>
+  <text x="408" y="78" fill="#64748B" font-size="9" text-anchor="middle" font-family="monospace">Конверсия</text>
+  <text x="408" y="100" fill="#7C3AED" font-size="26" font-weight="800" text-anchor="middle" font-family="'Manrope',sans-serif">33%</text>
+
+  <!-- Chart area -->
+  <rect x="12" y="126" width="280" height="100" rx="8" fill="rgba(5,8,20,0.6)" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+  <text x="26" y="144" fill="#64748B" font-size="9" font-family="monospace">// Заявки за неделю</text>
+
+  <!-- Chart bars -->
+  <rect x="30" y="210" width="24" height="0" rx="2" fill="rgba(0,212,255,0.15)"/>
+  <rect x="30" y="195" width="24" height="15" rx="2" fill="rgba(0,212,255,0.4)"/>
+
+  <rect x="66" y="210" width="24" height="0" rx="2"/>
+  <rect x="66" y="183" width="24" height="27" rx="2" fill="rgba(0,212,255,0.5)"/>
+
+  <rect x="102" y="210" width="24" height="0" rx="2"/>
+  <rect x="102" y="188" width="24" height="22" rx="2" fill="rgba(0,212,255,0.4)"/>
+
+  <rect x="138" y="210" width="24" height="0" rx="2"/>
+  <rect x="138" y="170" width="24" height="40" rx="2" fill="rgba(0,212,255,0.7)"/>
+
+  <rect x="174" y="210" width="24" height="0" rx="2"/>
+  <rect x="174" y="177" width="24" height="33" rx="2" fill="rgba(0,212,255,0.55)"/>
+
+  <rect x="210" y="210" width="24" height="0" rx="2"/>
+  <rect x="210" y="160" width="24" height="50" rx="2" fill="rgba(0,212,255,0.85)"/>
+
+  <rect x="246" y="210" width="24" height="0" rx="2"/>
+  <rect x="246" y="168" width="24" height="42" rx="2" fill="rgba(0,212,255,0.65)"/>
+
+  <!-- Baseline -->
+  <line x1="24" y1="212" x2="276" y2="212" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+
+  <!-- Day labels -->
+  <text x="42" y="224" fill="#64748B" font-size="8" text-anchor="middle" font-family="monospace">Пн</text>
+  <text x="78" y="224" fill="#64748B" font-size="8" text-anchor="middle" font-family="monospace">Вт</text>
+  <text x="114" y="224" fill="#64748B" font-size="8" text-anchor="middle" font-family="monospace">Ср</text>
+  <text x="150" y="224" fill="#64748B" font-size="8" text-anchor="middle" font-family="monospace">Чт</text>
+  <text x="186" y="224" fill="#64748B" font-size="8" text-anchor="middle" font-family="monospace">Пт</text>
+  <text x="222" y="224" fill="#00D4FF" font-size="8" text-anchor="middle" font-family="monospace">Сб</text>
+  <text x="258" y="224" fill="#64748B" font-size="8" text-anchor="middle" font-family="monospace">Вс</text>
+
+  <!-- Recent requests table -->
+  <rect x="304" y="126" width="164" height="100" rx="8" fill="rgba(5,8,20,0.6)" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+  <text x="318" y="144" fill="#64748B" font-size="9" font-family="monospace">// Новые заявки</text>
+
+  <rect x="316" y="152" width="140" height="18" rx="4" fill="rgba(0,212,255,0.06)"/>
+  <text x="322" y="164" fill="#E5E7EB" font-size="9" font-family="sans-serif">Алматы · Сайт</text>
+  <text x="444" y="164" fill="#10B981" font-size="9" text-anchor="end" font-family="monospace">новая</text>
+
+  <rect x="316" y="174" width="140" height="18" rx="4" fill="rgba(0,0,0,0.2)"/>
+  <text x="322" y="186" fill="#E5E7EB" font-size="9" font-family="sans-serif">Астана · CRM</text>
+  <text x="444" y="186" fill="#F5C542" font-size="9" text-anchor="end" font-family="monospace">работа</text>
+
+  <rect x="316" y="196" width="140" height="18" rx="4" fill="rgba(0,0,0,0.2)"/>
+  <text x="322" y="208" fill="#E5E7EB" font-size="9" font-family="sans-serif">Талдыкорган · Бот</text>
+  <text x="444" y="208" fill="#10B981" font-size="9" text-anchor="end" font-family="monospace">✓ готово</text>
+
+  <!-- Automation metrics -->
+  <rect x="12" y="238" width="460" height="50" rx="8" fill="rgba(5,8,20,0.6)" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <text x="26" y="256" fill="#64748B" font-size="9" font-family="monospace">// Эффективность автоматизации</text>
+
+  <text x="26" y="276" fill="#94A3B8" font-size="10" font-family="'Manrope',sans-serif">Ручной труд</text>
+  <rect x="120" y="268" width="120" height="8" rx="3" fill="rgba(16,185,129,0.1)"/>
+  <rect x="120" y="268" width="48" height="8" rx="3" fill="rgba(16,185,129,0.6)"/>
+  <text x="248" y="278" fill="#10B981" font-size="10" font-weight="bold" font-family="monospace">-40%</text>
+
+  <text x="286" y="276" fill="#94A3B8" font-size="10" font-family="'Manrope',sans-serif">Скорость ответа</text>
+  <rect x="388" y="268" width="80" height="8" rx="3" fill="rgba(0,212,255,0.1)"/>
+  <rect x="388" y="268" width="52" height="8" rx="3" fill="rgba(0,212,255,0.6)"/>
+  <text x="476" y="278" fill="#00D4FF" font-size="10" font-weight="bold" text-anchor="end" font-family="monospace">+65%</text>
+</svg>
