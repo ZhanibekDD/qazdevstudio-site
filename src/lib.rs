@@ -1651,6 +1651,14 @@ mod tests {
         assert!(!html.contains("fonts.googleapis.com"));
         assert!(html.contains("og:image"));
         assert!(html.contains("одну ясную задачу."));
+        for hook in [
+            "canvas class=\"hero-gl\"",
+            "data-hscroll",
+            "data-build",
+            "class=\"intro\"",
+        ] {
+            assert!(html.contains(hook), "{hook}");
+        }
     }
 
     #[tokio::test]

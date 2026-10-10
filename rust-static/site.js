@@ -455,3 +455,305 @@
     glow?.classList.toggle('is-hover', Boolean(event.target.closest?.('a, button, input, select, textarea, summary, label')));
   });
 })();
+
+// Signature layer: WebGL hero, custom cursor, pinned horizontal services,
+// code-to-interface demo, scroll-velocity marquee and live wordmark.
+(() => {
+  try { sessionStorage.setItem('qd_intro_seen', '1'); } catch {}
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const root = document.documentElement;
+  const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+  const whenVisible = (element, onChange) => {
+    if (!('IntersectionObserver' in window)) { onChange(true); return; }
+    new IntersectionObserver(([entry]) => onChange(entry.isIntersecting)).observe(element);
+  };
+
+  // Liquid gradient in brand colours that bends around the pointer.
+  const canvas = document.querySelector('canvas.hero-gl');
+  const gl = canvas?.getContext('webgl', { antialias: false, alpha: false, depth: false, powerPreference: 'low-power' });
+  if (canvas && gl) {
+    const fragment = `
+      precision mediump float;
+      uniform vec2 u_res; uniform float u_time; uniform vec2 u_mouse; uniform float u_hover;
+      float hash(vec2 p) { p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
+      float noise(vec2 p) {
+        vec2 i = floor(p), f = fract(p), u = f * f * (3.0 - 2.0 * f);
+        return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
+      }
+      float fbm(vec2 p) {
+        float v = 0.0, a = 0.5; mat2 r = mat2(0.8, -0.6, 0.6, 0.8);
+        for (int i = 0; i < 5; i++) { v += a * noise(p); p = r * p * 2.03 + 0.17; a *= 0.5; }
+        return v;
+      }
+      void main() {
+        vec2 uv = gl_FragCoord.xy / u_res;
+        vec2 p = (gl_FragCoord.xy - 0.5 * u_res) / u_res.y;
+        vec2 m = (u_mouse - 0.5 * u_res) / u_res.y;
+        float d = length(p - m);
+        p += (p - m) * 0.22 * exp(-d * d * 5.0) * u_hover;
+        float t = u_time * 0.055;
+        vec2 q = vec2(fbm(p * 1.5 + t), fbm(p * 1.5 - t + 4.1));
+        vec2 r = vec2(fbm(p * 1.3 + 2.4 * q + vec2(1.7, 9.2) + t * 1.4), fbm(p * 1.3 + 2.4 * q + vec2(8.3, 2.8) - t));
+        float f = fbm(p * 1.15 + 2.6 * r);
+        vec3 bg = vec3(0.027, 0.031, 0.043);
+        vec3 col = mix(bg, vec3(0.20, 0.29, 0.92), smoothstep(0.42, 0.98, f));
+        col = mix(col, vec3(0.56, 0.38, 1.0), smoothstep(0.62, 1.15, length(q)) * 0.6);
+        col = mix(col, vec3(0.79, 1.0, 0.29), smoothstep(0.86, 1.18, r.x * f * 1.7) * 0.42);
+        col += vec3(0.36, 0.45, 1.0) * 0.22 * exp(-d * d * 9.0) * u_hover;
+        col *= smoothstep(1.25, 0.15, length((uv - vec2(0.66, 0.5)) * vec2(1.0, 1.25)));
+        col = mix(bg, col, 0.85);
+        col += (hash(gl_FragCoord.xy + u_time) - 0.5) / 255.0;
+        gl_FragColor = vec4(col, 1.0);
+      }`;
+    const compile = (type, source) => {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      return gl.getShaderParameter(shader, gl.COMPILE_STATUS) ? shader : null;
+    };
+    const vertex = compile(gl.VERTEX_SHADER, 'attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}');
+    const pixels = compile(gl.FRAGMENT_SHADER, fragment);
+    const program = gl.createProgram();
+    if (vertex && pixels) {
+      gl.attachShader(program, vertex);
+      gl.attachShader(program, pixels);
+      gl.linkProgram(program);
+    }
+    if (vertex && pixels && gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      gl.useProgram(program);
+      gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      const position = gl.getAttribLocation(program, 'p');
+      gl.enableVertexAttribArray(position);
+      gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+      const uniform = name => gl.getUniformLocation(program, name);
+      const uRes = uniform('u_res');
+      const uTime = uniform('u_time');
+      const uMouse = uniform('u_mouse');
+      const uHover = uniform('u_hover');
+      const hero = canvas.closest('.hero') || canvas.parentElement;
+      let width = 1;
+      let height = 1;
+      const resize = () => {
+        const rect = canvas.getBoundingClientRect();
+        const scale = innerWidth < 700 ? 0.42 : 0.55;
+        width = Math.max(1, Math.round(rect.width * scale));
+        height = Math.max(1, Math.round(rect.height * scale));
+        canvas.width = width;
+        canvas.height = height;
+        gl.viewport(0, 0, width, height);
+      };
+      resize();
+      addEventListener('resize', resize, { passive: true });
+      let mx = 0.66, my = 0.55, tx = mx, ty = my, hover = 0, targetHover = finePointer ? 0 : 0.7;
+      hero.addEventListener('pointermove', event => {
+        const rect = canvas.getBoundingClientRect();
+        tx = (event.clientX - rect.left) / rect.width;
+        ty = 1 - (event.clientY - rect.top) / rect.height;
+        targetHover = 1;
+      }, { passive: true });
+      hero.addEventListener('pointerleave', () => { targetHover = finePointer ? 0 : 0.7; });
+      let visible = true;
+      let frame = 0;
+      const started = performance.now();
+      const draw = now => {
+        frame = 0;
+        if (!visible || document.hidden) return;
+        const seconds = (now - started) / 1000;
+        if (!finePointer) {
+          tx = 0.6 + 0.22 * Math.sin(seconds * 0.35);
+          ty = 0.5 + 0.18 * Math.cos(seconds * 0.27);
+        }
+        mx += (tx - mx) * 0.06;
+        my += (ty - my) * 0.06;
+        hover += (targetHover - hover) * 0.05;
+        gl.uniform2f(uRes, width, height);
+        gl.uniform1f(uTime, seconds);
+        gl.uniform2f(uMouse, mx * width, my * height);
+        gl.uniform1f(uHover, hover);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        frame = requestAnimationFrame(draw);
+      };
+      const wake = () => { if (visible && !document.hidden && !frame) frame = requestAnimationFrame(draw); };
+      whenVisible(canvas, isVisible => { visible = isVisible; wake(); });
+      document.addEventListener('visibilitychange', wake);
+      canvas.addEventListener('webglcontextlost', () => hero.classList.remove('has-gl'));
+      hero.classList.add('has-gl');
+      wake();
+    }
+  }
+
+  // Cursor: dot follows exactly, ring trails and describes the target.
+  const cursor = document.querySelector('.cursor');
+  if (finePointer && cursor) {
+    const dot = cursor.querySelector('.cursor-dot');
+    const ring = cursor.querySelector('.cursor-ring');
+    const label = cursor.querySelector('.cursor-label');
+    root.classList.add('has-cursor');
+    let x = -100, y = -100, rx = x, ry = y, frame = 0;
+    const trail = () => {
+      rx += (x - rx) * 0.2;
+      ry += (y - ry) * 0.2;
+      ring.style.transform = `translate3d(${rx.toFixed(1)}px, ${ry.toFixed(1)}px, 0)`;
+      frame = Math.abs(x - rx) + Math.abs(y - ry) > 0.3 ? requestAnimationFrame(trail) : 0;
+    };
+    addEventListener('pointermove', event => {
+      x = event.clientX;
+      y = event.clientY;
+      dot.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      cursor.classList.add('is-visible');
+      if (!frame) frame = requestAnimationFrame(trail);
+    }, { passive: true });
+    document.documentElement.addEventListener('pointerleave', () => cursor.classList.remove('is-visible'));
+    document.addEventListener('pointerover', event => {
+      const text = event.target.closest?.('input, textarea');
+      const labelled = event.target.closest?.('[data-cursor]');
+      const link = event.target.closest?.('a, button, summary, label, select, [data-cursor]');
+      cursor.classList.toggle('is-text', Boolean(text));
+      cursor.classList.toggle('is-link', Boolean(link) && !text);
+      cursor.classList.toggle('has-label', Boolean(labelled) && !text);
+      label.textContent = labelled ? labelled.dataset.cursor : '';
+    });
+    addEventListener('pointerdown', () => cursor.classList.add('is-down'));
+    addEventListener('pointerup', () => cursor.classList.remove('is-down'));
+  }
+
+  // Services pinned on wide screens: vertical scroll moves the cards sideways.
+  const pinned = document.querySelector('[data-hscroll]');
+  if (pinned) {
+    const track = pinned.querySelector('.hscroll-track');
+    const wide = matchMedia('(min-width: 1100px)');
+    let overflow = 0;
+    const update = () => {
+      if (!pinned.classList.contains('hscroll-on')) return;
+      const progress = clamp(-pinned.getBoundingClientRect().top / Math.max(1, overflow), 0, 1);
+      track.style.transform = `translate3d(${(-progress * overflow).toFixed(1)}px, 0, 0)`;
+      pinned.style.setProperty('--hp', progress.toFixed(3));
+    };
+    const measure = () => {
+      pinned.classList.toggle('hscroll-on', wide.matches);
+      if (!wide.matches) {
+        pinned.style.height = '';
+        track.style.transform = '';
+        return;
+      }
+      overflow = Math.max(0, track.scrollWidth - innerWidth);
+      pinned.style.height = `${Math.round(innerHeight + overflow)}px`;
+      update();
+    };
+    measure();
+    addEventListener('resize', measure, { passive: true });
+    addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+  }
+
+  // Code types itself while the page it describes assembles.
+  const build = document.querySelector('[data-build]');
+  if (build) {
+    const code = build.querySelector('code');
+    const steps = [...build.querySelectorAll('.bp-step')];
+    const lines = [
+      [0, [['tk-tag', '<header>'], ['', ' логотип · меню · WhatsApp '], ['tk-tag', '</header>']]],
+      [1, [['tk-tag', '<h1>'], ['', 'Запись в клинику онлайн'], ['tk-tag', '</h1>']]],
+      [2, [['tk-tag', '<a '], ['tk-attr', 'class'], ['', '='], ['tk-str', '"cta"'], ['tk-attr', ' href'], ['', '='], ['tk-str', '"wa.me/…"'], ['tk-tag', '>'], ['', 'Записаться'], ['tk-tag', '</a>']]],
+      [3, [['tk-tag', '<section '], ['tk-attr', 'class'], ['', '='], ['tk-str', '"services"'], ['tk-tag', '>'], ['', ' × 3 '], ['tk-tag', '</section>']]],
+      [4, [['tk-tag', '<form '], ['tk-attr', 'data-lead'], ['tk-tag', '>'], ['', ' имя · телефон '], ['tk-tag', '</form>']]],
+      [-1, []],
+      [5, [['tk-fn', 'notify'], ['', '('], ['tk-str', '"telegram"'], ['', ', lead);'], ['tk-com', '  // заявка не теряется']]],
+    ];
+    const caret = document.createElement('span');
+    caret.className = 'caret';
+    let visible = false;
+    let running = false;
+    const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+    const play = async () => {
+      running = true;
+      while (visible) {
+        code.textContent = '';
+        steps.forEach(step => step.classList.remove('is-on'));
+        for (const [index, [step, parts]] of lines.entries()) {
+          const line = document.createElement('span');
+          line.className = 'ln';
+          line.dataset.n = String(index + 1);
+          code.append(line);
+          line.append(caret);
+          for (const [kind, text] of parts) {
+            const token = document.createElement('span');
+            if (kind) token.className = kind;
+            line.insertBefore(token, caret);
+            for (const char of text) {
+              token.textContent += char;
+              await wait(char === ' ' ? 12 : 26);
+            }
+          }
+          if (step >= 0) steps[step]?.classList.add('is-on');
+          await wait(260);
+        }
+        await wait(4200);
+      }
+      running = false;
+    };
+    whenVisible(build, isVisible => {
+      visible = isVisible;
+      if (visible && !running) play();
+    });
+  }
+
+  // Marquee speed and skew follow scroll velocity and direction.
+  const rows = [...document.querySelectorAll('.marquee-row')];
+  const marquee = document.querySelector('.marquee');
+  if (rows.length && marquee) {
+    root.classList.add('js-marquee');
+    const offsets = rows.map(() => 0);
+    let velocity = 0;
+    let direction = 1;
+    let lastY = scrollY;
+    let active = true;
+    let frame = 0;
+    addEventListener('scroll', () => {
+      const dy = scrollY - lastY;
+      lastY = scrollY;
+      if (dy) direction = Math.sign(dy);
+      velocity = clamp(velocity + dy * 0.08, -22, 22);
+    }, { passive: true });
+    const tick = () => {
+      frame = 0;
+      if (!active) return;
+      velocity *= 0.92;
+      rows.forEach((row, index) => {
+        const half = row.scrollWidth / 2;
+        const sign = index === 0 ? -1 : 1;
+        offsets[index] += ((index === 0 ? 0.7 : 0.5) + Math.abs(velocity) * 0.6) * sign * direction;
+        offsets[index] = ((offsets[index] % half) + half) % half - half;
+        row.style.transform = `translate3d(${offsets[index].toFixed(1)}px, 0, 0) skewX(${(-velocity * 0.4).toFixed(2)}deg)`;
+      });
+      frame = requestAnimationFrame(tick);
+    };
+    whenVisible(marquee, isVisible => {
+      active = isVisible;
+      if (active && !frame) frame = requestAnimationFrame(tick);
+    });
+  }
+
+  // Footer wordmark letters gain weight near the pointer (variable font).
+  const word = document.querySelector('.footer-wordmark span');
+  if (finePointer && word) {
+    const letters = [...word.textContent].map(char => {
+      const letter = document.createElement('span');
+      letter.textContent = char;
+      return letter;
+    });
+    word.textContent = '';
+    word.classList.add('letters');
+    letters.forEach(letter => word.append(letter));
+    addEventListener('pointermove', event => {
+      const box = word.getBoundingClientRect();
+      if (event.clientY < box.top - 260 || event.clientY > box.bottom + 260) return;
+      letters.forEach(letter => {
+        const rect = letter.getBoundingClientRect();
+        const distance = Math.hypot(event.clientX - (rect.left + rect.width / 2), event.clientY - (rect.top + rect.height / 2));
+        letter.style.fontVariationSettings = `"wght" ${Math.round(400 + 500 * clamp(1 - distance / 460, 0, 1))}`;
+      });
+    }, { passive: true });
+  }
+})();
