@@ -116,7 +116,7 @@
   </div>
 </footer>
 
-<script src="js/track.js"></script>
+<script src="js/track.js?v=20261009"></script>
 <script>
 const WA = '77000300024';
 let currentType = '';
@@ -255,7 +255,7 @@ function downloadTZ() {
 }
 function sendTZtoWA() {
   const short = tzText.substring(0, 1500);
-  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(short), '_blank');
+  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(qdWithRef(short)), '_blank');
   trackEvent('whatsapp_click', 'ТЗ → WhatsApp');
 }
 </script>

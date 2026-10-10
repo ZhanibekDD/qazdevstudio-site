@@ -103,18 +103,29 @@
       || `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
     return `${prefix}-${value}`;
   };
-  const visitorKey = 'qazdev_visitor_v2';
-  const sessionKey = 'qazdev_session_v2';
-  let visitorId = localStorage.getItem(visitorKey);
-  let sessionId = sessionStorage.getItem(sessionKey);
-  if (!visitorId) {
-    visitorId = randomId('v');
-    localStorage.setItem(visitorKey, visitorId);
-  }
-  if (!sessionId) {
-    sessionId = randomId('s');
-    sessionStorage.setItem(sessionKey, sessionId);
-  }
+  const remember = (storage, key, create) => {
+    try {
+      let value = storage.getItem(key);
+      if (!value) {
+        value = create();
+        storage.setItem(key, value);
+      }
+      return value;
+    } catch {
+      return create();
+    }
+  };
+  const visitorId = remember(localStorage, 'qazdev_visitor_v2', () => randomId('v'));
+  const sessionId = remember(sessionStorage, 'qazdev_session_v2', () => randomId('s'));
+  // Short code added to WhatsApp messages: lets a real conversation be matched
+  // to the page and traffic source of the visit. A click alone is not a lead.
+  const leadRef = remember(sessionStorage, 'qazdev_lead_ref', () => {
+    const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    const bytes = self.crypto?.getRandomValues?.(new Uint8Array(5))
+      || Uint8Array.from({ length: 5 }, () => Math.floor(Math.random() * 256));
+    return `QD-${Array.from(bytes, byte => alphabet[byte % alphabet.length]).join('')}`;
+  });
+  const withLeadRef = text => text.includes(leadRef) ? text : `${text.trim()}\n\nКод с сайта: ${leadRef}`;
 
   const params = new URLSearchParams(location.search);
   const base = () => ({
@@ -134,11 +145,12 @@
       event_label: eventLabel,
       extra
     });
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon('/api/track.php', new Blob([payload], { type: 'application/json' }));
+    // /api/track.php is shadowed by a legacy PHP file on shared hosting;
+    // /api/track always reaches the application.
+    if (navigator.sendBeacon?.('/api/track', new Blob([payload], { type: 'application/json' }))) {
       return;
     }
-    fetch('/api/track.php', {
+    fetch('/api/track', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: payload,
@@ -153,7 +165,17 @@
     if (!link) return;
     const href = link.getAttribute('href') || '';
     const label = link.textContent.trim().slice(0, 200);
-    if (href.includes('wa.me') || href.includes('whatsapp')) track('whatsapp_click', label);
+    if (href.includes('wa.me') || href.includes('whatsapp')) {
+      try {
+        const url = new URL(link.href);
+        if (url.hostname === 'wa.me') {
+          // encodeURIComponent keeps spaces as %20; WhatsApp may show "+" literally.
+          const text = withLeadRef(url.searchParams.get('text') || 'Здравствуйте! Хочу обсудить проект.');
+          link.href = `${url.origin}${url.pathname}?text=${encodeURIComponent(text)}`;
+        }
+      } catch {}
+      track('whatsapp_click', label, { channel: 'whatsapp', ref: leadRef });
+    }
     else if (href.includes('t.me/')) track('telegram_click', label);
     else if (href.startsWith('tel:')) track('phone_click', label);
     else if (href.startsWith('mailto:')) track('email_click', label);
@@ -170,15 +192,21 @@
       event.preventDefault();
       const name = String(values.get('name') || '').trim().slice(0, 80);
       const message = String(values.get('message') || '').trim().slice(0, 1000);
-      const text = [
+      const text = withLeadRef([
         'Здравствуйте! Хочу обсудить проект.',
         '',
         `Имя: ${name}`,
         `Задача: ${service}`,
         `Описание: ${message}`
-      ].join('\n');
-      track('generate_lead', service, { channel: 'whatsapp', service });
-      window.open(`https://wa.me/77000300024?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+      ].join('\n'));
+      // Opening WhatsApp is not a lead yet: the visitor still has to press send.
+      track('whatsapp_form_submit', service, { channel: 'whatsapp', service, ref: leadRef });
+      const whatsapp = `https://wa.me/77000300024?text=${encodeURIComponent(text)}`;
+      // In-app browsers (Instagram, Facebook) often block new windows; the
+      // message must still reach WhatsApp instead of silently disappearing.
+      const opened = window.open(whatsapp, '_blank');
+      if (opened) opened.opener = null;
+      else location.assign(whatsapp);
       return;
     }
 

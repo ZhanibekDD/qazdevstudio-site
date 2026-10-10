@@ -11,6 +11,19 @@ RewriteRule ^ https://qazdevstudio.kz%{REQUEST_URI} [R=301,L,NE]
 RewriteRule ^telegram-bot-dlya-biznesa\.html$ /telegram-bot-kazakhstan.html [R=301,L]
 RewriteRule ^crm-dlya-malogo-biznesa\.html$ /crm-dlya-biznesa-kazakhstan.html [R=301,L]
 RewriteRule ^avtomatizaciya-biznesa\.html$ /avtomatizaciya-biznesa-kazakhstan.html [R=301,L]
+# Removed regional page; an old copy may remain in the document root after deploys.
+RewriteRule ^razrabotka-saitov-taldykorgan\.html$ /razrabotka-saitov-kazakhstan.html [R=301,L]
+
+# Server code, installers and leftovers from other deployments are never public.
+<FilesMatch "^(\.env.*|server\.js|app\.js|package(-lock)?\.json|README\.md|install\.php)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
 
 AddType application/json .json
 

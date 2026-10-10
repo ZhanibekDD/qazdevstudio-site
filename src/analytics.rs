@@ -254,9 +254,16 @@ impl Analytics {
 pub fn notification_text(payload: &TrackPayload) -> Option<String> {
     match payload.event_type.as_str() {
         "whatsapp_click" => Some(format!(
-            "Клик по WhatsApp\nСтраница: {}\nКнопка: {}",
+            "Клик по WhatsApp (ещё не заявка)\nКод: {}\nСтраница: {}\nКнопка: {}",
+            extra_string(&payload.extra, "ref", 16),
             clean(&payload.page_url, 500),
             clean(&payload.event_label, 200)
+        )),
+        "whatsapp_form_submit" => Some(format!(
+            "Форма открыла WhatsApp (заявка, если придёт сообщение с этим кодом)\nКод: {}\nУслуга: {}\nСтраница: {}",
+            extra_string(&payload.extra, "ref", 16),
+            extra_string(&payload.extra, "service", 200),
+            clean(&payload.page_url, 500)
         )),
         "phone_click" => Some(format!(
             "Клик по телефону\nСтраница: {}",
@@ -407,6 +414,19 @@ mod tests {
     fn anonymizes_addresses() {
         assert_eq!(anonymize_ip("192.0.2.45"), "192.0.2.0");
         assert_eq!(anonymize_ip("bad"), "");
+    }
+
+    #[test]
+    fn whatsapp_form_notification_carries_lead_code() {
+        let payload = TrackPayload {
+            event_type: "whatsapp_form_submit".to_string(),
+            page_url: "/telegram-bot-kazakhstan.html".to_string(),
+            extra: serde_json::json!({"ref": "QD-7K2PM", "service": "Telegram-бот"}),
+            ..TrackPayload::default()
+        };
+        let text = notification_text(&payload).unwrap();
+        assert!(text.contains("QD-7K2PM"));
+        assert!(text.contains("Telegram-бот"));
     }
 
     #[test]

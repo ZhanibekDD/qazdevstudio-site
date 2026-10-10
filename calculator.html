@@ -161,7 +161,7 @@
   </div>
 </footer>
 
-<script src="js/track.js"></script>
+<script src="js/track.js?v=20261009"></script>
 <script>
 const WA = '77000300024';
 
@@ -237,7 +237,7 @@ function sendToWA() {
   const phoneText = d.phone ? `\nТелефон: ${d.phone}` : '';
   const commentText = d.comment ? `\nКомментарий: ${d.comment}` : '';
   const text = `Здравствуйте! Рассчитал проект на калькуляторе.\n\nТип: ${d.base.name}\nБюджет: ${fmt(d.minP)} — ${fmt(d.maxP)}\nСрок: ${d.base.days}\nФормат: ${d.format}${featText}${cityText}${phoneText}${commentText}`;
-  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(text), '_blank');
+  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(qdWithRef(text)), '_blank');
   trackEvent('whatsapp_click', 'Калькулятор → WhatsApp');
 }
 

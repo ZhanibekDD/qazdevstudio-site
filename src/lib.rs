@@ -986,8 +986,6 @@ async fn sitemap_main() -> Response {
         "/templates/tz-na-sait.html",
         "/templates/tz-na-telegram-bot.html",
         "/templates/kommercheskoe-predlozhenie.html",
-        "/ip.html",
-        "/privacy.html",
     ]
     .into_iter()
     .map(str::to_string)
@@ -1625,6 +1623,43 @@ mod tests {
         assert!(html.contains("data-whatsapp-form"));
         assert!(!html.contains("pagead2.googlesyndication.com"));
         assert!(!html.contains("Талдыкорган"));
+    }
+
+    async fn page_html(uri: &str) -> String {
+        let response = app(AppState::new(PathBuf::from(env!("CARGO_MANIFEST_DIR"))))
+            .oneshot(Request::builder().uri(uri).body(Body::empty()).unwrap())
+            .await
+            .unwrap();
+        assert_eq!(response.status(), StatusCode::OK, "{uri}");
+        let body = to_bytes(response.into_body(), 1_000_000).await.unwrap();
+        String::from_utf8(body.to_vec()).unwrap()
+    }
+
+    #[tokio::test]
+    async fn blog_has_no_ads_that_lead_visitors_away() {
+        for uri in ["/blog/", "/blog/skolko-stoit-sait-v-kazakhstane.html"] {
+            let html = page_html(uri).await;
+            assert!(!html.contains("pagead2.googlesyndication.com"), "{uri}");
+            assert!(html.contains("class=\"mobile-cta\""), "{uri}");
+        }
+    }
+
+    #[tokio::test]
+    async fn catalog_keeps_ads_without_studio_contact_bar() {
+        for uri in ["/programmy/", "/programmy/sharex.html"] {
+            let html = page_html(uri).await;
+            assert!(html.contains("pagead2.googlesyndication.com"), "{uri}");
+            assert!(!html.contains("class=\"mobile-cta\""), "{uri}");
+        }
+    }
+
+    #[tokio::test]
+    async fn main_sitemap_lists_only_indexable_pages() {
+        let xml = page_html("/sitemap.xml").await;
+        assert!(xml.contains("/razrabotka-saitov-astana.html"));
+        assert!(!xml.contains("/ip.html"));
+        assert!(!xml.contains("/privacy.html"));
+        assert!(!xml.contains("taldykorgan"));
     }
 
     #[tokio::test]
